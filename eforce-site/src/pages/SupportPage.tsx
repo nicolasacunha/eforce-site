@@ -60,7 +60,7 @@ export default function SupportPage() {
       />
 
       {/* Hero */}
-      <section className="bg-white pt-32 pb-16 md:pt-40">
+      <section className="bg-brand-black pt-24 pt-32 pb-16 md:pt-40">
         <div
           ref={heroRef}
           className="mx-auto max-w-4xl px-6 text-center"
@@ -73,17 +73,17 @@ export default function SupportPage() {
           <span className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-brand-orange">
             {t('nav.support').toUpperCase()}
           </span>
-          <h1 className="mt-4 font-display text-4xl font-bold text-brand-text-primary md:text-6xl">
+          <h1 className="mt-4 font-display text-4xl font-bold text-white md:text-6xl">
             How can we help?
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl font-body text-lg text-brand-text-secondary">
+          <p className="mx-auto mt-6 max-w-2xl font-body text-lg text-neutral-400">
             Find answers to common questions, download manuals and firmware, or get in touch with our team.
           </p>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="bg-white py-16">
+      <section className="bg-brand-black py-16">
         <div
           ref={faqRef}
           className="mx-auto max-w-3xl px-6"
@@ -93,22 +93,22 @@ export default function SupportPage() {
             transition: 'opacity 0.6s ease, transform 0.6s ease',
           }}
         >
-          <h2 className="mb-8 font-display text-2xl font-bold text-brand-text-primary">
+          <h2 className="mb-8 font-display text-2xl font-bold text-white">
             Frequently Asked Questions
           </h2>
 
-          <div className="divide-y divide-brand-border">
+          <div className="divide-y divide-neutral-800">
             {faqData.map((item, index) => (
               <div key={index}>
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
                   className="flex w-full items-center justify-between py-5 text-left"
                 >
-                  <span className="pr-4 font-display text-base font-medium text-brand-text-primary">
+                  <span className="pr-4 font-display text-base font-medium text-white">
                     {item.question}
                   </span>
                   <svg
-                    className={`h-5 w-5 flex-shrink-0 text-brand-text-secondary transition-transform duration-300 ${
+                    className={`h-5 w-5 flex-shrink-0 text-neutral-400 transition-transform duration-300 ${
                       openIndex === index ? 'rotate-180' : ''
                     }`}
                     fill="none"
@@ -128,7 +128,7 @@ export default function SupportPage() {
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden"
                 >
-                  <p className="pb-5 font-body text-sm leading-relaxed text-brand-text-secondary">
+                  <p className="pb-5 font-body text-sm leading-relaxed text-neutral-400">
                     {item.answer}
                   </p>
                 </motion.div>
@@ -139,9 +139,9 @@ export default function SupportPage() {
       </section>
 
       {/* Downloads */}
-      <section className="bg-[#f7f7f7] py-24">
+      <section className="bg-neutral-950 py-24">
         <div className="mx-auto max-w-5xl px-6">
-          <h2 className="mb-8 text-center font-display text-2xl font-bold text-brand-text-primary">
+          <h2 className="mb-8 text-center font-display text-2xl font-bold text-white">
             Downloads
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -155,16 +155,16 @@ export default function SupportPage() {
             ].map((file) => (
               <div
                 key={file.name}
-                className="flex items-center justify-between rounded-xl border border-brand-border bg-[#f7f7f7] p-5 transition-colors hover:border-brand-orange/30"
+                className="flex items-center justify-between rounded-xl border border-neutral-800 bg-neutral-900 p-5 transition-colors hover:border-brand-orange/30"
               >
                 <div>
-                  <p className="font-display text-sm font-semibold text-brand-text-primary">{file.name}</p>
-                  <p className="mt-1 font-mono text-xs text-brand-text-secondary">
+                  <p className="font-display text-sm font-semibold text-white">{file.name}</p>
+                  <p className="mt-1 font-mono text-xs text-neutral-400">
                     {file.type} — {file.size}
                   </p>
                 </div>
                 <svg
-                  className="h-5 w-5 flex-shrink-0 text-brand-text-secondary"
+                  className="h-5 w-5 flex-shrink-0 text-neutral-400"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -179,7 +179,7 @@ export default function SupportPage() {
       </section>
 
       {/* Contact Form */}
-      <section className="bg-white py-24">
+      <section className="bg-brand-black py-24">
         <div
           ref={contactRef}
           className="mx-auto max-w-2xl px-6"
@@ -189,10 +189,10 @@ export default function SupportPage() {
             transition: 'opacity 0.6s ease, transform 0.6s ease',
           }}
         >
-          <h2 className="mb-2 text-center font-display text-2xl font-bold text-brand-text-primary">
+          <h2 className="mb-2 text-center font-display text-2xl font-bold text-white">
             Contact Us
           </h2>
-          <p className="mb-8 text-center font-body text-brand-text-secondary">
+          <p className="mb-8 text-center font-body text-neutral-400">
             Can&apos;t find what you&apos;re looking for? Send us a message.
           </p>
 
@@ -204,15 +204,15 @@ export default function SupportPage() {
               <input
                 type="text"
                 placeholder="Name"
-                className="rounded-lg border border-brand-border bg-[#f7f7f7] px-4 py-3 font-body text-sm text-brand-text-primary placeholder:text-brand-text-secondary/50 focus:border-brand-orange/50 focus:outline-none focus:ring-1 focus:ring-brand-orange/50"
+                className="rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 font-body text-sm text-white placeholder:text-neutral-600 focus:border-brand-orange/50 focus:outline-none focus:ring-1 focus:ring-brand-orange/50"
               />
               <input
                 type="email"
                 placeholder="Email"
-                className="rounded-lg border border-brand-border bg-[#f7f7f7] px-4 py-3 font-body text-sm text-brand-text-primary placeholder:text-brand-text-secondary/50 focus:border-brand-orange/50 focus:outline-none focus:ring-1 focus:ring-brand-orange/50"
+                className="rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 font-body text-sm text-white placeholder:text-neutral-600 focus:border-brand-orange/50 focus:outline-none focus:ring-1 focus:ring-brand-orange/50"
               />
             </div>
-            <select className="w-full rounded-lg border border-brand-border bg-[#f7f7f7] px-4 py-3 font-body text-sm text-brand-text-primary focus:border-brand-orange/50 focus:outline-none focus:ring-1 focus:ring-brand-orange/50">
+            <select className="w-full rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 font-body text-sm text-white focus:border-brand-orange/50 focus:outline-none focus:ring-1 focus:ring-brand-orange/50">
               <option value="">Select a topic</option>
               <option value="product">Product Question</option>
               <option value="warranty">Warranty Claim</option>
@@ -222,7 +222,7 @@ export default function SupportPage() {
             <textarea
               rows={5}
               placeholder="Your message"
-              className="w-full rounded-lg border border-brand-border bg-[#f7f7f7] px-4 py-3 font-body text-sm text-brand-text-primary placeholder:text-brand-text-secondary/50 focus:border-brand-orange/50 focus:outline-none focus:ring-1 focus:ring-brand-orange/50"
+              className="w-full rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 font-body text-sm text-white placeholder:text-neutral-600 focus:border-brand-orange/50 focus:outline-none focus:ring-1 focus:ring-brand-orange/50"
             />
             <button
               type="submit"
@@ -235,10 +235,10 @@ export default function SupportPage() {
       </section>
 
       {/* Warranty */}
-      <section className="bg-[#f7f7f7] py-24">
+      <section className="bg-neutral-950 py-24">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="font-display text-2xl font-bold text-brand-text-primary">Warranty</h2>
-          <p className="mx-auto mt-4 max-w-xl font-body leading-relaxed text-brand-text-secondary">
+          <h2 className="font-display text-2xl font-bold text-white">Warranty</h2>
+          <p className="mx-auto mt-4 max-w-xl font-body leading-relaxed text-neutral-400">
             All E-Force electronic drum kits are covered by a 2-year manufacturer warranty.
             This warranty covers defects in materials and workmanship under normal use conditions.
             For warranty claims, please contact your authorized dealer or use the form above.

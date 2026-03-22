@@ -6,12 +6,12 @@ export default function NotFoundPage() {
   const { t } = useTranslation();
 
   return (
-    <div className="flex min-h-[80vh] flex-col items-center justify-center px-6 text-center">
+    <div className="bg-brand-black min-h-screen flex flex-col items-center justify-center px-6 pt-24 text-center">
       <h1 className="font-display text-8xl font-bold text-brand-orange">404</h1>
-      <p className="mt-4 font-display text-2xl text-brand-text-primary">
+      <p className="mt-4 font-display text-2xl text-white">
         {t('notFound.title', 'Page not found')}
       </p>
-      <p className="mt-2 text-brand-text-secondary">
+      <p className="mt-2 text-neutral-400">
         {t('notFound.message', 'The page you are looking for does not exist or has been moved.')}
       </p>
       <Link

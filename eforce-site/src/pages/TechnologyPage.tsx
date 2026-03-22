@@ -33,8 +33,8 @@ function ModuleCard({
   return (
     <div
       ref={ref}
-      className={`relative rounded-2xl border bg-[#1a1a1a] p-10 ${
-        flagship ? 'border-brand-orange/20' : 'border-white/10'
+      className={`relative rounded-2xl border bg-neutral-900 p-10 ${
+        flagship ? 'border-brand-orange/20' : 'border-neutral-800'
       }`}
       style={{
         opacity: isVisible ? 1 : 0,
@@ -54,27 +54,27 @@ function ModuleCard({
         {code}
       </span>
       <h3 className="mt-4 font-display text-2xl font-bold text-white">{title}</h3>
-      <p className="mt-2 font-body text-white/60">{subtitle}</p>
+      <p className="mt-2 font-body text-neutral-400">{subtitle}</p>
 
       <div className="mt-8">
         {specs.map((spec) => (
           <div
             key={spec.name}
-            className="flex items-center justify-between border-b border-white/10 py-3"
+            className="flex items-center justify-between border-b border-neutral-800 py-3"
           >
-            <span className="font-body text-white/60">{spec.name}</span>
+            <span className="font-body text-neutral-400">{spec.name}</span>
             <span className="font-mono text-white">{spec.value}</span>
           </div>
         ))}
       </div>
 
       <div className="mt-8">
-        <span className="font-body text-sm text-white/60">Available in</span>
+        <span className="font-body text-sm text-neutral-400">Available in</span>
         <div className="mt-2 flex flex-wrap gap-2">
           {availableIn.map((model) => (
             <span
               key={model}
-              className="rounded-full border border-white/10 px-3 py-1 font-mono text-xs text-white/60"
+              className="rounded-full border border-neutral-800 px-3 py-1 font-mono text-xs text-neutral-400"
             >
               {model}
             </span>
@@ -106,14 +106,14 @@ function FeatureSection({
 }: FeatureSectionProps) {
   const { ref, isVisible } = useScrollReveal(0.1);
 
-  const bgClass = bg === 'black' ? 'bg-white' : 'bg-[#f7f7f7]';
-  const placeholderBg = bg === 'black' ? 'bg-[#1a1a1a]' : 'bg-[#f0f0f0]';
+  const bgClass = bg === 'black' ? 'bg-brand-black' : 'bg-neutral-950';
+  const placeholderBg = bg === 'black' ? 'bg-neutral-900' : 'bg-neutral-900';
 
   const imagePlaceholder = (
     <div
       className={`flex aspect-square items-center justify-center rounded-xl ${placeholderBg}`}
     >
-      <span className="font-display text-2xl text-brand-text-secondary/20">
+      <span className="font-display text-2xl text-neutral-600">
         {placeholderLabel}
       </span>
     </div>
@@ -135,9 +135,9 @@ function FeatureSection({
       <span className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-brand-orange">
         {label}
       </span>
-      <h2 className={`mt-3 font-display text-3xl font-bold ${bg === 'black' ? 'text-white' : 'text-brand-text-primary'}`}>{title}</h2>
-      <p className={`mt-4 font-body leading-relaxed ${bg === 'black' ? 'text-white/60' : 'text-brand-text-secondary'}`}>{desc}</p>
-      <p className={`mt-4 font-body leading-relaxed ${bg === 'black' ? 'text-white/60' : 'text-brand-text-secondary'}`}>{extra}</p>
+      <h2 className="mt-3 font-display text-3xl font-bold text-white">{title}</h2>
+      <p className="mt-4 font-body leading-relaxed text-neutral-400">{desc}</p>
+      <p className="mt-4 font-body leading-relaxed text-neutral-400">{extra}</p>
     </div>
   );
 
@@ -195,7 +195,7 @@ export default function TechnologyPage() {
       />
 
       {/* SECTION 1 — Hero */}
-      <section className="bg-white pb-16 pt-32 md:pt-40">
+      <section className="bg-brand-black pt-24 pb-16 pt-32 md:pt-40">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
@@ -210,7 +210,7 @@ export default function TechnologyPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="mt-4 font-display text-4xl font-bold leading-tight text-brand-text-primary md:text-6xl lg:text-7xl"
+            className="mt-4 font-display text-4xl font-bold leading-tight text-white md:text-6xl lg:text-7xl"
           >
             {t('tech.headline')}
           </motion.h1>
@@ -219,7 +219,7 @@ export default function TechnologyPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="mx-auto mt-6 max-w-2xl font-body text-lg leading-relaxed text-brand-text-secondary"
+            className="mx-auto mt-6 max-w-2xl font-body text-lg leading-relaxed text-neutral-400"
           >
             Two powerful modules. One philosophy: give drummers complete control over their sound.
           </motion.p>
@@ -227,7 +227,7 @@ export default function TechnologyPage() {
       </section>
 
       {/* SECTION 2 — Module Comparison */}
-      <section className="bg-white py-24">
+      <section className="bg-brand-black py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <ModuleCard
@@ -253,7 +253,7 @@ export default function TechnologyPage() {
 
       {/* SECTION 3 — Feature Deep-Dives */}
       <FeatureSection
-        bg="black"
+        bg="surface"
         label="WIRELESS"
         title={t('tech.bluetooth.title')}
         desc={t('tech.bluetooth.desc')}
@@ -262,7 +262,7 @@ export default function TechnologyPage() {
       />
 
       <FeatureSection
-        bg="surface"
+        bg="black"
         label="RECORDING"
         title={t('tech.otg.title')}
         desc={t('tech.otg.desc')}
@@ -272,7 +272,7 @@ export default function TechnologyPage() {
       />
 
       <FeatureSection
-        bg="black"
+        bg="surface"
         label="POWER"
         title={t('tech.usbc.title')}
         desc={t('tech.usbc.desc')}
@@ -281,7 +281,7 @@ export default function TechnologyPage() {
       />
 
       <FeatureSection
-        bg="surface"
+        bg="black"
         label="CRAFTSMANSHIP"
         title="Built to perform. Built to last."
         desc="Every E-Force kit is constructed with the same attention to detail that defines Odery's acoustic instruments. Reinforced racks, professional-grade hardware, and mesh heads designed for thousands of hours of play."
@@ -291,7 +291,7 @@ export default function TechnologyPage() {
       />
 
       {/* SECTION 4 — CTA */}
-      <section className="bg-white py-24">
+      <section className="bg-neutral-950 py-24">
         <div
           ref={ctaRef}
           className="mx-auto max-w-2xl px-6 text-center"
@@ -304,7 +304,7 @@ export default function TechnologyPage() {
           <h2 className="font-display text-3xl font-bold text-white">
             Ready to experience the difference?
           </h2>
-          <p className="mt-4 font-body text-brand-text-secondary">
+          <p className="mt-4 font-body text-neutral-400">
             Explore the full E-Force line and find the kit that defines your performance.
           </p>
           <Link

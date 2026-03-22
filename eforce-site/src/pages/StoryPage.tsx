@@ -55,8 +55,8 @@ function TimelineMilestone({
       <div className="absolute left-0 top-1 h-3 w-3 -translate-x-1/2 rounded-full bg-brand-orange" />
 
       <span className="font-mono text-sm text-brand-orange">{milestone.year}</span>
-      <h3 className="mt-1 font-display text-xl font-semibold text-brand-text-primary">{milestone.title}</h3>
-      <p className="mt-2 font-body leading-relaxed text-brand-text-secondary">{milestone.desc}</p>
+      <h3 className="mt-1 font-display text-xl font-semibold text-white">{milestone.title}</h3>
+      <p className="mt-2 font-body leading-relaxed text-neutral-400">{milestone.desc}</p>
     </div>
   );
 }
@@ -79,7 +79,7 @@ export default function StoryPage() {
       />
 
       {/* SECTION 1 — Hero */}
-      <section className="bg-white pb-20 pt-32 md:pt-40">
+      <section className="bg-brand-black pt-24 pb-20 pt-32 md:pt-40">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
@@ -94,7 +94,7 @@ export default function StoryPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="mt-4 font-display text-4xl font-bold leading-tight text-brand-text-primary md:text-6xl lg:text-7xl"
+            className="mt-4 font-display text-4xl font-bold leading-tight text-white md:text-6xl lg:text-7xl"
           >
             {t('odery.headline')}
           </motion.h1>
@@ -103,7 +103,7 @@ export default function StoryPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="mx-auto mt-6 max-w-2xl font-body text-lg leading-relaxed text-brand-text-secondary"
+            className="mx-auto mt-6 max-w-2xl font-body text-lg leading-relaxed text-neutral-400"
           >
             {t('odery.p1')}
           </motion.p>
@@ -111,10 +111,10 @@ export default function StoryPage() {
       </section>
 
       {/* SECTION 2 — Timeline */}
-      <section className="bg-white py-24">
+      <section className="bg-brand-black py-24">
         <div className="relative mx-auto max-w-4xl px-6">
           {/* Vertical line */}
-          <div className="absolute bottom-0 left-6 top-0 w-px bg-brand-text-primary/10" />
+          <div className="absolute bottom-0 left-6 top-0 w-px bg-white/10" />
 
           <div className="flex flex-col gap-12">
             {milestones.map((milestone, index) => (
@@ -125,12 +125,12 @@ export default function StoryPage() {
       </section>
 
       {/* SECTION 3 — Philosophy */}
-      <section className="bg-[#f7f7f7] py-24">
+      <section className="bg-neutral-950 py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
             {/* Left — Image placeholder */}
-            <div className="flex aspect-[4/5] items-center justify-center rounded-xl bg-[#f0f0f0]">
-              <span className="font-display text-2xl text-brand-text-secondary/20">
+            <div className="flex aspect-[4/5] items-center justify-center rounded-xl bg-neutral-900">
+              <span className="font-display text-2xl text-neutral-600">
                 Odery Workshop
               </span>
             </div>
@@ -147,19 +147,19 @@ export default function StoryPage() {
               <span className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-brand-orange">
                 PHILOSOPHY
               </span>
-              <h2 className="mt-3 font-display text-3xl font-bold text-brand-text-primary">
+              <h2 className="mt-3 font-display text-3xl font-bold text-white">
                 Where acoustic soul meets electronic precision.
               </h2>
-              <p className="mt-4 font-body leading-relaxed text-brand-text-secondary">
+              <p className="mt-4 font-body leading-relaxed text-neutral-400">
                 Every E-Force instrument begins with a question: what would happen if decades of
                 acoustic drum expertise were channeled into electronic design?
               </p>
-              <p className="mt-4 font-body leading-relaxed text-brand-text-secondary">
+              <p className="mt-4 font-body leading-relaxed text-neutral-400">
                 The answer is in every detail — the curve of each shell, the weight of each pad, the
                 response of each trigger. These aren&apos;t design choices made by engineers alone.
                 They&apos;re informed by luthiers, drummers, and acoustic specialists.
               </p>
-              <p className="mt-4 font-body leading-relaxed text-brand-text-secondary">
+              <p className="mt-4 font-body leading-relaxed text-neutral-400">
                 This is what sets E-Force apart. Not just technology. Not just aesthetics. A genuine
                 understanding of what makes a drummer feel connected to their instrument.
               </p>
@@ -168,8 +168,8 @@ export default function StoryPage() {
         </div>
       </section>
 
-      {/* SECTION 4 — CTA (dark for contrast) */}
-      <section className="bg-white py-24">
+      {/* SECTION 4 — CTA */}
+      <section className="bg-brand-black py-24">
         <div
           ref={ctaRef}
           className="mx-auto max-w-2xl px-6 text-center"
@@ -182,7 +182,7 @@ export default function StoryPage() {
           <h2 className="font-display text-3xl font-bold text-white">
             Experience the difference.
           </h2>
-          <p className="mt-4 font-body text-brand-text-secondary">
+          <p className="mt-4 font-body text-neutral-400">
             Explore the full E-Force line and find the kit that speaks to you.
           </p>
           <Link
