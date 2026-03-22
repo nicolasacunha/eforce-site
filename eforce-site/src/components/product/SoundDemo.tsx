@@ -9,7 +9,6 @@ export function SoundDemo({ product }: SoundDemoProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const { t } = useTranslation();
-  if (!product.soundDemo) return null;
 
   const handleStart = useCallback(() => {
     if (!audioRef.current) { audioRef.current = new Audio(product.soundDemo); audioRef.current.loop = true; }
@@ -21,6 +20,8 @@ export function SoundDemo({ product }: SoundDemoProps) {
     if (audioRef.current) { audioRef.current.pause(); audioRef.current.currentTime = 0; }
     setIsPlaying(false);
   }, []);
+
+  if (!product.soundDemo) return null;
 
   return (
     <section className="py-24 px-6 text-center">
