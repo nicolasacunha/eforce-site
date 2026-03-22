@@ -4,59 +4,79 @@ import { motion } from "framer-motion";
 import { products } from "@/data/products";
 import { HoverVideoCard } from "@/components/ui/HoverVideoCard";
 
-const featured = products.filter((p) =>
-  ["ef2-v2", "ef5-v2", "ef7-eye-hybrid"].includes(p.slug)
-);
-
 export default function ProductShowcase() {
   const { lang } = useParams();
   const { t } = useTranslation();
 
   return (
-    <section className="bg-brand-black py-24 px-6">
-      <div className="max-w-7xl mx-auto">
-        <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-8">
-          {t("showcase.label") || "Modelos em Destaque"}
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {featured.map((product, i) => (
-            <motion.div
-              key={product.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <Link
-                to={`/${lang}/kits/${product.slug}`}
-                className="group block bg-neutral-900 rounded-lg overflow-hidden border border-neutral-800 hover:border-neutral-600 transition-colors"
+    <section className="bg-brand-black">
+      {products.map((product, i) => (
+        <Link
+          key={product.id}
+          to={`/${lang}/kits/${product.slug}`}
+          className="group block border-b border-neutral-800 last:border-b-0"
+        >
+          <div className="max-w-7xl mx-auto px-6 py-16 md:py-24">
+            <div className={`flex flex-col ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-8 md:gap-16`}>
+              {/* Image */}
+              <motion.div
+                className="w-full md:w-1/2"
+                initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
               >
                 <HoverVideoCard
                   image={product.heroImage}
                   videoSrc={product.videoPreview}
                   alt={product.name}
-                  className="h-48"
+                  className="w-full h-64 md:h-80 rounded-lg"
                 />
-                <div className="p-5">
-                  <h3 className="text-white font-semibold text-lg">{product.name}</h3>
+              </motion.div>
+
+              {/* Info */}
+              <motion.div
+                className={`w-full md:w-1/2 ${i % 2 === 0 ? "md:text-left" : "md:text-right"}`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+              >
+                <h2 className="text-white font-bold text-3xl md:text-5xl mb-3 group-hover:text-brand-orange transition-colors">
+                  {product.name}
+                </h2>
+                <p className="text-neutral-500 text-base md:text-lg mb-4 max-w-md">
+                  {product.tagline}
+                </p>
+                <div className={`flex items-center gap-3 mb-6 ${i % 2 === 0 ? "" : "md:justify-end"}`}>
+                  <span className="bg-neutral-800 text-brand-orange text-xs px-3 py-1 rounded-full">
+                    {product.module}
+                  </span>
                   {product.badge && (
-                    <span className="text-brand-orange text-xs">{product.badge}</span>
+                    <span className="bg-brand-orange/15 text-brand-orange text-xs px-3 py-1 rounded-full">
+                      {product.badge}
+                    </span>
                   )}
-                  <p className="text-neutral-500 text-sm mt-1">{product.price}</p>
                 </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-        <div className="mt-8 text-center">
-          <Link
-            to={`/${lang}/line`}
-            className="text-brand-orange hover:text-white transition-colors text-sm tracking-wider"
-          >
-            {t("showcase.viewAll") || "Ver todos os modelos"} →
-          </Link>
-        </div>
-      </div>
+                {/* Key specs */}
+                {product.specsHighlight && product.specsHighlight.length > 0 && (
+                  <div className={`flex gap-8 mb-6 ${i % 2 === 0 ? "" : "md:justify-end"}`}>
+                    {product.specsHighlight.slice(0, 3).map((spec) => (
+                      <div key={spec.label} className={i % 2 === 0 ? "text-left" : "md:text-right"}>
+                        <div className="text-white text-2xl font-light">{spec.value}</div>
+                        <div className="text-neutral-600 text-xs uppercase tracking-wider">{spec.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <span className="text-brand-orange text-sm group-hover:text-white transition-colors">
+                  {t("showcase.viewModel") || "Explorar modelo"} →
+                </span>
+              </motion.div>
+            </div>
+          </div>
+        </Link>
+      ))}
     </section>
   );
 }
