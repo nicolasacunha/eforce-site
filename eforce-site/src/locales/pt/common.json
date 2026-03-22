@@ -68,6 +68,10 @@
     "email": "seu@email.com",
     "subscribe": "Inscrever-se"
   },
+  "showcase": {
+    "label": "Modelos em Destaque",
+    "viewAll": "Ver todos os modelos"
+  },
   "line": {
     "headline": "A Linha.",
     "sub": "Sete instrumentos. Uma filosofia.",
@@ -76,7 +80,17 @@
     "filter5to10k": "R$ 5 mil – 10 mil",
     "filterOver10k": "R$ 10 mil+",
     "from": "A partir de",
-    "viewKit": "Ver"
+    "viewKit": "Ver",
+    "title": "Visão Geral dos Modelos",
+    "compare": "Comparar modelos",
+    "resetFilters": "Resetar filtros",
+    "all": "Todos",
+    "module": "Módulo",
+    "priceRange": "Faixa de Preço",
+    "entryLine": "Linha Entrada",
+    "midLine": "Linha Intermediária",
+    "premiumLine": "Linha Premium",
+    "noResults": "Nenhum modelo encontrado com esses filtros."
   },
   "product": {
     "findDealer": "Encontre um Distribuidor",
@@ -89,7 +103,17 @@
     "whatsInTheBox": "Na caixa",
     "compare": "Comparar",
     "relatedModels": "Você também pode gostar",
-    "finishLabel": "Seu acabamento."
+    "finishLabel": "Seu acabamento.",
+    "switchModel": "Mudar de modelo",
+    "allSpecs": "Todos os detalhes técnicos",
+    "holdToListen": "Segure para ouvir",
+    "listening": "Ouvindo...",
+    "highlights": "Destaques",
+    "whichKit": "Qual kit é ideal para você?",
+    "compareDetail": "Comparar em detalhes",
+    "current": "Atual",
+    "previous": "Anterior",
+    "next": "Próximo"
   },
   "footer": {
     "tagline": "The ultimate drummer's pulse.",

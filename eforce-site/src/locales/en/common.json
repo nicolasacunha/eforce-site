@@ -68,6 +68,10 @@
     "email": "your@email.com",
     "subscribe": "Subscribe"
   },
+  "showcase": {
+    "label": "Featured Models",
+    "viewAll": "View all models"
+  },
   "line": {
     "headline": "The Line.",
     "sub": "Seven instruments. One philosophy.",
@@ -76,7 +80,17 @@
     "filter5to10k": "R$ 5k – 10k",
     "filterOver10k": "R$ 10k+",
     "from": "From",
-    "viewKit": "View"
+    "viewKit": "View",
+    "title": "Model Overview",
+    "compare": "Compare models",
+    "resetFilters": "Reset filters",
+    "all": "All",
+    "module": "Module",
+    "priceRange": "Price Range",
+    "entryLine": "Entry Line",
+    "midLine": "Mid-Range Line",
+    "premiumLine": "Premium Line",
+    "noResults": "No models found with these filters."
   },
   "product": {
     "findDealer": "Find a Dealer",
@@ -89,7 +103,17 @@
     "whatsInTheBox": "In the box",
     "compare": "Compare",
     "relatedModels": "You may also like",
-    "finishLabel": "Your finish."
+    "finishLabel": "Your finish.",
+    "switchModel": "Change model",
+    "allSpecs": "All technical details",
+    "holdToListen": "Hold to listen",
+    "listening": "Listening...",
+    "highlights": "Highlights",
+    "whichKit": "Which kit is right for you?",
+    "compareDetail": "Compare in detail",
+    "current": "Current",
+    "previous": "Previous",
+    "next": "Next"
   },
   "footer": {
     "tagline": "The ultimate drummer's pulse.",
