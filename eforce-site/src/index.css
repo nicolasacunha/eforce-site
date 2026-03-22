@@ -90,6 +90,35 @@ html[lang="zh"] * {
   pointer-events: none;
 }
 
+/* Porsche-style utilities */
+.text-giant {
+  font-size: clamp(4rem, 12vw, 12rem);
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.04);
+}
+
+.sticky-bar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  backdrop-filter: blur(12px);
+  background: rgba(21, 21, 21, 0.95);
+}
+
+.specs-number {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.editorial-headline {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
