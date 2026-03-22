@@ -525,7 +525,7 @@ export default function ProductDetailPage() {
             headline={t('product.compare')}
           />
           <div className="mt-12">
-            <CompareModels product={product} />
+            <CompareModels currentProduct={product} />
           </div>
         </div>
       </section>

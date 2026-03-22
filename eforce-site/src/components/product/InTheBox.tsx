@@ -44,7 +44,7 @@ export default function InTheBox({ product }: InTheBoxProps) {
         {product.inTheBox.map((item) => (
           <div
             key={item.name}
-            className="rounded-lg border border-brand-border bg-[#f7f7f7] p-5 text-center"
+            className="rounded-lg border border-neutral-800 bg-neutral-900 p-5 text-center"
           >
             <PackageIcon />
             {item.quantity > 1 && (

@@ -1,89 +1,61 @@
-import { Link, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import type { Product } from '@/data/products';
-import { getAdjacentProducts } from '@/data/products';
+import { Link, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { products } from "@/data/products";
+import type { Product } from "@/data/products";
+import { HoverVideoCard } from "@/components/ui/HoverVideoCard";
 
 interface CompareModelsProps {
-  product: Product;
+  currentProduct: Product;
 }
 
-function ModelCard({
-  model,
-  isCurrent,
-  lang,
-}: {
-  model: Product;
-  isCurrent: boolean;
-  lang: string;
-}) {
+export default function CompareModels({ currentProduct }: CompareModelsProps) {
+  const { lang } = useParams();
   const { t } = useTranslation();
 
+  const otherModels = products
+    .filter((p) => p.id !== currentProduct.id)
+    .sort((a, b) => Math.abs(a.priceValue - currentProduct.priceValue) - Math.abs(b.priceValue - currentProduct.priceValue));
+
   return (
-    <div
-      className={`overflow-hidden rounded-xl border bg-[#f7f7f7] ${
-        isCurrent ? 'border-brand-orange/40' : 'border-brand-border'
-      }`}
-    >
-      <div className="aspect-square overflow-hidden bg-white">
-        <img
-          src={model.heroImage}
-          alt={model.name}
-          className="h-full w-full object-contain p-6"
-        />
-      </div>
-      <div className="p-5">
-        <h3 className="font-display text-lg font-bold text-brand-text-primary">
-          {model.name}
-        </h3>
-        <p className="mt-1 font-body text-sm text-brand-text-secondary">
-          {model.tagline}
-        </p>
-        <span className="mt-2 inline-block rounded bg-[#f7f7f7] px-2 py-0.5 font-mono text-xs text-brand-text-secondary">
-          {model.module}
-        </span>
-        <p className="mt-3 font-mono text-sm text-brand-text-secondary">
-          {model.price}
-        </p>
-        {isCurrent ? (
-          <p className="mt-3 text-sm text-brand-orange">
-            {t('product.currentModel', 'Current model')}
-          </p>
-        ) : (
+    <div>
+      <h2 className="text-xs uppercase tracking-widest text-neutral-500 mb-6">
+        {t("product.whichKit")}
+      </h2>
+      <div className="flex gap-4 overflow-x-auto pb-4 snap-x">
+        {otherModels.map((product) => (
           <Link
-            to={`/${lang}/kits/${model.slug}`}
-            className="mt-3 inline-block text-sm text-brand-orange transition-colors hover:text-brand-orange-hover"
+            key={product.id}
+            to={`/${lang}/kits/${product.slug}`}
+            className="min-w-[260px] max-w-[280px] flex-shrink-0 snap-start bg-neutral-900 rounded-lg border border-neutral-800 hover:border-neutral-600 transition-colors overflow-hidden"
           >
-            {t('product.viewKit', 'View kit')} &rarr;
+            <HoverVideoCard
+              image={product.heroImage}
+              videoSrc={product.videoPreview}
+              alt={product.name}
+              className="h-36"
+            />
+            <div className="p-4">
+              <h3 className="text-white font-semibold text-sm">{product.name}</h3>
+              {product.badge && (
+                <span className="text-brand-orange text-xs">{product.badge}</span>
+              )}
+              <div className="flex gap-3 mt-2 text-xs text-neutral-500">
+                <span>{product.module}</span>
+                <span>{product.price}</span>
+              </div>
+              <div className="flex gap-4 mt-3 text-xs">
+                <span className="text-neutral-400 hover:text-white transition-colors">
+                  {t("product.allSpecs")}
+                </span>
+              </div>
+            </div>
           </Link>
-        )}
+        ))}
       </div>
-    </div>
-  );
-}
-
-export default function CompareModels({ product }: CompareModelsProps) {
-  const { lang } = useParams<{ lang: string }>();
-  const { prev, next } = getAdjacentProducts(product);
-  const resolvedLang = lang ?? 'en';
-
-  return (
-    <div className="mx-auto max-w-5xl px-6">
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        {prev ? (
-          <ModelCard model={prev} isCurrent={false} lang={resolvedLang} />
-        ) : (
-          <div />
-        )}
-        <ModelCard
-          model={product}
-          isCurrent={true}
-          lang={resolvedLang}
-        />
-        {next ? (
-          <ModelCard model={next} isCurrent={false} lang={resolvedLang} />
-        ) : (
-          <div />
-        )}
+      <div className="mt-4">
+        <span className="text-xs text-brand-orange cursor-pointer hover:text-white transition-colors">
+          {t("product.compareDetail")}
+        </span>
       </div>
     </div>
   );
