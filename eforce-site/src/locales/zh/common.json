@@ -1,0 +1,136 @@
+{
+  "nav": {
+    "home": "首页",
+    "line": "型号",
+    "story": "故事",
+    "technology": "技术",
+    "dealers": "经销商",
+    "support": "支持",
+    "news": "新闻"
+  },
+  "hero": {
+    "label": "The ultimate drummer's pulse.",
+    "headline": "原声灵魂，电子力量。",
+    "sub": "木壳设计。专属配色。源自Odery Drums Brazil。",
+    "cta1": "探索",
+    "cta2": "观看"
+  },
+  "manifesto": {
+    "text": "电子鼓可以激励人心。可以承载原声乐器的灵魂。E-Force的诞生，就是为了证明这一点。"
+  },
+  "finishes": {
+    "headline": "选择你的个性。",
+    "sub": "三种配色。一个舞台。属于你。",
+    "note": "* 配色因型号而异。",
+    "cta": "所有配色",
+    "selected": "已选择"
+  },
+  "odery": {
+    "label": "传承",
+    "headline": "数十年原声制鼓专业。",
+    "p1": "与Odery Drums Brazil直接合作——20年打造世界顶级原声鼓组。",
+    "p2": "",
+    "cta": "品牌故事"
+  },
+  "tech": {
+    "label": "工程",
+    "headline": "为表达而生。",
+    "f10f50": {
+      "title": "F10 和 F50 模块",
+      "desc": "最多937种音色。全触控显示屏。"
+    },
+    "bluetooth": {
+      "title": "蓝牙 MIDI 和音频",
+      "desc": "无线连接DAW、应用、耳机。"
+    },
+    "otg": {
+      "title": "直接录制",
+      "desc": "一根线。手机连模块。录制。"
+    },
+    "usbc": {
+      "title": "USB-C 供电",
+      "desc": "充电宝。笔记本。随处可用。"
+    },
+    "cta": "所有规格"
+  },
+  "video": {
+    "caption": "The ultimate drummer's pulse."
+  },
+  "social": {
+    "headline": ""
+  },
+  "cta": {
+    "headline": "体验 E-Force",
+    "sub": "",
+    "dealer": "查找经销商",
+    "contact": "联系",
+    "notify": "订阅资讯",
+    "email": "your@email.com",
+    "subscribe": "订阅"
+  },
+  "line": {
+    "headline": "产品线。",
+    "sub": "七款乐器。一种理念。",
+    "filterAll": "全部",
+    "filterUnder5k": "R$ 5千以下",
+    "filter5to10k": "R$ 5千 – 1万",
+    "filterOver10k": "R$ 1万+",
+    "from": "起售价",
+    "viewKit": "查看"
+  },
+  "product": {
+    "findDealer": "查找经销商",
+    "downloadSpecs": "规格",
+    "keyFeatures": "特点",
+    "gallery": "图库",
+    "soundDemo": "试听。",
+    "moduleSpecs": "模块",
+    "fullSpecs": "规格",
+    "whatsInTheBox": "包装内容",
+    "compare": "对比",
+    "relatedModels": "你可能还喜欢",
+    "finishLabel": "你的配色。"
+  },
+  "footer": {
+    "tagline": "The ultimate drummer's pulse.",
+    "copyright": "© 2025 E-Force / Odery Drums Brazil.",
+    "privacy": "隐私",
+    "terms": "条款"
+  },
+  "home": {
+    "stats": {
+      "models": "型号",
+      "sounds": "音色",
+      "finishesCount": "配色"
+    },
+    "discover": "探索",
+    "seeFullLine": "所有型号",
+    "bestSeller": "畅销款",
+    "professional": "专业级",
+    "flagship": "旗舰款",
+    "identity": "个性",
+    "discoverHeritage": "品牌故事",
+    "watchFilm": "观看",
+    "theLine": "产品线",
+    "experience": "体验",
+    "findDealerNearYou": "",
+    "stayInformed": "订阅资讯",
+    "subscribe": "订阅",
+    "noFinish": "",
+    "onboardSounds": "音色"
+  },
+  "pillars": {
+    "shells": {
+      "title": "木壳工艺",
+      "desc": "真实木材。真实质感。"
+    },
+    "finishes": {
+      "title": "专属配色",
+      "desc": "每款三种选择。行业首创。"
+    },
+    "heritage": {
+      "title": "原声传承",
+      "desc": "20年Odery匠心工艺。"
+    }
+  }
+}

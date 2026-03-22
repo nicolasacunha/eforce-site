@@ -1,0 +1,136 @@
+{
+  "nav": {
+    "home": "Início",
+    "line": "Modelos",
+    "story": "História",
+    "technology": "Tecnologia",
+    "dealers": "Distribuidores",
+    "support": "Suporte",
+    "news": "Novidades"
+  },
+  "hero": {
+    "label": "The ultimate drummer's pulse.",
+    "headline": "Alma acústica. Força eletrônica.",
+    "sub": "Design em madeira. Acabamentos exclusivos. Nascida da Odery Drums Brazil.",
+    "cta1": "Explorar",
+    "cta2": "Assistir"
+  },
+  "manifesto": {
+    "text": "A bateria eletrônica pode inspirar. Pode carregar a alma de um instrumento acústico. A E-Force foi criada para provar isso."
+  },
+  "finishes": {
+    "headline": "Escolha sua identidade.",
+    "sub": "Três acabamentos. Um palco. Seu.",
+    "note": "* Acabamentos variam por modelo.",
+    "cta": "Todos os acabamentos",
+    "selected": "Selecionado"
+  },
+  "odery": {
+    "label": "HERANÇA",
+    "headline": "Décadas de maestria acústica.",
+    "p1": "Parceria direta com a Odery Drums Brazil — 20 anos criando os melhores kits acústicos do mundo.",
+    "p2": "",
+    "cta": "Nossa história"
+  },
+  "tech": {
+    "label": "ENGENHARIA",
+    "headline": "Projetada para a expressão.",
+    "f10f50": {
+      "title": "Módulos F10 e F50",
+      "desc": "Até 937 sons. Display touch completo."
+    },
+    "bluetooth": {
+      "title": "Bluetooth MIDI e Áudio",
+      "desc": "Sem fio para DAW, apps, fones."
+    },
+    "otg": {
+      "title": "Gravação Direta",
+      "desc": "Um cabo. Celular ao módulo. Grave."
+    },
+    "usbc": {
+      "title": "Alimentação USB-C",
+      "desc": "Power bank. Notebook. Qualquer lugar."
+    },
+    "cta": "Todas as especificações"
+  },
+  "video": {
+    "caption": "The ultimate drummer's pulse."
+  },
+  "social": {
+    "headline": ""
+  },
+  "cta": {
+    "headline": "Viva a E-Force",
+    "sub": "",
+    "dealer": "Encontre um Distribuidor",
+    "contact": "Contato",
+    "notify": "Fique informado",
+    "email": "seu@email.com",
+    "subscribe": "Inscrever-se"
+  },
+  "line": {
+    "headline": "A Linha.",
+    "sub": "Sete instrumentos. Uma filosofia.",
+    "filterAll": "Todos",
+    "filterUnder5k": "Até R$ 5 mil",
+    "filter5to10k": "R$ 5 mil – 10 mil",
+    "filterOver10k": "R$ 10 mil+",
+    "from": "A partir de",
+    "viewKit": "Ver"
+  },
+  "product": {
+    "findDealer": "Encontre um Distribuidor",
+    "downloadSpecs": "Especificações",
+    "keyFeatures": "Recursos",
+    "gallery": "Galeria",
+    "soundDemo": "Ouça.",
+    "moduleSpecs": "Módulo",
+    "fullSpecs": "Especificações",
+    "whatsInTheBox": "Na caixa",
+    "compare": "Comparar",
+    "relatedModels": "Você também pode gostar",
+    "finishLabel": "Seu acabamento."
+  },
+  "footer": {
+    "tagline": "The ultimate drummer's pulse.",
+    "copyright": "© 2025 E-Force / Odery Drums Brazil.",
+    "privacy": "Privacidade",
+    "terms": "Termos"
+  },
+  "home": {
+    "stats": {
+      "models": "Modelos",
+      "sounds": "Sons",
+      "finishesCount": "Acabamentos"
+    },
+    "discover": "Descobrir",
+    "seeFullLine": "Todos os modelos",
+    "bestSeller": "MAIS VENDIDO",
+    "professional": "PROFISSIONAL",
+    "flagship": "TOPO DE LINHA",
+    "identity": "IDENTIDADE",
+    "discoverHeritage": "Nossa história",
+    "watchFilm": "Assistir",
+    "theLine": "A LINHA",
+    "experience": "Viva",
+    "findDealerNearYou": "",
+    "stayInformed": "Fique informado",
+    "subscribe": "Inscrever-se",
+    "noFinish": "",
+    "onboardSounds": "sons"
+  },
+  "pillars": {
+    "shells": {
+      "title": "Cascos de Madeira",
+      "desc": "Madeira real. Presença real."
+    },
+    "finishes": {
+      "title": "Acabamentos Exclusivos",
+      "desc": "Três opções por modelo. Uma novidade."
+    },
+    "heritage": {
+      "title": "Herança Acústica",
+      "desc": "20 anos de maestria Odery."
+    }
+  }
+}

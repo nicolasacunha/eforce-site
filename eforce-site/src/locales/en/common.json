@@ -1,0 +1,136 @@
+{
+  "nav": {
+    "home": "Home",
+    "line": "Models",
+    "story": "Story",
+    "technology": "Technology",
+    "dealers": "Dealers",
+    "support": "Support",
+    "news": "News"
+  },
+  "hero": {
+    "label": "The ultimate drummer's pulse.",
+    "headline": "Acoustic soul. Electronic power.",
+    "sub": "Wood-shell design. Exclusive finishes. Born from Odery Drums Brazil.",
+    "cta1": "Explore",
+    "cta2": "Watch"
+  },
+  "manifesto": {
+    "text": "Electronic drums can inspire. They can carry the soul of an acoustic instrument. E-Force was built to prove it."
+  },
+  "finishes": {
+    "headline": "Choose your identity.",
+    "sub": "Three finishes. One stage. Yours.",
+    "note": "* Finishes vary by model.",
+    "cta": "All finishes",
+    "selected": "Selected"
+  },
+  "odery": {
+    "label": "HERITAGE",
+    "headline": "Decades of acoustic mastery.",
+    "p1": "Built in partnership with Odery Drums Brazil — 20 years crafting the world's finest acoustic kits.",
+    "p2": "",
+    "cta": "Our story"
+  },
+  "tech": {
+    "label": "ENGINEERING",
+    "headline": "Engineered for expression.",
+    "f10f50": {
+      "title": "F10 & F50 Modules",
+      "desc": "Up to 937 sounds. Full touch display."
+    },
+    "bluetooth": {
+      "title": "Bluetooth MIDI & Audio",
+      "desc": "Wireless to your DAW, apps, headphones."
+    },
+    "otg": {
+      "title": "Direct Recording",
+      "desc": "One cable. Phone to module. Record."
+    },
+    "usbc": {
+      "title": "USB-C Power",
+      "desc": "Power bank. Laptop. Anywhere."
+    },
+    "cta": "All specifications"
+  },
+  "video": {
+    "caption": "The ultimate drummer's pulse."
+  },
+  "social": {
+    "headline": ""
+  },
+  "cta": {
+    "headline": "Experience E-Force",
+    "sub": "",
+    "dealer": "Find a Dealer",
+    "contact": "Contact",
+    "notify": "Stay informed",
+    "email": "your@email.com",
+    "subscribe": "Subscribe"
+  },
+  "line": {
+    "headline": "The Line.",
+    "sub": "Seven instruments. One philosophy.",
+    "filterAll": "All",
+    "filterUnder5k": "Under R$ 5k",
+    "filter5to10k": "R$ 5k – 10k",
+    "filterOver10k": "R$ 10k+",
+    "from": "From",
+    "viewKit": "View"
+  },
+  "product": {
+    "findDealer": "Find a Dealer",
+    "downloadSpecs": "Specifications",
+    "keyFeatures": "Features",
+    "gallery": "Gallery",
+    "soundDemo": "Hear it.",
+    "moduleSpecs": "Module",
+    "fullSpecs": "Specifications",
+    "whatsInTheBox": "In the box",
+    "compare": "Compare",
+    "relatedModels": "You may also like",
+    "finishLabel": "Your finish."
+  },
+  "footer": {
+    "tagline": "The ultimate drummer's pulse.",
+    "copyright": "© 2025 E-Force / Odery Drums Brazil.",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "home": {
+    "stats": {
+      "models": "Models",
+      "sounds": "Sounds",
+      "finishesCount": "Finishes"
+    },
+    "discover": "Discover",
+    "seeFullLine": "All models",
+    "bestSeller": "BEST SELLER",
+    "professional": "PROFESSIONAL",
+    "flagship": "FLAGSHIP",
+    "identity": "IDENTITY",
+    "discoverHeritage": "Our story",
+    "watchFilm": "Watch",
+    "theLine": "THE LINE",
+    "experience": "Experience",
+    "findDealerNearYou": "",
+    "stayInformed": "Stay informed",
+    "subscribe": "Subscribe",
+    "noFinish": "",
+    "onboardSounds": "sounds"
+  },
+  "pillars": {
+    "shells": {
+      "title": "Wood Shells",
+      "desc": "Real wood. Real presence."
+    },
+    "finishes": {
+      "title": "Exclusive Finishes",
+      "desc": "Three options per model. A first."
+    },
+    "heritage": {
+      "title": "Acoustic Heritage",
+      "desc": "20 years of Odery craftsmanship."
+    }
+  }
+}
