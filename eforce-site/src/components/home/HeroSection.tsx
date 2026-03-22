@@ -1,48 +1,45 @@
-import { useTranslation } from 'react-i18next';
-import { Link, useParams } from 'react-router-dom';
-import ScrollExpandMedia from '@/components/ui/scroll-expansion-hero';
+import { Link, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 export default function HeroSection() {
-  const { t } = useTranslation();
   const { lang } = useParams();
+  const { t } = useTranslation();
 
   return (
-    <ScrollExpandMedia
-      mediaSrc="/assets/images/kits/ef5v2/ef5v2-dramatic.jpg"
-      videoSrc="/assets/video/hero-loop.mp4"
-      title={t('hero.headline')}
-      scrollToExpand="Scroll to explore"
-    >
-      <div className="mx-auto max-w-3xl text-center">
-        <p
-          className="font-body"
-          style={{
-            fontSize: 'clamp(1rem, 2vw, 1.3rem)',
-            fontWeight: 300,
-            lineHeight: 1.6,
-            color: 'rgba(0,0,0,0.5)',
-          }}
-        >
-          {t('hero.sub')}
+    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/assets/video/hero-loop.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
+      <motion.div
+        className="relative z-10 text-center text-white px-6"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.3 }}
+      >
+        <p className="text-xs uppercase tracking-[0.3em] text-neutral-300 mb-4">
+          Electronic Drums
         </p>
-
+        <h1 className="font-display font-bold text-4xl md:text-6xl lg:text-7xl tracking-[0.15em] mb-6">
+          E-FORCE
+        </h1>
+        <p className="text-lg md:text-xl text-neutral-300 mb-8 max-w-lg mx-auto">
+          {t("hero.sub")}
+        </p>
         <Link
           to={`/${lang}/line`}
-          className="group mt-10 inline-flex items-center gap-2"
-          style={{
-            fontSize: '11px',
-            fontWeight: 600,
-            textTransform: 'uppercase',
-            letterSpacing: '0.3em',
-            color: '#ff4a1c',
-          }}
+          className="inline-flex items-center gap-2 text-brand-orange hover:text-white transition-colors text-sm tracking-wider"
         >
-          {t('hero.cta1')}
-          <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-            &rarr;
-          </span>
+          {t("hero.cta")} →
         </Link>
-      </div>
-    </ScrollExpandMedia>
+      </motion.div>
+    </section>
   );
 }
