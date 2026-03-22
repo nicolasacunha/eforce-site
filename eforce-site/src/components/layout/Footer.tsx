@@ -1,164 +1,93 @@
-import { Link, useParams, useLocation, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { supportedLanguages } from '@/i18n';
-
-const navLinks = [
-  { key: 'home', path: '' },
-  { key: 'line', path: 'line' },
-  { key: 'story', path: 'story' },
-  { key: 'technology', path: 'technology' },
-  { key: 'dealers', path: 'dealers' },
-] as const;
-
-function InstagramIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="h-5 w-5">
-      <rect x="2" y="2" width="20" height="20" rx="5" />
-      <circle cx="12" cy="12" r="5" />
-      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-function YouTubeIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-      <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31.5 31.5 0 000 12a31.5 31.5 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31.5 31.5 0 0024 12a31.5 31.5 0 00-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z" />
-    </svg>
-  );
-}
-
-function TikTokIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13a8.22 8.22 0 005.58 2.18V11.7a4.85 4.85 0 01-3.77-1.84V6.69h3.77z" />
-    </svg>
-  );
-}
+import { Link, useParams, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
-  const { lang } = useParams<{ lang: string }>();
+  const { lang } = useParams();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
-  const navigate = useNavigate();
-  const { t } = useTranslation();
 
-  const currentLang = lang ?? 'en';
+  const languages = [
+    { code: "pt", label: "Brasil / Português", flag: "🇧🇷" },
+    { code: "en", label: "English", flag: "🇺🇸" },
+    { code: "es", label: "Español", flag: "🇪🇸" },
+    { code: "it", label: "Italiano", flag: "🇮🇹" },
+    { code: "zh", label: "中文", flag: "🇨🇳" },
+  ];
 
-  function switchLanguage(code: string) {
-    const pathAfterLang = location.pathname.replace(`/${currentLang}`, '') || '/';
-    navigate(`/${code}${pathAfterLang === '/' ? '' : pathAfterLang}`);
-  }
+  const switchLanguage = (newLang: string) => {
+    const newPath = location.pathname.replace(`/${lang}`, `/${newLang}`);
+    i18n.changeLanguage(newLang);
+    window.location.href = newPath;
+  };
 
   return (
-    <footer className="border-t border-brand-border bg-brand-black">
-      <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid gap-12 md:grid-cols-4">
-          {/* Column 1: Logo + tagline */}
-          <div>
-            <img
-              src="/assets/images/brand/eforce-logo-white.png"
-              alt="E-Force"
-              className="h-6"
-            />
-            <p className="mt-4 text-sm leading-relaxed text-white/50">
-              {t('footer.tagline')}
-            </p>
-          </div>
+    <footer className="bg-brand-black text-white border-t border-neutral-800">
+      {/* Language selector */}
+      <div className="max-w-7xl mx-auto px-6 py-6 border-b border-neutral-800">
+        <div className="flex flex-wrap gap-3">
+          {languages.map((l) => (
+            <button
+              key={l.code}
+              onClick={() => switchLanguage(l.code)}
+              className={`text-sm px-3 py-1 rounded transition-colors ${
+                lang === l.code
+                  ? "text-brand-orange"
+                  : "text-neutral-500 hover:text-white"
+              }`}
+            >
+              {l.flag} {l.label}
+            </button>
+          ))}
+        </div>
+      </div>
 
-          {/* Column 2: Navigation */}
-          <div>
-            <h4 className="mb-4 font-display text-xs font-semibold uppercase tracking-widest text-white/50">
-              {t('nav.home')}
-            </h4>
-            <ul className="space-y-3">
-              {navLinks.map((link) => (
-                <li key={link.key}>
-                  <Link
-                    to={`/${currentLang}/${link.path}`}
-                    className="text-sm text-white/50 transition-colors hover:text-white"
-                  >
-                    {t(`nav.${link.key}`)}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Connect */}
-          <div>
-            <h4 className="mb-4 font-display text-xs font-semibold uppercase tracking-widest text-white/50">
-              {t('footer.connect', 'Connect')}
-            </h4>
-            <div className="flex gap-4">
-              <a
-                href="https://instagram.com/eforcedrums"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white transition-colors hover:text-brand-orange"
-                aria-label="Instagram"
-              >
-                <InstagramIcon />
-              </a>
-              <a
-                href="https://youtube.com/@eforcedrums"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white transition-colors hover:text-brand-orange"
-                aria-label="YouTube"
-              >
-                <YouTubeIcon />
-              </a>
-              <a
-                href="https://tiktok.com/@eforcedrums"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white transition-colors hover:text-brand-orange"
-                aria-label="TikTok"
-              >
-                <TikTokIcon />
-              </a>
-            </div>
-          </div>
-
-          {/* Column 4: Language switcher */}
-          <div>
-            <h4 className="mb-4 font-display text-xs font-semibold uppercase tracking-widest text-white/50">
-              {t('footer.language', 'Language')}
-            </h4>
-            <div className="flex flex-wrap gap-2">
-              {supportedLanguages.map((sl) => (
-                <button
-                  key={sl.code}
-                  onClick={() => switchLanguage(sl.code)}
-                  className={`rounded-md px-3 py-1.5 text-sm transition-colors ${
-                    sl.code === currentLang
-                      ? 'bg-brand-orange text-white'
-                      : 'text-white/50 hover:text-white'
-                  }`}
-                >
-                  {sl.flag} {sl.code.toUpperCase()}
-                </button>
-              ))}
-            </div>
+      {/* Link columns */}
+      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h4 className="font-display font-bold text-sm tracking-wider mb-4">E-FORCE</h4>
+          <ul className="space-y-2 text-sm text-neutral-500">
+            <li><Link to={`/${lang}`} className="hover:text-white transition-colors">{t("nav.home")}</Link></li>
+            <li><Link to={`/${lang}/line`} className="hover:text-white transition-colors">{t("nav.line")}</Link></li>
+            <li><Link to={`/${lang}/technology`} className="hover:text-white transition-colors">{t("nav.technology")}</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="font-display font-bold text-sm tracking-wider mb-4">{t("nav.story")}</h4>
+          <ul className="space-y-2 text-sm text-neutral-500">
+            <li><Link to={`/${lang}/story`} className="hover:text-white transition-colors">{t("nav.story")}</Link></li>
+            <li><Link to={`/${lang}/news`} className="hover:text-white transition-colors">{t("nav.news") || "News"}</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="font-display font-bold text-sm tracking-wider mb-4">{t("nav.dealers")}</h4>
+          <ul className="space-y-2 text-sm text-neutral-500">
+            <li><Link to={`/${lang}/dealers`} className="hover:text-white transition-colors">{t("nav.dealers")}</Link></li>
+            <li><Link to={`/${lang}/support`} className="hover:text-white transition-colors">{t("nav.support") || "Suporte"}</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="font-display font-bold text-sm tracking-wider mb-4">Social</h4>
+          <div className="flex gap-4 text-neutral-500">
+            <a href="#" className="hover:text-white transition-colors" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" className="hover:text-white transition-colors" aria-label="YouTube">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            </a>
+            <a href="#" className="hover:text-white transition-colors" aria-label="TikTok">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            </a>
           </div>
         </div>
+      </div>
 
-        {/* Bottom bar */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-brand-border pt-8 text-xs text-white/50 md:flex-row">
-          <p>{t('footer.copyright')}</p>
+      {/* Legal bar */}
+      <div className="border-t border-neutral-800 py-6">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-neutral-600">
+          <span>© {new Date().getFullYear()} E-Force Electronic Drums. {t("footer.rights")}</span>
           <div className="flex gap-6">
-            <Link
-              to={`/${currentLang}/privacy`}
-              className="transition-colors hover:text-white"
-            >
-              {t('footer.privacy')}
-            </Link>
-            <Link
-              to={`/${currentLang}/terms`}
-              className="transition-colors hover:text-white"
-            >
-              {t('footer.terms')}
-            </Link>
+            <a href="#" className="hover:text-neutral-400 transition-colors">{t("footer.privacy")}</a>
+            <a href="#" className="hover:text-neutral-400 transition-colors">{t("footer.terms")}</a>
           </div>
         </div>
       </div>
