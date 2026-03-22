@@ -23,6 +23,29 @@ export interface Product {
   heroImage: string;
   finishes: ProductFinish[];
   inTheBox: InBoxItem[];
+  videoPreview?: string;
+  soundDemo?: string;
+  specsHighlight: {
+    label: string;
+    value: string;
+    unit?: string;
+  }[];
+  highlights: {
+    image: string;
+    title: string;
+    description: string;
+  }[];
+  editorialHeadline?: string;
+  editorialBody?: string;
+  galleryImages: string[];
+  techTabs: {
+    label: string;
+    slides: {
+      image?: string;
+      title: string;
+      description: string;
+    }[];
+  }[];
 }
 
 export const products: Product[] = [
@@ -58,6 +81,21 @@ export const products: Product[] = [
       { name: "Power supply", quantity: 1 },
       { name: "Manual", quantity: 1 },
     ],
+    videoPreview: undefined,
+    soundDemo: undefined,
+    specsHighlight: [
+      { label: "Sons", value: "461" },
+      { label: "Pads", value: "8" },
+      { label: "Faixas", value: "1" },
+      { label: "Módulo", value: "F10" },
+    ],
+    highlights: [],
+    editorialHeadline: undefined,
+    editorialBody: undefined,
+    galleryImages: [
+      "/assets/images/kits/ef2v1/ef2v1-hero.jpg",
+    ],
+    techTabs: [],
   },
   {
     id: "ef2v2",
@@ -91,6 +129,23 @@ export const products: Product[] = [
       { name: "Power supply", quantity: 1 },
       { name: "Manual", quantity: 1 },
     ],
+    videoPreview: undefined,
+    soundDemo: undefined,
+    specsHighlight: [
+      { label: "Sons", value: "461" },
+      { label: "Pads", value: "8" },
+      { label: "Faixas", value: "1" },
+      { label: "Módulo", value: "F10" },
+    ],
+    highlights: [],
+    editorialHeadline: undefined,
+    editorialBody: undefined,
+    galleryImages: [
+      "/assets/images/kits/ef2v2/ef2v2-hero.jpg",
+      "/assets/images/kits/ef2v2/ef2v2-front-blue.jpg",
+      "/assets/images/kits/ef2v2/ef2v2-aerial.jpg",
+    ],
+    techTabs: [],
   },
   {
     id: "ef2v3",
@@ -123,6 +178,22 @@ export const products: Product[] = [
       { name: "Power supply", quantity: 1 },
       { name: "Manual", quantity: 1 },
     ],
+    videoPreview: undefined,
+    soundDemo: undefined,
+    specsHighlight: [
+      { label: "Sons", value: "461" },
+      { label: "Pads", value: "9" },
+      { label: "Faixas", value: "1" },
+      { label: "Módulo", value: "F10" },
+    ],
+    highlights: [],
+    editorialHeadline: undefined,
+    editorialBody: undefined,
+    galleryImages: [
+      "/assets/images/kits/ef2v3/ef2v3-hero.jpg",
+      "/assets/images/kits/ef2v3/ef2v3-front.jpg",
+    ],
+    techTabs: [],
   },
   {
     id: "ef2v4",
@@ -158,6 +229,22 @@ export const products: Product[] = [
       { name: "Power supply", quantity: 1 },
       { name: "Manual", quantity: 1 },
     ],
+    videoPreview: undefined,
+    soundDemo: undefined,
+    specsHighlight: [
+      { label: "Sons", value: "461" },
+      { label: "Pads", value: "9" },
+      { label: "Faixas", value: "1" },
+      { label: "Módulo", value: "F10" },
+    ],
+    highlights: [],
+    editorialHeadline: undefined,
+    editorialBody: undefined,
+    galleryImages: [
+      "/assets/images/kits/ef2v4/ef2v4-hero.jpg",
+      "/assets/images/kits/ef2v4/ef2v4-aerial.jpg",
+    ],
+    techTabs: [],
   },
   {
     id: "ef6cafe",
@@ -177,6 +264,21 @@ export const products: Product[] = [
       { id: "cream", name: "Vintage Cream", color: "#f5e6c8", image: "/assets/images/kits/ef6cafe/ef6cafe-hero.jpg" },
     ],
     inTheBox: [],
+    videoPreview: undefined,
+    soundDemo: undefined,
+    specsHighlight: [
+      { label: "Sons", value: "461" },
+      { label: "Pads", value: "8" },
+      { label: "Faixas", value: "1" },
+      { label: "Módulo", value: "F10" },
+    ],
+    highlights: [],
+    editorialHeadline: undefined,
+    editorialBody: undefined,
+    galleryImages: [
+      "/assets/images/kits/ef6cafe/ef6cafe-hero.jpg",
+    ],
+    techTabs: [],
   },
   {
     id: "ef5v2",
@@ -208,6 +310,24 @@ export const products: Product[] = [
       { name: "Power supply", quantity: 1 },
       { name: "Manual", quantity: 1 },
     ],
+    videoPreview: undefined,
+    soundDemo: undefined,
+    specsHighlight: [
+      { label: "Sons", value: "937" },
+      { label: "Pads", value: "9" },
+      { label: "Faixas", value: "4" },
+      { label: "Módulo", value: "F50" },
+    ],
+    highlights: [],
+    editorialHeadline: undefined,
+    editorialBody: undefined,
+    galleryImages: [
+      "/assets/images/kits/ef5v2/ef5v2-hero.jpg",
+      "/assets/images/kits/ef5v2/ef5v2-dramatic.jpg",
+      "/assets/images/kits/ef5v2/ef5v2-front.jpg",
+      "/assets/images/kits/ef5v2/ef5v2-aerial.jpg",
+    ],
+    techTabs: [],
   },
   {
     id: "ef7eye",
@@ -227,6 +347,21 @@ export const products: Product[] = [
       { id: "burst", name: "Tobacco Burst", color: "#6b3a1f", image: "/assets/images/kits/ef7eye/ef7eye-hero.jpg" },
     ],
     inTheBox: [],
+    videoPreview: undefined,
+    soundDemo: undefined,
+    specsHighlight: [
+      { label: "Sons", value: "937" },
+      { label: "Pads", value: "10" },
+      { label: "Faixas", value: "4" },
+      { label: "Módulo", value: "F50" },
+    ],
+    highlights: [],
+    editorialHeadline: undefined,
+    editorialBody: undefined,
+    galleryImages: [
+      "/assets/images/kits/ef7eye/ef7eye-hero.jpg",
+    ],
+    techTabs: [],
   },
 ];
 
