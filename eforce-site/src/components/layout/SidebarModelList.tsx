@@ -1,5 +1,4 @@
 import { Link, useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { products } from "@/data/products";
 import { HoverVideoCard } from "@/components/ui/HoverVideoCard";
 
@@ -9,34 +8,33 @@ interface SidebarModelListProps {
 
 export function SidebarModelList({ onNavigate }: SidebarModelListProps) {
   const { lang } = useParams();
-  const { t } = useTranslation();
-
   return (
-    <div className="flex flex-col gap-3">
-      <div className="text-xs uppercase tracking-widest text-neutral-500 mb-2">
-        {t("nav.line")}
-      </div>
+    <div className="flex flex-col gap-8">
       {products.map((product) => (
         <Link
           key={product.id}
           to={`/${lang}/kits/${product.slug}`}
           onClick={onNavigate}
-          className="flex items-center gap-3 p-3 rounded-lg border border-neutral-800 hover:border-neutral-600 transition-colors"
+          className="group block"
         >
+          <h3 className="text-white font-bold text-xl mb-3 group-hover:text-brand-orange transition-colors">
+            {product.name}
+          </h3>
           <HoverVideoCard
             image={product.heroImage}
             videoSrc={product.videoPreview}
             alt={product.name}
-            className="w-24 h-14 rounded-md flex-shrink-0"
+            className="w-full h-40 rounded-md"
           />
-          <div>
-            <div className="text-sm font-semibold text-white">{product.name}</div>
-            <div className="text-xs text-neutral-500">
-              {product.badge && (
-                <span className="text-brand-orange mr-2">{product.badge}</span>
-              )}
+          <div className="mt-2">
+            <span className="inline-block bg-neutral-800 text-neutral-300 text-xs px-2.5 py-1 rounded">
               {product.module}
-            </div>
+            </span>
+            {product.badge && (
+              <span className="inline-block bg-brand-orange/15 text-brand-orange text-xs px-2.5 py-1 rounded ml-2">
+                {product.badge}
+              </span>
+            )}
           </div>
         </Link>
       ))}
