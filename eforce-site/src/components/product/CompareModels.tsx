@@ -41,7 +41,6 @@ export default function CompareModels({ currentProduct }: CompareModelsProps) {
               )}
               <div className="flex gap-3 mt-2 text-xs text-gray-500">
                 <span>{product.module}</span>
-                <span>{product.price}</span>
               </div>
               <div className="flex gap-4 mt-3 text-xs">
                 <span className="text-gray-500 hover:text-gray-900 transition-colors">

@@ -31,8 +31,6 @@ export function ModelCard({ product }: ModelCardProps) {
           <span>{product.module}</span>
           <span>·</span>
           <span>{product.specsHighlight?.[0]?.value} {product.specsHighlight?.[0]?.label}</span>
-          <span>·</span>
-          <span>{product.price}</span>
         </div>
       </div>
       <span className="text-brand-orange opacity-0 group-hover:opacity-100 transition-opacity text-lg">

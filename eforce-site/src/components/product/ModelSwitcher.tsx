@@ -53,7 +53,6 @@ export function ModelSwitcher({ isOpen, onClose, currentProduct }: ModelSwitcher
                 )}
                 <div className="flex gap-3 mt-1 text-xs text-gray-500">
                   <span>{product.module}</span>
-                  <span>{product.price}</span>
                 </div>
               </div>
               {product.id === currentProduct.id && (
