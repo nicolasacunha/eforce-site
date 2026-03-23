@@ -40,9 +40,9 @@ class ICloudProvider:
         if since:
             dt = datetime.fromisoformat(since)
             date_str = dt.strftime("%d-%b-%Y")
-            _, data = self.conn.search(None, f'(SINCE "{date_str}")')
+            _, data = self.conn.uid("search", None, f'(SINCE "{date_str}")')
         else:
-            _, data = self.conn.search(None, "ALL")
+            _, data = self.conn.uid("search", None, "ALL")
         msg_ids = data[0].split()
         if not msg_ids:
             return []
@@ -50,12 +50,18 @@ class ICloudProvider:
         messages = []
         for msg_id in msg_ids:
             try:
-                _, msg_data = self.conn.fetch(msg_id, "(RFC822)")
-                if msg_data and msg_data[0]:
-                    raw = msg_data[0][1]
-                    parsed = self._parse_raw_email(msg_id.decode(), raw)
-                    if parsed:
-                        messages.append(parsed)
+                _, msg_data = self.conn.uid("fetch", msg_id, "(BODY[])")
+                # IMAP fetch returns list of tuples; find the one with raw bytes
+                raw = None
+                for part in msg_data:
+                    if isinstance(part, tuple) and len(part) >= 2 and isinstance(part[1], bytes):
+                        raw = part[1]
+                        break
+                if raw is None:
+                    continue
+                parsed = self._parse_raw_email(msg_id.decode(), raw)
+                if parsed:
+                    messages.append(parsed)
             except Exception:
                 continue
         return messages
@@ -64,8 +70,8 @@ class ICloudProvider:
         if not self.conn:
             return False
         try:
-            self.conn.copy(provider_uid.encode(), "Trash")
-            self.conn.store(provider_uid.encode(), "+FLAGS", "\\Deleted")
+            self.conn.uid("copy", provider_uid.encode(), "Trash")
+            self.conn.uid("store", provider_uid.encode(), "+FLAGS", "\\Deleted")
             self.conn.expunge()
             return True
         except Exception:
