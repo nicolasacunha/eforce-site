@@ -27,10 +27,10 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
   return (
     <Overlay isOpen={isOpen} onClose={onClose} side="left" ariaLabel="Menu de navegação">
       <div className="flex h-full w-[90vw] max-w-4xl">
-        <div className="w-2/5 bg-neutral-900 p-6 flex flex-col">
+        <div className="w-2/5 bg-white p-6 flex flex-col">
           <button
             onClick={onClose}
-            className="self-end text-white text-2xl mb-8 hover:text-neutral-400 transition-colors"
+            className="self-end text-gray-900 text-2xl mb-8 hover:text-gray-500 transition-colors"
             aria-label="Fechar menu"
           >
             ✕
@@ -40,24 +40,24 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               <button
                 key={cat.key}
                 onClick={() => setActiveCategory(cat.key)}
-                className={`flex justify-between items-center py-4 border-b border-neutral-800 text-left text-base transition-colors ${
-                  activeCategory === cat.key ? "text-white font-semibold" : "text-neutral-400 hover:text-white"
+                className={`flex justify-between items-center py-4 border-b border-gray-200 text-left text-base transition-colors ${
+                  activeCategory === cat.key ? "text-gray-900 font-semibold" : "text-gray-500 hover:text-gray-900"
                 }`}
               >
                 {t(cat.labelKey)}
-                <span className="text-neutral-600">→</span>
+                <span className="text-gray-400">→</span>
               </button>
             ))}
           </nav>
         </div>
-        <div className="w-3/5 bg-neutral-950 p-6 overflow-y-auto">
+        <div className="w-3/5 bg-gray-50 p-6 overflow-y-auto">
           {activeCategory === "modelos" ? (
             <SidebarModelList onNavigate={onClose} />
           ) : (
             <Link
               to={`/${lang}/${categories.find((c) => c.key === activeCategory)?.route}`}
               onClick={onClose}
-              className="text-neutral-400 hover:text-white transition-colors"
+              className="text-gray-500 hover:text-gray-900 transition-colors"
             >
               {t(categories.find((c) => c.key === activeCategory)?.labelKey || "")} →
             </Link>

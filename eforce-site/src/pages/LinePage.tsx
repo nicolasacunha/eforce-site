@@ -50,7 +50,7 @@ export default function LinePage() {
   return (
     <>
       <SEO title={t("seo.lineTitle") || "Modelos"} description={t("seo.lineDescription") || ""} lang={currentLang} path="/line" />
-      <div className="min-h-screen bg-brand-black pt-24 pb-16 px-6">
+      <div className="min-h-screen bg-white pt-24 pb-16 px-6">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
           <ModelFilterSidebar
             activeFamily={activeFamily}
@@ -64,10 +64,10 @@ export default function LinePage() {
             {groups.map((group) => (
               <div key={group.label} className="mb-10">
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-xs uppercase tracking-widest text-neutral-500">
+                  <h2 className="text-xs uppercase tracking-widest text-gray-500">
                     {group.label}
                   </h2>
-                  <span className="text-xs text-brand-orange cursor-pointer hover:text-white transition-colors">
+                  <span className="text-xs text-brand-orange cursor-pointer hover:text-gray-900 transition-colors">
                     {t("line.compare")}
                   </span>
                 </div>
@@ -79,7 +79,7 @@ export default function LinePage() {
               </div>
             ))}
             {groups.length === 0 && (
-              <p className="text-neutral-500 text-center py-16">
+              <p className="text-gray-500 text-center py-16">
                 {t("line.noResults") || "Nenhum modelo encontrado com esses filtros."}
               </p>
             )}
