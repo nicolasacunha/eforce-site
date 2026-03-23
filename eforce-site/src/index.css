@@ -7,10 +7,10 @@
   --color-brand-light: #f5f3ef;
   --color-brand-orange: #ff4a1c;
   --color-brand-orange-hover: #e03c10;
-  --color-brand-border: rgba(0, 0, 0, 0.06);
-  --color-brand-text-primary: #0a0a0a;
-  --color-brand-text-secondary: rgba(0, 0, 0, 0.50);
-  --color-brand-text-tertiary: rgba(0, 0, 0, 0.25);
+  --color-brand-border: rgba(255, 255, 255, 0.08);
+  --color-brand-text-primary: rgba(255, 255, 255, 0.95);
+  --color-brand-text-secondary: rgba(255, 255, 255, 0.50);
+  --color-brand-text-tertiary: rgba(255, 255, 255, 0.25);
   --color-brand-text-dark: #0a0a0a;
 
   --font-display: "Sora", sans-serif;
@@ -27,8 +27,8 @@ html {
 body {
   margin: 0;
   font-family: var(--font-body);
-  background-color: #ffffff;
-  color: #0a0a0a;
+  background-color: #0a0a0a;
+  color: rgba(255, 255, 255, 0.95);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -38,10 +38,21 @@ html[lang="zh"] * {
   font-family: "Noto Sans SC", var(--font-body);
 }
 
-/* Section dividers */
+/* Section divider */
 .section-divider {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.06), transparent);
+  width: 100%;
+}
+
+/* Section padding utility */
+.section-pad {
+  padding: clamp(6rem, 15vh, 12rem) clamp(1.5rem, 6vw, 6rem);
+}
+
+/* Premium easing utility */
+.premium-ease {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Product image treatment */
@@ -62,14 +73,14 @@ html[lang="zh"] * {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f0f0f0;
+  background: #111111;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 ::selection {
@@ -95,7 +106,7 @@ html[lang="zh"] * {
   font-size: clamp(4rem, 12vw, 12rem);
   font-weight: 900;
   line-height: 1;
-  color: rgba(0, 0, 0, 0.04);
+  color: rgba(255, 255, 255, 0.04);
 }
 
 .sticky-bar {
@@ -103,20 +114,21 @@ html[lang="zh"] * {
   top: 0;
   z-index: 30;
   backdrop-filter: blur(12px);
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(21, 21, 21, 0.95);
 }
 
 .specs-number {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 300;
-  line-height: 1.1;
+  font-size: clamp(4rem, 10vw, 9rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.85;
 }
 
 .editorial-headline {
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
-  font-weight: 300;
-  font-style: italic;
-  letter-spacing: -0.02em;
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
 }
 
 @media (prefers-reduced-motion: reduce) {

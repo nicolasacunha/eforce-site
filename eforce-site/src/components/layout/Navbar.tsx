@@ -18,11 +18,11 @@ export default function Navbar() {
   }, []);
 
   const languages = [
-    { code: "pt", label: "PT", flag: "🇧🇷" },
-    { code: "en", label: "EN", flag: "🇺🇸" },
-    { code: "es", label: "ES", flag: "🇪🇸" },
-    { code: "it", label: "IT", flag: "🇮🇹" },
-    { code: "zh", label: "ZH", flag: "🇨🇳" },
+    { code: "pt", label: "PT", flag: "\u{1F1E7}\u{1F1F7}" },
+    { code: "en", label: "EN", flag: "\u{1F1FA}\u{1F1F8}" },
+    { code: "es", label: "ES", flag: "\u{1F1EA}\u{1F1F8}" },
+    { code: "it", label: "IT", flag: "\u{1F1EE}\u{1F1F9}" },
+    { code: "zh", label: "ZH", flag: "\u{1F1E8}\u{1F1F3}" },
   ];
 
   const switchLanguage = (newLang: string) => {
@@ -32,20 +32,17 @@ export default function Navbar() {
     window.location.href = newPath;
   };
 
-  const textColor = scrolled ? "text-gray-900" : "text-white";
-  const hoverColor = scrolled ? "hover:text-gray-500" : "hover:text-neutral-400";
-
   return (
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-          scrolled ? "bg-white/95 backdrop-blur-md" : "bg-transparent"
+          scrolled ? "bg-[#0a0a0a]/95 backdrop-blur-md" : "bg-transparent"
         }`}
       >
         <div className="flex items-center justify-between px-6 py-4">
           <button
             onClick={() => setSidebarOpen(true)}
-            className={`flex items-center gap-2 ${textColor} ${hoverColor} transition-colors`}
+            className="flex items-center gap-2 text-white hover:text-neutral-400 transition-colors"
             aria-label="Abrir menu"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -58,7 +55,7 @@ export default function Navbar() {
 
           <Link
             to={`/${lang}`}
-            className={`absolute left-1/2 -translate-x-1/2 ${textColor} font-display font-bold text-lg tracking-[0.2em]`}
+            className="absolute left-1/2 -translate-x-1/2 text-white font-display font-bold text-lg tracking-[0.2em]"
           >
             E-FORCE
           </Link>
@@ -66,7 +63,7 @@ export default function Navbar() {
           <div className="flex items-center gap-4 relative">
             <button
               onClick={() => setLangOpen(!langOpen)}
-              className={`${textColor} ${hoverColor} transition-colors`}
+              className="text-white hover:text-neutral-400 transition-colors"
               aria-label="Selecionar idioma"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -75,13 +72,13 @@ export default function Navbar() {
               </svg>
             </button>
             {langOpen && (
-              <div className="absolute top-full right-0 mt-2 bg-white border border-gray-200 rounded-lg py-2 min-w-[120px] shadow-md">
+              <div className="absolute top-full right-0 mt-2 bg-[#111] border border-[rgba(255,255,255,0.08)] rounded-lg py-2 min-w-[120px] shadow-md">
                 {languages.map((l) => (
                   <button
                     key={l.code}
                     onClick={() => switchLanguage(l.code)}
-                    className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition-colors ${
-                      lang === l.code ? "text-brand-orange" : "text-gray-900"
+                    className={`w-full text-left px-4 py-2 text-sm hover:bg-[rgba(255,255,255,0.05)] transition-colors ${
+                      lang === l.code ? "text-brand-orange" : "text-[rgba(255,255,255,0.7)]"
                     }`}
                   >
                     {l.flag} {l.label}

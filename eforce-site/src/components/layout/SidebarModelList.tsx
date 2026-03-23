@@ -17,7 +17,7 @@ export function SidebarModelList({ onNavigate }: SidebarModelListProps) {
           onClick={onNavigate}
           className="group block"
         >
-          <h3 className="text-gray-900 font-bold text-xl mb-3 group-hover:text-brand-orange transition-colors">
+          <h3 className="text-white font-bold text-xl mb-3 group-hover:text-brand-orange transition-colors">
             {product.name}
           </h3>
           <HoverVideoCard
@@ -27,11 +27,11 @@ export function SidebarModelList({ onNavigate }: SidebarModelListProps) {
             className="w-full h-40 rounded-md"
           />
           <div className="mt-2">
-            <span className="inline-block bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded">
+            <span className="inline-block bg-[#1a1a1a] text-white text-xs px-2.5 py-1 rounded">
               {product.module}
             </span>
             {product.badge && (
-              <span className="inline-block bg-orange-50 text-brand-orange text-xs px-2.5 py-1 rounded ml-2">
+              <span className="inline-block bg-[rgba(255,74,28,0.1)] text-brand-orange text-xs px-2.5 py-1 rounded ml-2">
                 {product.badge}
               </span>
             )}
