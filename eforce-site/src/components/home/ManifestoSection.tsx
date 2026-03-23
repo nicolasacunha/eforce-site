@@ -36,7 +36,7 @@ function HeroNumber({
           fontWeight: 800,
           letterSpacing: '-0.04em',
           lineHeight: 0.85,
-          color: highlight ? '#ff4a1c' : '#0a0a0a',
+          color: highlight ? '#ff4a1c' : 'rgba(255,255,255,0.95)',
         }}
       >
         {value}
@@ -48,7 +48,7 @@ function HeroNumber({
           fontWeight: 600,
           textTransform: 'uppercase',
           letterSpacing: '0.3em',
-          color: 'rgba(0,0,0,0.25)',
+          color: 'rgba(255,255,255,0.25)',
         }}
       >
         {label}
@@ -92,69 +92,97 @@ export default function ManifestoSection() {
   const tokens = i18n.language === 'zh' ? text.split('') : text.split(' ');
 
   return (
-    <section
-      className="relative bg-white overflow-hidden"
-      style={{ padding: 'clamp(6rem, 15vh, 12rem) clamp(1.5rem, 6vw, 6rem)' }}
-    >
-      {/* ── Manifesto text — word-by-word reveal ───────────────── */}
-      <div ref={containerRef} className="max-w-5xl mx-auto text-center">
-        <p
-          className="font-display"
-          style={{
-            fontSize: 'clamp(2rem, 4.5vw, 4rem)',
-            lineHeight: 0.95,
-            letterSpacing: '-0.03em',
-            fontWeight: 700,
-          }}
-        >
-          {tokens.map((token, i) => (
-            <span
-              key={i}
-              className={`manifesto-word inline-block ${i18n.language === 'zh' ? '' : 'mr-[0.3em]'} ${revealed ? 'manifesto-word--visible' : ''}`}
-              style={{ '--word-index': i } as React.CSSProperties}
-            >
-              {token}
-            </span>
-          ))}
-        </p>
-      </div>
-
-      {/* ── Section divider ────────────────────────────────────── */}
-      <div className="section-divider mt-24 mx-auto" style={{ maxWidth: '80%' }} />
-
-      {/* ── Hero numbers strip (Rule 3) ────────────────────────── */}
+    <>
+      {/* Section divider — top */}
       <div
-        className="mt-24 grid grid-cols-2 lg:grid-cols-4 justify-items-center"
-        style={{ gap: 'clamp(2rem, 8vw, 6rem)' }}
-      >
-        <HeroNumber value="937" label={t('home.stats.sounds')} highlight delay={0} />
-        <HeroNumber value="F50" label="Module" delay={150} />
-        <HeroNumber value="3" label={t('home.stats.finishesCount')} delay={300} />
-        <HeroNumber value="USB-C" label="Power" delay={450} small />
-      </div>
+        style={{
+          background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)',
+          height: '1px',
+        }}
+      />
 
-      {/* ── Word reveal styles ──────────────────────────────────── */}
-      <style>{`
-        .manifesto-word {
-          opacity: 0;
-          color: rgba(0,0,0,0.08);
-          transition:
-            opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-            color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-          transition-delay: calc(var(--word-index) * 50ms);
-        }
-        .manifesto-word--visible {
-          opacity: 1;
-          color: #0a0a0a;
-        }
-        @media (prefers-reduced-motion: reduce) {
+      <section
+        className="relative overflow-hidden"
+        style={{
+          background: '#0a0a0a',
+          padding: 'clamp(6rem, 15vh, 12rem) clamp(1.5rem, 6vw, 6rem)',
+        }}
+      >
+        {/* ── Manifesto text — word-by-word reveal ───────────────── */}
+        <div ref={containerRef} className="max-w-5xl mx-auto text-center">
+          <p
+            className="font-display"
+            style={{
+              fontSize: 'clamp(1rem, 2vw, 1.3rem)',
+              lineHeight: 1.6,
+              fontWeight: 300,
+              color: 'rgba(255,255,255,0.5)',
+            }}
+          >
+            {tokens.map((token, i) => (
+              <span
+                key={i}
+                className={`manifesto-word inline-block ${i18n.language === 'zh' ? '' : 'mr-[0.3em]'} ${revealed ? 'manifesto-word--visible' : ''}`}
+                style={{ '--word-index': i } as React.CSSProperties}
+              >
+                {token}
+              </span>
+            ))}
+          </p>
+        </div>
+
+        {/* ── Section divider ────────────────────────────────────── */}
+        <div
+          className="mt-24 mx-auto"
+          style={{
+            maxWidth: '80%',
+            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)',
+            height: '1px',
+          }}
+        />
+
+        {/* ── Hero numbers strip ─────────────────────────────────── */}
+        <div
+          className="mt-24 grid grid-cols-2 lg:grid-cols-4 justify-items-center"
+          style={{ gap: 'clamp(2rem, 8vw, 6rem)' }}
+        >
+          <HeroNumber value="937" label={t('home.stats.sounds')} highlight delay={0} />
+          <HeroNumber value="F50" label="Module" delay={150} />
+          <HeroNumber value="3" label={t('home.stats.finishesCount')} delay={300} />
+          <HeroNumber value="USB-C" label="Power" delay={450} small />
+        </div>
+
+        {/* ── Word reveal styles ──────────────────────────────────── */}
+        <style>{`
           .manifesto-word {
-            opacity: 1 !important;
-            color: #0a0a0a !important;
-            transition: none !important;
+            opacity: 0;
+            color: rgba(255,255,255,0.1);
+            transition:
+              opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition-delay: calc(var(--word-index) * 50ms);
           }
-        }
-      `}</style>
-    </section>
+          .manifesto-word--visible {
+            opacity: 1;
+            color: rgba(255,255,255,0.5);
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .manifesto-word {
+              opacity: 1 !important;
+              color: rgba(255,255,255,0.5) !important;
+              transition: none !important;
+            }
+          }
+        `}</style>
+      </section>
+
+      {/* Section divider — bottom */}
+      <div
+        style={{
+          background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)',
+          height: '1px',
+        }}
+      />
+    </>
   );
 }

@@ -2,81 +2,237 @@ import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { products } from "@/data/products";
-import { HoverVideoCard } from "@/components/ui/HoverVideoCard";
 
 export default function ProductShowcase() {
   const { lang } = useParams();
   const { t } = useTranslation();
 
   return (
-    <section className="bg-white">
-      {products.map((product, i) => (
-        <Link
-          key={product.id}
-          to={`/${lang}/kits/${product.slug}`}
-          className="group block border-b border-gray-200 last:border-b-0"
-        >
-          <div className="max-w-7xl mx-auto px-6 py-16 md:py-24">
-            <div className={`flex flex-col ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-8 md:gap-16`}>
-              {/* Image */}
-              <motion.div
-                className="w-full md:w-1/2"
-                initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-              >
-                <HoverVideoCard
-                  image={product.heroImage}
-                  videoSrc={product.videoPreview}
-                  alt={product.name}
-                  className="w-full h-64 md:h-80 rounded-lg"
-                />
-              </motion.div>
+    <section>
+      {products.map((product, i) => {
+        const isEven = i % 2 === 0;
+        const bg = isEven ? "#0a0a0a" : "#111111";
 
-              {/* Info */}
-              <motion.div
-                className={`w-full md:w-1/2 ${i % 2 === 0 ? "md:text-left" : "md:text-right"}`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.2 }}
+        return (
+          <div key={product.id}>
+            {/* Section divider */}
+            {i > 0 && (
+              <div
+                style={{
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)",
+                  height: "1px",
+                }}
+              />
+            )}
+
+            <Link
+              to={`/${lang}/kits/${product.slug}`}
+              className="group block"
+              style={{ background: bg }}
+            >
+              <div
+                style={{
+                  padding:
+                    "clamp(6rem, 15vh, 12rem) clamp(1.5rem, 6vw, 6rem)",
+                }}
+                className="max-w-[1400px] mx-auto"
               >
-                <h2 className="text-gray-900 font-bold text-3xl md:text-5xl mb-3 group-hover:text-brand-orange transition-colors">
-                  {product.name}
-                </h2>
-                <p className="text-gray-500 text-base md:text-lg mb-4 max-w-md">
-                  {product.tagline}
-                </p>
-                <div className={`flex items-center gap-3 mb-6 ${i % 2 === 0 ? "" : "md:justify-end"}`}>
-                  <span className="bg-orange-50 text-brand-orange text-xs px-3 py-1 rounded-full">
-                    {product.module}
-                  </span>
-                  {product.badge && (
-                    <span className="bg-orange-50 text-brand-orange text-xs px-3 py-1 rounded-full">
-                      {product.badge}
-                    </span>
-                  )}
+                <div
+                  className={`flex flex-col ${
+                    isEven ? "md:flex-row" : "md:flex-row-reverse"
+                  } items-center`}
+                  style={{ gap: "clamp(2rem, 5vw, 5rem)" }}
+                >
+                  {/* Product Image — 55% */}
+                  <motion.div
+                    className="w-full md:w-[55%] relative"
+                    initial={{ opacity: 0, x: isEven ? -40 : 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    {/* Ambient glow */}
+                    <div
+                      className="absolute inset-0 -z-10"
+                      style={{
+                        background:
+                          "radial-gradient(ellipse, rgba(255,74,28,0.06) 0%, transparent 70%)",
+                      }}
+                    />
+                    <img
+                      src={product.heroImage}
+                      alt={product.name}
+                      className="w-full object-contain group-hover:scale-[1.03] group-hover:-translate-y-2"
+                      style={{
+                        maxHeight: "clamp(300px, 50vh, 600px)",
+                        filter:
+                          "drop-shadow(0 40px 80px rgba(0,0,0,0.6))",
+                        transition:
+                          "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+                      }}
+                      loading={i < 2 ? "eager" : "lazy"}
+                    />
+                  </motion.div>
+
+                  {/* Info — 45% */}
+                  <motion.div
+                    className={`w-full md:w-[45%] ${
+                      isEven ? "" : "md:text-right"
+                    }`}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 1,
+                      delay: 0.15,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  >
+                    {/* Badge */}
+                    {product.badge && (
+                      <span
+                        style={{
+                          fontSize: "11px",
+                          fontWeight: 600,
+                          textTransform: "uppercase",
+                          letterSpacing: "0.3em",
+                          color: "#ff4a1c",
+                        }}
+                      >
+                        {product.badge}
+                      </span>
+                    )}
+
+                    {/* Model name */}
+                    <h2
+                      className="group-hover:text-[#ff4a1c]"
+                      style={{
+                        fontSize: "clamp(2.8rem, 7vw, 7rem)",
+                        lineHeight: 0.92,
+                        letterSpacing: "-0.04em",
+                        fontWeight: 700,
+                        color: "rgba(255,255,255,0.95)",
+                        transition:
+                          "color 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                        marginTop: product.badge
+                          ? "clamp(0.5rem, 1vh, 1rem)"
+                          : 0,
+                      }}
+                    >
+                      {product.name}
+                    </h2>
+
+                    {/* Tagline */}
+                    <p
+                      style={{
+                        fontSize: "clamp(1rem, 2vw, 1.3rem)",
+                        lineHeight: 1.6,
+                        fontWeight: 300,
+                        color: "rgba(255,255,255,0.5)",
+                        marginTop: "clamp(0.5rem, 1.5vh, 1.5rem)",
+                        letterSpacing: "-0.01em",
+                      }}
+                    >
+                      {product.tagline}
+                    </p>
+
+                    {/* Spec numbers */}
+                    {product.specsHighlight &&
+                      product.specsHighlight.length > 0 && (
+                        <div
+                          className={`flex ${
+                            isEven ? "" : "md:justify-end"
+                          }`}
+                          style={{
+                            gap: "clamp(1.5rem, 4vw, 3rem)",
+                            marginTop: "clamp(1.5rem, 3vh, 3rem)",
+                          }}
+                        >
+                          {product.specsHighlight
+                            .slice(0, 3)
+                            .map((spec) => (
+                              <div key={spec.label}>
+                                <div
+                                  style={{
+                                    fontSize:
+                                      "clamp(2rem, 5vw, 4rem)",
+                                    fontWeight: 800,
+                                    letterSpacing: "-0.04em",
+                                    lineHeight: 0.85,
+                                    color: "white",
+                                  }}
+                                >
+                                  {spec.value}
+                                </div>
+                                <div
+                                  style={{
+                                    fontSize: "11px",
+                                    fontWeight: 600,
+                                    textTransform: "uppercase",
+                                    letterSpacing: "0.2em",
+                                    color: "rgba(255,255,255,0.25)",
+                                    marginTop: "0.5rem",
+                                  }}
+                                >
+                                  {spec.label}
+                                </div>
+                              </div>
+                            ))}
+                        </div>
+                      )}
+
+                    {/* Module badge */}
+                    <div
+                      style={{
+                        marginTop: "clamp(1.5rem, 3vh, 3rem)",
+                      }}
+                    >
+                      <span
+                        style={{
+                          display: "inline-block",
+                          background: "#1a1a1a",
+                          color: "#ff4a1c",
+                          fontSize: "11px",
+                          fontWeight: 600,
+                          padding: "6px 14px",
+                          borderRadius: "999px",
+                          textTransform: "uppercase",
+                          letterSpacing: "0.15em",
+                        }}
+                      >
+                        {product.module}
+                      </span>
+                    </div>
+
+                    {/* CTA */}
+                    <div
+                      style={{
+                        marginTop: "clamp(1.5rem, 3vh, 3rem)",
+                      }}
+                    >
+                      <span
+                        className="group-hover:text-white"
+                        style={{
+                          fontSize: "11px",
+                          fontWeight: 600,
+                          textTransform: "uppercase",
+                          letterSpacing: "0.3em",
+                          color: "#ff4a1c",
+                          transition:
+                            "color 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                        }}
+                      >
+                        {t("showcase.viewModel") || "Explorar"} →
+                      </span>
+                    </div>
+                  </motion.div>
                 </div>
-                {/* Key specs */}
-                {product.specsHighlight && product.specsHighlight.length > 0 && (
-                  <div className={`flex gap-8 mb-6 ${i % 2 === 0 ? "" : "md:justify-end"}`}>
-                    {product.specsHighlight.slice(0, 3).map((spec) => (
-                      <div key={spec.label} className={i % 2 === 0 ? "text-left" : "md:text-right"}>
-                        <div className="text-gray-900 text-2xl font-light">{spec.value}</div>
-                        <div className="text-gray-400 text-xs uppercase tracking-wider">{spec.label}</div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                <span className="text-brand-orange text-sm group-hover:text-gray-900 transition-colors">
-                  {t("showcase.viewModel") || "Explorar modelo"} →
-                </span>
-              </motion.div>
-            </div>
+              </div>
+            </Link>
           </div>
-        </Link>
-      ))}
+        );
+      })}
     </section>
   );
 }
