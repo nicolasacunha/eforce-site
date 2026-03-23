@@ -18,7 +18,7 @@ export default function FinishSelector({ product }: FinishSelectorProps) {
       <div className="flex flex-col items-center gap-12 lg:flex-row">
         {/* Left — Image display */}
         <div className="lg:w-3/5">
-          <div className="aspect-[4/3] overflow-hidden rounded-xl bg-gray-50">
+          <div className="aspect-[4/3] overflow-hidden rounded-xl bg-[#111]">
             <AnimatePresence mode="wait">
               <motion.img
                 key={selectedFinish.id}
@@ -36,7 +36,7 @@ export default function FinishSelector({ product }: FinishSelectorProps) {
 
         {/* Right — Swatches & info */}
         <div className="lg:w-2/5">
-          <span className="font-display text-xs uppercase tracking-[0.2em] text-brand-orange">
+          <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.3em", color: "#ff4a1c" }}>
             {t('product.finishLabel')}
           </span>
 
@@ -52,7 +52,7 @@ export default function FinishSelector({ product }: FinishSelectorProps) {
                 <span
                   className={`block h-14 w-14 rounded-full transition-all duration-300 ${
                     selectedFinish.id === finish.id
-                      ? 'ring-2 ring-brand-orange ring-offset-2 ring-offset-brand-surface'
+                      ? 'ring-2 ring-brand-orange ring-offset-2 ring-offset-[#0a0a0a]'
                       : ''
                   }`}
                   style={{ backgroundColor: finish.color }}
@@ -60,8 +60,8 @@ export default function FinishSelector({ product }: FinishSelectorProps) {
                 <span
                   className={`mt-2 text-center font-display text-xs transition-colors duration-300 ${
                     selectedFinish.id === finish.id
-                      ? 'text-brand-text-primary'
-                      : 'text-brand-text-secondary'
+                      ? 'text-white'
+                      : 'text-[rgba(255,255,255,0.5)]'
                   }`}
                 >
                   {finish.name}
@@ -71,13 +71,13 @@ export default function FinishSelector({ product }: FinishSelectorProps) {
           </div>
 
           {/* Selected label */}
-          <p className="mt-6 font-display text-sm text-brand-text-secondary">
+          <p className="mt-6 font-display text-sm text-[rgba(255,255,255,0.5)]">
             {t('finishes.selected')}:{' '}
-            <span className="text-brand-text-primary">{selectedFinish.name}</span>
+            <span className="text-white">{selectedFinish.name}</span>
           </p>
 
           {/* Note */}
-          <p className="mt-4 text-xs italic text-brand-text-secondary/60">
+          <p className="mt-4 text-xs italic text-[rgba(255,255,255,0.25)]">
             {t('finishes.note')}
           </p>
         </div>

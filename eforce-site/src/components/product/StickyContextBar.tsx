@@ -22,17 +22,17 @@ export function StickyContextBar({ product, onSwitchModel }: StickyContextBarPro
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="sticky-bar flex items-center justify-between px-6 py-3"
+          className="sticky-bar flex items-center justify-between px-6 py-3 bg-[#111] border-b border-[rgba(255,255,255,0.08)]"
           initial={{ y: -60 }}
           animate={{ y: 0 }}
           exit={{ y: -60 }}
           transition={{ type: "tween", duration: 0.3 }}
         >
-          <span className="text-gray-900 font-semibold text-sm">{product.name}</span>
+          <span className="text-white font-semibold text-sm">{product.name}</span>
           <div className="flex items-center gap-4">
             <button
               onClick={onSwitchModel}
-              className="text-gray-500 hover:text-gray-900 text-sm transition-colors"
+              className="text-[rgba(255,255,255,0.5)] hover:text-white text-sm transition-colors"
             >
               {t("product.switchModel") || "Mudar de modelo"}
             </button>

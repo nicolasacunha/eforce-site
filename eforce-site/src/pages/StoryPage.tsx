@@ -55,8 +55,8 @@ function TimelineMilestone({
       <div className="absolute left-0 top-1 h-3 w-3 -translate-x-1/2 rounded-full bg-brand-orange" />
 
       <span className="font-mono text-sm text-brand-orange">{milestone.year}</span>
-      <h3 className="mt-1 font-display text-xl font-semibold text-gray-900">{milestone.title}</h3>
-      <p className="mt-2 font-body leading-relaxed text-gray-500">{milestone.desc}</p>
+      <h3 className="mt-1 font-display text-xl font-semibold text-white">{milestone.title}</h3>
+      <p className="mt-2 font-body leading-relaxed text-[rgba(255,255,255,0.5)]">{milestone.desc}</p>
     </div>
   );
 }
@@ -79,13 +79,14 @@ export default function StoryPage() {
       />
 
       {/* SECTION 1 — Hero */}
-      <section className="bg-brand-black pt-24 pb-20 pt-32 md:pt-40">
+      <section className="bg-[#0a0a0a] pt-24 pb-20 pt-32 md:pt-40">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-brand-orange"
+            style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.3em", color: "#ff4a1c" }}
+            className="inline-block"
           >
             OUR STORY
           </motion.span>
@@ -94,7 +95,8 @@ export default function StoryPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="mt-4 font-display text-4xl font-bold leading-tight text-white md:text-6xl lg:text-7xl"
+            className="mt-4 font-display font-bold leading-tight text-white"
+            style={{ fontSize: "clamp(2.8rem, 7vw, 7rem)", lineHeight: 0.92, letterSpacing: "-0.04em" }}
           >
             {t('odery.headline')}
           </motion.h1>
@@ -103,18 +105,22 @@ export default function StoryPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="mx-auto mt-6 max-w-2xl font-body text-lg leading-relaxed text-neutral-400"
+            className="mx-auto mt-6 max-w-2xl font-body"
+            style={{ fontSize: "clamp(0.9rem, 1.2vw, 1.05rem)", lineHeight: 1.75, color: "rgba(255,255,255,0.5)" }}
           >
             {t('odery.p1')}
           </motion.p>
         </div>
       </section>
 
+      {/* Divider */}
+      <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
+
       {/* SECTION 2 — Timeline */}
-      <section className="bg-white py-24">
+      <section className="bg-[#0a0a0a] py-24">
         <div className="relative mx-auto max-w-4xl px-6">
           {/* Vertical line */}
-          <div className="absolute bottom-0 left-6 top-0 w-px bg-black/10" />
+          <div className="absolute bottom-0 left-6 top-0 w-px bg-[rgba(255,255,255,0.08)]" />
 
           <div className="flex flex-col gap-12">
             {milestones.map((milestone, index) => (
@@ -124,13 +130,16 @@ export default function StoryPage() {
         </div>
       </section>
 
+      {/* Divider */}
+      <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
+
       {/* SECTION 3 — Philosophy */}
-      <section className="bg-gray-100 py-24">
+      <section className="bg-[#111] py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
             {/* Left — Image placeholder */}
-            <div className="flex aspect-[4/5] items-center justify-center rounded-xl bg-gray-200">
-              <span className="font-display text-2xl text-gray-400">
+            <div className="flex aspect-[4/5] items-center justify-center rounded-xl bg-[#1a1a1a]">
+              <span className="font-display text-2xl text-[rgba(255,255,255,0.25)]">
                 Odery Workshop
               </span>
             </div>
@@ -144,22 +153,22 @@ export default function StoryPage() {
                 transition: 'opacity 0.8s ease, transform 0.8s ease',
               }}
             >
-              <span className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-brand-orange">
+              <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.3em", color: "#ff4a1c" }}>
                 PHILOSOPHY
               </span>
-              <h2 className="mt-3 font-display text-3xl font-bold text-gray-900">
+              <h2 className="mt-3 font-display text-3xl font-bold text-white">
                 Where acoustic soul meets electronic precision.
               </h2>
-              <p className="mt-4 font-body leading-relaxed text-gray-500">
+              <p className="mt-4 font-body leading-relaxed text-[rgba(255,255,255,0.5)]">
                 Every E-Force instrument begins with a question: what would happen if decades of
                 acoustic drum expertise were channeled into electronic design?
               </p>
-              <p className="mt-4 font-body leading-relaxed text-gray-500">
+              <p className="mt-4 font-body leading-relaxed text-[rgba(255,255,255,0.5)]">
                 The answer is in every detail — the curve of each shell, the weight of each pad, the
                 response of each trigger. These aren&apos;t design choices made by engineers alone.
                 They&apos;re informed by luthiers, drummers, and acoustic specialists.
               </p>
-              <p className="mt-4 font-body leading-relaxed text-gray-500">
+              <p className="mt-4 font-body leading-relaxed text-[rgba(255,255,255,0.5)]">
                 This is what sets E-Force apart. Not just technology. Not just aesthetics. A genuine
                 understanding of what makes a drummer feel connected to their instrument.
               </p>
@@ -168,8 +177,11 @@ export default function StoryPage() {
         </div>
       </section>
 
+      {/* Divider */}
+      <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
+
       {/* SECTION 4 — CTA */}
-      <section className="bg-white py-24">
+      <section className="bg-[#0a0a0a] py-24">
         <div
           ref={ctaRef}
           className="mx-auto max-w-2xl px-6 text-center"
@@ -179,10 +191,10 @@ export default function StoryPage() {
             transition: 'opacity 0.7s ease, transform 0.7s ease',
           }}
         >
-          <h2 className="font-display text-3xl font-bold text-gray-900">
+          <h2 className="font-display text-3xl font-bold text-white">
             Experience the difference.
           </h2>
-          <p className="mt-4 font-body text-gray-500">
+          <p className="mt-4 font-body text-[rgba(255,255,255,0.5)]">
             Explore the full E-Force line and find the kit that speaks to you.
           </p>
           <Link

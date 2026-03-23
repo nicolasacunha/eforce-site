@@ -97,7 +97,7 @@ export default function DealersPage() {
       />
 
       {/* SECTION 1 — Hero */}
-      <section className="bg-brand-black pt-24 pt-32 pb-16 md:pt-40">
+      <section className="bg-[#0a0a0a] pt-24 pt-32 pb-16 md:pt-40">
         <motion.div
           ref={heroRef}
           className="mx-auto max-w-4xl px-6 text-center"
@@ -105,20 +105,23 @@ export default function DealersPage() {
           animate={heroVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          <span className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-brand-orange">
+          <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.3em", color: "#ff4a1c" }}>
             DEALERS
           </span>
-          <h1 className="mt-4 font-display text-4xl font-bold leading-tight text-gray-900 md:text-6xl">
+          <h1 className="mt-4 font-display font-bold leading-tight text-white" style={{ fontSize: "clamp(2.8rem, 7vw, 7rem)", lineHeight: 0.92, letterSpacing: "-0.04em" }}>
             {t('nav.dealers')}
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl font-body text-lg text-gray-500 md:text-xl">
+          <p className="mx-auto mt-6 max-w-2xl font-body" style={{ fontSize: "clamp(0.9rem, 1.2vw, 1.05rem)", lineHeight: 1.75, color: "rgba(255,255,255,0.5)" }}>
             Explore, experience, and purchase E-Force electronic drums at an authorized dealer near you.
           </p>
         </motion.div>
       </section>
 
+      {/* Divider */}
+      <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
+
       {/* SECTION 2 — Region filter + Dealer list */}
-      <section className="bg-white py-16">
+      <section className="bg-[#0a0a0a] py-16">
         <div className="mx-auto max-w-5xl px-6">
           {/* Region filter pills */}
           <div className="mb-12 flex flex-wrap items-center justify-center gap-3">
@@ -129,7 +132,7 @@ export default function DealersPage() {
                 className={`rounded-full px-5 py-2.5 font-display text-sm font-medium transition-all duration-300 ${
                   activeRegion === r.key
                     ? 'bg-brand-orange text-white'
-                    : 'border border-gray-200 text-gray-500 hover:border-gray-400 hover:text-gray-900'
+                    : 'border border-[rgba(255,255,255,0.08)] text-[rgba(255,255,255,0.5)] hover:border-[rgba(255,255,255,0.2)] hover:text-white'
                 }`}
               >
                 {r.label}
@@ -156,25 +159,25 @@ export default function DealersPage() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.3 }}
-                    className="rounded-xl border border-gray-200 bg-gray-50 p-6 transition-colors duration-300 hover:border-brand-orange/30"
+                    className="rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#111] p-6 transition-colors duration-300 hover:border-brand-orange/30"
                   >
                     <div className="flex items-start justify-between gap-3">
-                      <h3 className="font-display text-base font-semibold text-gray-900">
+                      <h3 className="font-display text-base font-semibold text-white">
                         {dealer.name}
                       </h3>
                       <span
                         className={`shrink-0 rounded-full px-2 py-0.5 font-display text-xs ${
                           dealer.type === 'Premium Dealer'
                             ? 'bg-brand-orange/10 text-brand-orange'
-                            : 'bg-gray-100 text-gray-500'
+                            : 'bg-[#1a1a1a] text-[rgba(255,255,255,0.5)]'
                         }`}
                       >
                         {dealer.type}
                       </span>
                     </div>
                     <div className="mt-2 flex items-center gap-1.5">
-                      <MapPinIcon className="h-3.5 w-3.5 shrink-0 text-gray-500" />
-                      <p className="font-body text-sm text-gray-500">
+                      <MapPinIcon className="h-3.5 w-3.5 shrink-0 text-[rgba(255,255,255,0.5)]" />
+                      <p className="font-body text-sm text-[rgba(255,255,255,0.5)]">
                         {dealer.city}, {dealer.country}
                       </p>
                     </div>
@@ -186,8 +189,11 @@ export default function DealersPage() {
         </div>
       </section>
 
+      {/* Divider */}
+      <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
+
       {/* SECTION 3 — Map placeholder */}
-      <section className="bg-gray-100 py-16">
+      <section className="bg-[#111] py-16">
         <div
           ref={mapRef}
           className="mx-auto max-w-5xl px-6"
@@ -197,10 +203,10 @@ export default function DealersPage() {
             transition: 'opacity 0.8s ease, transform 0.8s ease',
           }}
         >
-          <div className="flex aspect-[16/9] items-center justify-center rounded-xl border border-gray-200 bg-gray-200">
+          <div className="flex aspect-[16/9] items-center justify-center rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#1a1a1a]">
             <div className="text-center">
-              <GlobeIcon className="mx-auto h-16 w-16 text-gray-400" />
-              <p className="mt-4 font-body text-sm text-gray-500">
+              <GlobeIcon className="mx-auto h-16 w-16 text-[rgba(255,255,255,0.25)]" />
+              <p className="mt-4 font-body text-sm text-[rgba(255,255,255,0.5)]">
                 Interactive map coming soon
               </p>
             </div>
@@ -208,8 +214,11 @@ export default function DealersPage() {
         </div>
       </section>
 
+      {/* Divider */}
+      <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
+
       {/* SECTION 4 — Become a dealer CTA */}
-      <section className="bg-white py-24">
+      <section className="bg-[#0a0a0a] py-24">
         <div
           ref={ctaRef}
           className="mx-auto max-w-2xl px-6 text-center"
@@ -219,10 +228,10 @@ export default function DealersPage() {
             transition: 'opacity 0.8s ease, transform 0.8s ease',
           }}
         >
-          <h2 className="font-display text-2xl font-bold text-gray-900">
+          <h2 className="font-display text-2xl font-bold text-white">
             Become an E-Force dealer
           </h2>
-          <p className="mt-4 font-body text-base text-gray-500">
+          <p className="mt-4 font-body text-base text-[rgba(255,255,255,0.5)]">
             Interested in distributing E-Force in your region? We&apos;d love to hear from you.
           </p>
           <Link

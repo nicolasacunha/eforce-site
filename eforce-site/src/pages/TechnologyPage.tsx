@@ -33,8 +33,8 @@ function ModuleCard({
   return (
     <div
       ref={ref}
-      className={`relative rounded-2xl border bg-gray-50 p-10 ${
-        flagship ? 'border-brand-orange/20' : 'border-gray-200'
+      className={`relative rounded-2xl border bg-[#111] p-10 ${
+        flagship ? 'border-brand-orange/20' : 'border-[rgba(255,255,255,0.08)]'
       }`}
       style={{
         opacity: isVisible ? 1 : 0,
@@ -53,28 +53,28 @@ function ModuleCard({
       >
         {code}
       </span>
-      <h3 className="mt-4 font-display text-2xl font-bold text-gray-900">{title}</h3>
-      <p className="mt-2 font-body text-gray-500">{subtitle}</p>
+      <h3 className="mt-4 font-display text-2xl font-bold text-white">{title}</h3>
+      <p className="mt-2 font-body text-[rgba(255,255,255,0.5)]">{subtitle}</p>
 
       <div className="mt-8">
         {specs.map((spec) => (
           <div
             key={spec.name}
-            className="flex items-center justify-between border-b border-gray-200 py-3"
+            className="flex items-center justify-between border-b border-[rgba(255,255,255,0.08)] py-3"
           >
-            <span className="font-body text-gray-500">{spec.name}</span>
-            <span className="font-mono text-gray-900">{spec.value}</span>
+            <span className="font-body text-[rgba(255,255,255,0.5)]">{spec.name}</span>
+            <span className="font-mono text-white">{spec.value}</span>
           </div>
         ))}
       </div>
 
       <div className="mt-8">
-        <span className="font-body text-sm text-gray-500">Available in</span>
+        <span className="font-body text-sm text-[rgba(255,255,255,0.5)]">Available in</span>
         <div className="mt-2 flex flex-wrap gap-2">
           {availableIn.map((model) => (
             <span
               key={model}
-              className="rounded-full border border-gray-200 px-3 py-1 font-mono text-xs text-gray-500"
+              className="rounded-full border border-[rgba(255,255,255,0.08)] px-3 py-1 font-mono text-xs text-[rgba(255,255,255,0.5)]"
             >
               {model}
             </span>
@@ -106,14 +106,14 @@ function FeatureSection({
 }: FeatureSectionProps) {
   const { ref, isVisible } = useScrollReveal(0.1);
 
-  const bgClass = bg === 'black' ? 'bg-white' : 'bg-gray-100';
-  const placeholderBg = bg === 'black' ? 'bg-gray-50' : 'bg-gray-200';
+  const bgClass = bg === 'black' ? 'bg-[#0a0a0a]' : 'bg-[#111]';
+  const placeholderBg = bg === 'black' ? 'bg-[#111]' : 'bg-[#1a1a1a]';
 
   const imagePlaceholder = (
     <div
       className={`flex aspect-square items-center justify-center rounded-xl ${placeholderBg}`}
     >
-      <span className="font-display text-2xl text-gray-400">
+      <span className="font-display text-2xl text-[rgba(255,255,255,0.25)]">
         {placeholderLabel}
       </span>
     </div>
@@ -132,12 +132,12 @@ function FeatureSection({
         transition: 'opacity 0.8s ease, transform 0.8s ease',
       }}
     >
-      <span className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-brand-orange">
+      <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.3em", color: "#ff4a1c" }}>
         {label}
       </span>
-      <h2 className="mt-3 font-display text-3xl font-bold text-gray-900">{title}</h2>
-      <p className="mt-4 font-body leading-relaxed text-gray-500">{desc}</p>
-      <p className="mt-4 font-body leading-relaxed text-gray-500">{extra}</p>
+      <h2 className="mt-3 font-display text-3xl font-bold text-white">{title}</h2>
+      <p className="mt-4 font-body leading-relaxed text-[rgba(255,255,255,0.5)]">{desc}</p>
+      <p className="mt-4 font-body leading-relaxed text-[rgba(255,255,255,0.5)]">{extra}</p>
     </div>
   );
 
@@ -195,13 +195,14 @@ export default function TechnologyPage() {
       />
 
       {/* SECTION 1 — Hero */}
-      <section className="bg-brand-black pt-24 pb-16 pt-32 md:pt-40">
+      <section className="bg-[#0a0a0a] pt-24 pb-16 pt-32 md:pt-40">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-brand-orange"
+            style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.3em", color: "#ff4a1c" }}
+            className="inline-block"
           >
             {t('tech.label')}
           </motion.span>
@@ -210,7 +211,8 @@ export default function TechnologyPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="mt-4 font-display text-4xl font-bold leading-tight text-white md:text-6xl lg:text-7xl"
+            className="mt-4 font-display font-bold leading-tight text-white"
+            style={{ fontSize: "clamp(2.8rem, 7vw, 7rem)", lineHeight: 0.92, letterSpacing: "-0.04em" }}
           >
             {t('tech.headline')}
           </motion.h1>
@@ -219,15 +221,19 @@ export default function TechnologyPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="mx-auto mt-6 max-w-2xl font-body text-lg leading-relaxed text-neutral-400"
+            className="mx-auto mt-6 max-w-2xl font-body"
+            style={{ fontSize: "clamp(0.9rem, 1.2vw, 1.05rem)", lineHeight: 1.75, color: "rgba(255,255,255,0.5)" }}
           >
             Two powerful modules. One philosophy: give drummers complete control over their sound.
           </motion.p>
         </div>
       </section>
 
+      {/* Divider */}
+      <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
+
       {/* SECTION 2 — Module Comparison */}
-      <section className="bg-white py-24">
+      <section className="bg-[#0a0a0a] py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <ModuleCard
@@ -291,7 +297,7 @@ export default function TechnologyPage() {
       />
 
       {/* SECTION 4 — CTA */}
-      <section className="bg-gray-100 py-24">
+      <section className="bg-[#111] py-24">
         <div
           ref={ctaRef}
           className="mx-auto max-w-2xl px-6 text-center"
@@ -301,10 +307,10 @@ export default function TechnologyPage() {
             transition: 'opacity 0.7s ease, transform 0.7s ease',
           }}
         >
-          <h2 className="font-display text-3xl font-bold text-gray-900">
+          <h2 className="font-display text-3xl font-bold text-white">
             Ready to experience the difference?
           </h2>
-          <p className="mt-4 font-body text-gray-500">
+          <p className="mt-4 font-body text-[rgba(255,255,255,0.5)]">
             Explore the full E-Force line and find the kit that defines your performance.
           </p>
           <Link

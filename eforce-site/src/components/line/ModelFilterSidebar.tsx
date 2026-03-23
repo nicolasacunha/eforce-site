@@ -31,7 +31,7 @@ export function ModelFilterSidebar({
 
   return (
     <aside className="w-full lg:w-80 flex-shrink-0">
-      <h1 className="text-xl font-bold text-gray-900 mb-6">
+      <h1 className="text-xl font-bold text-white mb-6">
         {t("line.title")}
       </h1>
       <div className="flex flex-wrap gap-2 mb-6">
@@ -42,17 +42,17 @@ export function ModelFilterSidebar({
             className={`px-3 py-1.5 rounded-full text-xs transition-colors ${
               activeFamily === f.key
                 ? "bg-brand-orange text-white"
-                : "bg-gray-100 text-gray-500 hover:text-gray-900"
+                : "bg-[#1a1a1a] text-[rgba(255,255,255,0.5)] hover:text-white"
             }`}
           >
             {f.label} ({f.count})
           </button>
         ))}
       </div>
-      <div className="border-t border-gray-200 pt-4">
+      <div className="border-t border-[rgba(255,255,255,0.08)] pt-4">
         <button
           onClick={() => setModuleOpen(!moduleOpen)}
-          className="w-full flex justify-between items-center py-3 text-sm text-gray-500 hover:text-gray-900 transition-colors"
+          className="w-full flex justify-between items-center py-3 text-sm text-[rgba(255,255,255,0.5)] hover:text-white transition-colors"
         >
           <span>{t("line.module") || "Módulo"}</span>
           <span>{moduleOpen ? "−" : "+"}</span>
@@ -66,7 +66,7 @@ export function ModelFilterSidebar({
                 className={`px-3 py-1 rounded text-xs transition-colors ${
                   activeModule === m
                     ? "bg-brand-orange text-white"
-                    : "bg-gray-100 text-gray-500 hover:text-gray-900"
+                    : "bg-[#1a1a1a] text-[rgba(255,255,255,0.5)] hover:text-white"
                 }`}
               >
                 {m === "all" ? t("line.all") || "Todos" : m}
@@ -76,7 +76,7 @@ export function ModelFilterSidebar({
         )}
         <button
           onClick={() => setPriceOpen(!priceOpen)}
-          className="w-full flex justify-between items-center py-3 text-sm text-gray-500 hover:text-gray-900 transition-colors"
+          className="w-full flex justify-between items-center py-3 text-sm text-[rgba(255,255,255,0.5)] hover:text-white transition-colors"
         >
           <span>{t("line.priceRange") || "Faixa de Preço"}</span>
           <span>{priceOpen ? "−" : "+"}</span>
@@ -97,7 +97,7 @@ export function ModelFilterSidebar({
                   className={`px-3 py-1 rounded text-xs transition-colors ${
                     activePriceRange === r
                       ? "bg-brand-orange text-white"
-                      : "bg-gray-100 text-gray-500 hover:text-gray-900"
+                      : "bg-[#1a1a1a] text-[rgba(255,255,255,0.5)] hover:text-white"
                   }`}
                 >
                   {labels[r]}
@@ -113,7 +113,7 @@ export function ModelFilterSidebar({
           onModuleChange("all");
           onPriceRangeChange("all");
         }}
-        className="text-xs text-gray-400 hover:text-gray-500 transition-colors mt-4"
+        className="text-xs text-[rgba(255,255,255,0.25)] hover:text-[rgba(255,255,255,0.5)] transition-colors mt-4"
       >
         {t("line.resetFilters")}
       </button>

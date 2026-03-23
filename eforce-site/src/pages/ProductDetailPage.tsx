@@ -34,7 +34,7 @@ export default function ProductDetailPage() {
         path={`/kits/${product.slug}`}
       />
 
-      <div className="bg-white min-h-screen">
+      <div className="bg-[#0a0a0a] min-h-screen">
         <StickyContextBar
           product={product}
           onSwitchModel={() => setSwitcherOpen(true)}
@@ -54,7 +54,7 @@ export default function ProductDetailPage() {
 
         {/* Finish selector */}
         {product.finishes.length > 0 && (
-          <section className="py-24 px-6">
+          <section style={{ padding: "clamp(6rem, 15vh, 12rem) clamp(1.5rem, 6vw, 6rem)" }}>
             <div className="max-w-5xl mx-auto">
               <FinishSelector product={product} />
             </div>
@@ -63,7 +63,7 @@ export default function ProductDetailPage() {
 
         {/* In the box */}
         {product.inTheBox.length > 0 && (
-          <section className="py-24 px-6 bg-gray-100">
+          <section className="bg-[#1a1a1a]" style={{ padding: "clamp(6rem, 15vh, 12rem) clamp(1.5rem, 6vw, 6rem)" }}>
             <div className="max-w-5xl mx-auto">
               <InTheBox product={product} />
             </div>
@@ -71,7 +71,7 @@ export default function ProductDetailPage() {
         )}
 
         {/* Compare models */}
-        <section className="py-24 px-6" id="dealers">
+        <section style={{ padding: "clamp(6rem, 15vh, 12rem) clamp(1.5rem, 6vw, 6rem)" }} id="dealers">
           <div className="max-w-7xl mx-auto">
             <CompareModels currentProduct={product} />
           </div>

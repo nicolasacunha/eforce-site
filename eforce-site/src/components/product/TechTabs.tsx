@@ -11,11 +11,11 @@ export function TechTabs({ product }: TechTabsProps) {
   const currentTab = tabs[activeTab];
 
   return (
-    <section className="py-24 px-6 bg-gray-100">
+    <section className="bg-[#111]" style={{ padding: "clamp(6rem, 15vh, 12rem) clamp(1.5rem, 6vw, 6rem)" }}>
       <div className="max-w-5xl mx-auto">
-        <div className="flex gap-8 border-b border-gray-200 mb-8">
+        <div className="flex gap-8 border-b border-[rgba(255,255,255,0.08)] mb-8">
           {tabs.map((tab, i) => (
-            <button key={tab.label} onClick={() => setActiveTab(i)} className={`pb-3 text-sm transition-colors ${i === activeTab ? "text-gray-900 border-b-2 border-brand-orange" : "text-gray-500 hover:text-gray-900"}`}>{tab.label}</button>
+            <button key={tab.label} onClick={() => setActiveTab(i)} className={`pb-3 text-sm transition-colors ${i === activeTab ? "text-white border-b-2 border-brand-orange" : "text-[rgba(255,255,255,0.5)] hover:text-white"}`}>{tab.label}</button>
           ))}
         </div>
         <AnimatePresence mode="wait">
@@ -23,8 +23,8 @@ export function TechTabs({ product }: TechTabsProps) {
             {currentTab.slides.map((slide) => (
               <div key={slide.title} className="min-w-[280px] max-w-[320px] flex-shrink-0 snap-start">
                 {slide.image && (<img src={slide.image} alt={slide.title} className="w-full h-40 object-cover rounded-lg mb-3" />)}
-                <h4 className="text-gray-900 font-semibold text-sm mb-1">{slide.title}</h4>
-                <p className="text-gray-500 text-xs">{slide.description}</p>
+                <h4 className="text-white font-semibold text-sm mb-1">{slide.title}</h4>
+                <p className="text-[rgba(255,255,255,0.5)] text-xs">{slide.description}</p>
               </div>
             ))}
           </motion.div>

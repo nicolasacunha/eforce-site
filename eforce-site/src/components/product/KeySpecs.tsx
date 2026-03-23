@@ -10,7 +10,7 @@ export function KeySpecs({ product }: KeySpecsProps) {
   if (specs.length === 0) return null;
 
   return (
-    <section className="border-t border-b border-gray-200 py-12 px-6">
+    <section className="border-t border-b border-[rgba(255,255,255,0.08)] py-12 px-6 bg-[#0a0a0a]">
       <div className="max-w-4xl mx-auto flex flex-wrap justify-center gap-8 md:gap-16">
         {specs.map((spec, i) => (
           <motion.div
@@ -21,13 +21,26 @@ export function KeySpecs({ product }: KeySpecsProps) {
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
           >
-            <div className="specs-number text-gray-900">
+            <div style={{
+              fontSize: "clamp(4rem, 10vw, 9rem)",
+              fontWeight: 800,
+              letterSpacing: "-0.04em",
+              lineHeight: 0.85,
+              color: "white",
+            }}>
               {spec.value}
               {spec.unit && (
-                <span className="text-lg text-gray-500 ml-1">{spec.unit}</span>
+                <span style={{ fontSize: "1.125rem", color: "rgba(255,255,255,0.5)", marginLeft: "0.25rem" }}>{spec.unit}</span>
               )}
             </div>
-            <div className="text-xs text-gray-500 mt-1 uppercase tracking-wider">
+            <div style={{
+              fontSize: "11px",
+              fontWeight: 600,
+              textTransform: "uppercase",
+              letterSpacing: "0.3em",
+              color: "#ff4a1c",
+              marginTop: "0.25rem",
+            }}>
               {spec.label}
             </div>
           </motion.div>

@@ -18,7 +18,7 @@ export default function CompareModels({ currentProduct }: CompareModelsProps) {
 
   return (
     <div>
-      <h2 className="text-xs uppercase tracking-widest text-gray-500 mb-6">
+      <h2 style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.3em", color: "#ff4a1c", marginBottom: "1.5rem" }}>
         {t("product.whichKit")}
       </h2>
       <div className="flex gap-4 overflow-x-auto pb-4 snap-x">
@@ -26,7 +26,7 @@ export default function CompareModels({ currentProduct }: CompareModelsProps) {
           <Link
             key={product.id}
             to={`/${lang}/kits/${product.slug}`}
-            className="min-w-[260px] max-w-[280px] flex-shrink-0 snap-start bg-gray-50 rounded-lg border border-gray-200 hover:border-gray-300 transition-colors overflow-hidden"
+            className="min-w-[260px] max-w-[280px] flex-shrink-0 snap-start bg-[#111] rounded-lg border border-[rgba(255,255,255,0.08)] hover:border-[rgba(255,255,255,0.12)] transition-colors overflow-hidden"
           >
             <HoverVideoCard
               image={product.heroImage}
@@ -35,15 +35,15 @@ export default function CompareModels({ currentProduct }: CompareModelsProps) {
               className="h-36"
             />
             <div className="p-4">
-              <h3 className="text-gray-900 font-semibold text-sm">{product.name}</h3>
+              <h3 className="text-white font-semibold text-sm">{product.name}</h3>
               {product.badge && (
                 <span className="text-brand-orange text-xs">{product.badge}</span>
               )}
-              <div className="flex gap-3 mt-2 text-xs text-gray-500">
+              <div className="flex gap-3 mt-2 text-xs text-[rgba(255,255,255,0.5)]">
                 <span>{product.module}</span>
               </div>
               <div className="flex gap-4 mt-3 text-xs">
-                <span className="text-gray-500 hover:text-gray-900 transition-colors">
+                <span className="text-[rgba(255,255,255,0.5)] hover:text-white transition-colors">
                   {t("product.allSpecs")}
                 </span>
               </div>
@@ -52,7 +52,7 @@ export default function CompareModels({ currentProduct }: CompareModelsProps) {
         ))}
       </div>
       <div className="mt-4">
-        <span className="text-xs text-brand-orange cursor-pointer hover:text-gray-900 transition-colors">
+        <span className="text-xs text-brand-orange cursor-pointer hover:text-white transition-colors">
           {t("product.compareDetail")}
         </span>
       </div>

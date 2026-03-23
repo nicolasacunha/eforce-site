@@ -82,7 +82,7 @@ export default function NewsPage() {
       />
 
       {/* Hero */}
-      <section className="bg-brand-black pt-24 pt-32 pb-16 md:pt-40">
+      <section className="bg-[#0a0a0a] pt-24 pt-32 pb-16 md:pt-40">
         <div
           ref={heroRef}
           className="mx-auto max-w-4xl px-6 text-center"
@@ -92,10 +92,10 @@ export default function NewsPage() {
             transition: 'opacity 0.8s ease, transform 0.8s ease',
           }}
         >
-          <span className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-brand-orange">
+          <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.3em", color: "#ff4a1c" }}>
             {t('nav.news').toUpperCase()}
           </span>
-          <h1 className="mt-4 font-display text-4xl font-bold text-gray-900 md:text-6xl">
+          <h1 className="mt-4 font-display font-bold text-white" style={{ fontSize: "clamp(2.8rem, 7vw, 7rem)", lineHeight: 0.92, letterSpacing: "-0.04em" }}>
             Latest from E-Force
           </h1>
         </div>
@@ -103,28 +103,28 @@ export default function NewsPage() {
 
       {/* Featured article */}
       {featured && (
-        <section className="bg-white pb-8">
+        <section className="bg-[#0a0a0a] pb-8">
           <div className="mx-auto max-w-5xl px-6">
-            <article className="group overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 transition-colors hover:border-brand-orange/30">
+            <article className="group overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#111] transition-colors hover:border-brand-orange/30">
               {/* Placeholder image area */}
-              <div className="aspect-[21/9] bg-gradient-to-br from-brand-surface via-brand-surface-2 to-brand-surface" />
+              <div className="aspect-[21/9] bg-gradient-to-br from-[#111] via-[#1a1a1a] to-[#111]" />
               <div className="p-8 md:p-10">
                 <div className="flex items-center gap-3">
                   <span className="rounded-full bg-brand-orange/10 px-3 py-1 font-display text-xs font-semibold text-brand-orange">
                     {featured.category}
                   </span>
-                  <span className="font-mono text-xs text-gray-500">
+                  <span className="font-mono text-xs text-[rgba(255,255,255,0.5)]">
                     {formatDate(featured.date)}
                   </span>
                 </div>
-                <h2 className="mt-4 font-display text-2xl font-bold text-gray-900 md:text-3xl">
+                <h2 className="mt-4 font-display text-2xl font-bold text-white md:text-3xl">
                   {featured.title}
                 </h2>
-                <p className="mt-3 max-w-3xl font-body leading-relaxed text-gray-500">
+                <p className="mt-3 max-w-3xl font-body leading-relaxed text-[rgba(255,255,255,0.5)]">
                   {featured.excerpt}
                 </p>
                 <span className="mt-6 inline-block font-display text-sm font-semibold text-brand-orange transition-colors group-hover:text-brand-orange-hover">
-                  Read more →
+                  Read more &rarr;
                 </span>
               </div>
             </article>
@@ -133,7 +133,7 @@ export default function NewsPage() {
       )}
 
       {/* News grid */}
-      <section className="bg-white py-16 pb-24">
+      <section className="bg-[#0a0a0a] py-16 pb-24">
         <div
           ref={gridRef}
           className="mx-auto max-w-5xl px-6"
@@ -147,27 +147,27 @@ export default function NewsPage() {
             {rest.map((item) => (
               <article
                 key={item.id}
-                className="group overflow-hidden rounded-xl border border-gray-200 bg-gray-50 transition-colors hover:border-brand-orange/30"
+                className="group overflow-hidden rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#111] transition-colors hover:border-brand-orange/30"
               >
                 {/* Placeholder image */}
-                <div className="aspect-[16/10] bg-gradient-to-br from-brand-surface via-brand-surface-2 to-brand-surface" />
+                <div className="aspect-[16/10] bg-gradient-to-br from-[#111] via-[#1a1a1a] to-[#111]" />
                 <div className="p-5">
                   <div className="flex items-center gap-2">
-                    <span className="rounded-full bg-gray-100 px-2.5 py-0.5 font-display text-xs text-gray-500">
+                    <span className="rounded-full bg-[#1a1a1a] px-2.5 py-0.5 font-display text-xs text-[rgba(255,255,255,0.5)]">
                       {item.category}
                     </span>
-                    <span className="font-mono text-xs text-gray-500">
+                    <span className="font-mono text-xs text-[rgba(255,255,255,0.5)]">
                       {formatDate(item.date)}
                     </span>
                   </div>
-                  <h3 className="mt-3 font-display text-base font-semibold leading-snug text-gray-900">
+                  <h3 className="mt-3 font-display text-base font-semibold leading-snug text-white">
                     {item.title}
                   </h3>
-                  <p className="mt-2 line-clamp-2 font-body text-sm text-gray-500">
+                  <p className="mt-2 line-clamp-2 font-body text-sm text-[rgba(255,255,255,0.5)]">
                     {item.excerpt}
                   </p>
                   <span className="mt-4 inline-block font-display text-sm text-brand-orange opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    Read more →
+                    Read more &rarr;
                   </span>
                 </div>
               </article>
@@ -176,18 +176,21 @@ export default function NewsPage() {
         </div>
       </section>
 
+      {/* Divider */}
+      <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
+
       {/* Newsletter CTA */}
-      <section className="bg-gray-100 py-24">
+      <section className="bg-[#111] py-24">
         <div className="mx-auto max-w-xl px-6 text-center">
-          <h2 className="font-display text-2xl font-bold text-gray-900">Stay in the loop</h2>
-          <p className="mt-3 font-body text-gray-500">
+          <h2 className="font-display text-2xl font-bold text-white">Stay in the loop</h2>
+          <p className="mt-3 font-body text-[rgba(255,255,255,0.5)]">
             Subscribe to get the latest E-Force news, product launches, and exclusive updates.
           </p>
           <form onSubmit={(e) => e.preventDefault()} className="mt-8 flex gap-3">
             <input
               type="email"
               placeholder="Your email"
-              className="flex-1 rounded-lg border border-gray-200 bg-white px-4 py-3 font-body text-sm text-gray-900 placeholder:text-gray-400 focus:border-brand-orange/50 focus:outline-none focus:ring-1 focus:ring-brand-orange/50"
+              className="flex-1 rounded-lg border border-[rgba(255,255,255,0.08)] bg-[#1a1a1a] px-4 py-3 font-body text-sm text-white placeholder:text-[rgba(255,255,255,0.25)] focus:border-brand-orange/50 focus:outline-none focus:ring-1 focus:ring-brand-orange/50"
             />
             <button
               type="submit"
