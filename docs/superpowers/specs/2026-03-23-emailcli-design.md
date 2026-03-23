@@ -49,8 +49,7 @@ emailcli/
 │       └── actions/
 │           ├── cleaner.py      # Delete/archive logic
 │           └── cataloger.py    # Prioritization and categorization
-└── data/
-    └── emails.db               # SQLite (generated at runtime)
+└── tests/                      # Future tests
 ```
 
 ## Data Model
@@ -69,7 +68,9 @@ emailcli/
 |--------|------|-------------|
 | id | INTEGER PK | Auto-increment |
 | account_id | INTEGER FK | References accounts.id |
-| provider_uid | TEXT UNIQUE(account_id, provider_uid) | Provider-specific message ID |
+| provider_uid | TEXT | Provider-specific message ID |
+
+Table constraint: `UNIQUE(account_id, provider_uid)` — prevents duplicate emails per account.
 | subject | TEXT | Email subject |
 | sender | TEXT | Full sender (name + email) |
 | sender_domain | TEXT | Extracted domain |
@@ -153,7 +154,7 @@ Fetch new emails (Gmail API / IMAP)
 
 **First run:** Fetches last 30 days. Subsequent runs: only new emails since last_sync.
 
-**Batching:** Processes emails in batches of 50. Gmail API calls are paginated. IMAP fetches use SINCE filter.
+**Batching:** Processes emails in batches of 50. Gmail API calls are paginated with exponential backoff on rate limit errors (429). IMAP fetches use SINCE filter.
 
 **Ollama fallback:** If Ollama is unreachable, ambiguous emails are kept with category `ambiguous` and score 50. They will be reclassified on next scan if Ollama is available.
 
@@ -192,7 +193,7 @@ Fetch new emails (Gmail API / IMAP)
 - `search_emails(query, account?, category?)` — Search by subject/sender text
 - `get_email(id)` — Full details of an email
 - `categorize_email(id, category, priority)` — Manual reclassification
-- `trigger_scan(account?)` — Trigger a fresh scan
+- `trigger_scan(account?)` — Trigger a fresh scan (synchronous, blocks until complete, returns summary of actions taken)
 
 ### Configuration
 Protocol: stdio. Claude Code config:
@@ -226,13 +227,14 @@ dependencies = [
     "keyring",
     "ollama",
     "mcp",
-    "tomli",
 ]
 ```
 
 Requires Python 3.11+ and Ollama installed separately (`brew install ollama`).
 
-Note: iCloud IMAP uses Python's stdlib `imaplib` — no extra dependency needed.
+Note: iCloud IMAP uses Python's stdlib `imaplib`, config parsing uses stdlib `tomllib` (3.11+) — no extra deps needed.
+
+**Platform:** macOS only (Keychain integration, Ollama via Homebrew).
 
 ## Operational Notes
 
@@ -249,4 +251,9 @@ Note: iCloud IMAP uses Python's stdlib `imaplib` — no extra dependency needed.
   [rules]
   extra_marketing_domains = ["example-newsletter.com"]
   extra_keywords = ["liquidação"]
+
+  [retention]
+  prune_after_days = 90  # delete SQLite records older than this
   ```
+
+**Auto-unsubscribe:** Out of scope. Using `List-Unsubscribe` automatically risks confirming addresses to spammers. The header is used only as a classification signal.
