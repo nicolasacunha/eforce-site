@@ -27,9 +27,9 @@ export function ProductHero({ product }: ProductHeroProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
       >
-        <h1 className="text-white text-2xl md:text-4xl font-bold">{product.name}</h1>
-        <p className="text-neutral-500 text-sm md:text-base mt-2">{product.tagline}</p>
-        <span className="inline-block mt-3 bg-neutral-800 text-brand-orange text-xs px-3 py-1 rounded-full">
+        <h1 className="text-gray-900 text-2xl md:text-4xl font-bold">{product.name}</h1>
+        <p className="text-gray-500 text-sm md:text-base mt-2">{product.tagline}</p>
+        <span className="inline-block mt-3 bg-orange-50 text-brand-orange text-xs px-3 py-1 rounded-full">
           {product.module}
         </span>
       </motion.div>

@@ -28,11 +28,11 @@ export function StickyContextBar({ product, onSwitchModel }: StickyContextBarPro
           exit={{ y: -60 }}
           transition={{ type: "tween", duration: 0.3 }}
         >
-          <span className="text-white font-semibold text-sm">{product.name}</span>
+          <span className="text-gray-900 font-semibold text-sm">{product.name}</span>
           <div className="flex items-center gap-4">
             <button
               onClick={onSwitchModel}
-              className="text-neutral-400 hover:text-white text-sm transition-colors"
+              className="text-gray-500 hover:text-gray-900 text-sm transition-colors"
             >
               {t("product.switchModel") || "Mudar de modelo"}
             </button>

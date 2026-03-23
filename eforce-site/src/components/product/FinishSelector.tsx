@@ -18,7 +18,7 @@ export default function FinishSelector({ product }: FinishSelectorProps) {
       <div className="flex flex-col items-center gap-12 lg:flex-row">
         {/* Left — Image display */}
         <div className="lg:w-3/5">
-          <div className="aspect-[4/3] overflow-hidden rounded-xl bg-neutral-900">
+          <div className="aspect-[4/3] overflow-hidden rounded-xl bg-gray-50">
             <AnimatePresence mode="wait">
               <motion.img
                 key={selectedFinish.id}

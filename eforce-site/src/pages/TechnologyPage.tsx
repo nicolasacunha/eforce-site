@@ -33,8 +33,8 @@ function ModuleCard({
   return (
     <div
       ref={ref}
-      className={`relative rounded-2xl border bg-neutral-900 p-10 ${
-        flagship ? 'border-brand-orange/20' : 'border-neutral-800'
+      className={`relative rounded-2xl border bg-gray-50 p-10 ${
+        flagship ? 'border-brand-orange/20' : 'border-gray-200'
       }`}
       style={{
         opacity: isVisible ? 1 : 0,
@@ -53,28 +53,28 @@ function ModuleCard({
       >
         {code}
       </span>
-      <h3 className="mt-4 font-display text-2xl font-bold text-white">{title}</h3>
-      <p className="mt-2 font-body text-neutral-400">{subtitle}</p>
+      <h3 className="mt-4 font-display text-2xl font-bold text-gray-900">{title}</h3>
+      <p className="mt-2 font-body text-gray-500">{subtitle}</p>
 
       <div className="mt-8">
         {specs.map((spec) => (
           <div
             key={spec.name}
-            className="flex items-center justify-between border-b border-neutral-800 py-3"
+            className="flex items-center justify-between border-b border-gray-200 py-3"
           >
-            <span className="font-body text-neutral-400">{spec.name}</span>
-            <span className="font-mono text-white">{spec.value}</span>
+            <span className="font-body text-gray-500">{spec.name}</span>
+            <span className="font-mono text-gray-900">{spec.value}</span>
           </div>
         ))}
       </div>
 
       <div className="mt-8">
-        <span className="font-body text-sm text-neutral-400">Available in</span>
+        <span className="font-body text-sm text-gray-500">Available in</span>
         <div className="mt-2 flex flex-wrap gap-2">
           {availableIn.map((model) => (
             <span
               key={model}
-              className="rounded-full border border-neutral-800 px-3 py-1 font-mono text-xs text-neutral-400"
+              className="rounded-full border border-gray-200 px-3 py-1 font-mono text-xs text-gray-500"
             >
               {model}
             </span>
@@ -106,14 +106,14 @@ function FeatureSection({
 }: FeatureSectionProps) {
   const { ref, isVisible } = useScrollReveal(0.1);
 
-  const bgClass = bg === 'black' ? 'bg-brand-black' : 'bg-neutral-950';
-  const placeholderBg = bg === 'black' ? 'bg-neutral-900' : 'bg-neutral-900';
+  const bgClass = bg === 'black' ? 'bg-white' : 'bg-gray-100';
+  const placeholderBg = bg === 'black' ? 'bg-gray-50' : 'bg-gray-200';
 
   const imagePlaceholder = (
     <div
       className={`flex aspect-square items-center justify-center rounded-xl ${placeholderBg}`}
     >
-      <span className="font-display text-2xl text-neutral-600">
+      <span className="font-display text-2xl text-gray-400">
         {placeholderLabel}
       </span>
     </div>
@@ -135,9 +135,9 @@ function FeatureSection({
       <span className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-brand-orange">
         {label}
       </span>
-      <h2 className="mt-3 font-display text-3xl font-bold text-white">{title}</h2>
-      <p className="mt-4 font-body leading-relaxed text-neutral-400">{desc}</p>
-      <p className="mt-4 font-body leading-relaxed text-neutral-400">{extra}</p>
+      <h2 className="mt-3 font-display text-3xl font-bold text-gray-900">{title}</h2>
+      <p className="mt-4 font-body leading-relaxed text-gray-500">{desc}</p>
+      <p className="mt-4 font-body leading-relaxed text-gray-500">{extra}</p>
     </div>
   );
 
@@ -227,7 +227,7 @@ export default function TechnologyPage() {
       </section>
 
       {/* SECTION 2 — Module Comparison */}
-      <section className="bg-brand-black py-24">
+      <section className="bg-white py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <ModuleCard
@@ -291,7 +291,7 @@ export default function TechnologyPage() {
       />
 
       {/* SECTION 4 — CTA */}
-      <section className="bg-neutral-950 py-24">
+      <section className="bg-gray-100 py-24">
         <div
           ref={ctaRef}
           className="mx-auto max-w-2xl px-6 text-center"
@@ -301,10 +301,10 @@ export default function TechnologyPage() {
             transition: 'opacity 0.7s ease, transform 0.7s ease',
           }}
         >
-          <h2 className="font-display text-3xl font-bold text-white">
+          <h2 className="font-display text-3xl font-bold text-gray-900">
             Ready to experience the difference?
           </h2>
-          <p className="mt-4 font-body text-neutral-400">
+          <p className="mt-4 font-body text-gray-500">
             Explore the full E-Force line and find the kit that defines your performance.
           </p>
           <Link

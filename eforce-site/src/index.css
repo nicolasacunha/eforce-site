@@ -95,7 +95,7 @@ html[lang="zh"] * {
   font-size: clamp(4rem, 12vw, 12rem);
   font-weight: 900;
   line-height: 1;
-  color: rgba(255, 255, 255, 0.04);
+  color: rgba(0, 0, 0, 0.04);
 }
 
 .sticky-bar {
@@ -103,7 +103,7 @@ html[lang="zh"] * {
   top: 0;
   z-index: 30;
   backdrop-filter: blur(12px);
-  background: rgba(21, 21, 21, 0.95);
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .specs-number {

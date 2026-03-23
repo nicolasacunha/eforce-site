@@ -16,14 +16,14 @@ export function ModelSwitcher({ isOpen, onClose, currentProduct }: ModelSwitcher
 
   return (
     <Overlay isOpen={isOpen} onClose={onClose} side="right" ariaLabel="Mudar de modelo">
-      <div className="h-full w-[85vw] max-w-md bg-neutral-900 p-6 overflow-y-auto">
+      <div className="h-full w-[85vw] max-w-md bg-white p-6 overflow-y-auto">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-white font-semibold text-lg">
+          <h2 className="text-gray-900 font-semibold text-lg">
             {t("product.switchModel") || "Mudar de modelo"}
           </h2>
           <button
             onClick={onClose}
-            className="text-white text-2xl hover:text-neutral-400 transition-colors"
+            className="text-gray-900 text-2xl hover:text-gray-500 transition-colors"
             aria-label="Fechar"
           >
             ✕
@@ -37,8 +37,8 @@ export function ModelSwitcher({ isOpen, onClose, currentProduct }: ModelSwitcher
               onClick={onClose}
               className={`flex items-center gap-4 p-4 rounded-lg border transition-colors ${
                 product.id === currentProduct.id
-                  ? "border-brand-orange bg-neutral-800"
-                  : "border-neutral-800 hover:border-neutral-600"
+                  ? "border-brand-orange bg-gray-50"
+                  : "border-gray-200 hover:border-gray-400"
               }`}
             >
               <img
@@ -47,11 +47,11 @@ export function ModelSwitcher({ isOpen, onClose, currentProduct }: ModelSwitcher
                 className="w-24 h-14 object-contain flex-shrink-0"
               />
               <div className="flex-1">
-                <div className="text-white text-sm font-semibold">{product.name}</div>
+                <div className="text-gray-900 text-sm font-semibold">{product.name}</div>
                 {product.badge && (
                   <span className="text-brand-orange text-xs">{product.badge}</span>
                 )}
-                <div className="flex gap-3 mt-1 text-xs text-neutral-500">
+                <div className="flex gap-3 mt-1 text-xs text-gray-500">
                   <span>{product.module}</span>
                   <span>{product.price}</span>
                 </div>

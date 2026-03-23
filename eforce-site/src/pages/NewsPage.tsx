@@ -95,7 +95,7 @@ export default function NewsPage() {
           <span className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-brand-orange">
             {t('nav.news').toUpperCase()}
           </span>
-          <h1 className="mt-4 font-display text-4xl font-bold text-white md:text-6xl">
+          <h1 className="mt-4 font-display text-4xl font-bold text-gray-900 md:text-6xl">
             Latest from E-Force
           </h1>
         </div>
@@ -103,9 +103,9 @@ export default function NewsPage() {
 
       {/* Featured article */}
       {featured && (
-        <section className="bg-brand-black pb-8">
+        <section className="bg-white pb-8">
           <div className="mx-auto max-w-5xl px-6">
-            <article className="group overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900 transition-colors hover:border-brand-orange/30">
+            <article className="group overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 transition-colors hover:border-brand-orange/30">
               {/* Placeholder image area */}
               <div className="aspect-[21/9] bg-gradient-to-br from-brand-surface via-brand-surface-2 to-brand-surface" />
               <div className="p-8 md:p-10">
@@ -113,14 +113,14 @@ export default function NewsPage() {
                   <span className="rounded-full bg-brand-orange/10 px-3 py-1 font-display text-xs font-semibold text-brand-orange">
                     {featured.category}
                   </span>
-                  <span className="font-mono text-xs text-neutral-500">
+                  <span className="font-mono text-xs text-gray-500">
                     {formatDate(featured.date)}
                   </span>
                 </div>
-                <h2 className="mt-4 font-display text-2xl font-bold text-white md:text-3xl">
+                <h2 className="mt-4 font-display text-2xl font-bold text-gray-900 md:text-3xl">
                   {featured.title}
                 </h2>
-                <p className="mt-3 max-w-3xl font-body leading-relaxed text-neutral-400">
+                <p className="mt-3 max-w-3xl font-body leading-relaxed text-gray-500">
                   {featured.excerpt}
                 </p>
                 <span className="mt-6 inline-block font-display text-sm font-semibold text-brand-orange transition-colors group-hover:text-brand-orange-hover">
@@ -133,7 +133,7 @@ export default function NewsPage() {
       )}
 
       {/* News grid */}
-      <section className="bg-brand-black py-16 pb-24">
+      <section className="bg-white py-16 pb-24">
         <div
           ref={gridRef}
           className="mx-auto max-w-5xl px-6"
@@ -147,23 +147,23 @@ export default function NewsPage() {
             {rest.map((item) => (
               <article
                 key={item.id}
-                className="group overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900 transition-colors hover:border-brand-orange/30"
+                className="group overflow-hidden rounded-xl border border-gray-200 bg-gray-50 transition-colors hover:border-brand-orange/30"
               >
                 {/* Placeholder image */}
                 <div className="aspect-[16/10] bg-gradient-to-br from-brand-surface via-brand-surface-2 to-brand-surface" />
                 <div className="p-5">
                   <div className="flex items-center gap-2">
-                    <span className="rounded-full bg-white/5 px-2.5 py-0.5 font-display text-xs text-neutral-400">
+                    <span className="rounded-full bg-gray-100 px-2.5 py-0.5 font-display text-xs text-gray-500">
                       {item.category}
                     </span>
-                    <span className="font-mono text-xs text-neutral-500">
+                    <span className="font-mono text-xs text-gray-500">
                       {formatDate(item.date)}
                     </span>
                   </div>
-                  <h3 className="mt-3 font-display text-base font-semibold leading-snug text-white">
+                  <h3 className="mt-3 font-display text-base font-semibold leading-snug text-gray-900">
                     {item.title}
                   </h3>
-                  <p className="mt-2 line-clamp-2 font-body text-sm text-neutral-400">
+                  <p className="mt-2 line-clamp-2 font-body text-sm text-gray-500">
                     {item.excerpt}
                   </p>
                   <span className="mt-4 inline-block font-display text-sm text-brand-orange opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -177,17 +177,17 @@ export default function NewsPage() {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="bg-neutral-950 py-24">
+      <section className="bg-gray-100 py-24">
         <div className="mx-auto max-w-xl px-6 text-center">
-          <h2 className="font-display text-2xl font-bold text-white">Stay in the loop</h2>
-          <p className="mt-3 font-body text-neutral-400">
+          <h2 className="font-display text-2xl font-bold text-gray-900">Stay in the loop</h2>
+          <p className="mt-3 font-body text-gray-500">
             Subscribe to get the latest E-Force news, product launches, and exclusive updates.
           </p>
           <form onSubmit={(e) => e.preventDefault()} className="mt-8 flex gap-3">
             <input
               type="email"
               placeholder="Your email"
-              className="flex-1 rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3 font-body text-sm text-white placeholder:text-neutral-600 focus:border-brand-orange/50 focus:outline-none focus:ring-1 focus:ring-brand-orange/50"
+              className="flex-1 rounded-lg border border-gray-200 bg-white px-4 py-3 font-body text-sm text-gray-900 placeholder:text-gray-400 focus:border-brand-orange/50 focus:outline-none focus:ring-1 focus:ring-brand-orange/50"
             />
             <button
               type="submit"

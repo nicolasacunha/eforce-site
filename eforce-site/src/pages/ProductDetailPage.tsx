@@ -34,7 +34,7 @@ export default function ProductDetailPage() {
         path={`/kits/${product.slug}`}
       />
 
-      <div className="bg-brand-black min-h-screen">
+      <div className="bg-white min-h-screen">
         <StickyContextBar
           product={product}
           onSwitchModel={() => setSwitcherOpen(true)}
@@ -63,7 +63,7 @@ export default function ProductDetailPage() {
 
         {/* In the box */}
         {product.inTheBox.length > 0 && (
-          <section className="py-24 px-6 bg-neutral-950">
+          <section className="py-24 px-6 bg-gray-100">
             <div className="max-w-5xl mx-auto">
               <InTheBox product={product} />
             </div>
