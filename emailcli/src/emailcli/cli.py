@@ -12,6 +12,7 @@ from emailcli.classifier.rules import RulesClassifier
 from emailcli.classifier.llm import LLMClassifier
 from emailcli.actions.cleaner import Cleaner
 from emailcli.actions.cataloger import Cataloger
+from emailcli.actions.organizer import Organizer
 
 app = typer.Typer(help="EmailCLI — Autonomous email cleaner and cataloger")
 accounts_app = typer.Typer(help="Manage email accounts")
@@ -130,6 +131,16 @@ def scan(account: str = typer.Option(None, help="Scan only this account email"))
         total_stats["kept"] += amb_stats["kept"]
         total_stats["deleted"] += amb_stats["deleted"]
 
+        # Organize iCloud emails into folders
+        if acct["provider"] == "icloud":
+            from emailcli.providers.icloud import ICloudProvider
+            if isinstance(provider, ICloudProvider):
+                organizer = Organizer(db, provider)
+                org_stats = organizer.organize(acct["id"])
+                if org_stats["moved"] > 0:
+                    console.print(f"  Organized {org_stats['moved']} emails into folders")
+                    total_stats["organized"] = total_stats.get("organized", 0) + org_stats["moved"]
+
         db.update_last_sync(acct["email"], datetime.now().isoformat())
         logger.info(f"Scan complete for {acct['email']}: {len(emails)} fetched")
 
@@ -144,9 +155,56 @@ def scan(account: str = typer.Option(None, help="Scan only this account email"))
     table.add_row("Total deleted", str(total_stats["deleted"]))
     table.add_row("Kept", str(total_stats["kept"]))
     table.add_row("LLM classified", str(total_stats["ambiguous_processed"]))
+    if total_stats.get("organized"):
+        table.add_row("iCloud organized", str(total_stats["organized"]))
     if pruned:
         table.add_row("Old records pruned", str(pruned))
     console.print(table)
+
+    db.close()
+
+
+@app.command()
+def organize():
+    """Organize iCloud emails into folders by category."""
+    config = load_config()
+    db = Database(config.general.db_path)
+
+    icloud_accounts = [a for a in db.get_all_accounts() if a["provider"] == "icloud"]
+    if not icloud_accounts:
+        console.print("[yellow]No iCloud accounts configured.[/yellow]")
+        db.close()
+        return
+
+    from emailcli.providers.icloud import ICloudProvider
+
+    for acct in icloud_accounts:
+        console.print(f"\n[bold blue]Organizing {acct['email']}...[/bold blue]")
+        try:
+            provider = ICloudProvider(email_address=acct["email"])
+            provider.authenticate()
+        except Exception as e:
+            console.print(f"[red]Failed to connect: {e}[/red]")
+            continue
+
+        organizer = Organizer(db, provider)
+        stats = organizer.organize(acct["id"])
+
+        if stats["moved"] > 0:
+            table = Table(title=f"Organized {acct['email']}")
+            table.add_column("Folder", style="bold")
+            table.add_column("Emails moved", justify="right")
+            for folder, count in stats["by_folder"].items():
+                table.add_row(f"EmailCLI/{folder.capitalize()}", str(count))
+            table.add_row("[bold]Total[/bold]", f"[bold]{stats['moved']}[/bold]")
+            console.print(table)
+        else:
+            console.print("  Nothing new to organize.")
+
+        if stats["failed"] > 0:
+            console.print(f"  [yellow]{stats['failed']} emails failed to move[/yellow]")
+
+        provider.close()
 
     db.close()
 

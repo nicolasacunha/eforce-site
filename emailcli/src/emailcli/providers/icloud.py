@@ -66,12 +66,46 @@ class ICloudProvider:
                 continue
         return messages
 
+    # Folder name mapping for category -> IMAP folder
+    CATEGORY_FOLDERS = {
+        "personal": "EmailCLI/Personal",
+        "work": "EmailCLI/Work",
+        "transactional": "EmailCLI/Transactional",
+        "notification": "EmailCLI/Notifications",
+        "ambiguous": "EmailCLI/Other",
+    }
+
+    def ensure_folders(self) -> None:
+        """Create EmailCLI organization folders if they don't exist."""
+        if not self.conn:
+            return
+        for folder in self.CATEGORY_FOLDERS.values():
+            try:
+                self.conn.create(folder)
+            except Exception:
+                pass  # folder already exists
+
+    def move_to_folder(self, provider_uid: str, category: str) -> bool:
+        """Move an email from INBOX to the appropriate category folder."""
+        if not self.conn:
+            return False
+        folder = self.CATEGORY_FOLDERS.get(category)
+        if not folder:
+            return False
+        try:
+            self.conn.uid("copy", provider_uid.encode(), folder)
+            self.conn.uid("store", provider_uid.encode(), "+FLAGS", "(\\Deleted)")
+            self.conn.expunge()
+            return True
+        except Exception:
+            return False
+
     def trash_email(self, provider_uid: str) -> bool:
         if not self.conn:
             return False
         try:
-            self.conn.uid("copy", provider_uid.encode(), "Trash")
-            self.conn.uid("store", provider_uid.encode(), "+FLAGS", "\\Deleted")
+            self.conn.uid("copy", provider_uid.encode(), "Deleted Messages")
+            self.conn.uid("store", provider_uid.encode(), "+FLAGS", "(\\Deleted)")
             self.conn.expunge()
             return True
         except Exception:
