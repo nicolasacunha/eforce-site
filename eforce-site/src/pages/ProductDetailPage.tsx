@@ -102,7 +102,7 @@ function HeroSection({ product, onSwitchModel }: { product: Product; onSwitchMod
           style={{
             position: "relative",
             zIndex: 2,
-            maxWidth: "min(60vw, 700px)",
+            maxWidth: "min(85vw, 1000px)",
             width: "100%",
             objectFit: "contain",
             filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.15))",
