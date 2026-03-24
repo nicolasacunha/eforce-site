@@ -1,6 +1,5 @@
 import { Link, useParams } from "react-router-dom";
 import { products } from "@/data/products";
-import { HoverVideoCard } from "@/components/ui/HoverVideoCard";
 
 interface SidebarModelListProps {
   onNavigate: () => void;
@@ -9,7 +8,7 @@ interface SidebarModelListProps {
 export function SidebarModelList({ onNavigate }: SidebarModelListProps) {
   const { lang } = useParams();
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-10">
       {products.map((product) => (
         <Link
           key={product.id}
@@ -17,21 +16,21 @@ export function SidebarModelList({ onNavigate }: SidebarModelListProps) {
           onClick={onNavigate}
           className="group block"
         >
-          <h3 className="text-white font-bold text-xl mb-3 group-hover:text-brand-orange transition-colors">
+          <h3 className="text-gray-900 font-bold text-xl mb-3 group-hover:text-brand-orange transition-colors">
             {product.name}
           </h3>
-          <HoverVideoCard
-            image={product.heroImage}
-            videoSrc={product.videoPreview}
+          <img
+            src={product.heroImage}
             alt={product.name}
-            className="w-full h-40 rounded-md"
+            className="w-full h-auto object-contain"
+            style={{ maxHeight: "200px" }}
           />
-          <div className="mt-2">
-            <span className="inline-block bg-[#1a1a1a] text-white text-xs px-2.5 py-1 rounded">
+          <div className="mt-3">
+            <span className="inline-block bg-gray-200 text-gray-700 text-xs px-2.5 py-1 rounded">
               {product.module}
             </span>
             {product.badge && (
-              <span className="inline-block bg-[rgba(255,74,28,0.1)] text-brand-orange text-xs px-2.5 py-1 rounded ml-2">
+              <span className="inline-block bg-orange-50 text-brand-orange text-xs px-2.5 py-1 rounded ml-2">
                 {product.badge}
               </span>
             )}

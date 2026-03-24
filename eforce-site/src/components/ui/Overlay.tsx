@@ -51,7 +51,7 @@ export function Overlay({ isOpen, onClose, children, side = "left", ariaLabel }:
             role="dialog"
             aria-modal="true"
             aria-label={ariaLabel}
-            className={`fixed top-0 ${side === "left" ? "left-0" : "right-0"} h-full z-50`}
+            className={`fixed top-0 ${side === "left" ? "left-0" : "right-0"} h-full z-50 overflow-y-auto`}
             initial={{ x: slideFrom }}
             animate={{ x: 0 }}
             exit={{ x: slideFrom }}
