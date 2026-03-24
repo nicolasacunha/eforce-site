@@ -16,7 +16,7 @@ function PackageIcon() {
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="mx-auto text-[rgba(255,255,255,0.5)]"
+      className="mx-auto text-gray-500"
     >
       <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
       <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
@@ -31,7 +31,7 @@ export default function InTheBox({ product }: InTheBoxProps) {
   if (product.inTheBox.length === 0) {
     return (
       <div className="mx-auto max-w-4xl px-6 text-center">
-        <p className="font-body text-sm text-[rgba(255,255,255,0.5)]">
+        <p className="font-body text-sm text-gray-500">
           {t('product.detailsComingSoon', 'Details coming soon')}
         </p>
       </div>
@@ -44,7 +44,7 @@ export default function InTheBox({ product }: InTheBoxProps) {
         {product.inTheBox.map((item) => (
           <div
             key={item.name}
-            className="rounded-lg border border-[rgba(255,255,255,0.08)] bg-[#111] p-5 text-center"
+            className="rounded-lg border border-gray-200 bg-gray-50 p-5 text-center"
           >
             <PackageIcon />
             {item.quantity > 1 && (
@@ -52,7 +52,7 @@ export default function InTheBox({ product }: InTheBoxProps) {
                 &times;{item.quantity}
               </span>
             )}
-            <p className="mt-3 font-body text-sm text-[rgba(255,255,255,0.5)]">
+            <p className="mt-3 font-body text-sm text-gray-500">
               {item.name}
             </p>
           </div>

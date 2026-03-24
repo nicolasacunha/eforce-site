@@ -9,8 +9,8 @@ export function ProductHero({ product }: ProductHeroProps) {
   const shortName = product.name.split(" ")[0];
 
   return (
-    <section className="relative flex flex-col items-center justify-center py-24 md:py-32 overflow-hidden bg-[#0a0a0a]">
-      <div className="text-giant absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none whitespace-nowrap" style={{ color: "white" }}>
+    <section className="relative flex flex-col items-center justify-center py-24 md:py-32 overflow-hidden bg-white">
+      <div className="text-giant absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none whitespace-nowrap" style={{ color: "#0a0a0a" }}>
         {shortName}
       </div>
       <motion.img
@@ -27,9 +27,9 @@ export function ProductHero({ product }: ProductHeroProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
       >
-        <h1 className="text-white text-2xl md:text-4xl font-bold">{product.name}</h1>
-        <p className="text-[rgba(255,255,255,0.5)] text-sm md:text-base mt-2">{product.tagline}</p>
-        <span className="inline-block mt-3 bg-[#1a1a1a] text-brand-orange text-xs px-3 py-1 rounded-full">
+        <h1 className="text-gray-900 text-2xl md:text-4xl font-bold">{product.name}</h1>
+        <p className="text-gray-500 text-sm md:text-base mt-2">{product.tagline}</p>
+        <span className="inline-block mt-3 bg-gray-100 text-brand-orange text-xs px-3 py-1 rounded-full">
           {product.module}
         </span>
       </motion.div>

@@ -10,7 +10,7 @@ export function KeySpecs({ product }: KeySpecsProps) {
   if (specs.length === 0) return null;
 
   return (
-    <section className="border-t border-b border-[rgba(255,255,255,0.08)] py-12 px-6 bg-[#0a0a0a]">
+    <section className="border-t border-b border-gray-200 py-12 px-6 bg-white">
       <div className="max-w-4xl mx-auto flex flex-wrap justify-center gap-8 md:gap-16">
         {specs.map((spec, i) => (
           <motion.div
@@ -26,11 +26,11 @@ export function KeySpecs({ product }: KeySpecsProps) {
               fontWeight: 800,
               letterSpacing: "-0.04em",
               lineHeight: 0.85,
-              color: "white",
+              color: "#0a0a0a",
             }}>
               {spec.value}
               {spec.unit && (
-                <span style={{ fontSize: "1.125rem", color: "rgba(255,255,255,0.5)", marginLeft: "0.25rem" }}>{spec.unit}</span>
+                <span style={{ fontSize: "1.125rem", color: "rgba(0,0,0,0.5)", marginLeft: "0.25rem" }}>{spec.unit}</span>
               )}
             </div>
             <div style={{
