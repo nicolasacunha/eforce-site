@@ -10,7 +10,6 @@ import { HighlightsGrid } from "@/components/product/HighlightsGrid";
 import { SoundDemo } from "@/components/product/SoundDemo";
 import { TechTabs } from "@/components/product/TechTabs";
 import { ModelSwitcher } from "@/components/product/ModelSwitcher";
-import FinishSelector from "@/components/product/FinishSelector";
 import CompareModels from "@/components/product/CompareModels";
 import InTheBox from "@/components/product/InTheBox";
 
@@ -34,7 +33,7 @@ export default function ProductDetailPage() {
         path={`/kits/${product.slug}`}
       />
 
-      <div className="bg-[#0a0a0a] min-h-screen">
+      <div className="bg-white min-h-screen">
         <StickyContextBar
           product={product}
           onSwitchModel={() => setSwitcherOpen(true)}
@@ -52,18 +51,9 @@ export default function ProductDetailPage() {
 
         <TechTabs product={product} />
 
-        {/* Finish selector */}
-        {product.finishes.length > 0 && (
-          <section style={{ padding: "clamp(6rem, 15vh, 12rem) clamp(1.5rem, 6vw, 6rem)" }}>
-            <div className="max-w-5xl mx-auto">
-              <FinishSelector product={product} />
-            </div>
-          </section>
-        )}
-
         {/* In the box */}
         {product.inTheBox.length > 0 && (
-          <section className="bg-[#1a1a1a]" style={{ padding: "clamp(6rem, 15vh, 12rem) clamp(1.5rem, 6vw, 6rem)" }}>
+          <section className="bg-gray-50" style={{ padding: "clamp(6rem, 15vh, 12rem) clamp(1.5rem, 6vw, 6rem)" }}>
             <div className="max-w-5xl mx-auto">
               <InTheBox product={product} />
             </div>
