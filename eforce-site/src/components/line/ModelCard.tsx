@@ -23,9 +23,6 @@ export function ModelCard({ product }: ModelCardProps) {
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
           <h3 className="text-white font-semibold">{product.name}</h3>
-          {product.badge && (
-            <span className="text-brand-orange text-xs">{product.badge}</span>
-          )}
         </div>
         <div className="flex items-center gap-3 mt-1 text-xs text-[rgba(255,255,255,0.5)]">
           <span>{product.module}</span>

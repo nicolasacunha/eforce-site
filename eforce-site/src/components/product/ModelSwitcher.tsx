@@ -48,9 +48,6 @@ export function ModelSwitcher({ isOpen, onClose, currentProduct }: ModelSwitcher
               />
               <div className="flex-1">
                 <div className="text-white text-sm font-semibold">{product.name}</div>
-                {product.badge && (
-                  <span className="text-brand-orange text-xs">{product.badge}</span>
-                )}
                 <div className="flex gap-3 mt-1 text-xs text-[rgba(255,255,255,0.5)]">
                   <span>{product.module}</span>
                 </div>

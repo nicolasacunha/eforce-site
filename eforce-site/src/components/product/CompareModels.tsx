@@ -36,9 +36,6 @@ export default function CompareModels({ currentProduct }: CompareModelsProps) {
             />
             <div className="p-4">
               <h3 className="text-white font-semibold text-sm">{product.name}</h3>
-              {product.badge && (
-                <span className="text-brand-orange text-xs">{product.badge}</span>
-              )}
               <div className="flex gap-3 mt-2 text-xs text-[rgba(255,255,255,0.5)]">
                 <span>{product.module}</span>
               </div>

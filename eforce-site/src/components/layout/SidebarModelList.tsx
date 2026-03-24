@@ -29,11 +29,6 @@ export function SidebarModelList({ onNavigate }: SidebarModelListProps) {
             <span className="inline-block bg-gray-200 text-gray-700 text-xs px-2.5 py-1 rounded">
               {product.module}
             </span>
-            {product.badge && (
-              <span className="inline-block bg-orange-50 text-brand-orange text-xs px-2.5 py-1 rounded ml-2">
-                {product.badge}
-              </span>
-            )}
           </div>
         </Link>
       ))}

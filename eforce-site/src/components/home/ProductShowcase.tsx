@@ -89,21 +89,6 @@ export default function ProductShowcase() {
                       ease: [0.16, 1, 0.3, 1],
                     }}
                   >
-                    {/* Badge */}
-                    {product.badge && (
-                      <span
-                        style={{
-                          fontSize: "11px",
-                          fontWeight: 600,
-                          textTransform: "uppercase",
-                          letterSpacing: "0.3em",
-                          color: "#ff4a1c",
-                        }}
-                      >
-                        {product.badge}
-                      </span>
-                    )}
-
                     {/* Model name */}
                     <h2
                       className="group-hover:text-[#ff4a1c]"
@@ -115,9 +100,7 @@ export default function ProductShowcase() {
                         color: "rgba(255,255,255,0.95)",
                         transition:
                           "color 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-                        marginTop: product.badge
-                          ? "clamp(0.5rem, 1vh, 1rem)"
-                          : 0,
+                        marginTop: 0,
                       }}
                     >
                       {product.name}
