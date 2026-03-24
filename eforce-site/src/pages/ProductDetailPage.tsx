@@ -193,8 +193,11 @@ function HeroSection({ product, onSwitchModel }: { product: Product; onSwitchMod
    SECTION 2 — KEY SPECS (left specs, right aerial image)
    ═══════════════════════════════════════════════════════ */
 function KeySpecsSection({ product }: { product: Product }) {
-  // Use the hero image (PNG transparent) for specs section too — product IS the page
-  const aerialImage = product.heroImage;
+  // Use PNG transparent if available, otherwise aerial/hero
+  const hasNobg = product.galleryImages.some(img => img.includes("nobg"));
+  const aerialImage = hasNobg
+    ? product.galleryImages.find(img => img.includes("nobg"))!
+    : product.galleryImages[1] || product.heroImage;
   const specs = product.specsHighlight.slice(0, 3);
 
   return (
@@ -281,16 +284,23 @@ function KeySpecsSection({ product }: { product: Product }) {
 }
 
 /* ═══════════════════════════════════════════════════════
-   SECTION 4 — EDITORIAL WITH MODEL LOGO
+   SECTION 4+5 — EDITORIAL: Porsche Boxster style
+   Two photos side-by-side, right photo extends down,
+   text on the left below the photos
    ═══════════════════════════════════════════════════════ */
-function EditorialLogoSection({ product }: { product: Product }) {
+function EditorialSection({ product }: { product: Product }) {
   const prefix = getModelPrefix(product.name);
-  const lifestyleImage = product.galleryImages[2] || product.galleryImages[0] || product.heroImage;
+  const leftImage = product.galleryImages[2] || product.galleryImages[0] || product.heroImage;
+  const rightImage = product.galleryImages[3] || product.galleryImages[1] || product.heroImage;
+  const headline = product.editorialHeadline || "Projetado para quem vive a m\u00fasica.";
+  const body =
+    product.editorialBody ||
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.";
 
   return (
-    <section style={{ background: "#fff", padding: "clamp(4rem, 10vh, 8rem) 0 0 0" }}>
+    <section style={{ background: "#fff", position: "relative" }}>
+      {/* Large italic model logo */}
       <AnimatedSection>
-        {/* Large italic model logo */}
         <div
           style={{
             textAlign: "center",
@@ -300,98 +310,74 @@ function EditorialLogoSection({ product }: { product: Product }) {
             color: "#0a0a0a",
             lineHeight: 1,
             letterSpacing: "-0.03em",
-            marginBottom: "clamp(2rem, 5vh, 4rem)",
+            padding: "clamp(4rem, 10vh, 8rem) 0 clamp(2rem, 4vh, 3rem) 0",
           }}
         >
           {prefix}
         </div>
-
-        {/* Full-bleed lifestyle photo */}
-        <div style={{ width: "100%", overflow: "hidden" }}>
-          <img
-            src={lifestyleImage}
-            alt={`${product.name} lifestyle`}
-            style={{ width: "100%", height: "clamp(300px, 50vw, 600px)", objectFit: "cover" }}
-          />
-        </div>
       </AnimatedSection>
-    </section>
-  );
-}
 
-/* ═══════════════════════════════════════════════════════
-   SECTION 5 — TWO-COLUMN TEXT + IMAGE
-   ═══════════════════════════════════════════════════════ */
-function TwoColumnEditorial({ product }: { product: Product }) {
-  // Use detail/studio close-ups for the editorial section
-  const details = product.galleryImages.filter(img => img.includes("detail") || img.includes("studio"));
-  const img1 = details[0] || product.galleryImages[2] || product.heroImage;
-  const img2 = details[1] || product.galleryImages[3] || product.heroImage;
-  const headline = product.editorialHeadline || "Projetado para quem vive a m\u00fasica.";
-  const body =
-    product.editorialBody ||
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.";
+      {/* Two photos side by side — left shorter, right extends down */}
+      <div style={{ display: "grid", gridTemplateColumns: "55% 45%", gap: "6px" }} className="max-md:!grid-cols-1">
+        <img
+          src={leftImage}
+          alt={`${product.name} lifestyle`}
+          style={{ width: "100%", height: "clamp(280px, 40vw, 500px)", objectFit: "cover" }}
+        />
+        <img
+          src={rightImage}
+          alt={`${product.name} detail`}
+          style={{ width: "100%", height: "clamp(500px, 75vw, 900px)", objectFit: "cover" }}
+        />
+      </div>
 
-  return (
-    <section
-      style={{
-        background: "#fff",
-        padding: "clamp(5rem, 12vh, 10rem) clamp(1.5rem, 6vw, 6rem)",
-      }}
-    >
-      <AnimatedSection>
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "45% 55%",
-            gap: "clamp(2rem, 4vw, 4rem)",
-            alignItems: "center",
-          }}
-          className="max-md:!grid-cols-1"
+      {/* Text overlapping — positioned over the bottom of the right image */}
+      <div
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "0 clamp(1.5rem, 6vw, 6rem)",
+          marginTop: "clamp(-18rem, -30vw, -25rem)",
+          position: "relative",
+          zIndex: 10,
+        }}
+        className="max-md:!mt-8"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          style={{ maxWidth: "50%" }}
+          className="max-md:!max-w-full"
         >
-          {/* Left: two stacked photos */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "clamp(1rem, 2vh, 1.5rem)" }}>
-            <img
-              src={img1}
-              alt={`${product.name} detail`}
-              style={{ width: "100%", height: "clamp(180px, 25vw, 320px)", objectFit: "cover" }}
-            />
-            <img
-              src={img2}
-              alt={`${product.name} detail`}
-              style={{ width: "85%", height: "clamp(140px, 20vw, 260px)", objectFit: "cover" }}
-            />
-          </div>
+          <h2
+            style={{
+              fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
+              fontWeight: 400,
+              color: "#0a0a0a",
+              lineHeight: 1.15,
+              letterSpacing: "-0.02em",
+              margin: "0 0 clamp(1rem, 2vh, 1.5rem) 0",
+            }}
+          >
+            {headline}
+          </h2>
+          <p
+            style={{
+              fontSize: "clamp(0.9rem, 1.2vw, 1.05rem)",
+              color: "rgba(0,0,0,0.6)",
+              lineHeight: 1.7,
+              margin: 0,
+            }}
+          >
+            {body}
+          </p>
+        </motion.div>
+      </div>
 
-          {/* Right: text */}
-          <div>
-            <h2
-              style={{
-                fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
-                fontWeight: 700,
-                color: "#0a0a0a",
-                lineHeight: 1.15,
-                letterSpacing: "-0.01em",
-                margin: "0 0 clamp(1rem, 2vh, 1.5rem) 0",
-              }}
-            >
-              {headline}
-            </h2>
-            <p
-              style={{
-                fontSize: "clamp(0.9rem, 1.2vw, 1.05rem)",
-                color: "rgba(0,0,0,0.6)",
-                lineHeight: 1.7,
-                margin: 0,
-              }}
-            >
-              {body}
-            </p>
-          </div>
-        </div>
-      </AnimatedSection>
+      {/* Spacing */}
+      <div style={{ height: "clamp(4rem, 8vh, 6rem)" }} />
     </section>
   );
 }
@@ -432,23 +418,42 @@ function HighlightsCarousel({ product }: { product: Product }) {
             fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
             fontWeight: 700,
             color: "#0a0a0a",
-            margin: "0 0 clamp(2rem, 4vh, 3rem) 0",
+            margin: "0 0 1rem 0",
             paddingLeft: "clamp(1.5rem, 6vw, 6rem)",
           }}
         >
           Destaques do {product.name}.
         </h2>
 
+        {/* Arrow navigation */}
+        <div style={{ display: "flex", gap: "12px", justifyContent: "flex-end", paddingRight: "clamp(1.5rem, 6vw, 6rem)", marginBottom: "clamp(1.5rem, 3vh, 2rem)" }}>
+          <button
+            onClick={() => scrollRef.current?.scrollBy({ left: -400, behavior: "smooth" })}
+            style={{ background: "none", border: "1px solid rgba(0,0,0,0.2)", width: "40px", height: "40px", cursor: "pointer", fontSize: "18px", display: "flex", alignItems: "center", justifyContent: "center" }}
+            aria-label="Anterior"
+          >
+            ←
+          </button>
+          <button
+            onClick={() => scrollRef.current?.scrollBy({ left: 400, behavior: "smooth" })}
+            style={{ background: "none", border: "1px solid rgba(0,0,0,0.2)", width: "40px", height: "40px", cursor: "pointer", fontSize: "18px", display: "flex", alignItems: "center", justifyContent: "center" }}
+            aria-label="Próximo"
+          >
+            →
+          </button>
+        </div>
+
         <div
           ref={scrollRef}
           style={{
             display: "flex",
-            gap: "clamp(1rem, 2vw, 1.5rem)",
+            gap: "6px",
             overflowX: "auto",
             paddingLeft: "clamp(1.5rem, 6vw, 6rem)",
             paddingRight: "clamp(1.5rem, 6vw, 6rem)",
             paddingBottom: "1rem",
             scrollSnapType: "x mandatory",
+            scrollBehavior: "smooth",
           }}
           className="no-scrollbar"
         >
@@ -457,58 +462,55 @@ function HighlightsCarousel({ product }: { product: Product }) {
               key={i}
               style={{
                 flex: "0 0 auto",
-                width: "clamp(280px, 30vw, 380px)",
+                width: "clamp(320px, 40vw, 520px)",
                 scrollSnapAlign: "start",
+                position: "relative",
+                overflow: "hidden",
               }}
             >
-              {/* Card image with title overlay */}
-              <div style={{ position: "relative", overflow: "hidden", borderRadius: "0" }}>
-                <img
-                  src={card.image}
-                  alt={card.title}
-                  style={{
-                    width: "100%",
-                    height: "clamp(220px, 28vw, 340px)",
-                    objectFit: "cover",
-                    display: "block",
-                  }}
-                />
-                {/* Dark gradient overlay at bottom */}
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    height: "50%",
-                    background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%)",
-                    display: "flex",
-                    alignItems: "flex-end",
-                    padding: "1.25rem",
-                  }}
-                >
-                  <span
-                    style={{
-                      color: "#fff",
-                      fontWeight: 700,
-                      fontSize: "clamp(1rem, 1.4vw, 1.25rem)",
-                    }}
-                  >
-                    {card.title}
-                  </span>
-                </div>
-              </div>
-              {/* Description below */}
-              <p
+              {/* Full card image */}
+              <img
+                src={card.image}
+                alt={card.title}
                 style={{
-                  fontSize: "clamp(0.8rem, 1vw, 0.9rem)",
-                  color: "rgba(0,0,0,0.55)",
-                  lineHeight: 1.6,
-                  marginTop: "0.75rem",
+                  width: "100%",
+                  height: "clamp(320px, 40vw, 500px)",
+                  objectFit: "cover",
+                  display: "block",
+                }}
+              />
+              {/* Text overlay on the image */}
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)",
+                  padding: "clamp(2rem, 4vw, 3rem) 1.5rem 1.5rem",
                 }}
               >
-                {card.description}
-              </p>
+                <h3
+                  style={{
+                    color: "#fff",
+                    fontWeight: 700,
+                    fontSize: "clamp(1.2rem, 1.8vw, 1.5rem)",
+                    margin: "0 0 0.5rem 0",
+                  }}
+                >
+                  {card.title}
+                </h3>
+                <p
+                  style={{
+                    color: "rgba(255,255,255,0.75)",
+                    fontSize: "clamp(0.8rem, 1vw, 0.9rem)",
+                    lineHeight: 1.5,
+                    margin: 0,
+                  }}
+                >
+                  {card.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
@@ -553,11 +555,8 @@ export default function ProductDetailPage() {
         {/* Section 2: Key Specs */}
         <KeySpecsSection product={product} />
 
-        {/* Section 4: Editorial with model logo */}
-        <EditorialLogoSection product={product} />
-
-        {/* Section 5: Two-column text + image */}
-        <TwoColumnEditorial product={product} />
+        {/* Section 4+5: Editorial — horizontal photo + vertical overlap + text */}
+        <EditorialSection product={product} />
 
         {/* Section 6: Highlights carousel */}
         <HighlightsCarousel product={product} />
