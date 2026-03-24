@@ -66,46 +66,51 @@ function HeroSection({ product, onSwitchModel }: { product: Product; onSwitchMod
         justifyContent: "center",
       }}
     >
-      {/* Giant model prefix behind */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, ease }}
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -55%)",
-          fontSize: "clamp(8rem, 25vw, 20rem)",
-          fontWeight: 800,
-          fontStyle: "italic",
-          color: "rgba(0,0,0,0.07)",
-          lineHeight: 1,
-          userSelect: "none",
-          pointerEvents: "none",
-          whiteSpace: "nowrap",
-          letterSpacing: "-0.03em",
-        }}
-        aria-hidden
-      >
-        {prefix}
-      </motion.div>
+      {/* Container for overlapping text + image (like Porsche 718) */}
+      <div style={{ position: "relative", width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        {/* Giant model prefix — centered, BEHIND the product */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, ease }}
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            fontSize: "clamp(10rem, 30vw, 28rem)",
+            fontWeight: 800,
+            fontStyle: "italic",
+            color: "rgba(0,0,0,0.08)",
+            lineHeight: 0.85,
+            userSelect: "none",
+            pointerEvents: "none",
+            whiteSpace: "nowrap",
+            letterSpacing: "-0.04em",
+            zIndex: 1,
+          }}
+          aria-hidden
+        >
+          {prefix}
+        </motion.div>
 
-      {/* Product image */}
-      <motion.img
-        src={product.heroImage}
-        alt={product.name}
-        initial={{ opacity: 0, y: 60 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease, delay: 0.15 }}
-        style={{
-          position: "relative",
-          zIndex: 2,
-          maxWidth: "min(70vw, 700px)",
-          width: "100%",
-          objectFit: "contain",
-        }}
-      />
+        {/* Product image — ON TOP of the text, large */}
+        <motion.img
+          src={product.heroImage}
+          alt={product.name}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease, delay: 0.15 }}
+          style={{
+            position: "relative",
+            zIndex: 2,
+            maxWidth: "min(85vw, 1000px)",
+            width: "100%",
+            objectFit: "contain",
+            filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.15))",
+          }}
+        />
+      </div>
 
       {/* Model name + module badge + CTAs */}
       <motion.div
@@ -242,12 +247,12 @@ function KeySpecsSection({ product }: { product: Product }) {
             ))}
           </div>
 
-          {/* Right: aerial image */}
-          <div>
+          {/* Right: aerial image — LARGE, overflowing like Porsche */}
+          <div style={{ overflow: "visible" }}>
             <img
               src={aerialImage}
               alt={`${product.name} aerial view`}
-              style={{ width: "100%", objectFit: "contain" }}
+              style={{ width: "120%", maxWidth: "none", objectFit: "contain", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }}
             />
           </div>
         </div>
@@ -319,8 +324,10 @@ function EditorialLogoSection({ product }: { product: Product }) {
    SECTION 5 — TWO-COLUMN TEXT + IMAGE
    ═══════════════════════════════════════════════════════ */
 function TwoColumnEditorial({ product }: { product: Product }) {
-  const img1 = product.galleryImages[3] || product.galleryImages[0] || product.heroImage;
-  const img2 = product.galleryImages[4] || product.galleryImages[1] || product.heroImage;
+  // Use detail/studio close-ups for the editorial section
+  const details = product.galleryImages.filter(img => img.includes("detail") || img.includes("studio"));
+  const img1 = details[0] || product.galleryImages[2] || product.heroImage;
+  const img2 = details[1] || product.galleryImages[3] || product.heroImage;
   const headline = product.editorialHeadline || "Projetado para quem vive a m\u00fasica.";
   const body =
     product.editorialBody ||
@@ -401,8 +408,10 @@ function HighlightsCarousel({ product }: { product: Product }) {
     if (product.highlights && product.highlights.length > 0) {
       return product.highlights;
     }
-    /* Fallback: use galleryImages with default text */
-    return product.galleryImages.slice(0, 4).map((img, i) => ({
+    /* Fallback: use the DETAIL images (index 3+) from gallery, skip full-kit shots */
+    const detailImages = product.galleryImages.filter(img => img.includes("detail") || img.includes("studio"));
+    const imgs = detailImages.length >= 4 ? detailImages.slice(0, 4) : product.galleryImages.slice(-4);
+    return imgs.map((img, i) => ({
       image: img,
       title: defaultHighlights[i]?.title || `Feature ${i + 1}.`,
       description: defaultHighlights[i]?.description || "",
