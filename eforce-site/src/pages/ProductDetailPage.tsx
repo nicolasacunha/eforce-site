@@ -55,15 +55,13 @@ function HeroSection({ product, onSwitchModel }: { product: Product; onSwitchMod
   return (
     <section
       style={{
-        background: "#e8e6e1",
+        background: "linear-gradient(to bottom, #e8e6e1 60%, #ffffff 60%)",
         position: "relative",
         overflow: "hidden",
-        padding: "clamp(6rem, 12vh, 10rem) clamp(1.5rem, 6vw, 6rem) clamp(3rem, 6vh, 5rem)",
+        padding: "clamp(4rem, 8vh, 6rem) clamp(1.5rem, 6vw, 6rem) clamp(3rem, 6vh, 5rem)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        minHeight: "90vh",
-        justifyContent: "center",
       }}
     >
       {/* Container for overlapping text + image (like Porsche 718) */}
@@ -104,7 +102,7 @@ function HeroSection({ product, onSwitchModel }: { product: Product; onSwitchMod
           style={{
             position: "relative",
             zIndex: 2,
-            maxWidth: "min(85vw, 1000px)",
+            maxWidth: "min(60vw, 700px)",
             width: "100%",
             objectFit: "contain",
             filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.15))",
@@ -195,7 +193,8 @@ function HeroSection({ product, onSwitchModel }: { product: Product; onSwitchMod
    SECTION 2 — KEY SPECS (left specs, right aerial image)
    ═══════════════════════════════════════════════════════ */
 function KeySpecsSection({ product }: { product: Product }) {
-  const aerialImage = product.galleryImages.length > 1 ? product.galleryImages[1] : product.galleryImages[0] || product.heroImage;
+  // Use the hero image (PNG transparent) for specs section too — product IS the page
+  const aerialImage = product.heroImage;
   const specs = product.specsHighlight.slice(0, 3);
 
   return (
@@ -247,12 +246,12 @@ function KeySpecsSection({ product }: { product: Product }) {
             ))}
           </div>
 
-          {/* Right: aerial image — LARGE, overflowing like Porsche */}
-          <div style={{ overflow: "visible" }}>
+          {/* Right: product image — LARGE, overflowing like Porsche */}
+          <div style={{ overflow: "visible", marginRight: "-10%" }}>
             <img
               src={aerialImage}
-              alt={`${product.name} aerial view`}
-              style={{ width: "120%", maxWidth: "none", objectFit: "contain", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }}
+              alt={`${product.name} view`}
+              style={{ width: "140%", maxWidth: "none", objectFit: "contain", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }}
             />
           </div>
         </div>
