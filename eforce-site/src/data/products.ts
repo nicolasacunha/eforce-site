@@ -192,6 +192,12 @@ export const products: Product[] = [
     galleryImages: [
       "/assets/images/kits/ef2v3/ef2v3-hero.jpg",
       "/assets/images/kits/ef2v3/ef2v3-front.jpg",
+      "/assets/images/kits/ef2v3/ef2v3-aerial.jpg",
+      "/assets/images/kits/ef2v3/ef2v3-detail-1.jpg",
+      "/assets/images/kits/ef2v3/ef2v3-detail-2.jpg",
+      "/assets/images/kits/ef2v3/ef2v3-detail-3.jpg",
+      "/assets/images/kits/ef2v3/ef2v3-detail-4.jpg",
+      "/assets/images/kits/ef2v3/ef2v3-detail-5.jpg",
     ],
     techTabs: [],
   },
