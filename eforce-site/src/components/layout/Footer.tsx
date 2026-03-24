@@ -85,6 +85,12 @@ export default function Footer() {
       <div className="border-t border-[rgba(255,255,255,0.08)] py-6">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[rgba(255,255,255,0.25)]">
           <span>&copy; {new Date().getFullYear()} E-Force Electronic Drums. {t("footer.rights")}</span>
+          <span>
+            Site desenvolvido por{" "}
+            <a href="https://noiretblanc.dev" target="_blank" rel="noopener noreferrer" className="text-[rgba(255,255,255,0.5)] hover:text-white transition-colors">
+              Noir &amp; Blanc
+            </a>
+          </span>
           <div className="flex gap-6">
             <a href="#" className="hover:text-[rgba(255,255,255,0.5)] transition-colors">{t("footer.privacy")}</a>
             <a href="#" className="hover:text-[rgba(255,255,255,0.5)] transition-colors">{t("footer.terms")}</a>
