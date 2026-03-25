@@ -116,7 +116,8 @@ function HeroSection({ product }: { product: Product }) {
           position: "relative",
           zIndex: 1,
           textAlign: "center",
-          fontSize: "clamp(3rem, 8vw, 7rem)",
+          overflow: "visible",
+          fontSize: "clamp(4rem, 10vw, 9rem)",
           fontWeight: 800,
           fontStyle: "italic",
           color: "rgba(255,255,255,0.9)",
@@ -124,7 +125,7 @@ function HeroSection({ product }: { product: Product }) {
           userSelect: "none",
           whiteSpace: "nowrap",
           letterSpacing: "-0.04em",
-          marginBottom: "-10rem",
+          marginBottom: "-8rem",
         }}
       >
         {product.name}
@@ -140,7 +141,7 @@ function HeroSection({ product }: { product: Product }) {
         style={{
           position: "relative",
           zIndex: 2,
-          maxWidth: "min(90vw, 1300px)",
+          maxWidth: "min(108vw, 1560px)",
           width: "100%",
           objectFit: "contain",
           filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.15))",
@@ -550,11 +551,11 @@ function EditorialSection({ product }: { product: Product }) {
             </p>
           </motion.div>
 
-          <div style={{ borderRadius: "16px", position: "relative", zIndex: 2, marginLeft: "25%", marginTop: "-5rem", marginRight: "-5rem" }}>
+          <div style={{ borderRadius: "16px", position: "relative", zIndex: 2, marginLeft: "clamp(0%, 10vw, 25%)", marginTop: "clamp(-2rem, -3vw, -5rem)", marginRight: "clamp(-1rem, -3vw, -5rem)" }}>
             <img
               src={rightImage}
               alt={`${product.name} detail`}
-              style={{ width: "100%", height: "600px", objectFit: "cover", borderRadius: "16px" }}
+              style={{ width: "100%", height: "clamp(350px, 45vw, 600px)", objectFit: "cover", borderRadius: "16px" }}
             />
           </div>
         </div>
@@ -568,7 +569,7 @@ function EditorialSection({ product }: { product: Product }) {
               style={{
                 width: "100%",
                 display: "block",
-                marginLeft: "-15rem",
+                marginLeft: "clamp(-15rem, -10vw, 0px)",
                 marginTop: "-3rem",
                 position: "relative",
                 zIndex: 10,
