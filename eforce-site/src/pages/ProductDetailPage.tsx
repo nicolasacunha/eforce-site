@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
-import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import SEO from "@/components/layout/SEO";
 import { getProductBySlug } from "@/data/products";
 import type { Product } from "@/data/products";
