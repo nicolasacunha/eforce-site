@@ -566,7 +566,7 @@ function EditorialSection({ product }: { product: Product }) {
               src={bottomImage}
               alt={`${product.name} lifestyle`}
               style={{
-                width: "75%",
+                width: "100%",
                 display: "block",
                 marginLeft: "-15rem",
                 marginTop: "-3rem",
