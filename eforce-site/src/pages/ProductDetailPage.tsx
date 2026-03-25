@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import SEO from "@/components/layout/SEO";
 import { getProductBySlug } from "@/data/products";
 import type { Product } from "@/data/products";
@@ -458,6 +458,9 @@ function EditorialSection({ product }: { product: Product }) {
     product.editorialBody ||
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.";
 
+  const rightImgRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: rightImgRef, offset: ["start end", "end start"] });
+  const rightY = useTransform(scrollYProgress, [0, 1], [80, -80]);
 
   return (
     <section style={{ background: "#fff", position: "relative" }}>
@@ -551,13 +554,13 @@ function EditorialSection({ product }: { product: Product }) {
             </p>
           </motion.div>
 
-          <div style={{ borderRadius: "16px", position: "relative", zIndex: 2, marginLeft: "clamp(0%, 10vw, 25%)", marginTop: "clamp(-2rem, -3vw, -5rem)", marginRight: "clamp(-1rem, -3vw, -5rem)" }}>
+          <motion.div ref={rightImgRef} style={{ borderRadius: "16px", position: "relative", zIndex: 2, marginLeft: "clamp(0%, 10vw, 25%)", marginTop: "clamp(-2rem, -3vw, -5rem)", marginRight: "clamp(-1rem, -3vw, -5rem)", y: rightY }}>
             <img
               src={rightImage}
               alt={`${product.name} detail`}
               style={{ width: "100%", height: "clamp(350px, 45vw, 600px)", objectFit: "cover", borderRadius: "16px" }}
             />
-          </div>
+          </motion.div>
         </div>
 
         {/* Second large photo — half black, half white bg */}
