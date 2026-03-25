@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import SEO from "@/components/layout/SEO";
 import { getProductBySlug } from "@/data/products";
 import type { Product } from "@/data/products";
@@ -31,11 +31,27 @@ function AnimatedSection({ children, className, style }: { children: React.React
   );
 }
 
-/* ── helper: extract model prefix (e.g. "EF2" from "EF2 V3") ── */
-function getModelPrefix(name: string) {
-  const match = name.match(/^(EF\d+)/i);
-  return match ? match[1].toUpperCase() : name.split(" ")[0].toUpperCase();
+/* ── animated counter ──────────────────────────────── */
+function CountUp({ value, duration = 1.5 }: { value: number; duration?: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    const start = performance.now();
+    const step = (now: number) => {
+      const progress = Math.min((now - start) / (duration * 1000), 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      setDisplay(Math.round(eased * value));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [inView, value, duration]);
+
+  return <span ref={ref}>{display}</span>;
 }
+
 
 /* ── highlights fallback data ──────────────────────── */
 const defaultHighlights = [
@@ -48,157 +64,89 @@ const defaultHighlights = [
 /* ═══════════════════════════════════════════════════════
    SECTION 1 — HERO (Porsche-style warm gray bg)
    ═══════════════════════════════════════════════════════ */
-function HeroSection({ product, onSwitchModel }: { product: Product; onSwitchModel: () => void }) {
-  const prefix = getModelPrefix(product.name);
+function HeroSection({ product }: { product: Product }) {
   return (
     <section
       style={{
         background: "#ffffff",
         position: "relative",
-        overflow: "hidden",
-        padding: "clamp(5rem, 10vh, 8rem) clamp(1.5rem, 6vw, 6rem) clamp(1rem, 2vh, 2rem)",
+        overflowX: "hidden",
+        overflowY: "visible",
+        padding: "clamp(5rem, 10vh, 8rem) clamp(1.5rem, 6vw, 6rem) 0",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
       }}
     >
-      {/* Background image — top rectangle only, behind everything */}
+      {/* Background — video + gray top half */}
       <div
         style={{
           position: "absolute",
           top: 0,
           left: 0,
           right: 0,
-          bottom: "50%",
-          backgroundImage: `url(/assets/images/kits/ef2v3/ef2v3-fundo.jpg)`,
-          backgroundSize: "cover",
-          backgroundPosition: "center top",
-          opacity: 0.7,
+          bottom: "35%",
+          background: "#e0e0e0",
+          overflow: "hidden",
           pointerEvents: "none",
           zIndex: 0,
         }}
-      />
-      {/* Container for overlapping text + image (like Porsche 718) */}
-      <div style={{ position: "relative", width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        {/* Giant model prefix — centered, BEHIND the product */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, ease }}
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            fontSize: "clamp(8rem, 22vw, 20rem)",
-            fontWeight: 800,
-            fontStyle: "italic",
-            color: "rgba(0,0,0,0.75)",
-            lineHeight: 0.85,
-            userSelect: "none",
-            pointerEvents: "none",
-            whiteSpace: "nowrap",
-            letterSpacing: "-0.04em",
-            zIndex: 1,
-          }}
-          aria-hidden
-        >
-          {prefix}
-        </motion.div>
-
-        {/* Product image — ON TOP of the text, large */}
-        <motion.img
-          src={product.heroImage}
-          alt={product.name}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease, delay: 0.15 }}
-          style={{
-            position: "relative",
-            zIndex: 2,
-            maxWidth: "min(90vw, 1300px)",
-            width: "100%",
-            objectFit: "contain",
-            filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.15))",
-          }}
-        />
-      </div>
-
-      {/* Model name + module badge + CTAs */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, ease, delay: 0.35 }}
-        style={{ position: "relative", zIndex: 2, textAlign: "center", marginTop: "clamp(1.5rem, 3vh, 2.5rem)" }}
       >
-        <h1
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
           style={{
-            fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
-            fontWeight: 400,
-            color: "#0a0a0a",
-            letterSpacing: "-0.01em",
-            margin: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            opacity: 0.75,
           }}
         >
-          {product.name}
-        </h1>
-
-        {/* Module badge pill */}
-        <div style={{ marginTop: "0.75rem" }}>
-          <span
-            style={{
-              display: "inline-block",
-              fontSize: "11px",
-              fontWeight: 600,
-              letterSpacing: "0.06em",
-              textTransform: "uppercase",
-              border: "1px solid rgba(255,255,255,0.4)",
-              borderRadius: "999px",
-              padding: "4px 14px",
-              color: "rgba(255,255,255,0.7)",
-            }}
-          >
-            {product.module}
-          </span>
-        </div>
-
-        {/* CTA buttons */}
-        <div style={{ display: "flex", gap: "12px", justifyContent: "center", marginTop: "1.5rem", flexWrap: "wrap" }}>
-          <button
-            onClick={onSwitchModel}
-            style={{
-              background: "#ffffff",
-              color: "#0a0a0a",
-              border: "none",
-              padding: "12px 28px",
-              fontSize: "13px",
-              fontWeight: 600,
-              letterSpacing: "0.02em",
-              cursor: "pointer",
-              borderRadius: "0",
-            }}
-          >
-            Mudar de modelo
-          </button>
-          <a
-            href="#dealers"
-            style={{
-              background: "transparent",
-              color: "#ffffff",
-              border: "1px solid rgba(255,255,255,0.4)",
-              padding: "12px 28px",
-              fontSize: "13px",
-              fontWeight: 600,
-              letterSpacing: "0.02em",
-              textDecoration: "none",
-              cursor: "pointer",
-              borderRadius: "0",
-            }}
-          >
-            Encontrar dealer
-          </a>
-        </div>
+          <source src="/assets/video/hero-loop.mp4" type="video/mp4" />
+        </video>
+      </div>
+      {/* Model name above the product */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, ease }}
+        style={{
+          position: "relative",
+          zIndex: 1,
+          textAlign: "center",
+          fontSize: "clamp(3rem, 8vw, 7rem)",
+          fontWeight: 800,
+          fontStyle: "italic",
+          color: "rgba(255,255,255,0.9)",
+          lineHeight: 1,
+          userSelect: "none",
+          whiteSpace: "nowrap",
+          letterSpacing: "-0.04em",
+          marginBottom: "-10rem",
+        }}
+      >
+        {product.name}
       </motion.div>
+
+      {/* Product image */}
+      <motion.img
+        src={product.heroImage}
+        alt={product.name}
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease, delay: 0.15 }}
+        style={{
+          position: "relative",
+          zIndex: 2,
+          maxWidth: "min(90vw, 1300px)",
+          width: "100%",
+          objectFit: "contain",
+          filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.15))",
+        }}
+      />
+
     </section>
   );
 }
@@ -207,6 +155,8 @@ function HeroSection({ product, onSwitchModel }: { product: Product; onSwitchMod
    SECTION 2 — KEY SPECS (left specs, right aerial image)
    ═══════════════════════════════════════════════════════ */
 function KeySpecsSection({ product }: { product: Product }) {
+  const [showTechPanel, setShowTechPanel] = useState(false);
+  const [openAccordion, setOpenAccordion] = useState<string | null>(null);
   // Use PNG transparent if available, otherwise aerial/hero
   const hasNobg = product.galleryImages.some(img => img.includes("nobg"));
   const aerialImage = hasNobg
@@ -218,7 +168,7 @@ function KeySpecsSection({ product }: { product: Product }) {
     <section
       style={{
         background: "#fff",
-        padding: "clamp(5rem, 12vh, 10rem) clamp(1.5rem, 6vw, 6rem)",
+        padding: "clamp(3rem, 6vh, 5rem) clamp(1.5rem, 6vw, 6rem)",
       }}
     >
       <AnimatedSection>
@@ -234,7 +184,7 @@ function KeySpecsSection({ product }: { product: Product }) {
           className="max-md:!grid-cols-1"
         >
           {/* Left: specs */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "clamp(2rem, 4vh, 3.5rem)", marginLeft: "auto", paddingRight: "clamp(1rem, 2vw, 2rem)" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "clamp(2rem, 4vh, 3.5rem)", marginLeft: "auto", paddingRight: "clamp(1rem, 2vw, 2rem)", position: "relative", zIndex: 5 }}>
             {specs.map((s) => (
               <div key={s.label}>
                 <div
@@ -246,7 +196,7 @@ function KeySpecsSection({ product }: { product: Product }) {
                     letterSpacing: "-0.03em",
                   }}
                 >
-                  {s.value}
+                  {/^\d+$/.test(s.value) ? <CountUp value={parseInt(s.value)} /> : s.value}
                   {s.unit && <span style={{ fontSize: "0.4em", marginLeft: "4px" }}>{s.unit}</span>}
                 </div>
                 <div
@@ -261,6 +211,26 @@ function KeySpecsSection({ product }: { product: Product }) {
                 </div>
               </div>
             ))}
+
+            {/* Button inside specs column */}
+            <button
+              onClick={() => setShowTechPanel(true)}
+              style={{
+                display: "inline-block",
+                fontSize: "13px",
+                fontWeight: 600,
+                letterSpacing: "0.02em",
+                color: "#0a0a0a",
+                background: "none",
+                border: "1px solid rgba(0,0,0,0.3)",
+                padding: "12px 28px",
+                cursor: "pointer",
+                borderRadius: "0",
+                marginTop: "0.5rem",
+              }}
+            >
+              Todos os detalhes t&eacute;cnicos
+            </button>
           </div>
 
           {/* Right: product image — LARGE */}
@@ -272,27 +242,204 @@ function KeySpecsSection({ product }: { product: Product }) {
             />
           </div>
         </div>
+      </AnimatedSection>
 
-        {/* All technical details button */}
-        <div style={{ maxWidth: "1200px", margin: "0 auto", marginTop: "clamp(2rem, 4vh, 3rem)" }}>
-          <a
-            href="#specs"
+      {/* Technical details panel — Porsche style */}
+      <AnimatePresence>
+      {showTechPanel && (
+        <motion.div
+          key="tech-panel-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 9999,
+            display: "flex",
+          }}
+        >
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setShowTechPanel(false)}
             style={{
-              display: "inline-block",
-              fontSize: "13px",
-              fontWeight: 600,
-              letterSpacing: "0.02em",
-              color: "#0a0a0a",
-              border: "1px solid rgba(0,0,0,0.3)",
-              padding: "12px 28px",
-              textDecoration: "none",
-              borderRadius: "0",
+              position: "absolute",
+              inset: 0,
+              background: "rgba(0,0,0,0.5)",
+              backdropFilter: "blur(12px)",
+            }}
+          />
+          {/* Panel — slides in from right */}
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            style={{
+              position: "relative",
+              marginLeft: "auto",
+              width: "min(600px, 90vw)",
+              height: "100%",
+              background: "#fff",
+              overflowY: "auto",
+              padding: "clamp(2rem, 4vw, 3rem)",
+              boxShadow: "-4px 0 20px rgba(0,0,0,0.15)",
             }}
           >
-            Todos os detalhes t&eacute;cnicos
-          </a>
-        </div>
-      </AnimatedSection>
+            {/* Header */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem" }}>
+              <div>
+                <div style={{ fontSize: "14px", color: "rgba(0,0,0,0.5)" }}>{product.name}</div>
+                <div style={{ fontSize: "20px", fontWeight: 700, color: "#0a0a0a" }}>Dados t&eacute;cnicos</div>
+              </div>
+              <button
+                onClick={() => setShowTechPanel(false)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  fontSize: "24px",
+                  cursor: "pointer",
+                  color: "#0a0a0a",
+                  padding: "8px",
+                }}
+              >
+                &times;
+              </button>
+            </div>
+
+            {/* Product image */}
+            <div style={{ background: "#f5f5f5", borderRadius: "8px", padding: "2rem", marginBottom: "1.5rem", display: "flex", justifyContent: "center" }}>
+              <img
+                src={product.heroImage}
+                alt={product.name}
+                style={{ maxHeight: "200px", objectFit: "contain" }}
+              />
+            </div>
+
+            {/* Specs overview card */}
+            <div style={{ background: "#f5f5f5", borderRadius: "8px", padding: "1.5rem", marginBottom: "2rem" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+                {product.specsHighlight.map((s) => (
+                  <div key={s.label}>
+                    <div style={{ fontSize: "12px", color: "rgba(0,0,0,0.5)", marginBottom: "4px" }}>{s.label}</div>
+                    <div style={{ fontSize: "20px", fontWeight: 700, color: "#0a0a0a" }}>
+                      {s.value} {s.unit || ""}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Accordion sections */}
+            {[
+              {
+                title: "Módulo",
+                items: [
+                  ["Modelo", product.specsHighlight.find(s => s.label === "Módulo")?.value || "—"],
+                  ["Sons", product.specsHighlight.find(s => s.label === "Sons")?.value || "—"],
+                  ["Faixas de acompanhamento", product.specsHighlight.find(s => s.label === "Faixas")?.value || "—"],
+                  ["Display", "LCD"],
+                  ["Conexão USB", "Sim"],
+                  ["MIDI", "USB-MIDI"],
+                ],
+              },
+              {
+                title: "Pads",
+                items: [
+                  ["Total de pads", product.specsHighlight.find(s => s.label === "Pads")?.value || "—"],
+                  ["Snare", "8\" dual-zone mesh"],
+                  ["Toms", "8\" mesh"],
+                  ["Kick", "Pedal pad"],
+                  ["Hi-hat", "10\" com pedal"],
+                  ["Crash", "10\""],
+                  ["Ride", "12\""],
+                ],
+              },
+              {
+                title: "Conectividade",
+                items: [
+                  ["Saída de áudio", "P10 estéreo (L/R)"],
+                  ["Fone de ouvido", "P10 estéreo"],
+                  ["USB", "Tipo B"],
+                  ["Aux In", "P2 estéreo"],
+                ],
+              },
+              {
+                title: "Estrutura",
+                items: [
+                  ["Material do rack", "Aço tubular"],
+                  ["Peso", "~25 kg"],
+                  ["Alimentação", "Fonte DC 9V"],
+                ],
+              },
+            ].map((section) => (
+              <div key={section.title} style={{ borderTop: "1px solid rgba(0,0,0,0.1)" }}>
+                <button
+                  onClick={() => setOpenAccordion(openAccordion === section.title ? null : section.title)}
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    padding: "1.25rem 0",
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    fontSize: "15px",
+                    fontWeight: 700,
+                    color: "#0a0a0a",
+                  }}
+                >
+                  {section.title}
+                  <span style={{ fontSize: "18px", fontWeight: 300 }}>
+                    {openAccordion === section.title ? "−" : "+"}
+                  </span>
+                </button>
+                <AnimatePresence>
+                {openAccordion === section.title && (
+                  <motion.div
+                    key={section.title + "-content"}
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ overflow: "hidden", paddingBottom: "1.25rem" }}
+                  >
+                    {section.items.map(([label, value], idx) => (
+                      <motion.div
+                        key={label}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -5 }}
+                        transition={{ duration: 0.25, delay: idx * 0.04 }}
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          padding: "8px 0",
+                          fontSize: "14px",
+                          borderBottom: "1px solid rgba(0,0,0,0.05)",
+                        }}
+                      >
+                        <span style={{ color: "rgba(0,0,0,0.6)" }}>{label}</span>
+                        <span style={{ fontWeight: 500, color: "#0a0a0a" }}>{value}</span>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </motion.div>
+        </motion.div>
+      )}
+      </AnimatePresence>
     </section>
   );
 }
@@ -303,19 +450,13 @@ function KeySpecsSection({ product }: { product: Product }) {
    text on the left below the photos
    ═══════════════════════════════════════════════════════ */
 function EditorialSection({ product }: { product: Product }) {
-  const prefix = getModelPrefix(product.name);
   const rightImage = product.galleryImages[3] || product.galleryImages[1] || product.heroImage;
+  const bottomImage = product.galleryImages[5] || product.galleryImages[2] || product.heroImage;
   const headline = product.editorialHeadline || "Projetado para quem vive a m\u00fasica.";
   const body =
     product.editorialBody ||
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.";
 
-  const mainImgRef = useRef(null);
-  const secondImgRef = useRef(null);
-  const { scrollYProgress: mainProgress } = useScroll({ target: mainImgRef, offset: ["start end", "end start"] });
-  const { scrollYProgress: secondProgress } = useScroll({ target: secondImgRef, offset: ["start end", "end start"] });
-  const mainY = useTransform(mainProgress, [0, 1], [60, -60]);
-  const secondY = useTransform(secondProgress, [0, 1], [60, -60]);
 
   return (
     <section style={{ background: "#fff", position: "relative" }}>
@@ -330,10 +471,10 @@ function EditorialSection({ product }: { product: Product }) {
             color: "#0a0a0a",
             lineHeight: 1,
             letterSpacing: "-0.03em",
-            padding: "clamp(4rem, 10vh, 8rem) 0 clamp(2rem, 4vh, 3rem) 0",
+            padding: "clamp(2rem, 4vh, 3rem) 0 clamp(1rem, 2vh, 2rem) 0",
           }}
         >
-          {prefix}
+          {product.name}
         </div>
       </AnimatedSection>
 
@@ -344,21 +485,24 @@ function EditorialSection({ product }: { product: Product }) {
           background: "linear-gradient(to bottom, #ffffff 50%, #0a0a0a 50%)",
         }}
       >
-        <div ref={mainImgRef} style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 clamp(1.5rem, 6vw, 6rem)", overflow: "hidden" }}>
-          <motion.img
-            src="/assets/images/kits/ef2v3/ef2v3-editorial-main.jpg"
-            alt={`${product.name} lifestyle`}
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 clamp(1.5rem, 6vw, 6rem)", overflow: "hidden", borderRadius: "20px" }}>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
             style={{
               width: "100%",
-              height: "clamp(300px, 35vw, 550px)",
+              height: "clamp(400px, 50vw, 700px)",
               objectFit: "cover",
               display: "block",
               position: "relative",
               zIndex: 1,
-              y: mainY,
-              scale: 1.15,
+              borderRadius: "12px",
             }}
-          />
+          >
+            <source src="/assets/video/hero-loop.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
 
@@ -368,7 +512,7 @@ function EditorialSection({ product }: { product: Product }) {
           style={{
             maxWidth: "1200px",
             margin: "0 auto",
-            padding: "clamp(3rem, 6vh, 5rem) clamp(1.5rem, 6vw, 6rem)",
+            padding: "clamp(3rem, 6vh, 5rem) clamp(1.5rem, 6vw, 6rem) 0",
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: "clamp(2rem, 5vw, 4rem)",
@@ -406,11 +550,32 @@ function EditorialSection({ product }: { product: Product }) {
             </p>
           </motion.div>
 
-          <div ref={secondImgRef} style={{ overflow: "hidden", borderRadius: "4px" }}>
-            <motion.img
+          <div style={{ borderRadius: "16px", position: "relative", zIndex: 2, marginLeft: "25%", marginTop: "-5rem", marginRight: "-5rem" }}>
+            <img
               src={rightImage}
               alt={`${product.name} detail`}
-              style={{ width: "100%", height: "clamp(250px, 30vw, 400px)", objectFit: "cover", y: secondY, scale: 1.15 }}
+              style={{ width: "100%", height: "600px", objectFit: "cover", borderRadius: "16px" }}
+            />
+          </div>
+        </div>
+
+        {/* Second large photo — half black, half white bg */}
+        <div style={{ background: "linear-gradient(to bottom, #0a0a0a 50%, #ffffff 50%)" }}>
+          <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 clamp(1.5rem, 6vw, 6rem) clamp(3rem, 6vh, 4rem)" }}>
+            <img
+              src={bottomImage}
+              alt={`${product.name} lifestyle`}
+              style={{
+                width: "75%",
+                display: "block",
+                marginLeft: "-15rem",
+                marginTop: "-3rem",
+                position: "relative",
+                zIndex: 10,
+                height: "clamp(220px, 25vw, 350px)",
+                objectFit: "cover",
+                borderRadius: "4px",
+              }}
             />
           </div>
         </div>
@@ -484,7 +649,7 @@ function HighlightsCarousel({ product }: { product: Product }) {
           ref={scrollRef}
           style={{
             display: "flex",
-            gap: "6px",
+            gap: "clamp(20px, 3vw, 40px)",
             overflowX: "auto",
             paddingLeft: "clamp(1.5rem, 6vw, 6rem)",
             paddingRight: "clamp(1.5rem, 6vw, 6rem)",
@@ -524,10 +689,11 @@ function HighlightsCarousel({ product }: { product: Product }) {
               key={i}
               style={{
                 flex: "0 0 auto",
-                width: "clamp(320px, 40vw, 520px)",
+                width: "clamp(380px, 45vw, 620px)",
                 scrollSnapAlign: "start",
                 position: "relative",
                 overflow: "hidden",
+                borderRadius: "12px",
               }}
             >
               {/* Full card image */}
@@ -537,7 +703,7 @@ function HighlightsCarousel({ product }: { product: Product }) {
                 draggable={false}
                 style={{
                   width: "100%",
-                  height: "clamp(320px, 40vw, 500px)",
+                  height: "clamp(350px, 40vw, 500px)",
                   objectFit: "cover",
                   display: "block",
                   pointerEvents: "none",
@@ -614,7 +780,7 @@ export default function ProductDetailPage() {
         />
 
         {/* Section 1: Hero */}
-        <HeroSection product={product} onSwitchModel={() => setSwitcherOpen(true)} />
+        <HeroSection product={product} />
 
         {/* Section 2: Key Specs */}
         <KeySpecsSection product={product} />

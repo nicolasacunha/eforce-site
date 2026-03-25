@@ -38,6 +38,7 @@ export default function Navbar() {
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           scrolled ? "bg-[#0a0a0a]/95 backdrop-blur-md" : "bg-transparent"
         }`}
+        style={!scrolled ? { background: "linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 60%, transparent 100%)" } : undefined}
       >
         <div className="flex items-center justify-between px-6 py-4">
           <button
@@ -55,9 +56,13 @@ export default function Navbar() {
 
           <Link
             to={`/${lang}`}
-            className="absolute left-1/2 -translate-x-1/2 text-white font-display font-bold text-lg tracking-[0.2em]"
+            className="absolute left-1/2 -translate-x-1/2"
           >
-            E-FORCE
+            <img
+              src="/assets/images/brand/eforce-logo-white.png"
+              alt="E-Force"
+              className="h-10"
+            />
           </Link>
 
           <div className="flex items-center gap-4 relative">
