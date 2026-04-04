@@ -13,7 +13,9 @@
     "headline": "原声灵魂，电子力量。",
     "sub": "木壳设计。专属配色。源自Odery Drums Brazil。",
     "cta1": "探索",
-    "cta2": "观看"
+    "cta2": "观看",
+    "scrollToExplore": "滚动探索",
+    "cta": "探索系列"
   },
   "manifesto": {
     "text": "电子鼓可以激励人心。可以承载原声乐器的灵魂。E-Force的诞生，就是为了证明这一点。"
@@ -132,5 +134,6 @@
       "title": "原声传承",
       "desc": "20年Odery匠心工艺。"
     }
-  }
+  },
+  "coming_soon": "即将推出"
 }

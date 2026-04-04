@@ -8,7 +8,7 @@ export default function HeroSection() {
 
   return (
     <ScrollExpandMedia
-      mediaSrc="/assets/images/kits/ef5v2/ef5v2-dramatic.jpg"
+      mediaSrc="/assets/images/kits/ef5v2/ef5v2-hero-scroll.png"
       videoSrc="/assets/video/hero-loop.mp4"
       title={t("hero.headline")}
       scrollToExpand={t("hero.scrollToExplore") || "Scroll to explore"}

@@ -6,6 +6,8 @@ import { getProductBySlug } from "@/data/products";
 import type { Product } from "@/data/products";
 import { StickyContextBar } from "@/components/product/StickyContextBar";
 import { ModelSwitcher } from "@/components/product/ModelSwitcher";
+import ShaderBackground from "@/components/ui/shader-background";
+import CyberneticGridShader from "@/components/ui/cybernetic-grid-shader";
 
 /* ── animation helpers ──────────────────────────────── */
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -70,7 +72,6 @@ function HeroSection({ product }: { product: Product }) {
       style={{
         background: "#ffffff",
         position: "relative",
-        overflowX: "hidden",
         overflowY: "visible",
         padding: "clamp(5rem, 10vh, 8rem) clamp(1.5rem, 6vw, 6rem) 0",
         display: "flex",
@@ -78,34 +79,53 @@ function HeroSection({ product }: { product: Product }) {
         alignItems: "center",
       }}
     >
-      {/* Background — video + gray top half */}
+      {/* Background — video covering top half of hero */}
       <div
         style={{
           position: "absolute",
           top: 0,
           left: 0,
           right: 0,
-          bottom: "35%",
-          background: "#e0e0e0",
+          height: "58vh",
+          background: "#0a0a0a",
           overflow: "hidden",
           pointerEvents: "none",
           zIndex: 0,
         }}
       >
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            opacity: 0.75,
-          }}
-        >
-          <source src="/assets/video/hero-loop.mp4" type="video/mp4" />
-        </video>
+        {product.slug.startsWith("ef2-") ? (
+          <>
+            <div style={{ position: "absolute", inset: 0, opacity: 0.9 }}>
+              {product.slug === "ef2-v2" ? <CyberneticGridShader /> : <ShaderBackground />}
+            </div>
+            <div style={{
+              position: "absolute", inset: 0,
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}>
+              <img
+                src="/assets/images/kits/ef2v1/ef2v1-detail-center.png"
+                alt="E-Force EF2 V1 detail"
+                style={{
+                  width: "180%",
+                  height: "200%",
+                  objectFit: "contain",
+                  opacity: 0,
+                  filter: "drop-shadow(0 0 30px rgba(0,160,255,0.35)) drop-shadow(0 0 60px rgba(120,0,255,0.25))",
+                }}
+              />
+            </div>
+          </>
+        ) : (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.3 }}
+          >
+            <source src="/assets/video/hero-bg.mp4" type="video/mp4" />
+          </video>
+        )}
       </div>
       {/* Model name above the product */}
       <motion.div
@@ -117,6 +137,8 @@ function HeroSection({ product }: { product: Product }) {
           zIndex: 1,
           textAlign: "center",
           overflow: "visible",
+          width: "100vw",
+          marginLeft: "calc(-1 * clamp(1.5rem, 6vw, 6rem))",
           fontSize: "clamp(4rem, 10vw, 9rem)",
           fontWeight: 800,
           fontStyle: "italic",
@@ -125,28 +147,33 @@ function HeroSection({ product }: { product: Product }) {
           userSelect: "none",
           whiteSpace: "nowrap",
           letterSpacing: "-0.04em",
-          marginBottom: "-8rem",
+          marginTop: "2rem",
+          transform: "translateY(3rem)",
+          marginBottom: "-12rem",
         }}
       >
         {product.name}
       </motion.div>
 
       {/* Product image */}
-      <motion.img
-        src={product.heroImage}
-        alt={product.name}
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease, delay: 0.15 }}
-        style={{
-          position: "relative",
-          zIndex: 2,
-          maxWidth: "min(108vw, 1560px)",
-          width: "100%",
-          objectFit: "contain",
-          filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.15))",
-        }}
-      />
+      <div style={{ overflow: "hidden", width: "100%", display: "flex", justifyContent: "center" }}>
+        <motion.img
+          src={product.heroImage}
+          alt={product.name}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease, delay: 0.15 }}
+          style={{
+            position: "relative",
+            zIndex: 2,
+            maxWidth: product.slug === "ef2-v1" ? "min(117vw, 1520px)" : product.slug === "ef2-v4" ? "min(64vw, 830px)" : product.slug === "ef2-v2" ? "min(73vw, 950px)" : "min(80vw, 1100px)",
+            width: product.slug === "ef2-v1" ? "109%" : product.slug === "ef2-v4" ? "60%" : product.slug === "ef2-v2" ? "68%" : "75%",
+            marginTop: ["ef2-v2", "ef2-v3", "ef2-v4"].includes(product.slug) ? "12rem" : product.slug === "ef2-v1" ? "6.5rem" : undefined,
+            objectFit: "contain",
+            filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.15))",
+          }}
+        />
+      </div>
 
     </section>
   );
@@ -237,9 +264,16 @@ function KeySpecsSection({ product }: { product: Product }) {
           {/* Right: product image — LARGE */}
           <div style={{ overflow: "visible", marginTop: "-2rem", marginBottom: "-2rem" }}>
             <img
-              src={aerialImage}
+              src={product.specsImage ?? aerialImage}
               alt={`${product.name} view`}
-              style={{ width: "200%", maxWidth: "none", objectFit: "contain", marginLeft: "-50%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }}
+              style={product.slug === "ef2-v4"
+                ? { width: "105%", maxWidth: "none", objectFit: "contain", marginLeft: "-2.5%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                : product.slug === "ef2-v2"
+                  ? { width: "136%", maxWidth: "none", objectFit: "contain", marginLeft: "-25.5%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                  : product.slug === "ef2-v1"
+                  ? { width: "160%", maxWidth: "none", objectFit: "contain", marginLeft: "-30%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                  : { width: "200%", maxWidth: "none", objectFit: "contain", marginLeft: "-50%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+              }
             />
           </div>
         </div>
@@ -451,8 +485,8 @@ function KeySpecsSection({ product }: { product: Product }) {
    text on the left below the photos
    ═══════════════════════════════════════════════════════ */
 function EditorialSection({ product }: { product: Product }) {
-  const rightImage = product.galleryImages[3] || product.galleryImages[1] || product.heroImage;
-  const bottomImage = product.galleryImages[5] || product.galleryImages[2] || product.heroImage;
+  const rightImage = product.editorialVerticalImage || "/assets/images/kits/ef2v3/ef2v3-closeup-logo.jpg";
+  const bottomImage = product.editorialHorizontalImage || "/assets/images/kits/ef2v3/ef2v3-closeup-trigger.jpg";
   const headline = product.editorialHeadline || "Projetado para quem vive a m\u00fasica.";
   const body =
     product.editorialBody ||
@@ -461,6 +495,10 @@ function EditorialSection({ product }: { product: Product }) {
   const rightImgRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: rightImgRef, offset: ["start end", "end start"] });
   const rightY = useTransform(scrollYProgress, [0, 1], [80, -80]);
+
+  const bottomImgRef = useRef(null);
+  const { scrollYProgress: bottomProgress } = useScroll({ target: bottomImgRef, offset: ["start end", "end start"] });
+  const bottomX = useTransform(bottomProgress, [0, 1], [-80, 80]);
 
   return (
     <section style={{ background: "#fff", position: "relative" }}>
@@ -554,18 +592,18 @@ function EditorialSection({ product }: { product: Product }) {
             </p>
           </motion.div>
 
-          <motion.div ref={rightImgRef} style={{ borderRadius: "16px", position: "relative", zIndex: 2, marginLeft: "clamp(0%, 10vw, 25%)", marginTop: "clamp(-2rem, -3vw, -5rem)", marginRight: "clamp(-1rem, -3vw, -5rem)", y: rightY }}>
+          <motion.div ref={rightImgRef} style={{ borderRadius: "16px", position: "relative", zIndex: 2, marginLeft: "clamp(0%, 10vw, 25%)", marginTop: "clamp(-8rem, -10vw, -12rem)", marginRight: "clamp(-6rem, -10vw, -14rem)", y: rightY }}>
             <img
               src={rightImage}
               alt={`${product.name} detail`}
-              style={{ width: "100%", height: "clamp(350px, 45vw, 600px)", objectFit: "cover", borderRadius: "16px" }}
+              style={{ width: "180%", height: "clamp(500px, 30vw, 650px)", objectFit: "cover", borderRadius: "16px" }}
             />
           </motion.div>
         </div>
 
         {/* Second large photo — half black, half white bg */}
-        <div style={{ background: "linear-gradient(to bottom, #0a0a0a 50%, #ffffff 50%)" }}>
-          <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 clamp(1.5rem, 6vw, 6rem) clamp(3rem, 6vh, 4rem)" }}>
+        <div style={{ background: "linear-gradient(to bottom, #0a0a0a 50%, #ffffff 50%)", overflow: "hidden" }}>
+          <motion.div ref={bottomImgRef} style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 clamp(1.5rem, 6vw, 6rem) clamp(3rem, 6vh, 4rem)", x: bottomX }}>
             <img
               src={bottomImage}
               alt={`${product.name} lifestyle`}
@@ -576,12 +614,13 @@ function EditorialSection({ product }: { product: Product }) {
                 marginTop: "-3rem",
                 position: "relative",
                 zIndex: 10,
-                height: "clamp(220px, 25vw, 350px)",
+                height: "clamp(300px, 35vw, 450px)",
                 objectFit: "cover",
-                borderRadius: "4px",
+                borderRadius: "12px",
+                marginBottom: "3rem",
               }}
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -655,15 +694,15 @@ function HighlightsCarousel({ product }: { product: Product }) {
             display: "flex",
             gap: "clamp(20px, 3vw, 40px)",
             overflowX: "auto",
-            paddingLeft: "clamp(1.5rem, 6vw, 6rem)",
-            paddingRight: "clamp(1.5rem, 6vw, 6rem)",
+            paddingLeft: "clamp(3rem, 6vw, 6rem)",
+            paddingRight: "clamp(3rem, 6vw, 6rem)",
             paddingBottom: "1rem",
             scrollSnapType: "x mandatory",
             scrollBehavior: "smooth",
             cursor: "grab",
             userSelect: "none",
           }}
-          className="no-scrollbar"
+          className="no-scrollbar scrollbar-light"
           onMouseDown={(e) => {
             e.preventDefault();
             const el = scrollRef.current;
@@ -693,11 +732,13 @@ function HighlightsCarousel({ product }: { product: Product }) {
               key={i}
               style={{
                 flex: "0 0 auto",
-                width: "clamp(380px, 45vw, 620px)",
                 scrollSnapAlign: "start",
                 position: "relative",
                 overflow: "hidden",
                 borderRadius: "12px",
+                height: "clamp(350px, 40vw, 500px)",
+                ...(i === 1 ? { width: "clamp(280px, 30vw, 420px)" } : {}),
+                ...(i === cards.length - 1 ? { width: "clamp(320px, 35vw, 480px)" } : {}),
               }}
             >
               {/* Full card image */}
@@ -724,26 +765,28 @@ function HighlightsCarousel({ product }: { product: Product }) {
                   padding: "clamp(2rem, 4vw, 3rem) 1.5rem 1.5rem",
                 }}
               >
-                <h3
-                  style={{
-                    color: "#fff",
-                    fontWeight: 700,
-                    fontSize: "clamp(1.2rem, 1.8vw, 1.5rem)",
-                    margin: "0 0 0.5rem 0",
-                  }}
-                >
-                  {card.title}
-                </h3>
-                <p
-                  style={{
-                    color: "rgba(255,255,255,0.75)",
-                    fontSize: "clamp(0.8rem, 1vw, 0.9rem)",
-                    lineHeight: 1.5,
-                    margin: 0,
-                  }}
-                >
-                  {card.description}
-                </p>
+                <div style={{ maxWidth: "350px" }}>
+                  <h3
+                    style={{
+                      color: "#fff",
+                      fontWeight: 700,
+                      fontSize: "clamp(1.2rem, 1.8vw, 1.5rem)",
+                      margin: "0 0 0.5rem 0",
+                    }}
+                  >
+                    {card.title}
+                  </h3>
+                  <p
+                    style={{
+                      color: "rgba(255,255,255,0.75)",
+                      fontSize: "clamp(0.8rem, 1vw, 0.9rem)",
+                      lineHeight: 1.5,
+                      margin: 0,
+                    }}
+                  >
+                    {card.description}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
@@ -777,20 +820,33 @@ export default function ProductDetailPage() {
       />
 
       <div className="bg-white min-h-screen">
-        {/* Section 3: Sticky context bar (appears on scroll) */}
-        <StickyContextBar
-          product={product}
-          onSwitchModel={() => setSwitcherOpen(true)}
-        />
+          {/* Section 3: Sticky context bar (appears on scroll) */}
+          <StickyContextBar
+            product={product}
+            onSwitchModel={() => setSwitcherOpen(true)}
+          />
 
-        {/* Section 1: Hero */}
-        <HeroSection product={product} />
+          {/* Section 1: Hero */}
+          <HeroSection product={product} />
 
-        {/* Section 2: Key Specs */}
-        <KeySpecsSection product={product} />
+          {/* Section 2: Key Specs */}
+          <KeySpecsSection product={product} />
 
-        {/* Section 4+5: Editorial — horizontal photo + vertical overlap + text */}
-        <EditorialSection product={product} />
+          {/* Section 4+5: Editorial — horizontal photo + vertical overlap + text */}
+          <EditorialSection product={product} />
+
+          {/* Full drum kit image between editorial and highlights */}
+          {(product.fullKitImage || product.galleryImages.length > 0) && (
+          <section style={{ background: "#ffffff", padding: "clamp(1rem, 3vh, 2.5rem) clamp(1.5rem, 6vw, 6rem)", display: "flex", justifyContent: "center" }}>
+            <AnimatedSection>
+              <img
+                src={product.fullKitImage || "/assets/images/kits/ef2v3/ef2v3-full-kit.jpg"}
+                alt={`${product.name} full angle`}
+                style={{ width: "95%", maxWidth: "1710px", display: "block", margin: "0 auto" }}
+              />
+            </AnimatedSection>
+          </section>
+          )}
 
         {/* Section 6: Highlights carousel */}
         <HighlightsCarousel product={product} />

@@ -29,6 +29,7 @@ export default function ScrollExpandMedia({
 
   const handleWheelEvent = useCallback(
     (e: WheelEvent) => {
+      if (document.body.style.overflow === 'hidden') return;
       if (mediaFullyExpanded && e.deltaY < 0 && window.scrollY <= 5) {
         setMediaFullyExpanded(false);
         window.dispatchEvent(new CustomEvent('hero-expanded', { detail: false }));
@@ -57,6 +58,7 @@ export default function ScrollExpandMedia({
 
   const handleTouchMoveEvent = useCallback(
     (e: TouchEvent) => {
+      if (document.body.style.overflow === 'hidden') return;
       if (!touchStartY) return;
       const touchY = e.touches[0].clientY;
       const deltaY = touchStartY - touchY;
@@ -90,6 +92,7 @@ export default function ScrollExpandMedia({
   }, []);
 
   const handleScrollEvent = useCallback(() => {
+    if (document.body.style.overflow === 'hidden') return;
     if (!mediaFullyExpanded) {
       window.scrollTo(0, 0);
     }

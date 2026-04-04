@@ -13,7 +13,9 @@
     "headline": "Alma acústica. Potencia electrónica.",
     "sub": "Diseño en madera. Acabados exclusivos. Nacida de Odery Drums Brazil.",
     "cta1": "Explorar",
-    "cta2": "Ver"
+    "cta2": "Ver",
+    "scrollToExplore": "Desplázate para explorar",
+    "cta": "Explorar la línea"
   },
   "manifesto": {
     "text": "La batería electrónica puede inspirar. Puede llevar el alma de un instrumento acústico. E-Force fue creada para demostrarlo."
@@ -132,5 +134,6 @@
       "title": "Herencia Acústica",
       "desc": "20 años de maestría Odery."
     }
-  }
+  },
+  "coming_soon": "Próximamente"
 }

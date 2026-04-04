@@ -13,7 +13,9 @@
     "headline": "Acoustic soul. Electronic power.",
     "sub": "Wood-shell design. Exclusive finishes. Born from Odery Drums Brazil.",
     "cta1": "Explore",
-    "cta2": "Watch"
+    "cta2": "Watch",
+    "scrollToExplore": "Scroll to explore",
+    "cta": "Explore the line"
   },
   "manifesto": {
     "text": "Electronic drums can inspire. They can carry the soul of an acoustic instrument. E-Force was built to prove it."
@@ -156,5 +158,6 @@
       "title": "Acoustic Heritage",
       "desc": "20 years of Odery craftsmanship."
     }
-  }
+  },
+  "coming_soon": "Coming Soon"
 }

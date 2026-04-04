@@ -17,6 +17,11 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = sidebarOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [sidebarOpen]);
+
   const languages = [
     { code: "pt", label: "PT", flag: "\u{1F1E7}\u{1F1F7}" },
     { code: "en", label: "EN", flag: "\u{1F1FA}\u{1F1F8}" },
@@ -61,7 +66,7 @@ export default function Navbar() {
             <img
               src="/assets/images/brand/eforce-logo-white.png"
               alt="E-Force"
-              className="h-10"
+              className="h-12"
             />
           </Link>
 

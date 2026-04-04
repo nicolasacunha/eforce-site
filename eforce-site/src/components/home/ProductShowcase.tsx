@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { products } from "@/data/products";
 
+const COMING_SOON_IDS = ["ef6cafe", "ef7eye"];
+
 export default function ProductShowcase() {
   const { lang } = useParams();
   const { t } = useTranslation();
@@ -12,6 +14,7 @@ export default function ProductShowcase() {
       {products.map((product, i) => {
         const isEven = i % 2 === 0;
         const bg = isEven ? "#ffffff" : "#f5f3ef";
+        const isComingSoon = COMING_SOON_IDS.includes(product.id);
 
         return (
           <div key={product.id}>
@@ -27,8 +30,9 @@ export default function ProductShowcase() {
             )}
 
             <Link
-              to={`/${lang}/kits/${product.slug}`}
-              className="group block"
+              to={isComingSoon ? "#" : `/${lang}/kits/${product.slug}`}
+              onClick={isComingSoon ? (e) => e.preventDefault() : undefined}
+              className={`group block ${isComingSoon ? "cursor-default" : ""}`}
               style={{ background: bg }}
             >
               <div
@@ -60,19 +64,41 @@ export default function ProductShowcase() {
                           "radial-gradient(ellipse, rgba(255,74,28,0.06) 0%, transparent 70%)",
                       }}
                     />
-                    <img
-                      src={product.heroImage}
-                      alt={product.name}
-                      className="w-full object-contain group-hover:scale-[1.03] group-hover:-translate-y-2"
-                      style={{
-                        maxHeight: "clamp(300px, 50vh, 600px)",
-                        filter:
-                          "drop-shadow(0 20px 40px rgba(0,0,0,0.15))",
-                        transition:
-                          "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
-                      }}
-                      loading={i < 2 ? "eager" : "lazy"}
-                    />
+                    {isComingSoon ? (
+                      <div
+                        className="w-full flex items-center justify-center"
+                        style={{ minHeight: "clamp(300px, 50vh, 600px)", background: "rgba(0,0,0,0.04)", borderRadius: "8px" }}
+                      >
+                        <span
+                          style={{
+                            fontSize: "clamp(1.5rem, 4vw, 3rem)",
+                            fontWeight: 700,
+                            letterSpacing: "0.2em",
+                            textTransform: "uppercase",
+                            color: "rgba(0,0,0,0.2)",
+                            textShadow: "0 4px 24px rgba(0,0,0,0.10)",
+                          }}
+                        >
+                          {t("coming_soon")}
+                        </span>
+                      </div>
+                    ) : (
+                      <img
+                        src={product.showcaseImage ?? product.heroImage}
+                        alt={product.name}
+                        className="w-full object-contain group-hover:scale-[1.03] group-hover:-translate-y-2"
+                        style={{
+                          maxHeight: "clamp(450px, 75vh, 900px)",
+                          filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.15))",
+                          transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+                          ...(product.id === "ef2v1" && { transform: "scale(2.1)" }),
+                          ...(product.id === "ef2v2" && { transform: "scale(1.61)" }),
+                          ...(product.id === "ef2v3" && { transform: "scale(1.61)" }),
+                          ...(product.id === "ef5v2" && { transform: "scale(1.55)" }),
+                        }}
+                        loading={i < 2 ? "eager" : "lazy"}
+                      />
+                    )}
                   </motion.div>
 
                   {/* Info — 45% */}
@@ -195,18 +221,17 @@ export default function ProductShowcase() {
                       }}
                     >
                       <span
-                        className="group-hover:text-[#0a0a0a]"
                         style={{
                           fontSize: "11px",
                           fontWeight: 600,
                           textTransform: "uppercase",
                           letterSpacing: "0.3em",
-                          color: "#ff4a1c",
-                          transition:
-                            "color 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                          color: isComingSoon ? "rgba(0,0,0,0.25)" : "#ff4a1c",
+                          transition: "color 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
                         }}
+                        className={isComingSoon ? "" : "group-hover:text-[#0a0a0a]"}
                       >
-                        {t("showcase.viewModel") || "Explorar"} →
+                        {isComingSoon ? t("coming_soon") : (t("showcase.viewModel") || "Explorar") + " →"}
                       </span>
                     </div>
                   </motion.div>

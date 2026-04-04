@@ -21,6 +21,9 @@ export interface Product {
   module: "F10" | "F50";
   badge: string | null;
   heroImage: string;
+  menuImage?: string;
+  showcaseImage?: string;
+  specsImage?: string;
   finishes: ProductFinish[];
   inTheBox: InBoxItem[];
   videoPreview?: string;
@@ -37,6 +40,9 @@ export interface Product {
   }[];
   editorialHeadline?: string;
   editorialBody?: string;
+  editorialVerticalImage?: string;
+  editorialHorizontalImage?: string;
+  fullKitImage?: string;
   galleryImages: string[];
   techTabs: {
     label: string;
@@ -60,11 +66,11 @@ export const products: Product[] = [
       "Accessible entry into the world of electronic drums, without compromising on visual quality or feel.",
     module: "F10",
     badge: null,
-    heroImage: "/assets/images/kits/ef2v1/ef2v1-hero.jpg",
+    heroImage: "/assets/images/kits/ef2v1/ef2v1-principal-nobg.png",
     finishes: [
-      { id: "black", name: "Midnight Black", color: "#1a1a2e", image: "/assets/images/kits/ef2v1/ef2v1-hero.jpg" },
-      { id: "grey", name: "Steel Grey", color: "#4a4a4a", image: "/assets/images/kits/ef2v1/ef2v1-hero.jpg" },
-      { id: "white", name: "Pearl White", color: "#e8e8e8", image: "/assets/images/kits/ef2v1/ef2v1-hero.jpg" },
+      { id: "black", name: "Midnight Black", color: "#1a1a2e", image: "/assets/images/kits/ef2v1/ef2v1-hero-nobg.png" },
+      { id: "grey", name: "Steel Grey", color: "#4a4a4a", image: "/assets/images/kits/ef2v1/ef2v1-hero-nobg.png" },
+      { id: "white", name: "Pearl White", color: "#e8e8e8", image: "/assets/images/kits/ef2v1/ef2v1-hero-nobg.png" },
     ],
     inTheBox: [
       { name: "Snare mesh pad", quantity: 1 },
@@ -89,11 +95,22 @@ export const products: Product[] = [
       { label: "Faixas", value: "1" },
       { label: "Módulo", value: "F10" },
     ],
-    highlights: [],
+    highlights: [
+      { image: "/assets/images/kits/ef2v1/ef2v1-render-6.png", title: "Design.", description: "Estrutura compacta e funcional para quem está começando." },
+      { image: "/assets/images/kits/ef2v1/ef2v1-render-7.png", title: "Módulo.", description: "Módulo F10 com 461 sons e conectividade USB-MIDI." },
+      { image: "/assets/images/kits/ef2v1/ef2v1-render-8.png", title: "Trigger.", description: "Sistema de trigger preciso para resposta natural." },
+      { image: "/assets/images/kits/ef2v1/ef2v1-render-11.png", title: "Estrutura.", description: "Rack em aço tubular resistente e estável." },
+      { image: "/assets/images/kits/ef2v1/ef2v1-render-12.png", title: "Acabamento.", description: "Detalhes que fazem a diferença na experiência." },
+      { image: "/assets/images/kits/ef2v1/ef2v1-render-14.png", title: "Precisão.", description: "Pads mesh com resposta sensível ao toque." },
+    ],
     editorialHeadline: undefined,
     editorialBody: undefined,
+    editorialVerticalImage: "/assets/images/kits/ef2v1/ef2v1-module-vertical.png",
+    editorialHorizontalImage: "/assets/images/kits/ef2v1/ef2v1-render-8.png",
+    fullKitImage: "/assets/images/kits/ef2v1/ef2v1-full-kit.png",
     galleryImages: [
-      "/assets/images/kits/ef2v1/ef2v1-hero.jpg",
+      "/assets/images/kits/ef2v1/ef2v1-hero-nobg.png",
+      "/assets/images/kits/ef2v1/ef2v1-principal-nobg.png",
     ],
     techTabs: [],
   },
@@ -108,11 +125,11 @@ export const products: Product[] = [
       "The best value in electronic drumming — wood-shell aesthetics, modern connectivity, and up to three exclusive finishes.",
     module: "F10",
     badge: "Best Seller",
-    heroImage: "/assets/images/kits/ef2v2/ef2v2-hero.jpg",
+    heroImage: "/assets/images/kits/ef2v2/ef2v2-hero-nobg.png",
     finishes: [
-      { id: "dark", name: "Dark Midnight", color: "#1a1a2e", image: "/assets/images/kits/ef2v2/ef2v2-hero.jpg" },
-      { id: "ocean-blue", name: "Ocean Blue", color: "#1a5a7a", image: "/assets/images/kits/ef2v2/ef2v2-front-blue.jpg" },
-      { id: "racing-red", name: "Racing Red", color: "#8b1a1a", image: "/assets/images/kits/ef2v2/ef2v2-aerial.jpg" },
+      { id: "dark", name: "Dark Midnight", color: "#1a1a2e", image: "/assets/images/kits/ef2v2/ef2v2-hero-nobg.png" },
+      { id: "ocean-blue", name: "Ocean Blue", color: "#1a5a7a", image: "/assets/images/kits/ef2v2/ef2v2-hero-nobg.png" },
+      { id: "racing-red", name: "Racing Red", color: "#8b1a1a", image: "/assets/images/kits/ef2v2/ef2v2-hero-nobg.png" },
     ],
     inTheBox: [
       { name: "Snare mesh pad with shell", quantity: 1 },
@@ -137,14 +154,25 @@ export const products: Product[] = [
       { label: "Faixas", value: "1" },
       { label: "Módulo", value: "F10" },
     ],
-    highlights: [],
+    highlights: [
+      { image: "/assets/images/kits/ef2v2/ef2v2-render-8.png", title: "Design.", description: "Visual de bateria acústica com shells em madeira." },
+      { image: "/assets/images/kits/ef2v2/ef2v2-render-9.png", title: "Shells.", description: "Acabamento premium que eleva a estética do kit." },
+      { image: "/assets/images/kits/ef2v2/ef2v2-render-11.png", title: "Estrutura.", description: "Rack robusto em aço tubular para máxima estabilidade." },
+      { image: "/assets/images/kits/ef2v2/ef2v2-render-17.png", title: "Conectividade.", description: "USB-MIDI para integração com DAWs e softwares." },
+      { image: "/assets/images/kits/ef2v2/ef2v2-render-20.png", title: "Pedal.", description: "Kick pedal incluso para performance realista." },
+      { image: "/assets/images/kits/ef2v2/ef2v2-render-21.png", title: "Pratos.", description: "Crash choke com resposta natural ao toque." },
+      { image: "/assets/images/kits/ef2v2/ef2v2-render-22.png", title: "Precisão.", description: "Pads mesh dual-zone para dinâmica expressiva." },
+    ],
     editorialHeadline: undefined,
     editorialBody: undefined,
+    editorialVerticalImage: "/assets/images/kits/ef2v2/ef2v2-vertical-purple.png",
+    editorialHorizontalImage: "/assets/images/kits/ef2v2/ef2v2-render-5.png",
+    fullKitImage: "/assets/images/kits/ef2v2/ef2v2-full-kit.png",
     galleryImages: [
-      "/assets/images/kits/ef2v2/ef2v2-hero.jpg",
-      "/assets/images/kits/ef2v2/ef2v2-front-blue.jpg",
-      "/assets/images/kits/ef2v2/ef2v2-aerial.jpg",
+      "/assets/images/kits/ef2v2/ef2v2-hero-nobg.png",
+      "/assets/images/kits/ef2v2/ef2v2-numeros-nobg.png",
     ],
+    showcaseImage: "/assets/images/kits/ef2v2/ef2v2-showcase.png",
     techTabs: [],
   },
   {
@@ -159,6 +187,8 @@ export const products: Product[] = [
     module: "F10",
     badge: null,
     heroImage: "/assets/images/kits/ef2v3/ef2v3-hero-nobg.png",
+    menuImage: "/assets/images/kits/ef2v3/ef2v3-menu.png",
+    showcaseImage: "/assets/images/kits/ef2v3/ef2v3-menu.png",
     finishes: [
       { id: "black", name: "Midnight Black", color: "#1a1a2e", image: "/assets/images/kits/ef2v3/ef2v3-hero.jpg" },
       { id: "silver", name: "Brushed Silver", color: "#b0b0b0", image: "/assets/images/kits/ef2v3/ef2v3-hero.jpg" },
@@ -187,10 +217,12 @@ export const products: Product[] = [
       { label: "Módulo", value: "F10" },
     ],
     highlights: [
-      { image: "/assets/images/kits/ef2v3/ef2v3-highlight-design.jpg", title: "Design.", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-      { image: "/assets/images/kits/ef2v3/ef2v3-detail-2.jpg", title: "Tecnologia.", description: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
-      { image: "/assets/images/kits/ef2v3/ef2v3-detail-3.jpg", title: "Performance.", description: "Ut enim ad minim veniam, quis nostrud exercitation." },
-      { image: "/assets/images/kits/ef2v3/ef2v3-detail-4.jpg", title: "Acabamento.", description: "Duis aute irure dolor in reprehenderit in voluptate velit." },
+      { image: "/assets/images/kits/ef2v3/ef2v3-highlight-1.jpg", title: "Design.", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+      { image: "/assets/images/kits/ef2v3/ef2v3-highlight-2.jpg", title: "Tecnologia.", description: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
+      { image: "/assets/images/kits/ef2v3/ef2v3-highlight-3.jpg", title: "Performance.", description: "Ut enim ad minim veniam, quis nostrud exercitation." },
+      { image: "/assets/images/kits/ef2v3/ef2v3-highlight-4.jpg", title: "Acabamento.", description: "Duis aute irure dolor in reprehenderit in voluptate velit." },
+      { image: "/assets/images/kits/ef2v3/ef2v3-highlight-5.jpg", title: "Precisão.", description: "Excepteur sint occaecat cupidatat non proident." },
+      { image: "/assets/images/kits/ef2v3/ef2v3-highlight-6.jpg", title: "Durabilidade.", description: "Sunt in culpa qui officia deserunt mollit anim id est laborum." },
     ],
     editorialHeadline: undefined,
     editorialBody: undefined,
@@ -219,11 +251,12 @@ export const products: Product[] = [
       "Refined hardware, expanded connectivity, and a commanding stage presence at a fraction of flagship pricing.",
     module: "F10",
     badge: null,
-    heroImage: "/assets/images/kits/ef2v4/ef2v4-hero.jpg",
+    heroImage: "/assets/images/kits/ef2v4/ef2v4-hero-nobg.png",
+    specsImage: "/assets/images/kits/ef2v4/ef2v4-specs.png",
     finishes: [
-      { id: "black", name: "Midnight Black", color: "#1a1a2e", image: "/assets/images/kits/ef2v4/ef2v4-hero.jpg" },
-      { id: "blue", name: "Ocean Blue", color: "#1a3a5c", image: "/assets/images/kits/ef2v4/ef2v4-hero.jpg" },
-      { id: "natural", name: "Natural Wood", color: "#c4a265", image: "/assets/images/kits/ef2v4/ef2v4-hero.jpg" },
+      { id: "black", name: "Midnight Black", color: "#1a1a2e", image: "/assets/images/kits/ef2v4/ef2v4-hero-nobg.png" },
+      { id: "blue", name: "Ocean Blue", color: "#1a3a5c", image: "/assets/images/kits/ef2v4/ef2v4-hero-nobg.png" },
+      { id: "natural", name: "Natural Wood", color: "#c4a265", image: "/assets/images/kits/ef2v4/ef2v4-hero-nobg.png" },
     ],
     inTheBox: [
       { name: "Snare mesh pad with shell", quantity: 1 },
@@ -250,19 +283,29 @@ export const products: Product[] = [
       { label: "Faixas", value: "1" },
       { label: "Módulo", value: "F10" },
     ],
-    highlights: [],
+    highlights: [
+      { image: "/assets/images/kits/ef2v4/ef2v4-render-6.png", title: "Design.", description: "Presença de palco com hardware profissional." },
+      { image: "/assets/images/kits/ef2v4/ef2v4-render-9.png", title: "Hi-hat.", description: "Estante de hi-hat dedicada para feel acústico." },
+      { image: "/assets/images/kits/ef2v4/ef2v4-render-15.png", title: "Pedal.", description: "Pedal Equalizer P-803 para máximo controle." },
+      { image: "/assets/images/kits/ef2v4/ef2v4-render-18.png", title: "Rack.", description: "Rack profissional com braços de extensão CB-803EQ." },
+      { image: "/assets/images/kits/ef2v4/ef2v4-render-25.png", title: "Acabamento.", description: "Shells com acabamento premium em cada detalhe." },
+      { image: "/assets/images/kits/ef2v4/ef2v4-render-26.png", title: "Precisão.", description: "Snare stand S-803 para posicionamento ideal." },
+    ],
     editorialHeadline: undefined,
     editorialBody: undefined,
+    editorialVerticalImage: "/assets/images/kits/ef2v4/ef2v4-render-23.png",
+    editorialHorizontalImage: "/assets/images/kits/ef2v4/ef2v4-render-14.png",
+    fullKitImage: "/assets/images/kits/ef2v4/ef2v4-full-kit.png",
     galleryImages: [
-      "/assets/images/kits/ef2v4/ef2v4-hero.jpg",
-      "/assets/images/kits/ef2v4/ef2v4-aerial.jpg",
+      "/assets/images/kits/ef2v4/ef2v4-hero-nobg.png",
+      "/assets/images/kits/ef2v4/ef2v4-numeros-nobg.png",
     ],
     techTabs: [],
   },
   {
     id: "ef6cafe",
     slug: "ef6-cafe-hybrid",
-    name: "EF6 Cafe Hybrid",
+    name: "Odery Cafe Hybrid",
     price: "R$ 10,206",
     priceValue: 10206,
     tagline: "Compact by design. Full by nature.",
@@ -305,6 +348,8 @@ export const products: Product[] = [
     module: "F50",
     badge: null,
     heroImage: "/assets/images/kits/ef5v2/ef5v2-dramatic.jpg",
+    menuImage: "/assets/images/kits/ef5v2/ef5v2-menu.png",
+    showcaseImage: "/assets/images/kits/ef5v2/ef5v2-menu.png",
     finishes: [
       { id: "black", name: "Midnight Black", color: "#1a1a2e", image: "/assets/images/kits/ef5v2/ef5v2-hero.jpg" },
       { id: "pearl", name: "Pearl White", color: "#e8e8e8", image: "/assets/images/kits/ef5v2/ef5v2-hero.jpg" },
@@ -345,7 +390,7 @@ export const products: Product[] = [
   {
     id: "ef7eye",
     slug: "ef7-eye-hybrid",
-    name: "EF7 Eye Hybrid",
+    name: "Odery Eyedentity Hybrid",
     price: "R$ 23,527",
     priceValue: 23527,
     tagline: "The pinnacle. The statement.",
