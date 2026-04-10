@@ -147,6 +147,26 @@ function HeroSection({ product }: { product: Product }) {
         )}
       </motion.div>
 
+      {/* PBO background — fades out over 3s */}
+      <motion.img
+        src="/assets/images/brand/pbo-bco.png"
+        aria-hidden
+        initial={{ opacity: 0.85 }}
+        animate={{ opacity: 0 }}
+        transition={{ duration: 3, ease: "easeOut", delay: 0.3 }}
+        style={{
+          position: "absolute",
+          top: "40%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "clamp(322px, 63vw, 828px)",
+          objectFit: "contain",
+          zIndex: 1,
+          pointerEvents: "none",
+          mixBlendMode: "screen",
+        }}
+      />
+
       {/* Product image */}
       <div style={{ overflow: "hidden", width: "100%", display: "flex", justifyContent: "center" }}>
         <motion.img
@@ -266,6 +286,8 @@ function KeySpecsSection({ product }: { product: Product }) {
                   ? { width: "85%", maxWidth: "none", objectFit: "contain", marginLeft: "7.5%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
                   : product.slug === "ef2-v3"
                   ? { width: "105%", maxWidth: "none", objectFit: "contain", marginLeft: "-2%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                  : product.slug === "ef5-v2"
+                  ? { width: "112%", maxWidth: "none", objectFit: "contain", marginLeft: "-16%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
                   : { width: "200%", maxWidth: "none", objectFit: "contain", marginLeft: "-50%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
               }
             />
@@ -562,6 +584,7 @@ function EditorialSection({ product }: { product: Product }) {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
+            <p style={{ fontSize: "clamp(0.7rem, 0.85vw, 0.8rem)", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", margin: "0 0 0.75rem 0" }}>DNA</p>
             <h2
               style={{
                 fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
@@ -625,15 +648,15 @@ function EditorialSection({ product }: { product: Product }) {
    SECTION 6 — HIGHLIGHTS CAROUSEL
    ═══════════════════════════════════════════════════════ */
 const CARD_WIDTHS = [
-  "clamp(320px, 38vw, 500px)",
-  "clamp(420px, 52vw, 650px)",
-  "clamp(280px, 32vw, 420px)",
-  "clamp(380px, 46vw, 580px)",
-  "clamp(350px, 42vw, 540px)",
-  "clamp(300px, 36vw, 460px)",
+  "clamp(420px, 50vw, 660px)",
+  "clamp(540px, 66vw, 820px)",
+  "clamp(380px, 44vw, 560px)",
+  "clamp(500px, 60vw, 750px)",
+  "clamp(460px, 56vw, 700px)",
+  "clamp(400px, 48vw, 620px)",
 ];
 
-function HighlightCard({ card, cardHeight, index = 0 }: { card: { image: string; title: string; description: string; objectFit?: "cover" | "contain"; objectPosition?: string; cardWidth?: string; link?: { label: string; href: string } }, cardHeight: string, index?: number }) {
+function HighlightCard({ card, cardHeight, index = 0 }: { card: { image: string; title: string; description: string; objectFit?: "cover" | "contain"; objectPosition?: string; cardWidth?: string; scale?: number; link?: { label: string; href: string } }, cardHeight: string, index?: number }) {
   const width = card.cardWidth ?? CARD_WIDTHS[index % CARD_WIDTHS.length];
   return (
     <div
@@ -659,6 +682,7 @@ function HighlightCard({ card, cardHeight, index = 0 }: { card: { image: string;
           pointerEvents: "none",
           borderRadius: "12px",
           background: card.objectFit === "contain" ? "#f5f5f5" : undefined,
+          ...(card.scale != null ? { transform: `scale(${card.scale})`, transformOrigin: card.objectPosition ?? "center" } : {}),
         }}
       />
       <div
@@ -719,7 +743,7 @@ function HighlightsCarousel({ product }: { product: Product }) {
   const mid = Math.ceil(cards.length / 2);
   const row1 = twoRows ? cards.slice(0, mid) : cards;
   const row2 = twoRows ? cards.slice(mid) : [];
-  const cardHeight = twoRows ? "clamp(220px, 24vw, 310px)" : "clamp(350px, 40vw, 500px)";
+  const cardHeight = "clamp(350px, 40vw, 500px)";
 
   const scrollBoth = (delta: number) => {
     scrollRef.current?.scrollBy({ left: delta, behavior: "smooth" });
@@ -888,43 +912,125 @@ export default function ProductDetailPage() {
           <KeySpecsSection product={product} />
 
 
+          {/* Intro text — EF2 V1/V2/V3/V4 + EF5 V2 */}
+          {["ef2-v1", "ef2-v2", "ef2-v3", "ef2-v4", "ef5-v2"].includes(product.slug) && (() => {
+            const pStyle: React.CSSProperties = { fontSize: "clamp(1.15rem, 1.6vw, 1.5rem)", fontWeight: 400, fontStyle: "normal", color: "#111", lineHeight: 1.7, margin: 0 };
+            const pStyleMt: React.CSSProperties = { ...pStyle, marginTop: "1.2rem" };
+            const texts: Record<string, [string, string, string, string]> = {
+              "ef2-v1": [
+                "A e-Force EF2 versão 1",
+                " powered by Odery é a porta de entrada para a nova geração de baterias eletrônicas Odery e-Force, unindo praticidade, conectividade e uma experiência mais natural para quem quer começar a tocar ou estudar com mais conforto.",
+                "Com peles mesh, configuração completa e módulo F10, a EF2 versão 1 entrega os recursos essenciais para uma rotina de estudo moderna, silenciosa e funcional, sem abrir mão de tocabilidade e boa apresentação visual.",
+                "É uma excelente escolha para quem busca uma bateria eletrônica versátil para uso residencial, estudo diário, aulas e primeiros passos no instrumento.",
+              ],
+              "ef2-v2": [
+                "A e-Force EF2 versão 2",
+                " powered by Odery representa um passo importante em tocabilidade e experiência dentro da linha, oferecendo uma configuração mais robusta para quem deseja evoluir com mais conforto, controle e realismo.",
+                "Com caixa maior, kick tower (torre do bumbo), pedal de bumbo real e pratos com função choke, a EF2 V2 entrega uma sensação mais próxima da performance em um kit acústico, mantendo a praticidade e os benefícios de uma bateria eletrônica moderna.",
+                "É uma excelente opção para músicos que já querem começar com um setup mais completo ou para quem busca um modelo intermediário com ótimo equilíbrio entre custo, entrega e percepção de valor.",
+              ],
+              "ef2-v3": [
+                "A e-Force EF2 versão 3",
+                " powered by Odery foi desenvolvida para quem busca mais versatilidade no setup e uma experiência mais completa de performance dentro da linha EF2.",
+                "Com dois crashes, ride com função choke, kick tower (torre do bumbo) e rack reforçado, este modelo amplia as possibilidades de execução e entrega uma configuração mais próxima das necessidades de quem já está em evolução no instrumento.",
+                "A EF2 V3 é indicada para bateristas que desejam mais liberdade de montagem, melhor resposta para prática mais intensa e um kit com presença superior tanto em funcionalidade quanto em percepção visual.",
+              ],
+              "ef2-v4": [
+                "A e-Force EF2 versão 4",
+                " powered by Odery é a versão mais completa da linha EF2, desenvolvida para oferecer uma experiência superior de tocabilidade, estrutura e presença visual.",
+                "Com chimbal de 12\", 02 crashes de 12\", ride de 14\" com 3 zonas, rack profissional em \"L\" e ferragens poderosas da Odery Equalizer inclusas, a EF2 V4 entrega um setup mais próximo da proposta de uma bateria acústica, com mais conforto, estabilidade e percepção de valor.",
+                "É a escolha ideal para quem busca um kit eletrônico mais completo, com visual mais profissional, melhor experiência de uso e uma configuração pronta para atender músicos mais exigentes.",
+              ],
+              "ef5-v2": [
+                "A e-Force EF5 versão 2",
+                " powered by Odery eleva a proposta da linha para um novo patamar de profissionalismo, combinando o poderoso módulo F50 (topo de linha), tambores acústicos com canoas e bases Odery Eyedentity series, bumbo com pele dos dois lados, novo pé de bumbo Odery assim como uma configuração mais robusta para músicos que buscam mais recursos, presença e performance em altíssimo nível.",
+                "Com pratos maiores e estilo Full Cover, interface mais avançada e visual mais completo, a EF5 V2 atende muito bem quem busca uma experiência mais sofisticada e profissional dentro da linha E-Force.",
+                "",
+              ],
+            };
+            const [bold, rest, p2, p3] = texts[product.slug];
+            return (
+              <section style={{ background: "#fff", padding: "clamp(2.5rem, 5vh, 4rem) clamp(1.5rem, 6vw, 6rem)" }}>
+                <AnimatedSection style={{ textAlign: "center" }}>
+                  <p style={pStyle}><strong>{bold}</strong>{rest}</p>
+                  <p style={pStyleMt}>{p2}</p>
+                  {p3 && <p style={pStyleMt}>{p3}</p>}
+                </AnimatedSection>
+              </section>
+            );
+          })()}
+
           {/* Section 4+5: Editorial — horizontal photo + vertical overlap + text */}
           <EditorialSection product={product} />
 
           {/* Full drum kit image between editorial and highlights */}
           {(product.fullKitImage || product.galleryImages.length > 0) && (
-          <section style={{ background: "#ffffff", padding: "clamp(1rem, 3vh, 2.5rem) clamp(1.5rem, 6vw, 6rem)", display: "flex", justifyContent: "center" }}>
+          <section style={{ background: "#ffffff", padding: "clamp(1rem, 3vh, 2.5rem) 0 clamp(1rem, 3vh, 2.5rem) clamp(1.5rem, 6vw, 6rem)", display: "flex", justifyContent: "center", overflow: "hidden" }}>
+            {product.kitConfig ? (
+              <AnimatedSection style={{ width: "100%", display: "flex", alignItems: product.slug === "ef5-v2" ? "flex-start" : "center", gap: "clamp(1.5rem, 4vw, 4rem)", marginRight: "-2%", justifyContent: product.slug === "ef2-v4" ? "center" : undefined }}>
+                <div style={{ flexShrink: 0, paddingLeft: "clamp(1rem, 3vw, 3rem)", paddingTop: product.slug === "ef5-v2" ? "clamp(3rem, 8vh, 7rem)" : undefined, minWidth: "260px", maxWidth: product.slug === "ef2-v1" ? "680px" : product.slug === "ef5-v2" ? "780px" : "600px" }}>
+                  <h3 style={{ fontSize: "clamp(1rem, 1.2vw, 1.25rem)", fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase", color: "#333", marginBottom: "1.4rem", whiteSpace: "nowrap" }}>Configuração do kit</h3>
+                  <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.65rem" }}>
+                    {product.kitConfig.map((item, i) => (
+                      item.startsWith("—") ? (
+                        <li key={i} style={{ fontSize: "clamp(1rem, 1.2vw, 1.25rem)", fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase", color: "#333", margin: "1.2rem 0 0.8rem", whiteSpace: "nowrap" }}>{item.replace(/^—\s*/, "").replace(/\s*—$/, "")}</li>
+                      ) : (
+                        <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", fontSize: "clamp(0.95rem, 1.15vw, 1.15rem)", fontWeight: 700, color: "#111", lineHeight: 1.5 }}>
+                          <span style={{ color: "#E8500A", marginTop: "0.2em", flexShrink: 0 }}>•</span>
+                          {item}
+                        </li>
+                      )
+                    ))}
+                  </ul>
+                </div>
+                <img
+                  src={product.fullKitImage || product.galleryImages[0]}
+                  alt={`${product.name} full angle`}
+                  style={{ marginLeft: product.slug === "ef2-v1" ? "clamp(1rem, 3vw, 3rem)" : product.slug === "ef2-v3" || product.slug === "ef2-v2" ? "clamp(2rem, 5vw, 5rem)" : product.slug === "ef2-v4" ? "clamp(1.5rem, 3vw, 3rem)" : product.slug === "ef5-v2" ? "calc(-1 * clamp(4rem, 12vw, 16rem))" : "auto", width: product.slug === "ef2-v1" ? "46%" : product.slug === "ef2-v2" ? "55%" : product.slug === "ef2-v3" ? "50%" : product.slug === "ef2-v4" ? "56%" : product.slug === "ef5-v2" ? "61%" : "68%", maxWidth: product.slug === "ef2-v1" ? "790px" : product.slug === "ef2-v2" ? "942px" : product.slug === "ef2-v3" ? "858px" : product.slug === "ef2-v4" ? "958px" : product.slug === "ef5-v2" ? "1047px" : "1163px", display: "block", objectFit: "contain" }}
+                />
+              </AnimatedSection>
+            ) : (
             <AnimatedSection style={{ width: "100%", display: "flex", justifyContent: "center" }}>
               <img
                 src={product.fullKitImage || "/assets/images/kits/ef2v3/ef2v3-full-kit.jpg"}
                 alt={`${product.name} full angle`}
                 style={{
                   width: "100%",
-                  maxWidth: product.slug === "ef2-v3" ? "937px" : product.slug === "ef2-v2" ? "50%" : product.slug === "ef2-v4" ? "60%" : "1710px",
+                  maxWidth: "1710px",
                   display: "block",
                   objectFit: "contain",
                 }}
               />
             </AnimatedSection>
+            )}
           </section>
           )}
 
-        {/* Video antes dos destaques — EF5 V2 */}
-        {product.slug === "ef5-v2" && (
-          <section style={{ background: "#000", padding: "clamp(2rem, 5vh, 4rem) 0" }}>
-            <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 clamp(1.5rem, 6vw, 6rem)" }}>
-              <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden", borderRadius: "4px" }}>
-                <iframe
-                  src="https://www.youtube.com/embed/nbTQ5Jv6pvU"
-                  title="EF5 V2"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
-                />
+        {/* Video antes dos destaques */}
+        {(["ef5-v2", "ef2-v1", "ef2-v2", "ef2-v3", "ef2-v4"] as const).includes(product.slug as any) && (() => {
+          const videoIds: Record<string, string> = {
+            "ef5-v2": "uKXTqqVa-DA",
+            "ef2-v1": "mUKYGnKlbtw",
+            "ef2-v2": "Npls6mviuR8",
+            "ef2-v3": "rwlRUHh2kLo",
+            "ef2-v4": "4lYdYrG6Yoc",
+          };
+          return (
+            <section style={{ background: "#000", padding: "clamp(2rem, 5vh, 4rem) 0" }}>
+              <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 clamp(1.5rem, 6vw, 6rem)" }}>
+                <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden", borderRadius: "4px" }}>
+                  <iframe
+                    src={`https://www.youtube.com/embed/${videoIds[product.slug]}`}
+                    title={product.name}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+                  />
+                </div>
               </div>
-            </div>
-          </section>
-        )}
+            </section>
+          );
+        })()}
 
         {/* Section 6: Highlights carousel */}
         <HighlightsCarousel product={product} />

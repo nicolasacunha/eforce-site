@@ -87,7 +87,7 @@ export default function TechnologyPage() {
                 <img
                   src="/assets/images/modulos/f50-side.png"
                   alt="Módulo F50 — conectores"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "inherit" }}
+                  style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius: "inherit" }}
                 />
               </GlowCard>
             </div>
@@ -108,6 +108,8 @@ export default function TechnologyPage() {
                   { label: "Saída", value: "Estéreo" },
                   { label: "Bluetooth", value: "MIDI + Áudio" },
                   { label: "USB MIDI", value: "Sim" },
+                  { label: "Equalizador", value: "Sim" },
+                  { label: "OTG", value: "Gravação direta em celular" },
                 ].map((s) => (
                   <div key={s.label} style={{ borderBottom: "1px solid rgba(255,255,255,0.07)", paddingBottom: "0.75rem" }}>
                     <div style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.15em", color: "rgba(255,255,255,0.35)", marginBottom: "0.3rem" }}>{s.label}</div>
@@ -190,10 +192,10 @@ export default function TechnologyPage() {
                   { label: "Metrônomo", value: "Sim" },
                   { label: "Gravação", value: "Sim" },
                   { label: "Reverbs", value: "5 tipos" },
-                  { label: "Equalizador", value: "Sim" },
                   { label: "Bluetooth", value: "MIDI + Áudio" },
                   { label: "USB MIDI", value: "Sim" },
                   { label: "OTG", value: "Gravação direta" },
+                  { label: "Expansão", value: "Mais um pad ou crash" },
                 ].map((s) => (
                   <div key={s.label} style={{ borderBottom: "1px solid rgba(255,255,255,0.07)", paddingBottom: "0.75rem" }}>
                     <div style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.15em", color: "rgba(255,255,255,0.35)", marginBottom: "0.3rem" }}>{s.label}</div>

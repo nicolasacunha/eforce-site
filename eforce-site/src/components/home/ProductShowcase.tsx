@@ -1,13 +1,15 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { products } from "@/data/products";
+import { usePageTransition } from "@/context/TransitionContext";
 
 const COMING_SOON_IDS = ["ef6cafe", "ef7v1", "ef7eye"];
 
 export default function ProductShowcase() {
   const { lang } = useParams();
   const { t } = useTranslation();
+  const { navigateWithCurtain } = usePageTransition();
 
   return (
     <section>
@@ -29,10 +31,9 @@ export default function ProductShowcase() {
               />
             )}
 
-            <Link
-              to={isComingSoon ? "#" : `/${lang}/kits/${product.slug}`}
-              onClick={isComingSoon ? (e) => e.preventDefault() : undefined}
-              className={`group block ${isComingSoon ? "cursor-default" : ""}`}
+            <div
+              onClick={isComingSoon ? undefined : () => navigateWithCurtain(`/${lang}/kits/${product.slug}`)}
+              className={`group block ${isComingSoon ? "cursor-default" : "cursor-pointer"}`}
               style={{ background: bg }}
             >
               <div
@@ -184,6 +185,7 @@ export default function ProductShowcase() {
                                     letterSpacing: "0.2em",
                                     color: "rgba(0,0,0,0.35)",
                                     marginTop: "0.5rem",
+                                    whiteSpace: "pre-line",
                                   }}
                                 >
                                   {spec.label}
@@ -239,7 +241,7 @@ export default function ProductShowcase() {
                   </motion.div>
                 </div>
               </div>
-            </Link>
+            </div>
           </div>
         );
       })}

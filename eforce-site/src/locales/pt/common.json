@@ -121,7 +121,8 @@
     "tagline": "O pulso definitivo do baterista.",
     "copyright": "© 2025 E-Force / Odery Drums Brazil.",
     "privacy": "Privacidade",
-    "terms": "Termos"
+    "terms": "Termos",
+    "rights": "Todos os direitos reservados."
   },
   "home": {
     "stats": {
@@ -131,9 +132,9 @@
     },
     "discover": "Descobrir",
     "seeFullLine": "Todos os modelos",
-    "bestSeller": "MAIS VENDIDO",
-    "professional": "PROFISSIONAL",
-    "flagship": "TOPO DE LINHA",
+    "bestSeller": "Mais Vendido",
+    "professional": "Profissional",
+    "flagship": "Topo de Linha",
     "identity": "IDENTIDADE",
     "discoverHeritage": "Nossa história",
     "watchFilm": "Assistir",

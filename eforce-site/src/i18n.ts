@@ -4,9 +4,6 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 import en from './locales/en/common.json';
 import pt from './locales/pt/common.json';
-import es from './locales/es/common.json';
-import it from './locales/it/common.json';
-import zh from './locales/zh/common.json';
 
 i18n
   .use(LanguageDetector)
@@ -15,11 +12,9 @@ i18n
     resources: {
       en: { translation: en },
       pt: { translation: pt },
-      es: { translation: es },
-      it: { translation: it },
-      zh: { translation: zh },
     },
-    fallbackLng: 'en',
+    fallbackLng: 'pt',
+    lng: 'pt',
     interpolation: {
       escapeValue: false,
     },
@@ -31,9 +26,6 @@ i18n
 
 export default i18n;
 export const supportedLanguages = [
-  { code: 'en', name: 'English', flag: '🇺🇸' },
   { code: 'pt', name: 'Português', flag: '🇧🇷' },
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
-  { code: 'zh', name: '中文', flag: '🇨🇳' },
+  { code: 'en', name: 'English', flag: '🇺🇸' },
 ] as const;

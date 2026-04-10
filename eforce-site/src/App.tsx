@@ -5,6 +5,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import '@/i18n';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import { TransitionProvider } from '@/context/TransitionContext';
+import CurtainOverlay from '@/components/layout/CurtainOverlay';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const LinePage = lazy(() => import('@/pages/LinePage'));
@@ -41,7 +43,8 @@ function Layout() {
   }, [location.pathname]);
 
   return (
-    <>
+    <TransitionProvider>
+      <CurtainOverlay />
       <Navbar />
       <main>
         <AnimatePresence mode="wait">
@@ -50,7 +53,7 @@ function Layout() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.15 }}
           >
             <Suspense fallback={<LoadingFallback />}>
               <Outlet />
@@ -59,7 +62,7 @@ function Layout() {
         </AnimatePresence>
       </main>
       <Footer />
-    </>
+    </TransitionProvider>
   );
 }
 

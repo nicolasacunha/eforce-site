@@ -9,9 +9,6 @@ export default function Footer() {
   const languages = [
     { code: "pt", label: "Brasil / Portugu\u00EAs", flag: "\u{1F1E7}\u{1F1F7}" },
     { code: "en", label: "English", flag: "\u{1F1FA}\u{1F1F8}" },
-    { code: "es", label: "Espa\u00F1ol", flag: "\u{1F1EA}\u{1F1F8}" },
-    { code: "it", label: "Italiano", flag: "\u{1F1EE}\u{1F1F9}" },
-    { code: "zh", label: "\u4E2D\u6587", flag: "\u{1F1E8}\u{1F1F3}" },
   ];
 
   const switchLanguage = (newLang: string) => {

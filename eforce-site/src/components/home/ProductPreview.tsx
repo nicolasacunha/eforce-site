@@ -2,11 +2,13 @@ import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 import { products } from '@/data/products';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { usePageTransition } from '@/context/TransitionContext';
 
 export default function ProductPreview() {
   const { t } = useTranslation();
   const { lang } = useParams();
   const { ref, isVisible } = useScrollReveal(0.1);
+  const { navigateWithCurtain } = usePageTransition();
 
   return (
     <section
@@ -33,7 +35,8 @@ export default function ProductPreview() {
             return (
               <div
                 key={product.id}
-                className={`group snap-center flex-shrink-0 w-72 md:w-80 bg-brand-black rounded-xl overflow-hidden border border-brand-border transition-shadow duration-500 ${
+                onClick={() => navigateWithCurtain(`/${lang}/kits/${product.slug}`)}
+                className={`group snap-center flex-shrink-0 w-72 md:w-80 bg-brand-black rounded-xl overflow-hidden border border-brand-border transition-shadow duration-500 cursor-pointer ${
                   isHighlighted ? 'ring-1 ring-brand-orange/30 shadow-lg shadow-brand-orange/5' : ''
                 }`}
               >
@@ -47,7 +50,7 @@ export default function ProductPreview() {
                   />
                   {product.badge && (
                     <span className="absolute top-4 right-4 bg-brand-orange text-white font-display text-xs font-semibold px-3 py-1 rounded-full">
-                      {product.badge}
+                      {t(product.badge)}
                     </span>
                   )}
                 </div>
@@ -63,12 +66,9 @@ export default function ProductPreview() {
                   <p className="font-mono text-sm text-brand-text-secondary mt-3">
                     {t('line.from')} {product.price}
                   </p>
-                  <Link
-                    to={`/${lang}/kits/${product.slug}`}
-                    className="inline-block mt-3 font-display text-sm text-brand-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  >
+                  <span className="inline-block mt-3 font-display text-sm text-brand-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {t('line.viewKit')} &rarr;
-                  </Link>
+                  </span>
                 </div>
               </div>
             );

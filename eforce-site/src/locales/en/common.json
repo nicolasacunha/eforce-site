@@ -121,7 +121,8 @@
     "tagline": "The ultimate drummer's pulse.",
     "copyright": "© 2025 E-Force / Odery Drums Brazil.",
     "privacy": "Privacy",
-    "terms": "Terms"
+    "terms": "Terms",
+    "rights": "All rights reserved."
   },
   "home": {
     "stats": {
@@ -131,9 +132,9 @@
     },
     "discover": "Discover",
     "seeFullLine": "All models",
-    "bestSeller": "BEST SELLER",
-    "professional": "PROFESSIONAL",
-    "flagship": "FLAGSHIP",
+    "bestSeller": "Best Seller",
+    "professional": "Professional",
+    "flagship": "Flagship",
     "identity": "IDENTITY",
     "discoverHeritage": "Our story",
     "watchFilm": "Watch",

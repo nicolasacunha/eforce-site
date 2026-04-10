@@ -25,9 +25,6 @@ export default function Navbar() {
   const languages = [
     { code: "pt", label: "PT", flag: "\u{1F1E7}\u{1F1F7}" },
     { code: "en", label: "EN", flag: "\u{1F1FA}\u{1F1F8}" },
-    { code: "es", label: "ES", flag: "\u{1F1EA}\u{1F1F8}" },
-    { code: "it", label: "IT", flag: "\u{1F1EE}\u{1F1F9}" },
-    { code: "zh", label: "ZH", flag: "\u{1F1E8}\u{1F1F3}" },
   ];
 
   const switchLanguage = (newLang: string) => {

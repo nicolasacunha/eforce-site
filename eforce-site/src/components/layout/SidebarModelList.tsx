@@ -1,6 +1,7 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { products } from "@/data/products";
+import { usePageTransition } from "@/context/TransitionContext";
 
 interface SidebarModelListProps {
   onNavigate: () => void;
@@ -11,14 +12,18 @@ const COMING_SOON_IDS = ["ef6cafe", "ef7eye"];
 export function SidebarModelList({ onNavigate }: SidebarModelListProps) {
   const { lang } = useParams();
   const { t } = useTranslation();
+  const { navigateWithCurtain } = usePageTransition();
   return (
     <div className="flex flex-col gap-10">
       {products.map((product) => (
-        <Link
+        <div
           key={product.id}
-          to={`/${lang}/kits/${product.slug}`}
-          onClick={onNavigate}
-          className="group block"
+          onClick={() => {
+            if (COMING_SOON_IDS.includes(product.id)) return;
+            onNavigate();
+            navigateWithCurtain(`/${lang}/kits/${product.slug}`);
+          }}
+          className="group block cursor-pointer"
         >
           <h3 className="text-gray-900 font-bold text-xl mb-3 group-hover:text-brand-orange transition-colors">
             {product.name}
@@ -52,7 +57,7 @@ export function SidebarModelList({ onNavigate }: SidebarModelListProps) {
               {product.module}
             </span>
           </div>
-        </Link>
+        </div>
       ))}
     </div>
   );

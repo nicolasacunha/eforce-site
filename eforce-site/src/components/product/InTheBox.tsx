@@ -26,13 +26,14 @@ function PackageIcon() {
 }
 
 export default function InTheBox({ product }: InTheBoxProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isEn = i18n.language === 'en';
 
   if (product.inTheBox.length === 0) {
     return (
       <div className="mx-auto max-w-4xl px-6 text-center">
         <p className="font-body text-sm text-gray-500">
-          {t('product.detailsComingSoon', 'Details coming soon')}
+          {t('product.detailsComingSoon', isEn ? 'Details coming soon' : 'Detalhes em breve')}
         </p>
       </div>
     );
@@ -53,7 +54,7 @@ export default function InTheBox({ product }: InTheBoxProps) {
               </span>
             )}
             <p className="mt-3 font-body text-sm text-gray-500">
-              {item.name}
+              {isEn && item.nameEn ? item.nameEn : item.name}
             </p>
           </div>
         ))}
