@@ -102,7 +102,7 @@ export const products: Product[] = [
       { label: "Módulo", value: "F10" },
     ],
     highlights: [
-      { image: "/assets/images/kits/ef2v1/ef2v1-render-6.png", title: "Design.", description: "Estrutura compacta, leve e funcional para qualquer estilo musical." },
+      { image: "/assets/images/kits/ef2v1/ef2v1-render-6.png", title: "Design.", description: "Estrutura compacta, leve e funcional para qualquer estilo musical.", objectFit: "contain" as const },
       { image: "/assets/images/kits/ef2v1/ef2v1-dest-15.png", title: "Módulo.", description: "Modelo F10 com conectividade bluetooth, porta OTG e USB-C (funciona com power bank).", link: { label: "Saiba mais aqui", href: "/technology" } },
       { image: "/assets/images/kits/ef2v1/ef2v1-render-8.png", title: "Tecnologia e Construção.", description: "Cascos de madeira e tecnologia de ponta com trigger e peles mesh para melhor sensibilidade e feeling real ao tocar." },
       { image: "/assets/images/kits/ef2v1/ef2v1-dest-14.png", title: "Detalhes Importam.", description: "Cada detalhe pensado para valorizar sua sensação ao explorar e tocar sua e-Force." },
