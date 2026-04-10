@@ -41,6 +41,7 @@ export interface Product {
     description: string;
     objectFit?: "cover" | "contain";
     objectPosition?: string;
+    cardWidth?: string;
     link?: { label: string; href: string };
   }[];
   editorialHeadline?: string;
@@ -102,12 +103,12 @@ export const products: Product[] = [
       { label: "Módulo", value: "F10" },
     ],
     highlights: [
-      { image: "/assets/images/kits/ef2v1/ef2v1-render-6.png", title: "Design.", description: "Estrutura compacta, leve e funcional para qualquer estilo musical.", objectFit: "contain" as const },
+      { image: "/assets/images/kits/ef2v1/ef2v1-render-6.png", title: "Design.", description: "Estrutura compacta, leve e funcional para qualquer estilo musical.", objectPosition: "65% center", cardWidth: "clamp(520px, 68vw, 820px)" },
       { image: "/assets/images/kits/ef2v1/ef2v1-dest-15.png", title: "Módulo.", description: "Modelo F10 com conectividade bluetooth, porta OTG e USB-C (funciona com power bank).", link: { label: "Saiba mais aqui", href: "/technology" } },
       { image: "/assets/images/kits/ef2v1/ef2v1-render-8.png", title: "Tecnologia e Construção.", description: "Cascos de madeira e tecnologia de ponta com trigger e peles mesh para melhor sensibilidade e feeling real ao tocar." },
       { image: "/assets/images/kits/ef2v1/ef2v1-dest-14.png", title: "Detalhes Importam.", description: "Cada detalhe pensado para valorizar sua sensação ao explorar e tocar sua e-Force." },
-      { image: "/assets/images/kits/ef2v1/ef2v1-dest-16.png", title: "Precisão.", description: "Construção precisa e robusta para cada peça, do rack, dos cascos aos clamps que seguram os tambores." },
-      { image: "/assets/images/kits/ef2v1/ef2v1-dest-17.png", title: "Pedais.", description: "Com acionamento por sensor, os pedais e-Force entregam precisão e rápido acionamento, facilitando sua técnica ao tocar." },
+      { image: "/assets/images/kits/ef2v1/ef2v1-dest-16.png", title: "Precisão.", description: "Construção precisa e robusta para cada peça, do rack, dos cascos aos clamps que seguram os tambores.", cardWidth: "clamp(380px, 48vw, 600px)" },
+      { image: "/assets/images/kits/ef2v1/ef2v1-dest-pedais-v2.png", title: "Pedais.", description: "Com acionamento por sensor, os pedais e-Force entregam precisão e rápido acionamento, facilitando sua técnica ao tocar.", objectFit: "contain", cardWidth: "clamp(460px, 58vw, 720px)" },
     ],
     editorialHeadline: undefined,
     editorialBody: undefined,
@@ -162,12 +163,11 @@ export const products: Product[] = [
       { label: "Módulo", value: "F10" },
     ],
     highlights: [
-      { image: "/assets/images/kits/ef2v2/ef2v2-dest-18.png", title: "Design.", description: "Visual minimalista, cascos de madeira e opções de acabamentos. Pronta para o play!" },
-      { image: "/assets/images/kits/ef2v2/ef2v2-render-9.png", title: "Acabamentos.", description: "Prato com visual bicolor e função \"choque\"." },
-      { image: "/assets/images/kits/ef2v2/ef2v2-dest-19.png", title: "Tecnologia e Conectividade.", description: "Modelo F10 com conectividade bluetooth, porta OTG e USB-C (funciona com power bank).", link: { label: "Saiba mais aqui", href: "/technology" } },
-      { image: "/assets/images/kits/ef2v2/ef2v2-dest-20.png", title: "Estrutura.", description: "Rack compacto, estruturalmente sólido e estável." },
-      { image: "/assets/images/kits/ef2v2/ef2v2-dest-21.png", title: "Acabamentos.", description: "Escolha entre três diferentes acabamentos. Na e-Force você é livre para escolher." },
-      { image: "/assets/images/kits/ef2v2/ef2v2-dest-22.png", title: "Pedal.", description: "Pedal de bumbo nível Odery de verdade. Conta com corrente, regulagem de pressão e ângulo. Sua técnica no controle." },
+      { image: "/assets/images/kits/ef2v2/ef2v2-dest-design.png", title: "Design.", description: "Visual minimalista, cascos de madeira e opções de acabamentos. Pronta para o play!", cardWidth: "clamp(520px, 65vw, 820px)" },
+      { image: "/assets/images/kits/ef2v2/ef2v2-dest-acabamentos.png", title: "Acabamentos.", description: "Prato com visual bicolor e função \"choque\"." },
+      { image: "/assets/images/kits/ef2v2/ef2v2-dest-tecnologia.png", title: "Tecnologia e Conectividade.", description: "Modelo F10 com conectividade bluetooth, porta OTG e USB-C (funciona com power bank).", link: { label: "Saiba mais aqui", href: "/technology" } },
+      { image: "/assets/images/kits/ef2v2/ef2v2-dest-estrutura.png", title: "Estrutura.", description: "Rack compacto, estruturalmente sólido e estável.", cardWidth: "clamp(520px, 65vw, 820px)" },
+      { image: "/assets/images/kits/ef2v2/ef2v2-dest-pedal.png", title: "Pedal.", description: "Pedal de bumbo nível Odery de verdade. Conta com corrente, regulagem de pressão e ângulo. Sua técnica no controle." },
     ],
     editorialHeadline: undefined,
     editorialBody: undefined,
@@ -223,8 +223,8 @@ export const products: Product[] = [
       { label: "Módulo", value: "F10" },
     ],
     highlights: [
-      { image: "/assets/images/kits/ef2v3/ef2v3-destaques.png", title: "Design.", description: "Visual atraente de bateria de nível superior com rack amplo e design marcante. Cascos de madeira com cores modernas e marcantes." },
-      { image: "/assets/images/kits/ef2v3/ef2v3-dest-23.png", title: "Tecnologia.", description: "Explore o módulo F10 com Bluetooth nativo, Porta OTG para gravações ao vivo e carregamento via Power bank." },
+      { image: "/assets/images/kits/ef2v3/ef2v3-dest-design.png", title: "Design.", description: "Visual atraente de bateria de nível superior com rack amplo e design marcante. Cascos de madeira com cores modernas e marcantes.", cardWidth: "clamp(520px, 65vw, 820px)" },
+      { image: "/assets/images/kits/ef2v3/ef2v3-dest-23.png", title: "Tecnologia.", description: "Explore o módulo F10 com Bluetooth nativo, Porta OTG para gravações ao vivo e carregamento via Power bank.", objectFit: "contain", cardWidth: "clamp(260px, 28vw, 360px)" },
       { image: "/assets/images/kits/ef2v3/ef2v3-dest-24.png", title: "Shells.", description: "Cascos de madeira remetendo à baterias acústicas com peles Mesh e possibilidade de afinação para uma melhor sensibilidade." },
       { image: "/assets/images/kits/ef2v3/ef2v3-dest-25.png", title: "Performance e Precisão.", description: "Conexões de design refinado e extremamente funcionais. Estabilidade e performance sólidas para que você deixe sua técnica fluir." },
       { image: "/assets/images/kits/ef2v3/ef2v3-dest-26.png", title: "Acabamento.", description: "Cores especiais para quem quer ter escolha. A e-Force não te limita! Note a plaquinha de identificação. Nossa cereja do bolo." },
@@ -291,10 +291,10 @@ export const products: Product[] = [
       { label: "Módulo", value: "F10" },
     ],
     highlights: [
-      { image: "/assets/images/kits/ef2v4/ef2v4-dest-30.png", title: "Design.", description: "Visual de bateria de nível superior. Conta com ferragens reais da série Odery Equalizer e pratos Full cover." },
+      { image: "/assets/images/kits/ef2v4/ef2v4-dest-30.png", title: "Design.", description: "Visual de bateria de nível superior. Conta com ferragens reais da série Odery Equalizer e pratos Full cover.", cardWidth: "clamp(520px, 65vw, 820px)" },
       { image: "/assets/images/kits/ef2v4/ef2v4-dest-31.png", title: "Pratos Full Cover.", description: "Pratos top de linha com toque sensível e suave, além de um visual moderno e com funções completas para atender o mais exigente baterista." },
-      { image: "/assets/images/kits/ef2v4/ef2v4-dest-32.png", title: "Ferragens.", description: "Ferragens Odery Equalizer – Pedal, máquina chimbal, suporte de caixa e extensores de pratos." },
-      { image: "/assets/images/kits/ef2v4/ef2v4-dest-33.png", title: "Tecnologia.", description: "Explore o módulo F10 com Bluetooth nativo, Porta OTG para gravações ao vivo e carregamento via Power bank." },
+      { image: "/assets/images/kits/ef2v4/ef2v4-dest-32.png", title: "Ferragens.", description: "Ferragens Odery Equalizer – Pedal, máquina chimbal, suporte de caixa e extensores de pratos.", cardWidth: "clamp(520px, 65vw, 820px)" },
+      { image: "/assets/images/kits/ef2v4/ef2v4-dest-33.png", title: "Tecnologia.", description: "Explore o módulo F10 com Bluetooth nativo, Porta OTG para gravações ao vivo e carregamento via Power bank.", objectFit: "contain", cardWidth: "clamp(260px, 28vw, 360px)" },
       { image: "/assets/images/kits/ef2v4/ef2v4-dest-34.png", title: "Shells.", description: "Cascos de madeira com a pegada acústica, peles Mesh e possibilidade de afinar a tensão para um melhor feeling ao tocar." },
       { image: "/assets/images/kits/ef2v4/ef2v4-dest-35.png", title: "Acabamento.", description: "Acabamentos primorosos em cada detalhe tal qual a placa de identificação – nossa cereja do bolo." },
     ],

@@ -261,7 +261,7 @@ function KeySpecsSection({ product }: { product: Product }) {
               style={product.slug === "ef2-v4"
                 ? { width: "97%", maxWidth: "none", objectFit: "contain", marginLeft: "1.5%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
                 : product.slug === "ef2-v2"
-                  ? { width: "136%", maxWidth: "none", objectFit: "contain", marginLeft: "-25.5%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                  ? { width: "170%", maxWidth: "none", objectFit: "contain", marginLeft: "-34%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
                   : product.slug === "ef2-v1"
                   ? { width: "85%", maxWidth: "none", objectFit: "contain", marginLeft: "7.5%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
                   : product.slug === "ef2-v3"
@@ -625,19 +625,20 @@ function EditorialSection({ product }: { product: Product }) {
    SECTION 6 — HIGHLIGHTS CAROUSEL
    ═══════════════════════════════════════════════════════ */
 const CARD_WIDTHS = [
-  "clamp(260px, 30vw, 400px)",
-  "clamp(340px, 40vw, 520px)",
-  "clamp(220px, 24vw, 300px)",
-  "clamp(300px, 35vw, 460px)",
+  "clamp(320px, 38vw, 500px)",
+  "clamp(420px, 52vw, 650px)",
+  "clamp(280px, 32vw, 420px)",
+  "clamp(380px, 46vw, 580px)",
+  "clamp(350px, 42vw, 540px)",
+  "clamp(300px, 36vw, 460px)",
 ];
 
-function HighlightCard({ card, cardHeight, index = 0 }: { card: { image: string; title: string; description: string; objectFit?: "cover" | "contain"; objectPosition?: string; link?: { label: string; href: string } }, cardHeight: string, index?: number }) {
-  const width = CARD_WIDTHS[index % CARD_WIDTHS.length];
+function HighlightCard({ card, cardHeight, index = 0 }: { card: { image: string; title: string; description: string; objectFit?: "cover" | "contain"; objectPosition?: string; cardWidth?: string; link?: { label: string; href: string } }, cardHeight: string, index?: number }) {
+  const width = card.cardWidth ?? CARD_WIDTHS[index % CARD_WIDTHS.length];
   return (
     <div
       style={{
         flex: "0 0 auto",
-        scrollSnapAlign: "start",
         position: "relative",
         overflow: "hidden",
         borderRadius: "12px",
@@ -747,7 +748,7 @@ function HighlightsCarousel({ product }: { product: Product }) {
         if (!r.current) return;
         r.current.style.cursor = "grab";
         r.current.style.scrollBehavior = "smooth";
-        r.current.style.scrollSnapType = "x mandatory";
+        r.current.style.scrollSnapType = "none";
       });
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseup", onUp);
@@ -763,7 +764,6 @@ function HighlightsCarousel({ product }: { product: Product }) {
     paddingLeft: "clamp(3rem, 6vw, 6rem)",
     paddingRight: "clamp(3rem, 6vw, 6rem)",
     paddingBottom: "0.5rem",
-    scrollSnapType: "x mandatory",
     scrollBehavior: "smooth" as const,
     cursor: "grab",
     userSelect: "none" as const,
