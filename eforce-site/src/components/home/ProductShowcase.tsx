@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { products } from "@/data/products";
 
-const COMING_SOON_IDS = ["ef6cafe", "ef7eye"];
+const COMING_SOON_IDS = ["ef6cafe", "ef7v1", "ef7eye"];
 
 export default function ProductShowcase() {
   const { lang } = useParams();
@@ -91,7 +91,7 @@ export default function ProductShowcase() {
                           maxHeight: "clamp(450px, 75vh, 900px)",
                           filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.15))",
                           transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
-                          ...(product.id === "ef2v1" && { transform: "scale(2.1)" }),
+                          ...(product.id === "ef2v1" && { transform: "scale(1.75)" }),
                           ...(product.id === "ef2v2" && { transform: "scale(1.61)" }),
                           ...(product.id === "ef2v3" && { transform: "scale(1.61)" }),
                           ...(product.id === "ef5v2" && { transform: "scale(1.55)" }),
@@ -119,7 +119,9 @@ export default function ProductShowcase() {
                     <h2
                       className="group-hover:text-[#ff4a1c]"
                       style={{
-                        fontSize: "clamp(2.8rem, 7vw, 7rem)",
+                        fontSize: ["ef6cafe", "ef7eye"].includes(product.id)
+                          ? "clamp(1.8rem, 3.5vw, 4rem)"
+                          : "clamp(2.8rem, 7vw, 7rem)",
                         lineHeight: 0.92,
                         letterSpacing: "-0.04em",
                         fontWeight: 700,

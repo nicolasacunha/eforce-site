@@ -1,13 +1,12 @@
 import { useState, useRef, useEffect } from "react";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams, Navigate, Link } from "react-router-dom";
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import SEO from "@/components/layout/SEO";
 import { getProductBySlug } from "@/data/products";
 import type { Product } from "@/data/products";
 import { StickyContextBar } from "@/components/product/StickyContextBar";
 import { ModelSwitcher } from "@/components/product/ModelSwitcher";
-import ShaderBackground from "@/components/ui/shader-background";
-import CyberneticGridShader from "@/components/ui/cybernetic-grid-shader";
+import { ParticleHeroBackground } from "@/components/product/ParticleHeroBackground";
 
 /* ── animation helpers ──────────────────────────────── */
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -72,7 +71,7 @@ function HeroSection({ product }: { product: Product }) {
       style={{
         background: "#ffffff",
         position: "relative",
-        overflowY: "visible",
+        overflow: "visible",
         padding: "clamp(5rem, 10vh, 8rem) clamp(1.5rem, 6vw, 6rem) 0",
         display: "flex",
         flexDirection: "column",
@@ -93,28 +92,10 @@ function HeroSection({ product }: { product: Product }) {
           zIndex: 0,
         }}
       >
-        {product.slug.startsWith("ef2-") ? (
-          <>
-            <div style={{ position: "absolute", inset: 0, opacity: 0.9 }}>
-              {product.slug === "ef2-v2" ? <CyberneticGridShader /> : <ShaderBackground />}
-            </div>
-            <div style={{
-              position: "absolute", inset: 0,
-              display: "flex", alignItems: "center", justifyContent: "center",
-            }}>
-              <img
-                src="/assets/images/kits/ef2v1/ef2v1-detail-center.png"
-                alt="E-Force EF2 V1 detail"
-                style={{
-                  width: "180%",
-                  height: "200%",
-                  objectFit: "contain",
-                  opacity: 0,
-                  filter: "drop-shadow(0 0 30px rgba(0,160,255,0.35)) drop-shadow(0 0 60px rgba(120,0,255,0.25))",
-                }}
-              />
-            </div>
-          </>
+        {(product.slug.startsWith("ef2-") || product.slug === "ef5-v2") ? (
+          <div style={{ position: "absolute", inset: 0, opacity: 0.9 }}>
+            <ParticleHeroBackground />
+          </div>
         ) : (
           <video
             autoPlay
@@ -133,12 +114,12 @@ function HeroSection({ product }: { product: Product }) {
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, ease }}
         style={{
-          position: "relative",
+          position: "absolute",
+          top: "clamp(5.5rem, 11vh, 9rem)",
+          left: 0,
+          right: 0,
           zIndex: 1,
           textAlign: "center",
-          overflow: "visible",
-          width: "100vw",
-          marginLeft: "calc(-1 * clamp(1.5rem, 6vw, 6rem))",
           fontSize: "clamp(4rem, 10vw, 9rem)",
           fontWeight: 800,
           fontStyle: "italic",
@@ -147,12 +128,23 @@ function HeroSection({ product }: { product: Product }) {
           userSelect: "none",
           whiteSpace: "nowrap",
           letterSpacing: "-0.04em",
-          marginTop: "2rem",
-          transform: "translateY(3rem)",
-          marginBottom: "-12rem",
+          pointerEvents: "none",
         }}
       >
         {product.name}
+        {product.subtitle && (
+          <div style={{
+            fontSize: "clamp(0.9rem, 1.8vw, 1.5rem)",
+            fontWeight: 400,
+            fontStyle: "normal",
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.55)",
+            marginTop: "0.4em",
+          }}>
+            {product.subtitle}
+          </div>
+        )}
       </motion.div>
 
       {/* Product image */}
@@ -166,9 +158,9 @@ function HeroSection({ product }: { product: Product }) {
           style={{
             position: "relative",
             zIndex: 2,
-            maxWidth: product.slug === "ef2-v1" ? "min(117vw, 1520px)" : product.slug === "ef2-v4" ? "min(64vw, 830px)" : product.slug === "ef2-v2" ? "min(73vw, 950px)" : "min(80vw, 1100px)",
-            width: product.slug === "ef2-v1" ? "109%" : product.slug === "ef2-v4" ? "60%" : product.slug === "ef2-v2" ? "68%" : "75%",
-            marginTop: ["ef2-v2", "ef2-v3", "ef2-v4"].includes(product.slug) ? "12rem" : product.slug === "ef2-v1" ? "6.5rem" : undefined,
+            maxWidth: product.slug === "ef2-v4" ? "min(65vw, 910px)" : product.slug === "ef2-v2" ? "min(80vw, 1127px)" : product.slug === "ef5-v2" ? "min(73vw, 1024px)" : product.slug === "ef2-v3" ? "min(90vw, 1260px)" : product.slug === "ef2-v1" ? "min(100vw, 1400px)" : "min(80vw, 1100px)",
+            width: product.slug === "ef2-v4" ? "65%" : product.slug === "ef2-v2" ? "80%" : product.slug === "ef5-v2" ? "73%" : product.slug === "ef2-v3" ? "90%" : product.slug === "ef2-v1" ? "100%" : "75%",
+            marginTop: product.slug === "ef2-v4" ? "clamp(7rem, 11vh, 10rem)" : product.slug === "ef2-v2" ? "clamp(8rem, 14vh, 12rem)" : product.slug === "ef5-v2" ? "clamp(6rem, 10vh, 9rem)" : product.slug === "ef2-v1" ? "clamp(5rem, 9vh, 8rem)" : product.slug === "ef2-v3" ? "clamp(0rem, 2vh, 1.5rem)" : "clamp(2rem, 5vh, 4rem)",
             objectFit: "contain",
             filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.15))",
           }}
@@ -267,11 +259,13 @@ function KeySpecsSection({ product }: { product: Product }) {
               src={product.specsImage ?? aerialImage}
               alt={`${product.name} view`}
               style={product.slug === "ef2-v4"
-                ? { width: "105%", maxWidth: "none", objectFit: "contain", marginLeft: "-2.5%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                ? { width: "97%", maxWidth: "none", objectFit: "contain", marginLeft: "1.5%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
                 : product.slug === "ef2-v2"
                   ? { width: "136%", maxWidth: "none", objectFit: "contain", marginLeft: "-25.5%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
                   : product.slug === "ef2-v1"
-                  ? { width: "160%", maxWidth: "none", objectFit: "contain", marginLeft: "-30%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                  ? { width: "85%", maxWidth: "none", objectFit: "contain", marginLeft: "7.5%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                  : product.slug === "ef2-v3"
+                  ? { width: "105%", maxWidth: "none", objectFit: "contain", marginLeft: "-2%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
                   : { width: "200%", maxWidth: "none", objectFit: "contain", marginLeft: "-50%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
               }
             />
@@ -630,8 +624,77 @@ function EditorialSection({ product }: { product: Product }) {
 /* ═══════════════════════════════════════════════════════
    SECTION 6 — HIGHLIGHTS CAROUSEL
    ═══════════════════════════════════════════════════════ */
+const CARD_WIDTHS = [
+  "clamp(260px, 30vw, 400px)",
+  "clamp(340px, 40vw, 520px)",
+  "clamp(220px, 24vw, 300px)",
+  "clamp(300px, 35vw, 460px)",
+];
+
+function HighlightCard({ card, cardHeight, index = 0 }: { card: { image: string; title: string; description: string; objectFit?: "cover" | "contain"; objectPosition?: string; link?: { label: string; href: string } }, cardHeight: string, index?: number }) {
+  const width = CARD_WIDTHS[index % CARD_WIDTHS.length];
+  return (
+    <div
+      style={{
+        flex: "0 0 auto",
+        scrollSnapAlign: "start",
+        position: "relative",
+        overflow: "hidden",
+        borderRadius: "12px",
+        width,
+        height: cardHeight,
+      }}
+    >
+      <img
+        src={card.image}
+        alt={card.title}
+        draggable={false}
+        style={{
+          width: "100%",
+          height: cardHeight,
+          objectFit: card.objectFit ?? "cover",
+          objectPosition: card.objectPosition ?? "center",
+          display: "block",
+          pointerEvents: "none",
+          borderRadius: "12px",
+          background: card.objectFit === "contain" ? "#f5f5f5" : undefined,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)",
+          padding: "clamp(1.5rem, 3vw, 2.5rem) 1.5rem 1.5rem",
+        }}
+      >
+        <div style={{ maxWidth: "350px" }}>
+          <h3 style={{ color: "#fff", fontWeight: 700, fontSize: "clamp(1rem, 1.6vw, 1.35rem)", margin: "0 0 0.4rem 0" }}>
+            {card.title}
+          </h3>
+          <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "clamp(0.75rem, 0.9vw, 0.85rem)", lineHeight: 1.5, margin: 0 }}>
+            {card.description}
+            {card.link && (
+              <a
+                href={card.link.href}
+                style={{ display: "inline-block", marginTop: "0.5rem", color: "#ff4a1c", fontWeight: 600, fontSize: "clamp(0.75rem, 0.9vw, 0.85rem)", textDecoration: "none" }}
+                onClick={e => e.stopPropagation()}
+              >
+                {card.link.label} →
+              </a>
+            )}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function HighlightsCarousel({ product }: { product: Product }) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef2 = useRef<HTMLDivElement>(null);
 
   /* Build cards from product highlights or gallery + fallback text */
   const cards = (() => {
@@ -645,18 +708,69 @@ function HighlightsCarousel({ product }: { product: Product }) {
       image: img,
       title: defaultHighlights[i]?.title || `Feature ${i + 1}.`,
       description: defaultHighlights[i]?.description || "",
+      objectFit: undefined as "cover" | "contain" | undefined,
     }));
   })();
 
   if (cards.length === 0) return null;
 
+  const twoRows = cards.length >= 8;
+  const mid = Math.ceil(cards.length / 2);
+  const row1 = twoRows ? cards.slice(0, mid) : cards;
+  const row2 = twoRows ? cards.slice(mid) : [];
+  const cardHeight = twoRows ? "clamp(220px, 24vw, 310px)" : "clamp(350px, 40vw, 500px)";
+
+  const scrollBoth = (delta: number) => {
+    scrollRef.current?.scrollBy({ left: delta, behavior: "smooth" });
+    scrollRef2.current?.scrollBy({ left: delta, behavior: "smooth" });
+  };
+
+  const makeMouseDown = (refs: React.RefObject<HTMLDivElement | null>[]) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    refs.forEach(r => {
+      if (!r.current) return;
+      r.current.style.cursor = "grabbing";
+      r.current.style.scrollBehavior = "auto";
+      r.current.style.scrollSnapType = "none";
+    });
+    const startX = e.pageX;
+    const startScrolls = refs.map(r => r.current?.scrollLeft ?? 0);
+    const onMove = (ev: MouseEvent) => {
+      ev.preventDefault();
+      refs.forEach((r, idx) => {
+        if (!r.current) return;
+        r.current.scrollLeft = startScrolls[idx] - (ev.pageX - startX);
+      });
+    };
+    const onUp = () => {
+      refs.forEach(r => {
+        if (!r.current) return;
+        r.current.style.cursor = "grab";
+        r.current.style.scrollBehavior = "smooth";
+        r.current.style.scrollSnapType = "x mandatory";
+      });
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+    };
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+  };
+
+  const rowStyle = {
+    display: "flex",
+    gap: "clamp(16px, 2vw, 28px)",
+    overflowX: "auto" as const,
+    paddingLeft: "clamp(3rem, 6vw, 6rem)",
+    paddingRight: "clamp(3rem, 6vw, 6rem)",
+    paddingBottom: "0.5rem",
+    scrollSnapType: "x mandatory",
+    scrollBehavior: "smooth" as const,
+    cursor: "grab",
+    userSelect: "none" as const,
+  };
+
   return (
-    <section
-      style={{
-        background: "#fff",
-        padding: "clamp(5rem, 12vh, 10rem) 0",
-      }}
-    >
+    <section style={{ background: "#fff", padding: "clamp(5rem, 12vh, 10rem) 0" }}>
       <AnimatedSection>
         <h2
           style={{
@@ -673,123 +787,43 @@ function HighlightsCarousel({ product }: { product: Product }) {
         {/* Arrow navigation */}
         <div style={{ display: "flex", gap: "12px", justifyContent: "flex-end", paddingRight: "clamp(1.5rem, 6vw, 6rem)", marginBottom: "clamp(1.5rem, 3vh, 2rem)" }}>
           <button
-            onClick={() => scrollRef.current?.scrollBy({ left: -400, behavior: "smooth" })}
+            onClick={() => scrollBoth(-400)}
             style={{ background: "none", border: "1px solid rgba(0,0,0,0.2)", width: "40px", height: "40px", cursor: "pointer", fontSize: "18px", display: "flex", alignItems: "center", justifyContent: "center" }}
             aria-label="Anterior"
-          >
-            ←
-          </button>
+          >←</button>
           <button
-            onClick={() => scrollRef.current?.scrollBy({ left: 400, behavior: "smooth" })}
+            onClick={() => scrollBoth(400)}
             style={{ background: "none", border: "1px solid rgba(0,0,0,0.2)", width: "40px", height: "40px", cursor: "pointer", fontSize: "18px", display: "flex", alignItems: "center", justifyContent: "center" }}
             aria-label="Próximo"
-          >
-            →
-          </button>
+          >→</button>
         </div>
 
-        <div
-          ref={scrollRef}
-          style={{
-            display: "flex",
-            gap: "clamp(20px, 3vw, 40px)",
-            overflowX: "auto",
-            paddingLeft: "clamp(3rem, 6vw, 6rem)",
-            paddingRight: "clamp(3rem, 6vw, 6rem)",
-            paddingBottom: "1rem",
-            scrollSnapType: "x mandatory",
-            scrollBehavior: "smooth",
-            cursor: "grab",
-            userSelect: "none",
-          }}
-          className="no-scrollbar scrollbar-light"
-          onMouseDown={(e) => {
-            e.preventDefault();
-            const el = scrollRef.current;
-            if (!el) return;
-            el.style.cursor = "grabbing";
-            el.style.scrollBehavior = "auto";
-            el.style.scrollSnapType = "none";
-            const startX = e.pageX;
-            const scrollLeft = el.scrollLeft;
-            const onMove = (ev: MouseEvent) => {
-              ev.preventDefault();
-              el.scrollLeft = scrollLeft - (ev.pageX - startX);
-            };
-            const onUp = () => {
-              el.style.cursor = "grab";
-              el.style.scrollBehavior = "smooth";
-              el.style.scrollSnapType = "x mandatory";
-              window.removeEventListener("mousemove", onMove);
-              window.removeEventListener("mouseup", onUp);
-            };
-            window.addEventListener("mousemove", onMove);
-            window.addEventListener("mouseup", onUp);
-          }}
-        >
-          {cards.map((card, i) => (
+        <div style={{ display: "flex", flexDirection: "column", gap: "clamp(12px, 1.5vw, 20px)" }}>
+          {/* Row 1 */}
+          <div
+            ref={scrollRef}
+            style={rowStyle}
+            className="no-scrollbar scrollbar-light"
+            onMouseDown={makeMouseDown([scrollRef, scrollRef2])}
+          >
+            {row1.map((card, i) => (
+              <HighlightCard key={i} card={card} cardHeight={cardHeight} index={i} />
+            ))}
+          </div>
+
+          {/* Row 2 (only when twoRows) */}
+          {twoRows && (
             <div
-              key={i}
-              style={{
-                flex: "0 0 auto",
-                scrollSnapAlign: "start",
-                position: "relative",
-                overflow: "hidden",
-                borderRadius: "12px",
-                height: "clamp(350px, 40vw, 500px)",
-                ...(i === 1 ? { width: "clamp(280px, 30vw, 420px)" } : {}),
-                ...(i === cards.length - 1 ? { width: "clamp(320px, 35vw, 480px)" } : {}),
-              }}
+              ref={scrollRef2}
+              style={rowStyle}
+              className="no-scrollbar scrollbar-light"
+              onMouseDown={makeMouseDown([scrollRef, scrollRef2])}
             >
-              {/* Full card image */}
-              <img
-                src={card.image}
-                alt={card.title}
-                draggable={false}
-                style={{
-                  width: "100%",
-                  height: "clamp(350px, 40vw, 500px)",
-                  objectFit: "cover",
-                  display: "block",
-                  pointerEvents: "none",
-                }}
-              />
-              {/* Text overlay on the image */}
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)",
-                  padding: "clamp(2rem, 4vw, 3rem) 1.5rem 1.5rem",
-                }}
-              >
-                <div style={{ maxWidth: "350px" }}>
-                  <h3
-                    style={{
-                      color: "#fff",
-                      fontWeight: 700,
-                      fontSize: "clamp(1.2rem, 1.8vw, 1.5rem)",
-                      margin: "0 0 0.5rem 0",
-                    }}
-                  >
-                    {card.title}
-                  </h3>
-                  <p
-                    style={{
-                      color: "rgba(255,255,255,0.75)",
-                      fontSize: "clamp(0.8rem, 1vw, 0.9rem)",
-                      lineHeight: 1.5,
-                      margin: 0,
-                    }}
-                  >
-                    {card.description}
-                  </p>
-                </div>
-              </div>
+              {row2.map((card, i) => (
+                <HighlightCard key={i} card={card} cardHeight={cardHeight} index={i + mid} />
+              ))}
             </div>
-          ))}
+          )}
         </div>
       </AnimatedSection>
     </section>
@@ -807,6 +841,27 @@ export default function ProductDetailPage() {
 
   if (!product) {
     return <Navigate to={`/${lang}/line`} replace />;
+  }
+
+  const COMING_SOON_IDS = ["ef6cafe", "ef7eye"];
+  if (COMING_SOON_IDS.includes(product.id)) {
+    return (
+      <>
+        <SEO title={`${product.name} | E-Force`} description={product.description} lang={lang ?? "en"} path={`/kits/${product.slug}`} />
+        <section style={{ background: "#0a0a0a", minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "2rem" }}>
+          <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.3em", color: "#ff4a1c" }}>Em breve</span>
+          <h1 style={{ fontSize: "clamp(3rem, 8vw, 7rem)", fontWeight: 800, color: "#fff", lineHeight: 0.92, letterSpacing: "-0.04em", marginTop: "1rem", marginBottom: "1.5rem" }}>
+            {product.name}
+          </h1>
+          <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "clamp(0.9rem, 1.2vw, 1.1rem)", maxWidth: "480px", lineHeight: 1.7 }}>
+            {product.description}
+          </p>
+          <Link to={`/${lang}/line`} style={{ marginTop: "2.5rem", display: "inline-block", fontSize: "13px", fontWeight: 600, color: "#fff", border: "1px solid rgba(255,255,255,0.2)", padding: "14px 32px", letterSpacing: "0.05em", textDecoration: "none" }}>
+            ← Ver todos os modelos
+          </Link>
+        </section>
+      </>
+    );
   }
 
   return (
@@ -832,21 +887,44 @@ export default function ProductDetailPage() {
           {/* Section 2: Key Specs */}
           <KeySpecsSection product={product} />
 
+
           {/* Section 4+5: Editorial — horizontal photo + vertical overlap + text */}
           <EditorialSection product={product} />
 
           {/* Full drum kit image between editorial and highlights */}
           {(product.fullKitImage || product.galleryImages.length > 0) && (
           <section style={{ background: "#ffffff", padding: "clamp(1rem, 3vh, 2.5rem) clamp(1.5rem, 6vw, 6rem)", display: "flex", justifyContent: "center" }}>
-            <AnimatedSection>
+            <AnimatedSection style={{ width: "100%", display: "flex", justifyContent: "center" }}>
               <img
                 src={product.fullKitImage || "/assets/images/kits/ef2v3/ef2v3-full-kit.jpg"}
                 alt={`${product.name} full angle`}
-                style={{ width: "95%", maxWidth: "1710px", display: "block", margin: "0 auto" }}
+                style={{
+                  width: "100%",
+                  maxWidth: product.slug === "ef2-v3" ? "937px" : product.slug === "ef2-v2" ? "50%" : product.slug === "ef2-v4" ? "60%" : "1710px",
+                  display: "block",
+                  objectFit: "contain",
+                }}
               />
             </AnimatedSection>
           </section>
           )}
+
+        {/* Video antes dos destaques — EF5 V2 */}
+        {product.slug === "ef5-v2" && (
+          <section style={{ background: "#000", padding: "clamp(2rem, 5vh, 4rem) 0" }}>
+            <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 clamp(1.5rem, 6vw, 6rem)" }}>
+              <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden", borderRadius: "4px" }}>
+                <iframe
+                  src="https://www.youtube.com/embed/nbTQ5Jv6pvU"
+                  title="EF5 V2"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+                />
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Section 6: Highlights carousel */}
         <HighlightsCarousel product={product} />

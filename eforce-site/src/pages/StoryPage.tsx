@@ -7,28 +7,28 @@ import SEO from '@/components/layout/SEO';
 const milestones = [
   {
     year: '2000',
-    title: 'Odery Drums is Founded',
-    desc: 'In Curitiba, Brazil, Odery begins crafting acoustic drum kits with a focus on premium wood selection and innovative shell construction.',
+    title: 'Fundação da Odery Drums',
+    desc: 'Em Curitiba, Brasil, a Odery começa a fabricar baterias acústicas com foco em madeiras selecionadas e construção de shell inovadora.',
   },
   {
     year: '2010',
-    title: 'International Recognition',
-    desc: 'Odery drums gain worldwide distribution, earning praise from professional drummers for their warm tone and exceptional build quality.',
+    title: 'Reconhecimento Internacional',
+    desc: 'As baterias Odery ganham distribuição mundial, sendo elogiadas por bateristas profissionais pelo tom quente e qualidade de construção excepcional.',
   },
   {
     year: '2018',
-    title: 'The Electronic Vision',
-    desc: 'Odery identifies a gap in the electronic drum market — no brand combines acoustic craftsmanship with electronic innovation. The E-Force concept is born.',
+    title: 'A Visão Eletrônica',
+    desc: 'A Odery identifica uma lacuna no mercado de baterias eletrônicas — nenhuma marca combina artesanato acústico com inovação eletrônica. O conceito E-Force nasce.',
   },
   {
     year: '2022',
-    title: 'E-Force Launches',
-    desc: 'The first E-Force electronic drum kits hit the market, featuring real wood-shell aesthetics, exclusive finish options, and the F10 module.',
+    title: 'Lançamento da E-Force',
+    desc: 'Os primeiros kits de bateria eletrônica E-Force chegam ao mercado, com estética de shell em madeira real, opções exclusivas de acabamento e o módulo F10.',
   },
   {
     year: '2024',
-    title: 'Global Expansion',
-    desc: 'E-Force expands to international markets with the introduction of the F50 module, the EF7 Eye Hybrid, and distribution across South America, Europe, and Asia.',
+    title: 'Expansão Global',
+    desc: 'A E-Force expande para mercados internacionais com a introdução do módulo F50, o EF7 Eye Hybrid e distribuição pela América do Sul, Europa e Ásia.',
   },
 ];
 
@@ -88,7 +88,7 @@ export default function StoryPage() {
             style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.3em", color: "#ff4a1c" }}
             className="inline-block"
           >
-            OUR STORY
+            NOSSA HISTÓRIA
           </motion.span>
 
           <motion.h1
@@ -115,6 +115,21 @@ export default function StoryPage() {
 
       {/* Divider */}
       <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
+
+      {/* Video */}
+      <section className="bg-[#0a0a0a] py-16">
+        <div className="mx-auto max-w-4xl px-6">
+          <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden", borderRadius: "4px" }}>
+            <iframe
+              src="https://www.youtube.com/embed/dD5ORvbhnxU"
+              title="E-Force Story"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+            />
+          </div>
+        </div>
+      </section>
 
       {/* SECTION 2 — Timeline */}
       <section className="bg-[#0a0a0a] py-24">
@@ -154,23 +169,23 @@ export default function StoryPage() {
               }}
             >
               <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.3em", color: "#ff4a1c" }}>
-                PHILOSOPHY
+                FILOSOFIA
               </span>
               <h2 className="mt-3 font-display text-3xl font-bold text-white">
-                Where acoustic soul meets electronic precision.
+                Onde a alma acústica encontra a precisão eletrônica.
               </h2>
               <p className="mt-4 font-body leading-relaxed text-[rgba(255,255,255,0.5)]">
-                Every E-Force instrument begins with a question: what would happen if decades of
-                acoustic drum expertise were channeled into electronic design?
+                Todo instrumento E-Force começa com uma pergunta: o que aconteceria se décadas de
+                expertise em baterias acústicas fossem canalizadas para o design eletrônico?
               </p>
               <p className="mt-4 font-body leading-relaxed text-[rgba(255,255,255,0.5)]">
-                The answer is in every detail — the curve of each shell, the weight of each pad, the
-                response of each trigger. These aren&apos;t design choices made by engineers alone.
-                They&apos;re informed by luthiers, drummers, and acoustic specialists.
+                A resposta está em cada detalhe — a curvatura de cada shell, o peso de cada pad, a
+                resposta de cada trigger. Essas não são escolhas de design feitas apenas por engenheiros.
+                São informadas por luthiers, bateristas e especialistas acústicos.
               </p>
               <p className="mt-4 font-body leading-relaxed text-[rgba(255,255,255,0.5)]">
-                This is what sets E-Force apart. Not just technology. Not just aesthetics. A genuine
-                understanding of what makes a drummer feel connected to their instrument.
+                É isso que diferencia a E-Force. Não é só tecnologia. Não é só estética. É uma compreensão
+                genuína do que faz um baterista se sentir conectado ao seu instrumento.
               </p>
             </div>
           </div>
@@ -192,16 +207,16 @@ export default function StoryPage() {
           }}
         >
           <h2 className="font-display text-3xl font-bold text-white">
-            Experience the difference.
+            Sinta a diferença.
           </h2>
           <p className="mt-4 font-body text-[rgba(255,255,255,0.5)]">
-            Explore the full E-Force line and find the kit that speaks to you.
+            Explore a linha completa E-Force e encontre o kit que fala com você.
           </p>
           <Link
             to={`/${currentLang}/line`}
             className="mt-8 inline-block rounded-md bg-brand-orange px-8 py-4 font-display font-semibold text-white transition-colors hover:bg-brand-orange-hover"
           >
-            Explore the Line
+            Explorar a Linha
           </Link>
         </div>
       </section>
