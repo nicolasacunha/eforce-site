@@ -83,7 +83,7 @@ export default function Footer() {
           <span>&copy; {new Date().getFullYear()} E-Force Electronic Drums. {t("footer.rights")}</span>
           <span>
             Site desenvolvido por{" "}
-            <a href="https://irbis-studio.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[rgba(255,255,255,0.5)] hover:text-white transition-colors">
+            <a href="https://irbis.com.br" target="_blank" rel="noopener noreferrer" className="text-[rgba(255,255,255,0.5)] hover:text-white transition-colors">
               IRBIS Studio
             </a>
           </span>

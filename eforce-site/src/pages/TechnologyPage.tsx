@@ -233,14 +233,10 @@ return (
                 { label: "POWER", title: "Alimentação USB-C", desc: "Funciona com qualquer powerbank, laptop ou carregador USB-C. Ideal para prática em qualquer lugar.", color: "orange" as const },
                 { label: "EXPANSION", title: "Porta de expansão", desc: "Porta extra para adicionar mais um pad de prato ou de tom.", color: "green" as const },
               ].map((f) => (
-                <GlowCard key={f.label} customSize glowColor={f.color} className="w-full p-8" style={{ minHeight: "240px" }}>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "1rem", height: "100%" }}>
-                    <div style={{ height: "16px" }}>
-                      <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.25em", color: "#ff4a1c" }}>{f.label}</span>
-                    </div>
-                    <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#fff", lineHeight: 1.2, margin: 0 }}>{f.title}</h3>
-                    <p style={{ fontSize: "0.87rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.65, margin: 0, flexGrow: 1 }}>{f.desc}</p>
-                  </div>
+                <GlowCard key={f.label} customSize glowColor={f.color} className="w-full p-8 flex flex-col gap-4" style={{ minHeight: "240px" }}>
+                  <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.25em", color: "#ff4a1c" }}>{f.label}</span>
+                  <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#fff", lineHeight: 1.2, margin: 0 }}>{f.title}</h3>
+                  <p style={{ fontSize: "0.87rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.65, margin: 0, flexGrow: 1 }}>{f.desc}</p>
                 </GlowCard>
               ))}
             </div>
