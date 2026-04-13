@@ -6,15 +6,15 @@ interface SidebarTechnologyListProps {
 
 const modules = [
   {
-    id: "f10",
-    name: "Módulo F10",
-    image: "/assets/images/modules/f10.png",
+    id: "f50",
+    name: "Módulo F50",
+    image: "/assets/images/modules/f50.webp",
     route: "technology",
   },
   {
-    id: "f50",
-    name: "Módulo F50",
-    image: "/assets/images/modules/f50.png",
+    id: "f10",
+    name: "Módulo F10",
+    image: "/assets/images/modules/f10.webp",
     route: "technology",
   },
 ];

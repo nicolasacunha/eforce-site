@@ -9,7 +9,6 @@ import { TransitionProvider } from '@/context/TransitionContext';
 import CurtainOverlay from '@/components/layout/CurtainOverlay';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
-const LinePage = lazy(() => import('@/pages/LinePage'));
 const ProductDetailPage = lazy(() => import('@/pages/ProductDetailPage'));
 const StoryPage = lazy(() => import('@/pages/StoryPage'));
 const TechnologyPage = lazy(() => import('@/pages/TechnologyPage'));
@@ -77,7 +76,6 @@ export default function App() {
         <Route path="/" element={<RootRedirect />} />
         <Route path="/:lang" element={<Layout />}>
           <Route index element={<Suspense fallback={<LoadingFallback />}><HomePage /></Suspense>} />
-          <Route path="line" element={<Suspense fallback={<LoadingFallback />}><LinePage /></Suspense>} />
           <Route path="kits/:model" element={<Suspense fallback={<LoadingFallback />}><ProductDetailPage /></Suspense>} />
           <Route path="story" element={<Suspense fallback={<LoadingFallback />}><StoryPage /></Suspense>} />
           <Route path="technology" element={<Suspense fallback={<LoadingFallback />}><TechnologyPage /></Suspense>} />

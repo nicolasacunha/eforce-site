@@ -52,7 +52,7 @@ export default function OderyStory() {
             }}
           >
             <motion.img
-              src="/assets/images/kits/ef5v2/ef5v2-aerial.jpg"
+              src="/assets/images/kits/ef5v2/ef5v2-aerial.webp"
               alt="EF5 V2 aerial view"
               style={{
                 y: imageY,

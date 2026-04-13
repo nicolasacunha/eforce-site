@@ -1,183 +1,69 @@
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
 import SEO from '@/components/layout/SEO';
-
-const faqData = [
-  {
-    question: 'What makes E-Force different from other electronic drum brands?',
-    answer: 'E-Force is developed in partnership with Odery Drums Brazil, combining over 20 years of acoustic drum craftsmanship with modern electronic innovation. Our kits feature real wood-shell aesthetics, exclusive finish options, and professional-grade modules — a combination no other brand offers.',
-  },
-  {
-    question: 'What is the difference between the F10 and F50 modules?',
-    answer: 'The F10 module features a 2.8" color LCD, 184 onboard sounds, 40 factory kits, and full Bluetooth MIDI/Audio connectivity. The F50 is our flagship module with a 4.3" color touch LCD, 937 sounds, 80 factory kits, 100 user kits, and 60 play-along tracks.',
-  },
-  {
-    question: 'Can I power the module with a power bank?',
-    answer: 'Yes. All E-Force modules use USB-C power, making them compatible with standard power banks, laptop USB ports, and USB-C chargers. This means you can practice anywhere without needing a wall outlet.',
-  },
-  {
-    question: 'Are the mesh heads replaceable?',
-    answer: 'Yes. All E-Force mesh heads are standard sizes and can be replaced with compatible mesh heads from most major manufacturers.',
-  },
-  {
-    question: 'Do you ship internationally?',
-    answer: 'E-Force is available through our authorized dealer network across South America, Europe, North America, and Asia. Visit our Dealers page to find a retailer near you.',
-  },
-  {
-    question: 'What warranty do E-Force products come with?',
-    answer: 'All E-Force electronic drum kits come with a 2-year manufacturer warranty covering defects in materials and workmanship. Contact your dealer or our support team for warranty claims.',
-  },
-  {
-    question: 'Can I connect the module to a DAW?',
-    answer: 'Absolutely. The module connects via USB-C as a class-compliant MIDI and audio device — no drivers needed. You can also use Bluetooth MIDI for wireless connection to your DAW, or record directly to your phone via OTG.',
-  },
-  {
-    question: 'How do I update the module firmware?',
-    answer: 'Firmware updates are available on our downloads page. Connect the module to your computer via USB-C and follow the update instructions included with each firmware release.',
-  },
-];
 
 export default function SupportPage() {
   const { t } = useTranslation();
   const { lang } = useParams<{ lang: string }>();
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal();
-  const { ref: faqRef, isVisible: faqVisible } = useScrollReveal(0.05);
-  const { ref: contactRef, isVisible: contactVisible } = useScrollReveal();
-
   const currentLang = lang ?? 'en';
 
   return (
     <>
       <SEO
         title={`${t('nav.support')} | E-Force`}
-        description="Get help with your E-Force electronic drums. FAQ, downloads, warranty information, and contact support."
+        description="Baixe o manual do seu kit E-Force, acesse a garantia e entre em contato com nosso suporte."
         lang={currentLang}
         path="support"
       />
 
-      {/* Hero */}
-      <section className="bg-[#0a0a0a] pt-24 pt-32 pb-16 md:pt-40">
-        <div
-          ref={heroRef}
-          className="mx-auto max-w-4xl px-6 text-center"
-          style={{
-            opacity: heroVisible ? 1 : 0,
-            transform: heroVisible ? 'translateY(0)' : 'translateY(30px)',
-            transition: 'opacity 0.8s ease, transform 0.8s ease',
-          }}
-        >
-          <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.3em", color: "#ff4a1c" }}>
-            {t('nav.support').toUpperCase()}
-          </span>
-          <h1 className="mt-4 font-display font-bold text-white" style={{ fontSize: "clamp(2.8rem, 7vw, 7rem)", lineHeight: 0.92, letterSpacing: "-0.04em" }}>
-            How can we help?
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl font-body" style={{ fontSize: "clamp(0.9rem, 1.2vw, 1.05rem)", lineHeight: 1.75, color: "rgba(255,255,255,0.5)" }}>
-            Find answers to common questions, download manuals and firmware, or get in touch with our team.
+      {/* Divider top spacing */}
+      <div style={{ height: "clamp(4rem, 8vh, 6rem)", background: "#0a0a0a" }} />
+
+      {/* Manuais */}
+      <section style={{ background: "#0a0a0a", padding: "0 clamp(1.5rem, 6vw, 5rem) clamp(4rem, 8vh, 7rem)" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#E8500A", marginBottom: "0.5rem" }}>
+            MANUAIS
           </p>
-        </div>
-      </section>
-
-      {/* Divider */}
-      <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
-
-      {/* FAQ */}
-      <section className="bg-[#0a0a0a] py-16">
-        <div
-          ref={faqRef}
-          className="mx-auto max-w-3xl px-6"
-          style={{
-            opacity: faqVisible ? 1 : 0,
-            transform: faqVisible ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'opacity 0.6s ease, transform 0.6s ease',
-          }}
-        >
-          <h2 className="mb-8 font-display text-2xl font-bold text-white">
-            Frequently Asked Questions
+          <h2 style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.03em", marginBottom: "clamp(2rem, 4vh, 3rem)" }}>
+            Baixe o manual do seu kit.
           </h2>
 
-          <div className="divide-y divide-[rgba(255,255,255,0.08)]">
-            {faqData.map((item, index) => (
-              <div key={index}>
-                <button
-                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                  className="flex w-full items-center justify-between py-5 text-left"
-                >
-                  <span className="pr-4 font-display text-base font-medium text-white">
-                    {item.question}
-                  </span>
-                  <svg
-                    className={`h-5 w-5 flex-shrink-0 text-[rgba(255,255,255,0.5)] transition-transform duration-300 ${
-                      openIndex === index ? 'rotate-180' : ''
-                    }`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                <motion.div
-                  initial={false}
-                  animate={{
-                    height: openIndex === index ? 'auto' : 0,
-                    opacity: openIndex === index ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className="overflow-hidden"
-                >
-                  <p className="pb-5 font-body text-sm leading-relaxed text-[rgba(255,255,255,0.5)]">
-                    {item.answer}
-                  </p>
-                </motion.div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Divider */}
-      <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
-
-      {/* Downloads */}
-      <section className="bg-[#111] py-24">
-        <div className="mx-auto max-w-5xl px-6">
-          <h2 className="mb-8 text-center font-display text-2xl font-bold text-white">
-            Downloads
-          </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div style={{ display: "flex", flexDirection: "column", gap: "1px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
             {[
-              { name: 'F10 Module Manual', type: 'PDF', size: '2.4 MB' },
-              { name: 'F50 Module Manual', type: 'PDF', size: '3.8 MB' },
-              { name: 'F10 Firmware v2.1', type: 'ZIP', size: '12 MB' },
-              { name: 'F50 Firmware v3.0', type: 'ZIP', size: '18 MB' },
-              { name: 'Quick Start Guide', type: 'PDF', size: '1.1 MB' },
-              { name: 'MIDI Implementation', type: 'PDF', size: '800 KB' },
-            ].map((file) => (
+              { name: "EF2 V1", img: "/assets/images/kits/ef2v1-manual.webp", href: "/assets/manuais/manual-ef2v1.pdf" },
+              { name: "EF2 V2", img: "/assets/images/kits/ef2v2-manual.webp", href: "/assets/manuais/manual-ef2v2.pdf" },
+              { name: "EF2 V3", img: "/assets/images/kits/ef2v3-manual.webp", href: "/assets/manuais/manual-ef2v3.pdf" },
+              { name: "EF2 V4", img: "/assets/images/kits/ef2v4-manual.webp", href: "/assets/manuais/manual-ef2v4.pdf" },
+              { name: "EF5 V2", img: "/assets/images/kits/ef5v2-manual.webp", href: "/assets/manuais/manual-ef5v2.pdf" },
+            ].map((item) => (
               <div
-                key={file.name}
-                className="flex items-center justify-between rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#1a1a1a] p-5 transition-colors hover:border-brand-orange/30"
+                key={item.name}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "clamp(1.5rem, 4vw, 3rem)",
+                  padding: "clamp(1.2rem, 3vh, 2rem) 0",
+                  borderBottom: "1px solid rgba(255,255,255,0.06)",
+                }}
               >
-                <div>
-                  <p className="font-display text-sm font-semibold text-white">{file.name}</p>
-                  <p className="mt-1 font-mono text-xs text-[rgba(255,255,255,0.5)]">
-                    {file.type} — {file.size}
+                <div style={{ flexShrink: 0, width: "clamp(80px, 12vw, 140px)", height: "clamp(80px, 12vw, 140px)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <img
+                    src={item.img}
+                    alt={item.name}
+                    loading="lazy"
+                    style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+                  />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <p style={{ margin: 0, fontSize: "clamp(1rem, 1.5vw, 1.25rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em" }}>
+                    {item.name}
+                  </p>
+                  <p style={{ margin: "0.25rem 0 0", fontSize: "12px", color: "rgba(255,255,255,0.35)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                    Manual do Usuário — PDF
                   </p>
                 </div>
-                <svg
-                  className="h-5 w-5 flex-shrink-0 text-[rgba(255,255,255,0.5)]"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
-                </svg>
+                <DownloadButton href={item.href} />
               </div>
             ))}
           </div>
@@ -187,76 +73,145 @@ export default function SupportPage() {
       {/* Divider */}
       <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
 
-      {/* Contact Form */}
-      <section className="bg-[#0a0a0a] py-24">
-        <div
-          ref={contactRef}
-          className="mx-auto max-w-2xl px-6"
-          style={{
-            opacity: contactVisible ? 1 : 0,
-            transform: contactVisible ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'opacity 0.6s ease, transform 0.6s ease',
-          }}
-        >
-          <h2 className="mb-2 text-center font-display text-2xl font-bold text-white">
-            Contact Us
-          </h2>
-          <p className="mb-8 text-center font-body text-[rgba(255,255,255,0.5)]">
-            Can&apos;t find what you&apos;re looking for? Send us a message.
+      {/* Garantia */}
+      <section style={{ background: "#0a0a0a", padding: "clamp(4rem, 8vh, 7rem) clamp(1.5rem, 6vw, 5rem)" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#E8500A", marginBottom: "0.5rem" }}>
+            GARANTIA
           </p>
+          <h2 style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.03em", marginBottom: "clamp(2rem, 4vh, 3rem)" }}>
+            Política de garantia E-Force.
+          </h2>
 
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="space-y-5"
-          >
-            <div className="grid gap-5 sm:grid-cols-2">
-              <input
-                type="text"
-                placeholder="Name"
-                className="rounded-lg border border-[rgba(255,255,255,0.08)] bg-[#111] px-4 py-3 font-body text-sm text-white placeholder:text-[rgba(255,255,255,0.25)] focus:border-brand-orange/50 focus:outline-none focus:ring-1 focus:ring-brand-orange/50"
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                className="rounded-lg border border-[rgba(255,255,255,0.08)] bg-[#111] px-4 py-3 font-body text-sm text-white placeholder:text-[rgba(255,255,255,0.25)] focus:border-brand-orange/50 focus:outline-none focus:ring-1 focus:ring-brand-orange/50"
-              />
-            </div>
-            <select className="w-full rounded-lg border border-[rgba(255,255,255,0.08)] bg-[#111] px-4 py-3 font-body text-sm text-white focus:border-brand-orange/50 focus:outline-none focus:ring-1 focus:ring-brand-orange/50">
-              <option value="">Select a topic</option>
-              <option value="product">Product Question</option>
-              <option value="warranty">Warranty Claim</option>
-              <option value="dealer">Dealer Inquiry</option>
-              <option value="other">Other</option>
-            </select>
-            <textarea
-              rows={5}
-              placeholder="Your message"
-              className="w-full rounded-lg border border-[rgba(255,255,255,0.08)] bg-[#111] px-4 py-3 font-body text-sm text-white placeholder:text-[rgba(255,255,255,0.25)] focus:border-brand-orange/50 focus:outline-none focus:ring-1 focus:ring-brand-orange/50"
-            />
-            <button
-              type="submit"
-              className="w-full rounded-lg bg-brand-orange px-8 py-3.5 font-display text-sm font-semibold text-white transition-colors hover:bg-brand-orange-hover"
+          <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "clamp(1.5rem, 4vw, 3rem)",
+                padding: "clamp(1.2rem, 3vh, 2rem) 0",
+                borderBottom: "1px solid rgba(255,255,255,0.06)",
+              }}
             >
-              Send Message
-            </button>
-          </form>
+              <div style={{ flexShrink: 0, width: "clamp(80px, 12vw, 140px)", height: "clamp(80px, 12vw, 140px)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="rgba(255,255,255,0.2)" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                </svg>
+              </div>
+              <div style={{ flex: 1 }}>
+                <p style={{ margin: 0, fontSize: "clamp(1rem, 1.5vw, 1.25rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em" }}>
+                  Garantia E-Force
+                </p>
+                <p style={{ margin: "0.25rem 0 0", fontSize: "12px", color: "rgba(255,255,255,0.35)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                  Política de Garantia — PDF
+                </p>
+              </div>
+              <DownloadButton href="/assets/manuais/garantia-eforce.pdf" />
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Divider */}
       <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
 
-      {/* Warranty */}
-      <section className="bg-[#111] py-24">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="font-display text-2xl font-bold text-white">Warranty</h2>
-          <p className="mx-auto mt-4 max-w-xl font-body leading-relaxed text-[rgba(255,255,255,0.5)]">
-            All E-Force electronic drum kits are covered by a 2-year manufacturer warranty.
-            This warranty covers defects in materials and workmanship under normal use conditions.
-            For warranty claims, please contact your authorized dealer or use the form above.
+      {/* Contate-nos */}
+      <section style={{ background: "#0a0a0a", padding: "clamp(4rem, 8vh, 7rem) clamp(1.5rem, 6vw, 5rem)" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#E8500A", marginBottom: "0.5rem" }}>
+            CONTATO
           </p>
+          <h2 style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.03em", marginBottom: "clamp(2rem, 4vh, 3rem)" }}>
+            Contate-nos.
+          </h2>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "1rem", maxWidth: "480px" }}>
+            <a
+              href="https://wa.me/5500000000000"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                padding: "1.1rem 1.5rem",
+                border: "1px solid rgba(255,255,255,0.1)",
+                borderRadius: "8px",
+                textDecoration: "none",
+                transition: "border-color 0.2s, background 0.2s",
+                background: "rgba(255,255,255,0.02)",
+              }}
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "#25D366"; (e.currentTarget as HTMLAnchorElement).style.background = "rgba(37,211,102,0.06)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.1)"; (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.02)"; }}
+            >
+              <svg width="22" height="22" fill="#25D366" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              <span style={{ fontSize: "0.95rem", fontWeight: 600, color: "#fff" }}>WhatsApp</span>
+            </a>
+
+            <a
+              href="mailto:eforce@odery.com.br"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                padding: "1.1rem 1.5rem",
+                border: "1px solid rgba(255,255,255,0.1)",
+                borderRadius: "8px",
+                textDecoration: "none",
+                transition: "border-color 0.2s, background 0.2s",
+                background: "rgba(255,255,255,0.02)",
+              }}
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "#E8500A"; (e.currentTarget as HTMLAnchorElement).style.background = "rgba(232,80,10,0.06)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.1)"; (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.02)"; }}
+            >
+              <svg width="22" height="22" fill="none" stroke="rgba(255,255,255,0.6)" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              <span style={{ fontSize: "0.95rem", fontWeight: 600, color: "#fff" }}>eforce@odery.com.br</span>
+            </a>
+          </div>
         </div>
       </section>
     </>
+  );
+}
+
+function DownloadButton({ href }: { href: string }) {
+  return (
+    <a
+      href={href}
+      download
+      style={{
+        flexShrink: 0,
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "0.5rem",
+        fontSize: "clamp(0.8rem, 1vw, 0.9rem)",
+        fontWeight: 600,
+        color: "#fff",
+        border: "1px solid rgba(255,255,255,0.15)",
+        borderRadius: "4px",
+        padding: "0.55rem 1.2rem",
+        textDecoration: "none",
+        transition: "border-color 0.2s, color 0.2s",
+        letterSpacing: "0.02em",
+        whiteSpace: "nowrap",
+      }}
+      onMouseEnter={e => {
+        (e.currentTarget as HTMLAnchorElement).style.borderColor = "#E8500A";
+        (e.currentTarget as HTMLAnchorElement).style.color = "#E8500A";
+      }}
+      onMouseLeave={e => {
+        (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.15)";
+        (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
+      }}
+    >
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
+      </svg>
+      Download
+    </a>
   );
 }

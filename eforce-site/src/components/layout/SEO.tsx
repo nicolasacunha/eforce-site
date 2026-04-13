@@ -12,7 +12,7 @@ interface SEOProps {
 const BASE_URL = 'https://eforcedrums.com';
 
 export default function SEO({ title, description, image, lang, path }: SEOProps) {
-  const ogImage = image ?? '/assets/images/brand/eforce-og-image.jpg';
+  const ogImage = image ?? '/assets/images/brand/eforce-og-image.webp';
   const canonicalUrl = `${BASE_URL}/${lang}${path}`;
 
   const localeMap: Record<string, string> = {

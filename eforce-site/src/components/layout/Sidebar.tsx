@@ -63,6 +63,16 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                 </button>
               )
             )}
+            <a
+              href="https://odery.com.br/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={onClose}
+              className="flex justify-between items-center py-4 border-b border-gray-200 text-base text-gray-500 hover:text-gray-900 transition-colors"
+            >
+              Odery Drums
+              <span className="text-gray-400">↗</span>
+            </a>
           </nav>
         </div>
         {/* Right: content — light bg, scrollable */}

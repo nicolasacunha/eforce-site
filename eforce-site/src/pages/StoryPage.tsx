@@ -1,225 +1,212 @@
-import { Link, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { useParams } from 'react-router-dom';
+import { motion, type Variants } from 'framer-motion';
 import SEO from '@/components/layout/SEO';
+import { GlowCard } from '@/components/ui/spotlight-card';
+import { ModelsCTA } from '@/components/product/ModelsCTA';
 
-const milestones = [
-  {
-    year: '2000',
-    title: 'Fundação da Odery Drums',
-    desc: 'Em Curitiba, Brasil, a Odery começa a fabricar baterias acústicas com foco em madeiras selecionadas e construção de shell inovadora.',
-  },
-  {
-    year: '2010',
-    title: 'Reconhecimento Internacional',
-    desc: 'As baterias Odery ganham distribuição mundial, sendo elogiadas por bateristas profissionais pelo tom quente e qualidade de construção excepcional.',
-  },
-  {
-    year: '2018',
-    title: 'A Visão Eletrônica',
-    desc: 'A Odery identifica uma lacuna no mercado de baterias eletrônicas — nenhuma marca combina artesanato acústico com inovação eletrônica. O conceito E-Force nasce.',
-  },
-  {
-    year: '2022',
-    title: 'Lançamento da E-Force',
-    desc: 'Os primeiros kits de bateria eletrônica E-Force chegam ao mercado, com estética de shell em madeira real, opções exclusivas de acabamento e o módulo F10.',
-  },
-  {
-    year: '2024',
-    title: 'Expansão Global',
-    desc: 'A E-Force expande para mercados internacionais com a introdução do módulo F50, o EF7 Eye Hybrid e distribuição pela América do Sul, Europa e Ásia.',
-  },
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 32 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
+
+const fadeLeft: Variants = {
+  hidden: { opacity: 0, x: -24 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+const fadeIn: Variants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.8, ease: "easeOut" } },
+};
+
+const stagger: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12 } },
+};
+
+const viewport = { once: true, margin: "-80px" };
+
+const timelineItems = [
+  { year: "1991", text: "Em Campinas, Brasil, Mr. Odery começa a construir baterias no fundo da própria casa — cortando madeira no serrote, peça por peça. Ali nascia o que se tornaria uma das marcas mais respeitadas da percussão mundial." },
+  { year: "2002", text: "A Odery cruza o Atlântico e se apresenta pela primeira vez numa feira internacional — a MusikMesse Frankfurt, na Alemanha. O resultado: destaque na Modern Drummer, uma das mais influentes publicações de bateria do mundo." },
+  { year: "2007", text: "A Odery expande sua operação e passa a fabricar sua linha de série na China e em Taiwan, consolidando sua estrutura de produção global sem abrir mão dos padrões que a tornaram referência." },
+  { year: "2011", text: "Lançamento da série Eyedentity — um marco. O modelo conquista o mercado mundial e eleva a Odery a um novo patamar de qualidade, design e posicionamento internacional." },
+  { year: "2018", text: "A Odery lança seu catálogo mais icônico: baterias Custom Hand Made in Brazil. A linha avança com força no mercado americano e chinês, reafirmando o DNA artesanal que diferencia a marca." },
+  { year: "2021", text: "A fábrica parceira da Odery na China começa a desenvolver baterias eletrônicas, de olho no crescimento acelerado deste mercado no mundo todo." },
+  { year: "2025", text: "A fábrica convida a Odery para uma joint venture. O objetivo: desenvolver baterias eletrônicas com o mesmo nível de exigência em funcionamento e design que 35 anos de Odery Drums representam. A parceria é aceita." },
+  { year: "2026", text: "A E-Force é lançada. Um produto diferenciado, de identidade inconfundível — é apenas o começo de uma nova história." },
 ];
 
-function TimelineMilestone({
-  milestone,
-  index,
-}: {
-  milestone: (typeof milestones)[number];
-  index: number;
-}) {
-  const { ref, isVisible } = useScrollReveal(0.15);
-
-  return (
-    <div
-      ref={ref}
-      className="relative pl-8"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(24px)',
-        transition: `opacity 0.7s ease ${index * 0.1}s, transform 0.7s ease ${index * 0.1}s`,
-      }}
-    >
-      {/* Dot */}
-      <div className="absolute left-0 top-1 h-3 w-3 -translate-x-1/2 rounded-full bg-brand-orange" />
-
-      <span className="font-mono text-sm text-brand-orange">{milestone.year}</span>
-      <h3 className="mt-1 font-display text-xl font-semibold text-white">{milestone.title}</h3>
-      <p className="mt-2 font-body leading-relaxed text-[rgba(255,255,255,0.5)]">{milestone.desc}</p>
-    </div>
-  );
-}
-
 export default function StoryPage() {
-  const { t } = useTranslation();
   const { lang } = useParams<{ lang: string }>();
   const currentLang = lang ?? 'en';
-
-  const { ref: philosophyRef, isVisible: philosophyVisible } = useScrollReveal(0.1);
-  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal(0.1);
 
   return (
     <>
       <SEO
-        title="Our Story | E-Force"
-        description="Discover how Odery Drums Brazil's decades of acoustic mastery gave birth to E-Force — a new standard in electronic drums."
+        title="A História & A Marca | E-Force"
+        description="Conheça a anatomia da marca E-Force — a identidade visual construída sobre inovação, poder e modernidade."
         lang={currentLang}
         path="story"
       />
 
-      {/* SECTION 1 — Hero */}
-      <section className="bg-[#0a0a0a] pt-24 pb-20 pt-32 md:pt-40">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.3em", color: "#ff4a1c" }}
-            className="inline-block"
-          >
-            NOSSA HISTÓRIA
-          </motion.span>
+      {/* SECTION — Anatomia da Marca */}
+      <section style={{ background: "#0a0a0a", padding: "clamp(5rem, 10vh, 8rem) clamp(1.5rem, 6vw, 5rem)" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="mt-4 font-display font-bold leading-tight text-white"
-            style={{ fontSize: "clamp(2.8rem, 7vw, 7rem)", lineHeight: 0.92, letterSpacing: "-0.04em" }}
-          >
-            {t('odery.headline')}
-          </motion.h1>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "clamp(2rem, 5vw, 5rem)",
+            alignItems: "start",
+          }} className="max-md:!grid-cols-1">
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="mx-auto mt-6 max-w-2xl font-body"
-            style={{ fontSize: "clamp(0.9rem, 1.2vw, 1.05rem)", lineHeight: 1.75, color: "rgba(255,255,255,0.5)" }}
-          >
-            {t('odery.p1')}
-          </motion.p>
+            {/* Coluna esquerda */}
+            <motion.div
+              variants={stagger}
+              initial="hidden"
+              whileInView="show"
+              viewport={viewport}
+            >
+              <motion.img
+                variants={fadeIn}
+                src="/assets/images/brand/logo-anatomia.webp"
+                alt="Logo anatomy grid"
+                loading="lazy"
+                style={{ width: "100%", display: "block", borderRadius: "4px", marginBottom: "clamp(1.5rem, 3vh, 2.5rem)" }}
+              />
+              <motion.p
+                variants={fadeLeft}
+                style={{ fontSize: "clamp(1rem, 1.6vw, 1.5rem)", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#E8500A", margin: "0 0 clamp(1rem, 2vh, 1.5rem) 0", lineHeight: 1 }}
+              >
+                ANATOMIA DA MARCA
+              </motion.p>
+              <div style={{ fontSize: "clamp(0.9rem, 1.1vw, 1.05rem)", lineHeight: 1.75, color: "rgba(255,255,255,0.7)", display: "flex", flexDirection: "column", gap: "1rem" }}>
+                <motion.p variants={fadeUp} style={{ margin: 0 }}>
+                  O Logotipo da E-Force foi criado para comunicar visualmente a identidade da marca como fabricante de baterias eletrônicas construída sobre inovação, poder e modernidade. O elemento central apresenta um triângulo invertido com três linhas horizontais — uma representação abstrata da letra "e", referência direta ao conceito de "eletrônico". Esta forma geométrica simboliza energia e direção, evocando a natureza dinâmica da música eletrônica.
+                </motion.p>
+                <motion.p variants={fadeUp} style={{ margin: 0 }}>
+                  A letra "F" representa a Força — a expertise acústica, o artesanato e a determinação que a Odery construiu ao longo de 35 anos, agora canalizados em cada kit eletrônico que criamos. Na sequência vem o símbolo do Play: o ícone mais universal da música, presente no dia a dia de cada baterista no planeta — e agora, no coração da E-Force.
+                </motion.p>
+                <motion.p variants={fadeUp} style={{ margin: 0 }}>
+                  Para completar, um círculo perfeito conecta todos os elementos, simbolizando unidade, infinidade e a integração harmoniosa da tecnologia. Um lembrete de que com a E-Force, as possibilidades na criação sonora são infinitas.
+                </motion.p>
+              </div>
+            </motion.div>
+
+            {/* Coluna direita — rascunho grande */}
+            <motion.div
+              variants={fadeIn}
+              initial="hidden"
+              whileInView="show"
+              viewport={viewport}
+              style={{ position: "sticky", top: "6rem" }}
+            >
+              <img
+                src="/assets/images/brand/logo-rascunho.webp"
+                alt="E-Force logo sketch"
+                loading="lazy"
+                style={{ width: "100%", display: "block", borderRadius: "4px" }}
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Divider */}
-      <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
-
-      {/* Video */}
-      <section className="bg-[#0a0a0a] py-16">
-        <div className="mx-auto max-w-4xl px-6">
-          <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden", borderRadius: "4px" }}>
+      {/* SECTION — Vídeo da Marca */}
+      <motion.section
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={viewport}
+        style={{ background: "#0a0a0a", padding: "0 clamp(1.5rem, 6vw, 5rem) clamp(4rem, 8vh, 7rem)" }}
+      >
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden", borderRadius: "12px" }}>
             <iframe
-              src="https://www.youtube.com/embed/dD5ORvbhnxU"
-              title="E-Force Story"
+              src="https://www.youtube.com/embed/j3us_HW-ZtY"
+              title="E-Force — A História"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
             />
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* SECTION 2 — Timeline */}
-      <section className="bg-[#0a0a0a] py-24">
-        <div className="relative mx-auto max-w-4xl px-6">
-          {/* Vertical line */}
-          <div className="absolute bottom-0 left-6 top-0 w-px bg-[rgba(255,255,255,0.08)]" />
+      {/* SECTION — Timeline */}
+      <section style={{ background: "#0a0a0a", padding: "clamp(4rem, 8vh, 7rem) clamp(1.5rem, 6vw, 5rem)" }}>
+        <div style={{ maxWidth: "780px", margin: "0 auto", position: "relative" }}>
+          {/* Linha vertical */}
+          <motion.div
+            initial={{ scaleY: 0, originY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={viewport}
+            transition={{ duration: 1.4, ease: [0.25, 0.1, 0.25, 1] }}
+            style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "1px", background: "rgba(255,255,255,0.08)", transformOrigin: "top" }}
+          />
 
-          <div className="flex flex-col gap-12">
-            {milestones.map((milestone, index) => (
-              <TimelineMilestone key={milestone.year} milestone={milestone} index={index} />
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={viewport}
+            style={{ display: "flex", flexDirection: "column", gap: "clamp(2.5rem, 5vh, 4rem)" }}
+          >
+            {timelineItems.map(({ year, text }) => (
+              <motion.div
+                key={year}
+                variants={fadeLeft}
+                style={{ paddingLeft: "clamp(1.5rem, 4vw, 3rem)", position: "relative" }}
+              >
+                {/* Dot */}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={viewport}
+                  transition={{ duration: 0.4, delay: 0.2, ease: "backOut" }}
+                  style={{ position: "absolute", left: "-5px", top: "6px", width: "10px", height: "10px", borderRadius: "50%", background: year === "2026" ? "#E8500A" : "rgba(255,255,255,0.25)", border: year === "2026" ? "none" : "1px solid rgba(255,255,255,0.4)" }}
+                />
+                <span style={{ fontFamily: "monospace", fontSize: "clamp(0.75rem, 0.9vw, 0.85rem)", color: "#E8500A", fontWeight: 600, letterSpacing: "0.1em", display: "block", marginBottom: "0.4rem" }}>{year}</span>
+                <p style={{ margin: 0, fontSize: "clamp(0.9rem, 1.05vw, 1rem)", lineHeight: 1.75, color: "rgba(255,255,255,0.65)" }}>{text}</p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Divider */}
-      <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
-
-      {/* SECTION 3 — Philosophy */}
-      <section className="bg-[#111] py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-            {/* Left — Image placeholder */}
-            <div className="flex aspect-[4/5] items-center justify-center rounded-xl bg-[#1a1a1a]">
-              <span className="font-display text-2xl text-[rgba(255,255,255,0.25)]">
-                Odery Workshop
-              </span>
-            </div>
-
-            {/* Right — Text */}
-            <div
-              ref={philosophyRef}
-              style={{
-                opacity: philosophyVisible ? 1 : 0,
-                transform: philosophyVisible ? 'translateX(0)' : 'translateX(40px)',
-                transition: 'opacity 0.8s ease, transform 0.8s ease',
-              }}
-            >
-              <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.3em", color: "#ff4a1c" }}>
+      {/* SECTION — Filosofia */}
+      <motion.section
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={viewport}
+        style={{ background: "#0a0a0a", padding: "0 clamp(1.5rem, 6vw, 5rem) clamp(4rem, 8vh, 7rem)" }}
+      >
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <GlowCard
+            glowColor="orange"
+            customSize
+            style={{ width: "100%", padding: "clamp(2.5rem, 5vw, 4rem) clamp(2rem, 4vw, 3.5rem)" }}
+          >
+            <div>
+              <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#E8500A", marginBottom: "1.2rem" }}>
                 FILOSOFIA
-              </span>
-              <h2 className="mt-3 font-display text-3xl font-bold text-white">
+              </p>
+              <h2 style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)", fontWeight: 400, color: "#fff", lineHeight: 1.2, letterSpacing: "-0.02em", marginBottom: "clamp(1.5rem, 3vh, 2.5rem)" }}>
                 Onde a alma acústica encontra a precisão eletrônica.
               </h2>
-              <p className="mt-4 font-body leading-relaxed text-[rgba(255,255,255,0.5)]">
-                Todo instrumento E-Force começa com uma pergunta: o que aconteceria se décadas de
-                expertise em baterias acústicas fossem canalizadas para o design eletrônico?
-              </p>
-              <p className="mt-4 font-body leading-relaxed text-[rgba(255,255,255,0.5)]">
-                A resposta está em cada detalhe — a curvatura de cada shell, o peso de cada pad, a
-                resposta de cada trigger. Essas não são escolhas de design feitas apenas por engenheiros.
-                São informadas por luthiers, bateristas e especialistas acústicos.
-              </p>
-              <p className="mt-4 font-body leading-relaxed text-[rgba(255,255,255,0.5)]">
-                É isso que diferencia a E-Force. Não é só tecnologia. Não é só estética. É uma compreensão
-                genuína do que faz um baterista se sentir conectado ao seu instrumento.
-              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "1rem", fontSize: "clamp(0.9rem, 1.05vw, 1rem)", lineHeight: 1.75, color: "rgba(255,255,255,0.6)" }}>
+                <p style={{ margin: 0 }}>Todo instrumento e-Force começa com uma pergunta: o que aconteceria se décadas de expertise em baterias acústicas fossem canalizadas para o design eletrônico?</p>
+                <p style={{ margin: 0 }}>A resposta está em cada detalhe. Os cascos são de madeira — porque uma marca que entende de madeira não constrói de outra forma. Os triggers são de alta sensibilidade, as peles entregam a resposta real de uma bateria acústica, e o design carrega a mesma linguagem visual que tornou a Odery reconhecível em palcos ao redor do mundo.</p>
+                <p style={{ margin: 0 }}>Isso é o que diferencia a e-Force. Não é só tecnologia. Não é só estética. É uma compreensão genuína do que faz um baterista se sentir verdadeiramente conectado ao seu instrumento.</p>
+              </div>
             </div>
-          </div>
+          </GlowCard>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Divider */}
-      <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
-
-      {/* SECTION 4 — CTA */}
-      <section className="bg-[#0a0a0a] py-24">
-        <div
-          ref={ctaRef}
-          className="mx-auto max-w-2xl px-6 text-center"
-          style={{
-            opacity: ctaVisible ? 1 : 0,
-            transform: ctaVisible ? 'translateY(0)' : 'translateY(24px)',
-            transition: 'opacity 0.7s ease, transform 0.7s ease',
-          }}
-        >
-          <h2 className="font-display text-3xl font-bold text-white">
-            Sinta a diferença.
-          </h2>
-          <p className="mt-4 font-body text-[rgba(255,255,255,0.5)]">
-            Explore a linha completa E-Force e encontre o kit que fala com você.
-          </p>
-          <Link
-            to={`/${currentLang}/line`}
-            className="mt-8 inline-block rounded-md bg-brand-orange px-8 py-4 font-display font-semibold text-white transition-colors hover:bg-brand-orange-hover"
-          >
-            Explorar a Linha
-          </Link>
-        </div>
-      </section>
+      <ModelsCTA />
     </>
   );
 }

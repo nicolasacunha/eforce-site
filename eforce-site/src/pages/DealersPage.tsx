@@ -15,19 +15,7 @@ interface Dealer {
   type: 'Premium Dealer' | 'Authorized Dealer';
 }
 
-const dealers: Dealer[] = [
-  { name: 'Musical Express', city: 'São Paulo', country: 'Brazil', region: 'South America', type: 'Premium Dealer' },
-  { name: 'Drums & Co.', city: 'Curitiba', country: 'Brazil', region: 'South America', type: 'Authorized Dealer' },
-  { name: 'Bateras Club', city: 'Rio de Janeiro', country: 'Brazil', region: 'South America', type: 'Authorized Dealer' },
-  { name: 'Percussion World', city: 'Buenos Aires', country: 'Argentina', region: 'South America', type: 'Authorized Dealer' },
-  { name: 'DrumShop Milano', city: 'Milan', country: 'Italy', region: 'Europe', type: 'Premium Dealer' },
-  { name: 'London Drums', city: 'London', country: 'United Kingdom', region: 'Europe', type: 'Authorized Dealer' },
-  { name: 'Schlagzeug Berlin', city: 'Berlin', country: 'Germany', region: 'Europe', type: 'Authorized Dealer' },
-  { name: 'Madrid Percussion', city: 'Madrid', country: 'Spain', region: 'Europe', type: 'Authorized Dealer' },
-  { name: 'Drum Center USA', city: 'Los Angeles', country: 'United States', region: 'North America', type: 'Authorized Dealer' },
-  { name: 'Tokyo Drum Lab', city: 'Tokyo', country: 'Japan', region: 'Asia', type: 'Premium Dealer' },
-  { name: 'Shanghai Music', city: 'Shanghai', country: 'China', region: 'Asia', type: 'Authorized Dealer' },
-];
+const dealers: Dealer[] = [];
 
 const regions: { key: Region; label: string }[] = [
   { key: 'all', label: 'All Regions' },

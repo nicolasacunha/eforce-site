@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
+import { ModelsCTA } from "@/components/product/ModelsCTA";
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import SEO from "@/components/layout/SEO";
 import { getProductBySlug } from "@/data/products";
@@ -7,6 +8,17 @@ import type { Product } from "@/data/products";
 import { StickyContextBar } from "@/components/product/StickyContextBar";
 import { ModelSwitcher } from "@/components/product/ModelSwitcher";
 import { ParticleHeroBackground } from "@/components/product/ParticleHeroBackground";
+
+/* ── mobile hook ────────────────────────────────────── */
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
+  return isMobile;
+}
 
 /* ── animation helpers ──────────────────────────────── */
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -33,22 +45,25 @@ function AnimatedSection({ children, className, style }: { children: React.React
 }
 
 /* ── animated counter ──────────────────────────────── */
-function CountUp({ value, duration = 1.5 }: { value: number; duration?: number }) {
+function CountUp({ value, duration = 1.5, delay = 0.6 }: { value: number; duration?: number; delay?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
     if (!inView) return;
-    const start = performance.now();
-    const step = (now: number) => {
-      const progress = Math.min((now - start) / (duration * 1000), 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-      setDisplay(Math.round(eased * value));
-      if (progress < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }, [inView, value, duration]);
+    const timer = setTimeout(() => {
+      const start = performance.now();
+      const step = (now: number) => {
+        const progress = Math.min((now - start) / (duration * 1000), 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        setDisplay(Math.round(eased * value));
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }, delay * 1000);
+    return () => clearTimeout(timer);
+  }, [inView, value, duration, delay]);
 
   return <span ref={ref}>{display}</span>;
 }
@@ -65,7 +80,7 @@ const defaultHighlights = [
 /* ═══════════════════════════════════════════════════════
    SECTION 1 — HERO (Porsche-style warm gray bg)
    ═══════════════════════════════════════════════════════ */
-function HeroSection({ product }: { product: Product }) {
+function HeroSection({ product, isMobile }: { product: Product; isMobile: boolean }) {
   return (
     <section
       style={{
@@ -149,7 +164,7 @@ function HeroSection({ product }: { product: Product }) {
 
       {/* PBO background — fades out over 3s */}
       <motion.img
-        src="/assets/images/brand/pbo-bco.png"
+        src="/assets/images/brand/pbo-bco.webp"
         aria-hidden
         initial={{ opacity: 0.85 }}
         animate={{ opacity: 0 }}
@@ -182,8 +197,9 @@ function HeroSection({ product }: { product: Product }) {
             width: product.slug === "ef2-v4" ? "65%" : product.slug === "ef2-v2" ? "80%" : product.slug === "ef5-v2" ? "73%" : product.slug === "ef2-v3" ? "90%" : product.slug === "ef2-v1" ? "100%" : "75%",
             marginTop: product.slug === "ef2-v4" ? "clamp(7rem, 11vh, 10rem)" : product.slug === "ef2-v2" ? "clamp(8rem, 14vh, 12rem)" : product.slug === "ef5-v2" ? "clamp(6rem, 10vh, 9rem)" : product.slug === "ef2-v1" ? "clamp(5rem, 9vh, 8rem)" : product.slug === "ef2-v3" ? "clamp(0rem, 2vh, 1.5rem)" : "clamp(2rem, 5vh, 4rem)",
             objectFit: "contain",
-            filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.15))",
+            filter: isMobile ? "none" : "drop-shadow(0 30px 60px rgba(0,0,0,0.15))",
           }}
+          fetchPriority="high"
         />
       </div>
 
@@ -194,7 +210,7 @@ function HeroSection({ product }: { product: Product }) {
 /* ═══════════════════════════════════════════════════════
    SECTION 2 — KEY SPECS (left specs, right aerial image)
    ═══════════════════════════════════════════════════════ */
-function KeySpecsSection({ product }: { product: Product }) {
+function KeySpecsSection({ product, isMobile }: { product: Product; isMobile: boolean }) {
   const [showTechPanel, setShowTechPanel] = useState(false);
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
   // Use PNG transparent if available, otherwise aerial/hero
@@ -217,14 +233,13 @@ function KeySpecsSection({ product }: { product: Product }) {
             maxWidth: "1300px",
             margin: "0 auto",
             display: "grid",
-            gridTemplateColumns: "1fr 2fr",
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 2fr",
             gap: "clamp(1rem, 3vw, 2rem)",
             alignItems: "center",
           }}
-          className="max-md:!grid-cols-1"
         >
           {/* Left: specs */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "clamp(2rem, 4vh, 3.5rem)", marginLeft: "auto", paddingRight: "clamp(1rem, 2vw, 2rem)", position: "relative", zIndex: 5 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "clamp(2rem, 4vh, 3.5rem)", marginLeft: isMobile ? "0" : "auto", paddingRight: isMobile ? "0" : "clamp(1rem, 2vw, 2rem)", position: "relative", zIndex: 5 }}>
             {specs.map((s) => (
               <div key={s.label}>
                 <div
@@ -252,25 +267,6 @@ function KeySpecsSection({ product }: { product: Product }) {
               </div>
             ))}
 
-            {/* Button inside specs column */}
-            <button
-              onClick={() => setShowTechPanel(true)}
-              style={{
-                display: "inline-block",
-                fontSize: "13px",
-                fontWeight: 600,
-                letterSpacing: "0.02em",
-                color: "#0a0a0a",
-                background: "none",
-                border: "1px solid rgba(0,0,0,0.3)",
-                padding: "12px 28px",
-                cursor: "pointer",
-                borderRadius: "0",
-                marginTop: "0.5rem",
-              }}
-            >
-              Todos os detalhes t&eacute;cnicos
-            </button>
           </div>
 
           {/* Right: product image — LARGE */}
@@ -279,17 +275,18 @@ function KeySpecsSection({ product }: { product: Product }) {
               src={product.specsImage ?? aerialImage}
               alt={`${product.name} view`}
               style={product.slug === "ef2-v4"
-                ? { width: "97%", maxWidth: "none", objectFit: "contain", marginLeft: "1.5%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                ? { width: "97%", maxWidth: "none", objectFit: "contain", marginLeft: "1.5%", filter: isMobile ? "none" : "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
                 : product.slug === "ef2-v2"
-                  ? { width: "170%", maxWidth: "none", objectFit: "contain", marginLeft: "-34%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                  ? { width: "170%", maxWidth: "none", objectFit: "contain", marginLeft: "-34%", filter: isMobile ? "none" : "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
                   : product.slug === "ef2-v1"
-                  ? { width: "85%", maxWidth: "none", objectFit: "contain", marginLeft: "7.5%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                  ? { width: "85%", maxWidth: "none", objectFit: "contain", marginLeft: "7.5%", filter: isMobile ? "none" : "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
                   : product.slug === "ef2-v3"
-                  ? { width: "105%", maxWidth: "none", objectFit: "contain", marginLeft: "-2%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                  ? { width: "105%", maxWidth: "none", objectFit: "contain", marginLeft: "-2%", filter: isMobile ? "none" : "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
                   : product.slug === "ef5-v2"
-                  ? { width: "112%", maxWidth: "none", objectFit: "contain", marginLeft: "-16%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
-                  : { width: "200%", maxWidth: "none", objectFit: "contain", marginLeft: "-50%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                  ? { width: "112%", maxWidth: "none", objectFit: "contain", marginLeft: "-16%", filter: isMobile ? "none" : "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                  : { width: "200%", maxWidth: "none", objectFit: "contain", marginLeft: "-50%", filter: isMobile ? "none" : "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
               }
+              loading="lazy"
             />
           </div>
         </div>
@@ -324,7 +321,7 @@ function KeySpecsSection({ product }: { product: Product }) {
               position: "absolute",
               inset: 0,
               background: "rgba(0,0,0,0.5)",
-              backdropFilter: "blur(12px)",
+              backdropFilter: isMobile ? "none" : "blur(12px)",
             }}
           />
           {/* Panel — slides in from right */}
@@ -500,9 +497,9 @@ function KeySpecsSection({ product }: { product: Product }) {
    Two photos side-by-side, right photo extends down,
    text on the left below the photos
    ═══════════════════════════════════════════════════════ */
-function EditorialSection({ product }: { product: Product }) {
-  const rightImage = product.editorialVerticalImage || "/assets/images/kits/ef2v3/ef2v3-closeup-logo.jpg";
-  const bottomImage = product.editorialHorizontalImage || "/assets/images/kits/ef2v3/ef2v3-closeup-trigger.jpg";
+function EditorialSection({ product, isMobile }: { product: Product; isMobile: boolean }) {
+  const rightImage = product.editorialVerticalImage || "/assets/images/kits/ef2v3/ef2v3-closeup-logo.webp";
+  const bottomImage = product.editorialHorizontalImage || "/assets/images/kits/ef2v3/ef2v3-closeup-trigger.webp";
   const headline = product.editorialHeadline || "Projetado para quem vive a m\u00fasica.";
   const body =
     product.editorialBody ||
@@ -510,11 +507,11 @@ function EditorialSection({ product }: { product: Product }) {
 
   const rightImgRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: rightImgRef, offset: ["start end", "end start"] });
-  const rightY = useTransform(scrollYProgress, [0, 1], [80, -80]);
+  const rightY = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [80, -80]);
 
   const bottomImgRef = useRef(null);
   const { scrollYProgress: bottomProgress } = useScroll({ target: bottomImgRef, offset: ["start end", "end start"] });
-  const bottomX = useTransform(bottomProgress, [0, 1], [-80, 80]);
+  const bottomX = useTransform(bottomProgress, [0, 1], isMobile ? [0, 0] : [-80, 80]);
 
   return (
     <section style={{ background: "#fff", position: "relative" }}>
@@ -551,7 +548,7 @@ function EditorialSection({ product }: { product: Product }) {
             playsInline
             style={{
               width: "100%",
-              height: "clamp(400px, 50vw, 700px)",
+              height: isMobile ? "clamp(200px, 55vw, 350px)" : "clamp(400px, 50vw, 700px)",
               objectFit: "cover",
               display: "block",
               position: "relative",
@@ -570,13 +567,12 @@ function EditorialSection({ product }: { product: Product }) {
           style={{
             maxWidth: "1200px",
             margin: "0 auto",
-            padding: "clamp(3rem, 6vh, 5rem) clamp(1.5rem, 6vw, 6rem) 0",
+            padding: isMobile ? "clamp(2rem, 4vh, 3rem) clamp(1rem, 4vw, 2rem) 0" : product.slug === "ef5-v2" ? "clamp(10rem, 18vh, 14rem) clamp(1.5rem, 6vw, 6rem) clamp(3rem, 6vh, 5rem)" : "clamp(7rem, 14vh, 11rem) clamp(1.5rem, 6vw, 6rem) clamp(3rem, 6vh, 5rem)",
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
             gap: "clamp(2rem, 5vw, 4rem)",
-            alignItems: "center",
+            alignItems: "start",
           }}
-          className="max-md:!grid-cols-1"
         >
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -584,10 +580,10 @@ function EditorialSection({ product }: { product: Product }) {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p style={{ fontSize: "clamp(0.7rem, 0.85vw, 0.8rem)", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", margin: "0 0 0.75rem 0" }}>DNA</p>
+            <p style={{ fontSize: "clamp(0.7rem, 0.85vw, 0.8rem)", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#E8500A", margin: "0 0 0.75rem 0" }}>DNA</p>
             <h2
               style={{
-                fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
+                fontSize: "clamp(1.6rem, 2.8vw, 2.6rem)",
                 fontWeight: 400,
                 color: "#ffffff",
                 lineHeight: 1.15,
@@ -609,11 +605,12 @@ function EditorialSection({ product }: { product: Product }) {
             </p>
           </motion.div>
 
-          <motion.div ref={rightImgRef} style={{ borderRadius: "16px", position: "relative", zIndex: 2, marginLeft: "clamp(0%, 10vw, 25%)", marginTop: "clamp(-8rem, -10vw, -12rem)", marginRight: "clamp(-6rem, -10vw, -14rem)", y: rightY }}>
+          <motion.div ref={rightImgRef} style={{ borderRadius: "16px", position: "relative", zIndex: 2, marginLeft: isMobile ? 0 : "clamp(0%, 10vw, 25%)", marginTop: isMobile ? "1.5rem" : "clamp(-8rem, -10vw, -12rem)", marginRight: isMobile ? 0 : "clamp(-6rem, -10vw, -14rem)", y: rightY }}>
             <img
               src={rightImage}
               alt={`${product.name} detail`}
-              style={{ width: "180%", height: "clamp(500px, 30vw, 650px)", objectFit: "cover", borderRadius: "16px" }}
+              style={{ width: isMobile ? "100%" : "180%", height: isMobile ? "clamp(220px, 55vw, 320px)" : "clamp(500px, 30vw, 650px)", objectFit: "cover", borderRadius: "16px" }}
+              loading="lazy"
             />
           </motion.div>
         </div>
@@ -624,14 +621,15 @@ function EditorialSection({ product }: { product: Product }) {
             <img
               src={bottomImage}
               alt={`${product.name} lifestyle`}
+              loading="lazy"
               style={{
                 width: "100%",
                 display: "block",
-                marginLeft: "clamp(-15rem, -10vw, 0px)",
+                marginLeft: isMobile ? 0 : "clamp(-15rem, -10vw, 0px)",
                 marginTop: "-3rem",
                 position: "relative",
                 zIndex: 10,
-                height: "clamp(300px, 35vw, 450px)",
+                height: isMobile ? "clamp(180px, 50vw, 280px)" : "clamp(300px, 35vw, 450px)",
                 objectFit: "cover",
                 borderRadius: "12px",
                 marginBottom: "3rem",
@@ -648,16 +646,16 @@ function EditorialSection({ product }: { product: Product }) {
    SECTION 6 — HIGHLIGHTS CAROUSEL
    ═══════════════════════════════════════════════════════ */
 const CARD_WIDTHS = [
-  "clamp(420px, 50vw, 660px)",
-  "clamp(540px, 66vw, 820px)",
-  "clamp(380px, 44vw, 560px)",
-  "clamp(500px, 60vw, 750px)",
-  "clamp(460px, 56vw, 700px)",
-  "clamp(400px, 48vw, 620px)",
+  "clamp(280px, 80vw, 660px)",
+  "clamp(300px, 85vw, 820px)",
+  "clamp(260px, 75vw, 560px)",
+  "clamp(290px, 82vw, 750px)",
+  "clamp(275px, 78vw, 700px)",
+  "clamp(265px, 76vw, 620px)",
 ];
 
-function HighlightCard({ card, cardHeight, index = 0 }: { card: { image: string; title: string; description: string; objectFit?: "cover" | "contain"; objectPosition?: string; cardWidth?: string; scale?: number; link?: { label: string; href: string } }, cardHeight: string, index?: number }) {
-  const width = card.cardWidth ?? CARD_WIDTHS[index % CARD_WIDTHS.length];
+function HighlightCard({ card, cardHeight, index = 0, isMobile }: { card: { image: string; title: string; description: string; objectFit?: "cover" | "contain"; objectPosition?: string; cardWidth?: string; scale?: number; link?: { label: string; href: string } }, cardHeight: string, index?: number, isMobile?: boolean }) {
+  const width = isMobile ? "min(85vw, 420px)" : (card.cardWidth ?? CARD_WIDTHS[index % CARD_WIDTHS.length]);
   return (
     <div
       style={{
@@ -684,6 +682,7 @@ function HighlightCard({ card, cardHeight, index = 0 }: { card: { image: string;
           background: card.objectFit === "contain" ? "#f5f5f5" : undefined,
           ...(card.scale != null ? { transform: `scale(${card.scale})`, transformOrigin: card.objectPosition ?? "center" } : {}),
         }}
+        loading="lazy"
       />
       <div
         style={{
@@ -717,7 +716,7 @@ function HighlightCard({ card, cardHeight, index = 0 }: { card: { image: string;
   );
 }
 
-function HighlightsCarousel({ product }: { product: Product }) {
+function HighlightsCarousel({ product, isMobile }: { product: Product; isMobile: boolean }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const scrollRef2 = useRef<HTMLDivElement>(null);
 
@@ -743,7 +742,7 @@ function HighlightsCarousel({ product }: { product: Product }) {
   const mid = Math.ceil(cards.length / 2);
   const row1 = twoRows ? cards.slice(0, mid) : cards;
   const row2 = twoRows ? cards.slice(mid) : [];
-  const cardHeight = "clamp(350px, 40vw, 500px)";
+  const cardHeight = isMobile ? "clamp(220px, 55vw, 320px)" : "clamp(350px, 40vw, 500px)";
 
   const scrollBoth = (delta: number) => {
     scrollRef.current?.scrollBy({ left: delta, behavior: "smooth" });
@@ -785,8 +784,8 @@ function HighlightsCarousel({ product }: { product: Product }) {
     display: "flex",
     gap: "clamp(16px, 2vw, 28px)",
     overflowX: "auto" as const,
-    paddingLeft: "clamp(3rem, 6vw, 6rem)",
-    paddingRight: "clamp(3rem, 6vw, 6rem)",
+    paddingLeft: isMobile ? "1rem" : "clamp(3rem, 6vw, 6rem)",
+    paddingRight: isMobile ? "1rem" : "clamp(3rem, 6vw, 6rem)",
     paddingBottom: "0.5rem",
     scrollBehavior: "smooth" as const,
     cursor: "grab",
@@ -831,7 +830,7 @@ function HighlightsCarousel({ product }: { product: Product }) {
             onMouseDown={makeMouseDown([scrollRef, scrollRef2])}
           >
             {row1.map((card, i) => (
-              <HighlightCard key={i} card={card} cardHeight={cardHeight} index={i} />
+              <HighlightCard key={i} card={card} cardHeight={cardHeight} index={i} isMobile={isMobile} />
             ))}
           </div>
 
@@ -844,7 +843,7 @@ function HighlightsCarousel({ product }: { product: Product }) {
               onMouseDown={makeMouseDown([scrollRef, scrollRef2])}
             >
               {row2.map((card, i) => (
-                <HighlightCard key={i} card={card} cardHeight={cardHeight} index={i + mid} />
+                <HighlightCard key={i} card={card} cardHeight={cardHeight} index={i + mid} isMobile={isMobile} />
               ))}
             </div>
           )}
@@ -860,6 +859,7 @@ function HighlightsCarousel({ product }: { product: Product }) {
 export default function ProductDetailPage() {
   const { model, lang } = useParams();
   const [switcherOpen, setSwitcherOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   const product = getProductBySlug(model || "");
 
@@ -906,10 +906,10 @@ export default function ProductDetailPage() {
           />
 
           {/* Section 1: Hero */}
-          <HeroSection product={product} />
+          <HeroSection product={product} isMobile={isMobile} />
 
           {/* Section 2: Key Specs */}
-          <KeySpecsSection product={product} />
+          <KeySpecsSection product={product} isMobile={isMobile} />
 
 
           {/* Intro text — EF2 V1/V2/V3/V4 + EF5 V2 */}
@@ -955,20 +955,56 @@ export default function ProductDetailPage() {
                   <p style={pStyle}><strong>{bold}</strong>{rest}</p>
                   <p style={pStyleMt}>{p2}</p>
                   {p3 && <p style={pStyleMt}>{p3}</p>}
+                  <p style={{ fontSize: "clamp(1.15rem, 1.6vw, 1.5rem)", fontWeight: 400, color: "rgba(17,17,17,0.9)", lineHeight: 1.7, marginTop: "1.5rem" }}>
+                    Tecnologia de ponta, design global e timbres que inspiram. Com a expertise da Odery Drums Brazil, a E-Force leva seu som a um novo patamar.
+                  </p>
                 </AnimatedSection>
               </section>
             );
           })()}
 
+          {/* Finish gallery */}
+          {product.finishGallery && product.finishGallery.length > 0 && (
+            <section style={{ background: "#fff", padding: "clamp(2rem, 4vh, 3.5rem) clamp(1.5rem, 6vw, 6rem)" }}>
+              <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+                <p style={{ fontSize: "clamp(1.2rem, 2vw, 1.8rem)", fontWeight: 700, letterSpacing: "-0.02em", color: "#111", marginBottom: "clamp(1.5rem, 3vh, 2.5rem)" }}>
+                  Acabamentos disponíveis.
+                </p>
+                {product.finishGallery.length === 1 && product.finishGallery[0].image ? (
+                  <img
+                    src={product.finishGallery[0].image}
+                    alt={product.finishGallery[0].label || `${product.name} acabamentos`}
+                    style={{ width: "100%", display: "block", objectFit: "contain" }}
+                  />
+                ) : (
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(1rem, 2vw, 2rem)" }}>
+                    {product.finishGallery.map((finish) => (
+                      <div key={finish.label} style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                        <div style={{ aspectRatio: "1 / 1", background: "#f2f2f2", borderRadius: "4px", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          {finish.image ? (
+                            <img src={finish.image} alt={finish.label} style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
+                          ) : (
+                            <span style={{ fontSize: "clamp(0.75rem, 1vw, 0.9rem)", color: "rgba(0,0,0,0.25)", letterSpacing: "0.05em" }}>Em breve</span>
+                          )}
+                        </div>
+                        {finish.label && <p style={{ margin: 0, fontSize: "clamp(0.8rem, 1vw, 0.95rem)", fontWeight: 600, color: "#111", letterSpacing: "-0.01em" }}>{finish.label}</p>}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </section>
+          )}
+
           {/* Section 4+5: Editorial — horizontal photo + vertical overlap + text */}
-          <EditorialSection product={product} />
+          <EditorialSection product={product} isMobile={isMobile} />
 
           {/* Full drum kit image between editorial and highlights */}
           {(product.fullKitImage || product.galleryImages.length > 0) && (
           <section style={{ background: "#ffffff", padding: "clamp(1rem, 3vh, 2.5rem) 0 clamp(1rem, 3vh, 2.5rem) clamp(1.5rem, 6vw, 6rem)", display: "flex", justifyContent: "center", overflow: "hidden" }}>
             {product.kitConfig ? (
-              <AnimatedSection style={{ width: "100%", display: "flex", alignItems: product.slug === "ef5-v2" ? "flex-start" : "center", gap: "clamp(1.5rem, 4vw, 4rem)", marginRight: "-2%", justifyContent: product.slug === "ef2-v4" ? "center" : undefined }}>
-                <div style={{ flexShrink: 0, paddingLeft: "clamp(1rem, 3vw, 3rem)", paddingTop: product.slug === "ef5-v2" ? "clamp(3rem, 8vh, 7rem)" : undefined, minWidth: "260px", maxWidth: product.slug === "ef2-v1" ? "680px" : product.slug === "ef5-v2" ? "780px" : "600px" }}>
+              <AnimatedSection style={{ width: "100%", display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : (product.slug === "ef5-v2" ? "flex-start" : "center"), gap: "clamp(1.5rem, 4vw, 4rem)", marginRight: isMobile ? 0 : "-2%", justifyContent: isMobile ? undefined : (product.slug === "ef2-v4" ? "center" : undefined) }}>
+                <div style={{ flexShrink: 0, paddingLeft: "clamp(1rem, 3vw, 3rem)", paddingTop: product.slug === "ef5-v2" ? "clamp(3rem, 8vh, 7rem)" : undefined, minWidth: 0, width: isMobile ? "100%" : undefined, maxWidth: product.slug === "ef2-v1" ? "680px" : product.slug === "ef5-v2" ? "780px" : "600px" }}>
                   <h3 style={{ fontSize: "clamp(1rem, 1.2vw, 1.25rem)", fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase", color: "#333", marginBottom: "1.4rem", whiteSpace: "nowrap" }}>Configuração do kit</h3>
                   <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.65rem" }}>
                     {product.kitConfig.map((item, i) => (
@@ -986,13 +1022,13 @@ export default function ProductDetailPage() {
                 <img
                   src={product.fullKitImage || product.galleryImages[0]}
                   alt={`${product.name} full angle`}
-                  style={{ marginLeft: product.slug === "ef2-v1" ? "clamp(1rem, 3vw, 3rem)" : product.slug === "ef2-v3" || product.slug === "ef2-v2" ? "clamp(2rem, 5vw, 5rem)" : product.slug === "ef2-v4" ? "clamp(1.5rem, 3vw, 3rem)" : product.slug === "ef5-v2" ? "calc(-1 * clamp(4rem, 12vw, 16rem))" : "auto", width: product.slug === "ef2-v1" ? "46%" : product.slug === "ef2-v2" ? "55%" : product.slug === "ef2-v3" ? "50%" : product.slug === "ef2-v4" ? "56%" : product.slug === "ef5-v2" ? "61%" : "68%", maxWidth: product.slug === "ef2-v1" ? "790px" : product.slug === "ef2-v2" ? "942px" : product.slug === "ef2-v3" ? "858px" : product.slug === "ef2-v4" ? "958px" : product.slug === "ef5-v2" ? "1047px" : "1163px", display: "block", objectFit: "contain" }}
+                  style={{ marginLeft: isMobile ? 0 : (product.slug === "ef2-v1" ? "clamp(1rem, 3vw, 3rem)" : product.slug === "ef2-v3" || product.slug === "ef2-v2" ? "clamp(2rem, 5vw, 5rem)" : product.slug === "ef2-v4" ? "clamp(1.5rem, 3vw, 3rem)" : product.slug === "ef5-v2" ? "calc(-1 * clamp(4rem, 12vw, 16rem))" : "auto"), width: isMobile ? "100%" : (product.slug === "ef2-v1" ? "46%" : product.slug === "ef2-v2" ? "55%" : product.slug === "ef2-v3" ? "50%" : product.slug === "ef2-v4" ? "56%" : product.slug === "ef5-v2" ? "61%" : "68%"), maxWidth: isMobile ? "100%" : (product.slug === "ef2-v1" ? "790px" : product.slug === "ef2-v2" ? "942px" : product.slug === "ef2-v3" ? "858px" : product.slug === "ef2-v4" ? "958px" : product.slug === "ef5-v2" ? "1047px" : "1163px"), display: "block", objectFit: "contain" }}
                 />
               </AnimatedSection>
             ) : (
             <AnimatedSection style={{ width: "100%", display: "flex", justifyContent: "center" }}>
               <img
-                src={product.fullKitImage || "/assets/images/kits/ef2v3/ef2v3-full-kit.jpg"}
+                src={product.fullKitImage || "/assets/images/kits/ef2v3/ef2v3-full-kit.webp"}
                 alt={`${product.name} full angle`}
                 style={{
                   width: "100%",
@@ -1033,7 +1069,10 @@ export default function ProductDetailPage() {
         })()}
 
         {/* Section 6: Highlights carousel */}
-        <HighlightsCarousel product={product} />
+        <HighlightsCarousel product={product} isMobile={isMobile} />
+
+        {/* CTA: todos os modelos */}
+        <ModelsCTA />
 
       </div>
 

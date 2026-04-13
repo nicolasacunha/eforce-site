@@ -25,7 +25,7 @@ export default function CurtainOverlay() {
 
           {/* Logo */}
           <motion.img
-            src="/assets/images/brand/logobranconova.png"
+            src="/assets/images/brand/logobranconova.webp"
             alt="E-Force"
             style={{
               position: 'fixed',

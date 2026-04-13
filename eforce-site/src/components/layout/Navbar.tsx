@@ -61,7 +61,7 @@ export default function Navbar() {
             className="absolute left-1/2 -translate-x-1/2"
           >
             <img
-              src="/assets/images/brand/eforce-logo-white.png"
+              src="/assets/images/brand/eforce-logo-white.webp"
               alt="E-Force"
               className="h-12"
             />

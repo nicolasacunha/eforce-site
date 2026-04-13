@@ -1,61 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
 import type React from 'react';
-
-/* ─── Hero number stat ──────────────────────────────────────── */
-
-function HeroNumber({
-  value,
-  label,
-  highlight,
-  delay,
-  small,
-}: {
-  value: string;
-  label: string;
-  highlight?: boolean;
-  delay: number;
-  small?: boolean;
-}) {
-  const reveal = useScrollReveal(0.15);
-
-  return (
-    <div
-      ref={reveal.ref}
-      className="flex flex-col items-center"
-      style={{
-        opacity: reveal.isVisible ? 1 : 0,
-        transform: reveal.isVisible ? 'translateY(0)' : 'translateY(40px)',
-        transition: `opacity 1s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 1s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
-      }}
-    >
-      <span
-        style={{
-          fontSize: small ? 'clamp(2rem, 6vw, 5rem)' : 'clamp(4rem, 10vw, 9rem)',
-          fontWeight: 800,
-          letterSpacing: '-0.04em',
-          lineHeight: 0.85,
-          color: highlight ? '#ff4a1c' : 'rgba(255,255,255,0.95)',
-        }}
-      >
-        {value}
-      </span>
-      <span
-        className="mt-3"
-        style={{
-          fontSize: '11px',
-          fontWeight: 600,
-          textTransform: 'uppercase',
-          letterSpacing: '0.3em',
-          color: 'rgba(255,255,255,0.25)',
-        }}
-      >
-        {label}
-      </span>
-    </div>
-  );
-}
 
 /* ─── Main component ─────────────────────────────────────────── */
 
@@ -129,27 +74,6 @@ export default function ManifestoSection() {
               </span>
             ))}
           </p>
-        </div>
-
-        {/* ── Section divider ────────────────────────────────────── */}
-        <div
-          className="mt-24 mx-auto"
-          style={{
-            maxWidth: '80%',
-            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)',
-            height: '1px',
-          }}
-        />
-
-        {/* ── Hero numbers strip ─────────────────────────────────── */}
-        <div
-          className="mt-24 grid grid-cols-2 lg:grid-cols-4 justify-items-center"
-          style={{ gap: 'clamp(2rem, 8vw, 6rem)' }}
-        >
-          <HeroNumber value="937" label={t('home.stats.sounds')} highlight delay={0} />
-          <HeroNumber value="F50" label="Module" delay={150} />
-          <HeroNumber value="3" label={t('home.stats.finishesCount')} delay={300} />
-          <HeroNumber value="USB-C" label="Power" delay={450} small />
         </div>
 
         {/* ── Word reveal styles ──────────────────────────────────── */}

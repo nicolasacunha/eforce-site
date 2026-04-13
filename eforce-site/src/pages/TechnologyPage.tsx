@@ -1,18 +1,16 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
 import SEO from '@/components/layout/SEO';
 import { GlowCard } from '@/components/ui/spotlight-card';
+import { ModelsCTA } from '@/components/product/ModelsCTA';
 
 export default function TechnologyPage() {
   const { t } = useTranslation();
   const { lang } = useParams<{ lang: string }>();
   const currentLang = lang ?? 'en';
 
-  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal(0.1);
-
-  return (
+return (
     <>
       <SEO
         title="Technology | E-Force"
@@ -48,7 +46,7 @@ export default function TechnologyPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="mx-auto mt-6 max-w-2xl font-body"
+            className="mx-auto mt-6 max-w-3xl font-body"
             style={{ fontSize: "clamp(0.9rem, 1.2vw, 1.05rem)", lineHeight: 1.75, color: "rgba(255,255,255,0.5)" }}
           >
             Dois módulos poderosos. Uma filosofia: dar ao baterista controle total sobre o seu som.
@@ -78,14 +76,14 @@ export default function TechnologyPage() {
               className="max-md:!grid-cols-1">
               <GlowCard customSize glowColor="orange" className="w-full overflow-hidden p-0" style={{ minHeight: "260px" }}>
                 <img
-                  src="/assets/images/modulos/f50-front.png"
+                  src="/assets/images/modulos/f50-front.webp"
                   alt="Módulo F50 — frente"
                   style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "inherit" }}
                 />
               </GlowCard>
               <GlowCard customSize glowColor="orange" className="w-full overflow-hidden p-0" style={{ minHeight: "260px" }}>
                 <img
-                  src="/assets/images/modulos/f50-side.png"
+                  src="/assets/images/modulos/f50-side.webp"
                   alt="Módulo F50 — conectores"
                   style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius: "inherit" }}
                 />
@@ -159,21 +157,21 @@ export default function TechnologyPage() {
               className="max-md:!grid-cols-1">
               <GlowCard customSize glowColor="blue" className="w-full overflow-hidden p-0" style={{ minHeight: "260px" }}>
                 <img
-                  src="/assets/images/modulos/f10-front.png"
+                  src="/assets/images/modulos/f10-front.webp"
                   alt="Módulo F10 — frente"
                   style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "inherit" }}
                 />
               </GlowCard>
               <GlowCard customSize glowColor="blue" className="w-full overflow-hidden p-0" style={{ minHeight: "260px" }}>
                 <img
-                  src="/assets/images/modulos/f10-detail.png"
+                  src="/assets/images/modulos/f10-detail.webp"
                   alt="Módulo F10 — detalhe"
                   style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "inherit" }}
                 />
               </GlowCard>
               <GlowCard customSize glowColor="blue" className="w-full overflow-hidden p-0" style={{ minHeight: "260px" }}>
                 <img
-                  src="/assets/images/modulos/f10-main3.png"
+                  src="/assets/images/modulos/f10-main3.webp"
                   alt="Módulo F10 — perspectiva"
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", borderRadius: "inherit" }}
                 />
@@ -205,7 +203,7 @@ export default function TechnologyPage() {
               </div>
               <div style={{ marginTop: "1.5rem" }}>
                 <span style={{ fontSize: "11px", fontWeight: 600, color: "rgba(255,255,255,0.3)", letterSpacing: "0.15em", textTransform: "uppercase" }}>Disponível em — </span>
-                {["EF2 V1", "EF2 V2", "EF2 V3", "EF2 V4", "EF6 Café"].map((m) => (
+                {["EF2 V1", "EF2 V2", "EF2 V3", "EF2 V4", "EF6 Odery CafeKit Hybrid"].map((m) => (
                   <span key={m} style={{ display: "inline-block", background: "rgba(255,74,28,0.1)", color: "#ff4a1c", fontSize: "11px", fontWeight: 600, padding: "4px 12px", borderRadius: "999px", marginRight: "0.5rem", marginBottom: "0.35rem", letterSpacing: "0.1em" }}>{m}</span>
                 ))}
               </div>
@@ -222,12 +220,27 @@ export default function TechnologyPage() {
                 { label: "POWER", title: "Alimentação USB-C", desc: "Funciona com qualquer powerbank, laptop ou carregador USB-C. Ideal para prática em qualquer lugar.", color: "orange" as const },
                 { label: "EXPANSION", title: "Porta de expansão", desc: "Porta extra para adicionar mais um pad de prato ou de tom.", color: "green" as const },
               ].map((f) => (
-                <GlowCard key={f.label} customSize glowColor={f.color} className="w-full p-8 flex flex-col gap-4" style={{ minHeight: "240px" }}>
-                  <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.25em", color: "#ff4a1c" }}>{f.label}</span>
-                  <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#fff", lineHeight: 1.2, margin: 0 }}>{f.title}</h3>
-                  <p style={{ fontSize: "0.87rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.65, margin: 0, flexGrow: 1 }}>{f.desc}</p>
+                <GlowCard key={f.label} customSize glowColor={f.color} className="w-full p-8" style={{ minHeight: "240px" }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", height: "100%" }}>
+                    <div style={{ height: "16px" }}>
+                      <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.25em", color: "#ff4a1c" }}>{f.label}</span>
+                    </div>
+                    <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#fff", lineHeight: 1.2, margin: 0 }}>{f.title}</h3>
+                    <p style={{ fontSize: "0.87rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.65, margin: 0, flexGrow: 1 }}>{f.desc}</p>
+                  </div>
                 </GlowCard>
               ))}
+            </div>
+
+            {/* Vídeo F10 */}
+            <div style={{ marginTop: "2rem", borderRadius: "16px", overflow: "hidden", aspectRatio: "16/9" }}>
+              <iframe
+                src="https://www.youtube.com/embed/80_h8FwbYz8"
+                title="Módulo F10 — E-Force"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{ width: "100%", height: "100%", border: "none" }}
+              />
             </div>
           </div>
         </div>
@@ -256,16 +269,19 @@ export default function TechnologyPage() {
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
                 {[
-                  { value: "25+", label: "Anos de experiência" },
-                  { value: "100%", label: "Testado em estúdio" },
-                  { value: "2×", label: "Rack reforçado" },
-                  { value: "∞", label: "Garantia de qualidade" },
+                  { value: "35+", label: "Anos produzindo baterias." },
+                  { value: "7+", label: "Modelos disponíveis." },
                 ].map((s) => (
                   <div key={s.label} style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "1rem" }}>
                     <div style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 800, color: "#fff", lineHeight: 1, letterSpacing: "-0.03em" }}>{s.value}</div>
                     <div style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.15em", color: "rgba(255,255,255,0.35)", marginTop: "0.4rem" }}>{s.label}</div>
                   </div>
                 ))}
+                <div style={{ gridColumn: "1 / -1", borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "1rem" }}>
+                  <div style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 800, color: "#fff", lineHeight: 1, letterSpacing: "-0.03em" }}>4+</div>
+                  <div style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.15em", color: "rgba(255,255,255,0.35)", marginTop: "0.4rem" }}>Países envolvidos no desenvolvimento.</div>
+                  <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.2)", marginTop: "0.3rem" }}>Brasil, China, Canadá e Estados Unidos</div>
+                </div>
               </div>
             </div>
           </GlowCard>
@@ -275,31 +291,7 @@ export default function TechnologyPage() {
       {/* Divider */}
       <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
 
-      {/* SECTION 4 — CTA */}
-      <section className="bg-[#111] py-24">
-        <div
-          ref={ctaRef}
-          className="mx-auto max-w-2xl px-6 text-center"
-          style={{
-            opacity: ctaVisible ? 1 : 0,
-            transform: ctaVisible ? 'translateY(0)' : 'translateY(24px)',
-            transition: 'opacity 0.7s ease, transform 0.7s ease',
-          }}
-        >
-          <h2 className="font-display text-3xl font-bold text-white">
-            Pronto para sentir a diferença?
-          </h2>
-          <p className="mt-4 font-body text-[rgba(255,255,255,0.5)]">
-            Explore a linha completa E-Force e encontre o kit que define a sua performance.
-          </p>
-          <Link
-            to={`/${currentLang}/line`}
-            className="mt-8 inline-block rounded-md bg-brand-orange px-8 py-4 font-display font-semibold text-white transition-colors hover:bg-brand-orange-hover"
-          >
-            Explorar a Linha
-          </Link>
-        </div>
-      </section>
+      <ModelsCTA />
     </>
   );
 }

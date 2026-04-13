@@ -218,26 +218,6 @@ export default function ProductShowcase() {
                       </span>
                     </div>
 
-                    {/* CTA */}
-                    <div
-                      style={{
-                        marginTop: "clamp(1.5rem, 3vh, 3rem)",
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontSize: "11px",
-                          fontWeight: 600,
-                          textTransform: "uppercase",
-                          letterSpacing: "0.3em",
-                          color: isComingSoon ? "rgba(0,0,0,0.25)" : "#ff4a1c",
-                          transition: "color 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-                        }}
-                        className={isComingSoon ? "" : "group-hover:text-[#0a0a0a]"}
-                      >
-                        {isComingSoon ? t("coming_soon") : (t("showcase.viewModel") || "Explorar") + " →"}
-                      </span>
-                    </div>
                   </motion.div>
                 </div>
               </div>
