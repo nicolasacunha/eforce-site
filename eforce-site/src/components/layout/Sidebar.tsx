@@ -17,7 +17,7 @@ const categories: { key: Category; labelKey: string; route: string; directLink?:
   { key: "modelos", labelKey: "nav.line", route: "line" },
   { key: "tecnologia", labelKey: "nav.technology", route: "technology" },
   { key: "historia", labelKey: "nav.story", route: "story", directLink: true },
-  { key: "dealers", labelKey: "nav.dealers", route: "dealers" },
+  { key: "dealers", labelKey: "nav.dealers", route: "dealers", directLink: true },
   { key: "suporte", labelKey: "nav.support", route: "support" },
 ];
 
