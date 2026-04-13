@@ -7,7 +7,7 @@ interface SidebarModelListProps {
   onNavigate: () => void;
 }
 
-const COMING_SOON_IDS = ["ef6cafe", "ef7eye"];
+const COMING_SOON_IDS = ["ef7eye"];
 
 export function SidebarModelList({ onNavigate }: SidebarModelListProps) {
   const { lang } = useParams();
@@ -29,13 +29,18 @@ export function SidebarModelList({ onNavigate }: SidebarModelListProps) {
             {product.name}
           </h3>
           {COMING_SOON_IDS.includes(product.id) ? (
-            <div className="flex items-center justify-center h-64 -mx-6" style={{ width: "calc(100% + 3rem)", background: "linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%)" }}>
-              <span
-                className="text-2xl font-bold text-gray-400 tracking-widest uppercase"
-                style={{ textShadow: "0 4px 16px rgba(0,0,0,0.18), 0 1px 3px rgba(0,0,0,0.10)" }}
-              >
-                {t("coming_soon")}
-              </span>
+            <div className="relative -mx-6" style={{ width: "calc(100% + 3rem)" }}>
+              <img
+                src={product.menuImage ?? product.heroImage}
+                alt={product.name}
+                className="h-auto object-contain w-full"
+                style={{ opacity: 0.85 }}
+              />
+              <div style={{ position: "absolute", top: "0.75rem", left: "50%", transform: "translateX(-50%)" }}>
+                <span className="font-bold tracking-widest uppercase" style={{ fontSize: "0.95rem", background: "rgba(255,255,255,0.92)", color: "rgba(0,0,0,0.6)", padding: "0.45rem 1.2rem", borderRadius: "999px", whiteSpace: "nowrap" }}>
+                  {t("coming_soon")}
+                </span>
+              </div>
             </div>
           ) : (
             <img

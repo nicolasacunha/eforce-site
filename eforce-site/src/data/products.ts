@@ -211,6 +211,9 @@ export const products: Product[] = [
       "/assets/images/kits/ef2v2/ef2v2-numeros-nobg.webp",
     ],
     showcaseImage: "/assets/images/kits/ef2v2/ef2v2-showcase.webp",
+    finishGallery: [
+      { image: "/assets/images/kits/ef2v2/ef2v2-acabamentos.png", label: "" },
+    ],
     techTabs: [],
   },
   {
@@ -288,6 +291,9 @@ export const products: Product[] = [
       "/assets/images/kits/ef2v3/ef2v3-studio-2.webp",
       "/assets/images/kits/ef2v3/ef2v3-studio-3.webp",
     ],
+    finishGallery: [
+      { image: "/assets/images/kits/ef2v3/ef2v3-acabamentos.png", label: "" },
+    ],
     techTabs: [],
   },
   {
@@ -364,39 +370,8 @@ export const products: Product[] = [
       "/assets/images/kits/ef2v4/ef2v4-hero-nobg.webp",
       "/assets/images/kits/ef2v4/ef2v4-numeros-nobg.webp",
     ],
-    techTabs: [],
-  },
-  {
-    id: "ef6cafe",
-    slug: "ef6-cafe-hybrid",
-    name: "EF6 Odery CafeKit Hybrid",
-    subtitle: "Odery Café Hybrid",
-    price: "R$ 10,206",
-    priceValue: 10206,
-    tagline: "Compacta por design. Completa por natureza.",
-    description:
-      "Máxima tocabilidade no menor espaço. Feita para apartamentos, home studios e palcos intimistas.",
-    module: "F10",
-    badge: null,
-    heroImage: "/assets/images/kits/ef6cafe/ef6cafe-hero.webp",
-    finishes: [
-      { id: "black", name: "Midnight Black", color: "#1a1a2e", image: "/assets/images/kits/ef6cafe/ef6cafe-hero.webp" },
-      { id: "walnut", name: "Walnut Brown", color: "#8B4513", image: "/assets/images/kits/ef6cafe/ef6cafe-hero.webp" },
-      { id: "cream", name: "Vintage Cream", color: "#f5e6c8", image: "/assets/images/kits/ef6cafe/ef6cafe-hero.webp" },
-    ],
-    inTheBox: [],
-    videoPreview: undefined,
-    soundDemo: undefined,
-    specsHighlight: [
-      { label: "Sons", value: "120" },
-      { label: "Play Alongs", value: "33" },
-      { label: "Kits\nCustomizáveis", value: "5" },
-    ],
-    highlights: [],
-    editorialHeadline: undefined,
-    editorialBody: undefined,
-    galleryImages: [
-      "/assets/images/kits/ef6cafe/ef6cafe-hero.webp",
+    finishGallery: [
+      { image: "/assets/images/kits/ef2v4/ef2v4-acabamentos.png", label: "" },
     ],
     techTabs: [],
   },
@@ -475,6 +450,9 @@ export const products: Product[] = [
       "/assets/images/kits/ef5v2/ef5v2-front.webp",
       "/assets/images/kits/ef5v2/ef5v2-aerial.webp",
     ],
+    finishGallery: [
+      { image: "/assets/images/kits/ef5v2/ef5v2-acabamentos.png", label: "" },
+    ],
     techTabs: [],
   },
   {
@@ -488,11 +466,11 @@ export const products: Product[] = [
       "Onde a forma acústica e a capacidade eletrônica se unem sem concessões. A experiência E-Force definitiva.",
     module: "F50",
     badge: "home.flagship",
-    heroImage: "/assets/images/kits/ef7eye/ef7eye-hero.webp",
+    heroImage: "/assets/images/kits/ef7eye/ef7eye-v2.png",
     finishes: [
-      { id: "teal-pearl", name: "Teal Pearl", color: "#1a7a7a", image: "/assets/images/kits/ef7eye/ef7eye-hero.webp" },
-      { id: "black", name: "Midnight Black", color: "#1a1a2e", image: "/assets/images/kits/ef7eye/ef7eye-hero.webp" },
-      { id: "burst", name: "Tobacco Burst", color: "#6b3a1f", image: "/assets/images/kits/ef7eye/ef7eye-hero.webp" },
+      { id: "teal-pearl", name: "Teal Pearl", color: "#1a7a7a", image: "/assets/images/kits/ef7eye/ef7eye-v2.png" },
+      { id: "black", name: "Midnight Black", color: "#1a1a2e", image: "/assets/images/kits/ef7eye/ef7eye-v2.png" },
+      { id: "burst", name: "Tobacco Burst", color: "#6b3a1f", image: "/assets/images/kits/ef7eye/ef7eye-v2.png" },
     ],
     inTheBox: [],
     videoPreview: undefined,
@@ -506,7 +484,7 @@ export const products: Product[] = [
     editorialHeadline: undefined,
     editorialBody: undefined,
     galleryImages: [
-      "/assets/images/kits/ef7eye/ef7eye-hero.webp",
+      "/assets/images/kits/ef7eye/ef7eye-v2.png",
     ],
     techTabs: [],
   },

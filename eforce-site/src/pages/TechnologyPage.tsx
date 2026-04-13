@@ -203,7 +203,7 @@ return (
               </div>
               <div style={{ marginTop: "1.5rem" }}>
                 <span style={{ fontSize: "11px", fontWeight: 600, color: "rgba(255,255,255,0.3)", letterSpacing: "0.15em", textTransform: "uppercase" }}>Disponível em — </span>
-                {["EF2 V1", "EF2 V2", "EF2 V3", "EF2 V4", "EF6 Odery CafeKit Hybrid"].map((m) => (
+                {["EF2 V1", "EF2 V2", "EF2 V3", "EF2 V4"].map((m) => (
                   <span key={m} style={{ display: "inline-block", background: "rgba(255,74,28,0.1)", color: "#ff4a1c", fontSize: "11px", fontWeight: 600, padding: "4px 12px", borderRadius: "999px", marginRight: "0.5rem", marginBottom: "0.35rem", letterSpacing: "0.1em" }}>{m}</span>
                 ))}
               </div>

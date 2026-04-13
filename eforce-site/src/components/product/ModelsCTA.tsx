@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { usePageTransition } from '@/context/TransitionContext';
 import { products } from '@/data/products';
 
-const COMING_SOON = ["ef6cafe", "ef7eye"];
+const COMING_SOON = ["ef7eye"];
 
 export function ModelsCTA() {
   const { lang } = useParams<{ lang: string }>();
@@ -10,7 +10,7 @@ export function ModelsCTA() {
   const { navigateWithCurtain } = usePageTransition();
 
   const visibleProducts = products.filter(
-    (p) => !["ef6-cafe-hybrid", "ef7-eye-hybrid"].includes(p.slug)
+    (p) => !["ef7-eye-hybrid"].includes(p.slug)
   );
 
   return (

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { products } from "@/data/products";
 import { usePageTransition } from "@/context/TransitionContext";
 
-const COMING_SOON_IDS = ["ef6cafe", "ef7v1", "ef7eye"];
+const COMING_SOON_IDS = ["ef7v1", "ef7eye"];
 
 export default function ProductShowcase() {
   const { lang } = useParams();
@@ -66,22 +66,34 @@ export default function ProductShowcase() {
                       }}
                     />
                     {isComingSoon ? (
-                      <div
-                        className="w-full flex items-center justify-center"
-                        style={{ minHeight: "clamp(300px, 50vh, 600px)", background: "rgba(0,0,0,0.04)", borderRadius: "8px" }}
-                      >
-                        <span
+                      <div className="relative w-full">
+                        <img
+                          src={product.showcaseImage ?? product.heroImage}
+                          alt={product.name}
+                          className="w-full object-contain"
                           style={{
-                            fontSize: "clamp(1.5rem, 4vw, 3rem)",
+                            maxHeight: "clamp(450px, 75vh, 900px)",
+                            filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.15))",
+                            opacity: 0.7,
+                          }}
+                          loading={i < 2 ? "eager" : "lazy"}
+                        />
+                        <div style={{ position: "absolute", top: "1rem", left: "50%", transform: "translateX(-50%)" }}>
+                          <span style={{
+                            fontSize: "clamp(0.7rem, 1vw, 0.85rem)",
                             fontWeight: 700,
                             letterSpacing: "0.2em",
                             textTransform: "uppercase",
-                            color: "rgba(0,0,0,0.2)",
-                            textShadow: "0 4px 24px rgba(0,0,0,0.10)",
-                          }}
-                        >
-                          {t("coming_soon")}
-                        </span>
+                            color: "rgba(0,0,0,0.5)",
+                            background: "rgba(255,255,255,0.8)",
+                            padding: "0.35rem 1rem",
+                            borderRadius: "999px",
+                            backdropFilter: "blur(8px)",
+                            whiteSpace: "nowrap",
+                          }}>
+                            {t("coming_soon")}
+                          </span>
+                        </div>
                       </div>
                     ) : (
                       <img

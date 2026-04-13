@@ -867,7 +867,7 @@ export default function ProductDetailPage() {
     return <Navigate to={`/${lang}/line`} replace />;
   }
 
-  const COMING_SOON_IDS = ["ef6cafe", "ef7eye"];
+  const COMING_SOON_IDS = ["ef7eye"];
   if (COMING_SOON_IDS.includes(product.id)) {
     return (
       <>
