@@ -119,9 +119,9 @@ export default function StoryPage() {
         initial="hidden"
         whileInView="show"
         viewport={viewport}
-        style={{ background: "#0a0a0a", padding: "0 clamp(1.5rem, 6vw, 5rem) clamp(4rem, 8vh, 7rem)" }}
+        style={{ background: "#0a0a0a", padding: "0 0 clamp(4rem, 8vh, 7rem)" }}
       >
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 clamp(1.5rem, 6vw, 5rem)" }}>
           <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden", borderRadius: "12px" }}>
             <iframe
               src="https://www.youtube.com/embed/wcPBaeA1k9M"

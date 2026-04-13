@@ -210,7 +210,7 @@ return (
             </GlowCard>
 
             {/* Conectividade F10 */}
-            <div style={{ marginTop: "2rem", marginBottom: "0.5rem" }}>
+            <div style={{ marginTop: "2rem", marginBottom: "2rem" }}>
               <h3 style={{ fontSize: "clamp(1.4rem, 3vw, 2.2rem)", fontWeight: 700, color: "#fff" }}>Conectividade essencial.</h3>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "1.5rem" }}>

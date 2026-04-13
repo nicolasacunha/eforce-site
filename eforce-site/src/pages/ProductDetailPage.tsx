@@ -1046,10 +1046,10 @@ export default function ProductDetailPage() {
         {(["ef5-v2", "ef2-v1", "ef2-v2", "ef2-v3", "ef2-v4"] as const).includes(product.slug as any) && (() => {
           const videoIds: Record<string, string> = {
             "ef5-v2": "uKXTqqVa-DA",
-            "ef2-v1": "mUKYGnKlbtw",
-            "ef2-v2": "Npls6mviuR8",
-            "ef2-v3": "rwlRUHh2kLo",
-            "ef2-v4": "4lYdYrG6Yoc",
+            "ef2-v1": "Jux50AKrrJw",
+            "ef2-v2": "rXeNjRfy7vU",
+            "ef2-v3": "YGQdWYZ_d70",
+            "ef2-v4": "sk32_ptcBig",
           };
           return (
             <section style={{ background: "#000", padding: "clamp(2rem, 5vh, 4rem) 0" }}>
