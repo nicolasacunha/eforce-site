@@ -123,6 +123,19 @@ return (
               </div>
             </GlowCard>
 
+            {/* Vídeo F50 — TODO: substituir VIDEO_ID_F50 pelo link real */}
+            <div style={{ margin: "2rem 0" }}>
+              <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden", borderRadius: "4px" }}>
+                <iframe
+                  src="https://www.youtube.com/embed/VIDEO_ID_F50"
+                  title="Módulo F50 — E-Force"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+                />
+              </div>
+            </div>
+
             {/* Conectividade F50 */}
             <div style={{ marginTop: "2rem", marginBottom: "0.5rem" }}>
               <h3 style={{ fontSize: "clamp(1.4rem, 3vw, 2.2rem)", fontWeight: 700, color: "#fff" }}>Conectividade e expansão.</h3>
@@ -210,7 +223,7 @@ return (
             </GlowCard>
 
             {/* Conectividade F10 */}
-            <div style={{ marginTop: "2rem", marginBottom: "2rem" }}>
+            <div style={{ marginTop: "2rem", marginBottom: "1rem" }}>
               <h3 style={{ fontSize: "clamp(1.4rem, 3vw, 2.2rem)", fontWeight: 700, color: "#fff" }}>Conectividade essencial.</h3>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "1.5rem" }}>
@@ -221,7 +234,7 @@ return (
                 { label: "EXPANSION", title: "Porta de expansão", desc: "Porta extra para adicionar mais um pad de prato ou de tom.", color: "green" as const },
               ].map((f) => (
                 <GlowCard key={f.label} customSize glowColor={f.color} className="w-full p-8" style={{ minHeight: "240px" }}>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", height: "100%" }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "1rem", height: "100%" }}>
                     <div style={{ height: "16px" }}>
                       <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.25em", color: "#ff4a1c" }}>{f.label}</span>
                     </div>
