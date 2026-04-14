@@ -28,9 +28,9 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   return (
     <Overlay isOpen={isOpen} onClose={onClose} side="left" ariaLabel="Menu de navega\u00E7\u00E3o">
-      <div className="flex h-full w-screen overflow-hidden">
+      <div className="flex h-full w-screen md:w-[90vw] md:max-w-4xl overflow-hidden">
         {/* Left: categories — white bg like Porsche */}
-        <div className="w-[45%] bg-white p-6 flex flex-col border-r border-gray-200">
+        <div className="w-[45%] md:w-2/5 bg-white p-6 flex flex-col border-r border-gray-200">
           <button
             onClick={onClose}
             className="self-end text-gray-900 text-2xl mb-8 hover:text-gray-500 transition-colors"
@@ -76,7 +76,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           </nav>
         </div>
         {/* Right: content — light bg, scrollable */}
-        <div className="w-[55%] bg-gray-50 p-6 overflow-y-auto overflow-x-hidden">
+        <div className="w-[55%] md:w-3/5 bg-gray-50 p-6 overflow-y-auto overflow-x-hidden">
           {activeCategory === "modelos" ? (
             <SidebarModelList onNavigate={onClose} />
           ) : activeCategory === "tecnologia" ? (

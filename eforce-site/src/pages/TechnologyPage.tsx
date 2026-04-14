@@ -189,7 +189,7 @@ return (
             </div>
 
             {/* Fotos F10 */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "1.5rem" }}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "1.5rem", marginBottom: "1.5rem" }}
               className="max-md:!grid-cols-1">
               <GlowCard customSize glowColor="blue" className="w-full overflow-hidden p-0" style={{ minHeight: "260px" }}>
                 <img
@@ -202,6 +202,13 @@ return (
                 <img
                   src="/assets/images/modulos/f10-main3.webp"
                   alt="Módulo F10 — perspectiva"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", borderRadius: "inherit" }}
+                />
+              </GlowCard>
+              <GlowCard customSize glowColor="blue" className="w-full overflow-hidden p-0 max-md:hidden" style={{ minHeight: "260px" }}>
+                <img
+                  src="/assets/images/modulos/f10-detail.webp"
+                  alt="Módulo F10 — detalhe"
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", borderRadius: "inherit" }}
                 />
               </GlowCard>
@@ -267,10 +274,12 @@ return (
                 { label: "POWER", title: "Alimentação USB-C", desc: "Funciona com qualquer powerbank, laptop ou carregador USB-C. Ideal para prática em qualquer lugar.", color: "orange" as const },
                 { label: "EXPANSION", title: "Porta de expansão", desc: "Porta extra para adicionar mais um pad de prato ou de tom.", color: "green" as const },
               ]).map((f) => (
-                <GlowCard key={f.label} customSize glowColor={f.color} className="w-full" style={{ minHeight: "240px", display: "flex", flexDirection: "column", padding: "2rem" }}>
-                  <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.25em", color: "#ff4a1c", display: "block", height: "1.5rem", marginBottom: "1rem" }}>{f.label}</span>
-                  <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#fff", lineHeight: 1.2, margin: 0, marginBottom: "1rem" }}>{f.title}</h3>
-                  <p style={{ fontSize: "0.87rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.65, margin: 0, flexGrow: 1 }}>{f.desc}</p>
+                <GlowCard key={f.label} customSize glowColor={f.color} className="w-full p-8" style={{ minHeight: "240px" }}>
+                  <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+                    <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.25em", color: "#ff4a1c", display: "block", marginBottom: "1rem" }}>{f.label}</span>
+                    <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#fff", lineHeight: 1.2, margin: 0, marginBottom: "1rem" }}>{f.title}</h3>
+                    <p style={{ fontSize: "0.87rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.65, margin: 0, marginTop: "auto" }}>{f.desc}</p>
+                  </div>
                 </GlowCard>
               ))}
             </div>

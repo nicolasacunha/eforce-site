@@ -233,13 +233,13 @@ function KeySpecsSection({ product, isMobile }: { product: Product; isMobile: bo
             maxWidth: "1300px",
             margin: "0 auto",
             display: "grid",
-            gridTemplateColumns: "1fr",
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 2fr",
             gap: isMobile ? "0.5rem" : "clamp(1rem, 3vw, 2rem)",
             alignItems: "center",
           }}
         >
           {/* Left: specs */}
-          <div style={{ display: "flex", flexDirection: isMobile ? "row" : "column", gap: isMobile ? "clamp(1.5rem, 5vw, 3rem)" : "clamp(2rem, 4vh, 3.5rem)", marginLeft: isMobile ? "0" : "auto", paddingRight: isMobile ? "0" : "clamp(1rem, 2vw, 2rem)", position: "relative", zIndex: 5 }}>
+          <div style={{ display: "flex", flexDirection: isMobile ? "row" : "column", gap: isMobile ? "clamp(1.5rem, 5vw, 3rem)" : "clamp(2rem, 4vh, 3.5rem)", marginLeft: 0, paddingRight: isMobile ? "0" : "clamp(1rem, 2vw, 2rem)", position: "relative", zIndex: 5 }}>
             {specs.map((s) => (
               <div key={s.label}>
                 <div

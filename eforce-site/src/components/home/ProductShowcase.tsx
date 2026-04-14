@@ -57,9 +57,9 @@ export default function ProductShowcase() {
                   } items-center`}
                   style={{ gap: "clamp(2rem, 5vw, 5rem)" }}
                 >
-                  {/* Product Image — 55% (45% for coming soon) */}
+                  {/* Product Image — 55% (60% for coming soon) */}
                   <motion.div
-                    className={`w-full ${isComingSoon ? "md:w-[45%]" : "md:w-[55%]"} relative`}
+                    className={`w-full ${isComingSoon ? "md:w-[60%]" : "md:w-[55%]"} relative`}
                     initial={{ opacity: 0, x: isEven ? -40 : 40 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -79,7 +79,7 @@ export default function ProductShowcase() {
                         alt={product.name}
                         className="w-full object-contain"
                         style={{
-                          maxHeight: isMobile ? "clamp(260px, 70vw, 400px)" : "clamp(450px, 75vh, 900px)",
+                          maxHeight: isMobile ? "clamp(260px, 70vw, 400px)" : "clamp(550px, 85vh, 1000px)",
                           filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.15))",
                         }}
                         loading={i < 2 ? "eager" : "lazy"}
@@ -90,7 +90,7 @@ export default function ProductShowcase() {
                         alt={product.name}
                         className="w-full object-contain group-hover:scale-[1.03] group-hover:-translate-y-2"
                         style={{
-                          maxHeight: isMobile ? "clamp(260px, 70vw, 400px)" : "clamp(450px, 75vh, 900px)",
+                          maxHeight: isMobile ? (product.id === "ef2v1" ? "clamp(320px, 90vw, 500px)" : "clamp(260px, 70vw, 400px)") : "clamp(450px, 75vh, 900px)",
                           filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.15))",
                           transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
                           ...(!isMobile && product.id === "ef2v1" && { transform: "scale(1.75)" }),
@@ -105,9 +105,10 @@ export default function ProductShowcase() {
 
                   {/* Info — 45% */}
                   <motion.div
-                    className={`w-full ${isComingSoon ? "md:w-[55%]" : "md:w-[45%]"} ${
+                    className={`w-full ${isComingSoon ? "md:w-[40%]" : "md:w-[45%]"} ${
                       isEven ? "" : "md:text-right"
                     }`}
+                    style={isComingSoon ? { paddingRight: "0", overflow: "hidden" } : undefined}
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -122,14 +123,14 @@ export default function ProductShowcase() {
                       <>
                         <h2
                           style={{
-                            fontSize: "clamp(2rem, 5vw, 5.5rem)",
+                            fontSize: isComingSoon ? (isMobile ? "clamp(1.5rem, 7vw, 2rem)" : "clamp(1.5rem, 3vw, 3.5rem)") : "clamp(2rem, 5vw, 5.5rem)",
                             lineHeight: 0.95,
                             letterSpacing: "-0.04em",
                             fontWeight: 700,
                             color: "#0a0a0a",
                             marginTop: 0,
                             marginBottom: "clamp(1rem, 2vh, 2rem)",
-                            whiteSpace: isMobile ? "normal" : "nowrap",
+                            whiteSpace: "normal",
                           }}
                         >
                           {(() => {
