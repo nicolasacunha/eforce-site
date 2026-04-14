@@ -17,12 +17,6 @@ export default function HeroSection() {
         <p className="font-body text-neutral-500" style={{ fontSize: "clamp(1rem, 2vw, 1.3rem)", fontWeight: 300, lineHeight: 1.6 }}>
           {t("hero.sub")}
         </p>
-        <Link
-          to={`/${lang}/line`}
-          className="mt-8 inline-flex items-center gap-2 text-brand-orange hover:text-white transition-colors text-sm tracking-wider"
-        >
-          {t("hero.cta")} →
-        </Link>
       </div>
     </ScrollExpandMedia>
   );

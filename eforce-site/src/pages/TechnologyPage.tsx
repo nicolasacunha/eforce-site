@@ -154,11 +154,11 @@ export default function TechnologyPage() {
               </div>
             </GlowCard>
 
-            {/* Vídeo F50 — TODO: substituir VIDEO_ID_F50 pelo link real */}
+            {/* Vídeo F50 */}
             <div style={{ margin: "2rem 0" }}>
               <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden", borderRadius: "4px" }}>
                 <iframe
-                  src="https://www.youtube.com/embed/VIDEO_ID_F50"
+                  src="https://www.youtube.com/embed/wvolNuCqh6Q"
                   title="F50 Module — E-Force"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
