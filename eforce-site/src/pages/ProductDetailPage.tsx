@@ -213,8 +213,21 @@ function HeroSection({ product, isMobile }: { product: Product; isMobile: boolea
    SECTION 2 — KEY SPECS (left specs, right aerial image)
    ═══════════════════════════════════════════════════════ */
 function KeySpecsSection({ product, isMobile }: { product: Product; isMobile: boolean }) {
+  const { t } = useTranslation();
   const [showTechPanel, setShowTechPanel] = useState(false);
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
+  const translateSpecLabel = (label: string) => {
+    const map: Record<string, string> = {
+      'sons': t('home.stats.sounds'),
+      'kits\ncustomizáveis': t('home.stats.kits'),
+      'kits customizáveis': t('home.stats.kits'),
+      'tipos de reverb': t('home.stats.reverbs'),
+      'tipos de\nreverb': t('home.stats.reverbs'),
+      'módulo': t('home.stats.module'),
+      'play alongs': 'Play Alongs',
+    };
+    return map[label.toLowerCase()] ?? label;
+  };
   // Use PNG transparent if available, otherwise aerial/hero
   const hasNobg = product.galleryImages.some(img => img.includes("nobg"));
   const aerialImage = hasNobg
@@ -264,7 +277,7 @@ function KeySpecsSection({ product, isMobile }: { product: Product; isMobile: bo
                     fontWeight: 400,
                   }}
                 >
-                  {s.label}
+                  {translateSpecLabel(s.label)}
                 </div>
               </div>
             ))}
@@ -721,6 +734,7 @@ function HighlightCard({ card, cardHeight, index = 0, isMobile }: { card: { imag
 }
 
 function HighlightsCarousel({ product, isMobile }: { product: Product; isMobile: boolean }) {
+  const { t } = useTranslation();
   const scrollRef = useRef<HTMLDivElement>(null);
   const scrollRef2 = useRef<HTMLDivElement>(null);
 
@@ -808,7 +822,7 @@ function HighlightsCarousel({ product, isMobile }: { product: Product; isMobile:
             paddingLeft: "clamp(1.5rem, 6vw, 6rem)",
           }}
         >
-          Destaques do {product.name}.
+          {t('product.highlightsOf')} {product.name}.
         </h2>
 
         {/* Arrow navigation */}
@@ -816,12 +830,12 @@ function HighlightsCarousel({ product, isMobile }: { product: Product; isMobile:
           <button
             onClick={() => scrollBoth(-400)}
             style={{ background: "none", border: "1px solid rgba(0,0,0,0.2)", width: "40px", height: "40px", cursor: "pointer", fontSize: "18px", display: "flex", alignItems: "center", justifyContent: "center" }}
-            aria-label="Anterior"
+            aria-label={t('product.previous')}
           >←</button>
           <button
             onClick={() => scrollBoth(400)}
             style={{ background: "none", border: "1px solid rgba(0,0,0,0.2)", width: "40px", height: "40px", cursor: "pointer", fontSize: "18px", display: "flex", alignItems: "center", justifyContent: "center" }}
-            aria-label="Próximo"
+            aria-label={t('product.next')}
           >→</button>
         </div>
 
@@ -887,7 +901,7 @@ export default function ProductDetailPage() {
             {product.description}
           </p>
           <Link to={`/${lang}/line`} style={{ marginTop: "2.5rem", display: "inline-block", fontSize: "13px", fontWeight: 600, color: "#fff", border: "1px solid rgba(255,255,255,0.2)", padding: "14px 32px", letterSpacing: "0.05em", textDecoration: "none" }}>
-            ← Ver todos os modelos
+            ← {t('product.viewAllModels')}
           </Link>
         </section>
       </>
@@ -918,51 +932,18 @@ export default function ProductDetailPage() {
           <KeySpecsSection product={product} isMobile={isMobile} />
 
 
-          {/* Intro text — EF2 V1/V2/V3/V4 + EF5 V2 */}
-          {["ef2-v1", "ef2-v2", "ef2-v3", "ef2-v4", "ef5-v2"].includes(product.slug) && (() => {
+          {/* Intro text — driven by product.introLines */}
+          {product.introLines && product.introLines.length > 0 && (() => {
             const pStyle: React.CSSProperties = { fontSize: "clamp(1.15rem, 1.6vw, 1.5rem)", fontWeight: 400, fontStyle: "normal", color: "#111", lineHeight: 1.7, margin: 0 };
             const pStyleMt: React.CSSProperties = { ...pStyle, marginTop: "1.2rem" };
-            const texts: Record<string, [string, string, string, string]> = {
-              "ef2-v1": [
-                "A e-Force EF2 versão 1",
-                " powered by Odery é a porta de entrada para a nova geração de baterias eletrônicas Odery e-Force, unindo praticidade, conectividade e uma experiência mais natural para quem quer começar a tocar ou estudar com mais conforto.",
-                "Com peles mesh, configuração completa e módulo F10, a EF2 versão 1 entrega os recursos essenciais para uma rotina de estudo moderna, silenciosa e funcional, sem abrir mão de tocabilidade e boa apresentação visual.",
-                "É uma excelente escolha para quem busca uma bateria eletrônica versátil para uso residencial, estudo diário, aulas e primeiros passos no instrumento.",
-              ],
-              "ef2-v2": [
-                "A e-Force EF2 versão 2",
-                " powered by Odery representa um passo importante em tocabilidade e experiência dentro da linha, oferecendo uma configuração mais robusta para quem deseja evoluir com mais conforto, controle e realismo.",
-                "Com caixa maior, kick tower (torre do bumbo), pedal de bumbo real e pratos com função choke, a EF2 V2 entrega uma sensação mais próxima da performance em um kit acústico, mantendo a praticidade e os benefícios de uma bateria eletrônica moderna.",
-                "É uma excelente opção para músicos que já querem começar com um setup mais completo ou para quem busca um modelo intermediário com ótimo equilíbrio entre custo, entrega e percepção de valor.",
-              ],
-              "ef2-v3": [
-                "A e-Force EF2 versão 3",
-                " powered by Odery foi desenvolvida para quem busca mais versatilidade no setup e uma experiência mais completa de performance dentro da linha EF2.",
-                "Com dois crashes, ride com função choke, kick tower (torre do bumbo) e rack reforçado, este modelo amplia as possibilidades de execução e entrega uma configuração mais próxima das necessidades de quem já está em evolução no instrumento.",
-                "A EF2 V3 é indicada para bateristas que desejam mais liberdade de montagem, melhor resposta para prática mais intensa e um kit com presença superior tanto em funcionalidade quanto em percepção visual.",
-              ],
-              "ef2-v4": [
-                "A e-Force EF2 versão 4",
-                " powered by Odery é a versão mais completa da linha EF2, desenvolvida para oferecer uma experiência superior de tocabilidade, estrutura e presença visual.",
-                "Com chimbal de 12\", 02 crashes de 12\", ride de 14\" com 3 zonas, rack profissional em \"L\" e ferragens poderosas da Odery Equalizer inclusas, a EF2 V4 entrega um setup mais próximo da proposta de uma bateria acústica, com mais conforto, estabilidade e percepção de valor.",
-                "É a escolha ideal para quem busca um kit eletrônico mais completo, com visual mais profissional, melhor experiência de uso e uma configuração pronta para atender músicos mais exigentes.",
-              ],
-              "ef5-v2": [
-                "A e-Force EF5 versão 2",
-                " powered by Odery eleva a proposta da linha para um novo patamar de profissionalismo, combinando o poderoso módulo F50 (topo de linha), tambores acústicos com canoas e bases Odery Eyedentity series, bumbo com pele dos dois lados, novo pé de bumbo Odery assim como uma configuração mais robusta para músicos que buscam mais recursos, presença e performance em altíssimo nível.",
-                "Com pratos maiores e estilo Full Cover, interface mais avançada e visual mais completo, a EF5 V2 atende muito bem quem busca uma experiência mais sofisticada e profissional dentro da linha E-Force.",
-                "",
-              ],
-            };
-            const [bold, rest, p2, p3] = texts[product.slug];
             return (
               <section style={{ background: "#fff", padding: "clamp(2.5rem, 5vh, 4rem) clamp(1.5rem, 6vw, 6rem)" }}>
                 <AnimatedSection style={{ textAlign: "center" }}>
-                  <p style={pStyle}><strong>{bold}</strong>{rest}</p>
-                  <p style={pStyleMt}>{p2}</p>
-                  {p3 && <p style={pStyleMt}>{p3}</p>}
+                  {product.introLines.map((line, i) => (
+                    <p key={i} style={i === 0 ? pStyle : pStyleMt}>{line}</p>
+                  ))}
                   <p style={{ fontSize: "clamp(1.15rem, 1.6vw, 1.5rem)", fontWeight: 400, color: "rgba(17,17,17,0.9)", lineHeight: 1.7, marginTop: "1.5rem" }}>
-                    Tecnologia de ponta, design global e timbres que inspiram. Com a expertise da Odery Drums Brazil, a E-Force leva seu som a um novo patamar.
+                    {t('product.techFooter')}
                   </p>
                 </AnimatedSection>
               </section>
@@ -974,7 +955,7 @@ export default function ProductDetailPage() {
             <section style={{ background: "#fff", padding: "clamp(2rem, 4vh, 3.5rem) clamp(1.5rem, 6vw, 6rem)" }}>
               <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
                 <p style={{ fontSize: "clamp(1.2rem, 2vw, 1.8rem)", fontWeight: 700, letterSpacing: "-0.02em", color: "#111", marginBottom: "clamp(1.5rem, 3vh, 2.5rem)" }}>
-                  Acabamentos disponíveis.
+                  {t('product.availableFinishes')}
                 </p>
                 {product.finishGallery.length === 1 && product.finishGallery[0].image ? (
                   <img
@@ -1011,7 +992,7 @@ export default function ProductDetailPage() {
             {product.kitConfig ? (
               <AnimatedSection style={{ width: "100%", display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : (product.slug === "ef5-v2" ? "flex-start" : "center"), gap: "clamp(1.5rem, 4vw, 4rem)", marginRight: isMobile ? 0 : "-2%", justifyContent: isMobile ? undefined : (product.slug === "ef2-v4" ? "center" : undefined) }}>
                 <div style={{ flexShrink: 0, paddingLeft: "clamp(1rem, 3vw, 3rem)", paddingTop: product.slug === "ef5-v2" ? "clamp(3rem, 8vh, 7rem)" : undefined, minWidth: 0, width: isMobile ? "100%" : undefined, maxWidth: product.slug === "ef2-v1" ? "680px" : product.slug === "ef5-v2" ? "780px" : "600px" }}>
-                  <h3 style={{ fontSize: "clamp(1rem, 1.2vw, 1.25rem)", fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase", color: "#333", marginBottom: "1.4rem", whiteSpace: "nowrap" }}>Configuração do kit</h3>
+                  <h3 style={{ fontSize: "clamp(1rem, 1.2vw, 1.25rem)", fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase", color: "#333", marginBottom: "1.4rem", whiteSpace: "nowrap" }}>{t('product.kitConfiguration')}</h3>
                   <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.65rem" }}>
                     {product.kitConfig.map((item, i) => (
                       item.startsWith("—") ? (

@@ -12,6 +12,8 @@ export function getTranslatedProduct(product: Product, lang: string): Product {
     description: t.description ?? product.description,
     editorialHeadline: t.editorialHeadline ?? product.editorialHeadline,
     editorialBody: t.editorialBody ?? product.editorialBody,
+    introLines: t.introLines ?? product.introLines,
+    kitConfig: t.kitConfig ?? product.kitConfig,
     highlights: t.highlights
       ? product.highlights.map((h, i) => ({
           ...h,

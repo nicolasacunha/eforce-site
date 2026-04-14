@@ -53,6 +53,7 @@ export interface Product {
   editorialHorizontalImage?: string;
   fullKitImage?: string;
   kitConfig?: string[];
+  introLines?: string[];
   galleryImages: string[];
   techTabs: {
     label: string;
@@ -134,6 +135,11 @@ export const products: Product[] = [
       "Rack de bateria",
       "Módulo F10",
     ],
+    introLines: [
+      "A e-Force EF2 versão 1 powered by Odery é a porta de entrada para a nova geração de baterias eletrônicas Odery e-Force, unindo praticidade, conectividade e uma experiência mais natural para quem quer começar a tocar ou estudar com mais conforto.",
+      "Com peles mesh, configuração completa e módulo F10, a EF2 versão 1 entrega os recursos essenciais para uma rotina de estudo moderna, silenciosa e funcional, sem abrir mão de tocabilidade e boa apresentação visual.",
+      "É uma excelente escolha para quem busca uma bateria eletrônica versátil para uso residencial, estudo diário, aulas e primeiros passos no instrumento.",
+    ],
     galleryImages: [
       "/assets/images/kits/ef2v1/ef2v1-hero-nobg.webp",
       "/assets/images/kits/ef2v1/ef2v1-principal-nobg.webp",
@@ -206,6 +212,11 @@ export const products: Product[] = [
       "Rack",
       "Módulo F10",
     ],
+    introLines: [
+      "A e-Force EF2 versão 2 powered by Odery representa um passo importante em tocabilidade e experiência dentro da linha, oferecendo uma configuração mais robusta para quem deseja evoluir com mais conforto, controle e realismo.",
+      "Com caixa maior, kick tower (torre do bumbo), pedal de bumbo real e pratos com função choke, a EF2 V2 entrega uma sensação mais próxima da performance em um kit acústico, mantendo a praticidade e os benefícios de uma bateria eletrônica moderna.",
+      "É uma excelente opção para músicos que já querem começar com um setup mais completo ou para quem busca um modelo intermediário com ótimo equilíbrio entre custo, entrega e percepção de valor.",
+    ],
     galleryImages: [
       "/assets/images/kits/ef2v2/ef2v2-hero-nobg.webp",
       "/assets/images/kits/ef2v2/ef2v2-numeros-nobg.webp",
@@ -275,6 +286,11 @@ export const products: Product[] = [
       "Pedal de bumbo",
       "Rack reforçado",
       "Módulo F10",
+    ],
+    introLines: [
+      "A e-Force EF2 versão 3 powered by Odery foi desenvolvida para quem busca mais versatilidade no setup e uma experiência mais completa de performance dentro da linha EF2.",
+      "Com dois crashes, ride com função choke, kick tower (torre do bumbo) e rack reforçado, este modelo amplia as possibilidades de execução e entrega uma configuração mais próxima das necessidades de quem já está em evolução no instrumento.",
+      "A EF2 V3 é indicada para bateristas que desejam mais liberdade de montagem, melhor resposta para prática mais intensa e um kit com presença superior tanto em funcionalidade quanto em percepção visual.",
     ],
     specsImage: "/assets/images/kits/ef2v3/ef2v3-specs-new.webp",
     editorialHeadline: "Projetada para quem vive a música.",
@@ -366,6 +382,11 @@ export const products: Product[] = [
       "Máquina de chimbal H-803",
       "03 extensores CB-803EQ",
     ],
+    introLines: [
+      "A e-Force EF2 versão 4 powered by Odery é a versão mais completa da linha EF2, desenvolvida para oferecer uma experiência superior de tocabilidade, estrutura e presença visual.",
+      "Com chimbal de 12\", 02 crashes de 12\", ride de 14\" com 3 zonas, rack profissional em \"L\" e ferragens poderosas da Odery Equalizer inclusas, a EF2 V4 entrega um setup mais próximo da proposta de uma bateria acústica, com mais conforto, estabilidade e percepção de valor.",
+      "É a escolha ideal para quem busca um kit eletrônico mais completo, com visual mais profissional, melhor experiência de uso e uma configuração pronta para atender músicos mais exigentes.",
+    ],
     galleryImages: [
       "/assets/images/kits/ef2v4/ef2v4-hero-nobg.webp",
       "/assets/images/kits/ef2v4/ef2v4-numeros-nobg.webp",
@@ -401,6 +422,10 @@ export const products: Product[] = [
       "Rack tubular curvo",
       "3 extensores Odery CB-803EQ",
       "Módulo F50",
+    ],
+    introLines: [
+      "A e-Force EF5 versão 2 powered by Odery eleva a proposta da linha para um novo patamar de profissionalismo, combinando o poderoso módulo F50 (topo de linha), tambores acústicos com canoas e bases Odery Eyedentity series, bumbo com pele dos dois lados, novo pé de bumbo Odery assim como uma configuração mais robusta para músicos que buscam mais recursos, presença e performance em altíssimo nível.",
+      "Com pratos maiores e estilo Full Cover, interface mais avançada e visual mais completo, a EF5 V2 atende muito bem quem busca uma experiência mais sofisticada e profissional dentro da linha E-Force.",
     ],
     finishes: [
       { id: "black", name: "Midnight Black", color: "#1a1a2e", image: "/assets/images/kits/ef5v2/ef5v2-hero.webp" },
