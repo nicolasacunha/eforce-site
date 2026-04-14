@@ -7,8 +7,12 @@ export default function Footer() {
   const location = useLocation();
 
   const languages = [
-    { code: "pt", label: "Brasil / Portugu\u00EAs", flag: "\u{1F1E7}\u{1F1F7}" },
-    { code: "en", label: "English", flag: "\u{1F1FA}\u{1F1F8}" },
+    { code: "pt", label: "Brasil / Português", flag: "🇧🇷" },
+    { code: "en", label: "English", flag: "🇺🇸" },
+    { code: "es", label: "Español", flag: "🇪🇸" },
+    { code: "it", label: "Italiano", flag: "🇮🇹" },
+    { code: "de", label: "Deutsch", flag: "🇩🇪" },
+    { code: "zh", label: "中文", flag: "🇨🇳" },
   ];
 
   const switchLanguage = (newLang: string) => {

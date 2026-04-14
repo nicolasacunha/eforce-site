@@ -23,8 +23,12 @@ export default function Navbar() {
   }, [sidebarOpen]);
 
   const languages = [
-    { code: "pt", label: "PT", flag: "\u{1F1E7}\u{1F1F7}" },
-    { code: "en", label: "EN", flag: "\u{1F1FA}\u{1F1F8}" },
+    { code: "pt", label: "PT", flag: "🇧🇷" },
+    { code: "en", label: "EN", flag: "🇺🇸" },
+    { code: "es", label: "ES", flag: "🇪🇸" },
+    { code: "it", label: "IT", flag: "🇮🇹" },
+    { code: "de", label: "DE", flag: "🇩🇪" },
+    { code: "zh", label: "ZH", flag: "🇨🇳" },
   ];
 
   const switchLanguage = (newLang: string) => {
