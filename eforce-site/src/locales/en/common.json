@@ -128,7 +128,10 @@
     "stats": {
       "models": "Models",
       "sounds": "Sounds",
-      "finishesCount": "Finishes"
+      "finishesCount": "Finishes",
+      "kits": "User\nKits",
+      "reverbs": "Reverb\nTypes",
+      "module": "Module"
     },
     "discover": "Discover",
     "seeFullLine": "All models",
@@ -144,7 +147,11 @@
     "stayInformed": "Stay informed",
     "subscribe": "Subscribe",
     "noFinish": "",
-    "onboardSounds": "sounds"
+    "onboardSounds": "sounds",
+    "exploreModules": "explore our modules",
+    "findPartners": "find our partners",
+    "discoverStory": "discover our story",
+    "manualsAndCatalogs": "manuals and catalogs"
   },
   "pillars": {
     "shells": {
@@ -160,5 +167,129 @@
       "desc": "20 years of Odery craftsmanship."
     }
   },
-  "coming_soon": "Coming Soon"
+  "coming_soon": "Coming Soon",
+  "yes": "Yes",
+  "tech_page": {
+    "subtitle": "Two powerful modules. One philosophy: giving drummers total control over their sound.",
+    "availableIn": "Available in —",
+    "flagship": "FLAGSHIP",
+    "essential": "ESSENTIAL",
+    "f50": {
+      "title": "F50 Module",
+      "usedIn": "Used in EF5 V2 and EF7",
+      "connectivityTitle": "Connectivity & expansion.",
+      "specs": {
+        "display": "Display", "sounds": "Sounds", "factoryKits": "Factory kits",
+        "userKits": "User kits", "playAlongs": "Play-along tracks",
+        "savedRec": "Saved recordings", "padInputs": "Pad inputs",
+        "reverbs": "Reverbs", "memCard": "Memory card", "output": "Output",
+        "bluetooth": "Bluetooth", "usbMidi": "USB MIDI", "equalizer": "Equalizer", "otg": "OTG"
+      },
+      "specValues": {
+        "reverbs": "23 types", "memCard": "Yes — samples", "output": "Stereo",
+        "bluetooth": "MIDI + Audio", "usbMidi": "Yes", "equalizer": "Yes",
+        "otg": "Direct recording to phone"
+      },
+      "conn": {
+        "wireless": { "title": "Bluetooth MIDI + Audio", "desc": "Stream tracks directly to the module. Connect wireless headphones for silent practice. Send MIDI to your DAW wirelessly." },
+        "recording": { "title": "OTG — Direct recording", "desc": "Connect your phone via USB OTG and record instantly. Compatible with any recording app on iOS or Android." },
+        "power": { "title": "USB-C Power", "desc": "Works with any power bank, laptop, or USB-C charger. Perfect for outdoor shows and practice anywhere." },
+        "expansion": { "title": "10 inputs + SD Slot", "desc": "10 independent inputs for pads and cymbals. SD card slot for importing custom samples." }
+      }
+    },
+    "f10": {
+      "title": "F10 Module",
+      "connectivityTitle": "Essential connectivity.",
+      "specs": {
+        "display": "Display", "sounds": "Sounds", "factoryKits": "Factory kits",
+        "userKits": "User kits", "playAlongs": "Play-along tracks",
+        "metronome": "Metronome", "recording": "Recording", "reverbs": "Reverbs",
+        "bluetooth": "Bluetooth", "usbMidi": "USB MIDI", "otg": "OTG", "expansion": "Expansion"
+      },
+      "specValues": {
+        "reverbs": "5 types", "metronome": "Yes", "recording": "Yes",
+        "bluetooth": "MIDI + Audio", "usbMidi": "Yes", "otg": "Direct recording",
+        "expansion": "One extra pad or crash"
+      },
+      "conn": {
+        "wireless": { "title": "Bluetooth MIDI + Audio", "desc": "Stream tracks directly to the module. Connect wireless headphones for silent practice. Send MIDI to your DAW wirelessly." },
+        "recording": { "title": "OTG — Direct recording", "desc": "Connect your phone via USB OTG and record instantly. The module appears as a USB audio interface." },
+        "power": { "title": "USB-C Power", "desc": "Works with any power bank, laptop, or USB-C charger. Ideal for practice anywhere." },
+        "expansion": { "title": "Expansion port", "desc": "Extra port to add one more cymbal or tom pad." }
+      }
+    },
+    "craftsmanship": {
+      "label": "CRAFTSMANSHIP",
+      "title": "Built to last.",
+      "p1": "Every E-Force kit is built with the same attention to detail that defines Odery acoustic instruments. Reinforced racks, professional-grade hardware, and mesh heads engineered to withstand thousands of hours of play.",
+      "p2": "Not just technology. Not just aesthetics. It's a genuine understanding of what makes a drummer feel truly connected to their instrument.",
+      "stat1": "Years crafting drums.",
+      "stat2": "Models available.",
+      "stat3": "Countries in development.",
+      "stat3detail": "Brazil, China, Canada and United States"
+    }
+  },
+  "story": {
+    "seoTitle": "Story & Brand | E-Force",
+    "seoDescription": "Discover the anatomy of the E-Force brand — a visual identity built on innovation, power, and modernity.",
+    "brandAnatomyLabel": "BRAND ANATOMY",
+    "brandAnatomyP1": "The E-Force logotype was created to visually communicate the brand's identity as an electronic drum manufacturer built on innovation, power, and modernity. The central element features an inverted triangle with three horizontal lines — an abstract representation of the letter \"e\", a direct reference to the concept of \"electronic\". This geometric shape symbolizes energy and direction, evoking the dynamic nature of electronic music.",
+    "brandAnatomyP2": "The letter \"F\" represents Force — the acoustic expertise, craftsmanship, and determination that Odery has built over 35 years, now channeled into every electronic kit we create. Next comes the Play symbol: the most universal icon in music, present in every drummer's daily life on the planet — and now, at the heart of E-Force.",
+    "brandAnatomyP3": "To complete it, a perfect circle connects all elements, symbolizing unity, infinity, and the harmonious integration of technology. A reminder that with E-Force, the possibilities in sound creation are infinite.",
+    "philosophyLabel": "PHILOSOPHY",
+    "philosophyHeadline": "Where acoustic soul meets electronic precision.",
+    "philosophyP1": "Every E-Force instrument starts with a question: what would happen if decades of acoustic drum expertise were channeled into electronic design?",
+    "philosophyP2": "The answer is in every detail. The shells are made of wood — because a brand that understands wood builds no other way. The triggers are high-sensitivity, the heads deliver the real response of an acoustic drum, and the design carries the same visual language that made Odery recognizable on stages around the world.",
+    "philosophyP3": "That's what sets E-Force apart. Not just technology. Not just aesthetics. It's a genuine understanding of what makes a drummer feel truly connected to their instrument.",
+    "timeline": [
+      { "year": "1991", "text": "In Campinas, Brazil, Mr. Odery begins building drums in the backyard of his own home — cutting wood by hand, piece by piece. That was the beginning of what would become one of the most respected drum brands in the world." },
+      { "year": "2002", "text": "Odery crosses the Atlantic and appears for the first time at an international trade fair — Musikmesse Frankfurt, Germany. The result: a feature in Modern Drummer, one of the most influential drum publications in the world." },
+      { "year": "2007", "text": "Odery expands its operations and begins manufacturing its series line in China and Taiwan, consolidating its global production structure without compromising on the standards that made it a reference." },
+      { "year": "2011", "text": "Launch of the Eyedentity series — a milestone. The model conquers the global market and elevates Odery to a new level of quality, design, and international positioning." },
+      { "year": "2018", "text": "Odery launches its most iconic catalog: Custom Hand Made in Brazil drums. The line pushes forward in the American and Chinese markets, reaffirming the artisanal DNA that sets the brand apart." },
+      { "year": "2021", "text": "Odery's partner factory in China begins developing electronic drums, eyeing the accelerated growth of this market worldwide." },
+      { "year": "2025", "text": "The factory invites Odery into a joint venture. The goal: develop electronic drums with the same level of performance and design standards that 35 years of Odery Drums represent. The partnership is accepted." },
+      { "year": "2026", "text": "E-Force launches. A distinctive product with an unmistakable identity — this is just the beginning of a new story." }
+    ]
+  },
+  "support": {
+    "seoDescription": "Download your E-Force kit manual, access the warranty, and contact our support team.",
+    "manualsLabel": "MANUALS",
+    "manualsHeadline": "Download your kit manual.",
+    "userManualLabel": "User Manual — PDF",
+    "warrantyLabel": "WARRANTY",
+    "warrantyHeadline": "E-Force warranty policy.",
+    "warrantyTitle": "E-Force Warranty",
+    "warrantyPdfLabel": "Warranty Policy — PDF",
+    "contactLabel": "CONTACT",
+    "contactHeadline": "Contact us.",
+    "download": "Download"
+  },
+  "dealers": {
+    "seoTitle": "Dealers | E-Force",
+    "seoDescription": "Find an E-Force dealer in your country.",
+    "headline": "Find a dealer.",
+    "subtitle": "Select your country to find where to buy E-Force.",
+    "countryBrazil": "Brazil",
+    "continentSouthAmerica": "South America"
+  },
+  "news": {
+    "seoDescription": "Latest news, product launches, and updates from E-Force Electronic Drums.",
+    "comingSoonHeadline": "Coming soon.",
+    "comingSoonSubtitle": "Updates coming soon."
+  },
+  "modelsCta": {
+    "headline": "Feel the difference.",
+    "subtitle": "Explore the full E-Force lineup and find the kit that speaks to you."
+  },
+  "seo": {
+    "homeTitle": "E-Force — The Ultimate Drummer's Pulse",
+    "homeDescription": "Electronic drums with acoustic soul. Wood shell design, exclusive finishes, and cutting-edge technology — born from Odery Drums Brazil.",
+    "lineTitle": "Kits | E-Force",
+    "lineDescription": "Explore the full E-Force lineup — from the entry-level EF2 to the flagship EF7."
+  },
+  "cookie": {
+    "message": "We use cookies to provide a better experience, improve performance, analyze how you interact with our site, and personalize content. By using this site, you agree to the use of cookies.",
+    "accept": "Accept"
+  }
 }

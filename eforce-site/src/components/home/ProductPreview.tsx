@@ -1,11 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 import { products } from '@/data/products';
+import { getTranslatedProduct } from '@/hooks/useTranslatedProduct';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { usePageTransition } from '@/context/TransitionContext';
 
 export default function ProductPreview() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { lang } = useParams();
   const { ref, isVisible } = useScrollReveal(0.1);
   const { navigateWithCurtain } = usePageTransition();
@@ -29,7 +30,8 @@ export default function ProductPreview() {
 
         {/* Horizontal scroll strip */}
         <div className="product-scroll-strip overflow-x-auto flex gap-6 px-6 pb-4 snap-x snap-mandatory">
-          {products.map((product) => {
+          {products.map((rawProduct) => {
+            const product = getTranslatedProduct(rawProduct, i18n.language);
             const isHighlighted = product.id === 'ef2v2';
 
             return (

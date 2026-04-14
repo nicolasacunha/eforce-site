@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 interface SidebarSupportListProps {
   onNavigate: () => void;
@@ -13,6 +14,7 @@ const manuais = [
 ];
 
 export function SidebarSupportList({ onNavigate }: SidebarSupportListProps) {
+  const { t } = useTranslation();
   const { lang } = useParams();
 
   return (
@@ -26,7 +28,7 @@ export function SidebarSupportList({ onNavigate }: SidebarSupportListProps) {
           className="group block"
         >
           <h3 className="text-gray-900 font-bold text-xl mb-4 group-hover:text-brand-orange transition-colors">
-            Manuais
+            {t('support.manualsLabel')}
           </h3>
         </Link>
         <div className="flex flex-col gap-3">
@@ -47,7 +49,7 @@ export function SidebarSupportList({ onNavigate }: SidebarSupportListProps) {
                 <p className="text-sm font-semibold text-gray-800 group-hover:text-brand-orange transition-colors">
                   {item.name}
                 </p>
-                <p className="text-xs text-gray-400">Manual do Usuário — PDF</p>
+                <p className="text-xs text-gray-400">{t('support.userManualLabel')}</p>
               </div>
               <svg className="w-4 h-4 text-gray-400 group-hover:text-brand-orange transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
@@ -59,7 +61,7 @@ export function SidebarSupportList({ onNavigate }: SidebarSupportListProps) {
 
       {/* Garantia */}
       <div>
-        <h3 className="text-gray-900 font-bold text-xl mb-4">Garantia</h3>
+        <h3 className="text-gray-900 font-bold text-xl mb-4">{t('support.warrantyLabel')}</h3>
         <a
           href="/assets/manuais/garantia_eforce.pdf"
           download
@@ -71,8 +73,8 @@ export function SidebarSupportList({ onNavigate }: SidebarSupportListProps) {
             </svg>
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-gray-800 group-hover:text-brand-orange transition-colors">Garantia E-Force</p>
-            <p className="text-xs text-gray-400">Política de Garantia — PDF</p>
+            <p className="text-sm font-semibold text-gray-800 group-hover:text-brand-orange transition-colors">{t('support.warrantyTitle')}</p>
+            <p className="text-xs text-gray-400">{t('support.warrantyPdfLabel')}</p>
           </div>
           <svg className="w-4 h-4 text-gray-400 group-hover:text-brand-orange transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
@@ -82,7 +84,7 @@ export function SidebarSupportList({ onNavigate }: SidebarSupportListProps) {
 
       {/* Contato */}
       <div>
-        <h3 className="text-gray-900 font-bold text-xl mb-4">Contato</h3>
+        <h3 className="text-gray-900 font-bold text-xl mb-4">{t('support.contactLabel')}</h3>
         <div className="flex flex-col gap-3">
           <a
             href="mailto:eforce@odery.com.br"

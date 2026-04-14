@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 interface SidebarTechnologyListProps {
   onNavigate: () => void;
@@ -7,19 +8,20 @@ interface SidebarTechnologyListProps {
 const modules = [
   {
     id: "f50",
-    name: "Módulo F50",
+    titleKey: "tech_page.f50.title",
     image: "/assets/images/modules/f50.webp",
     route: "technology",
   },
   {
     id: "f10",
-    name: "Módulo F10",
+    titleKey: "tech_page.f10.title",
     image: "/assets/images/modules/f10.webp",
     route: "technology",
   },
 ];
 
 export function SidebarTechnologyList({ onNavigate }: SidebarTechnologyListProps) {
+  const { t } = useTranslation();
   const { lang } = useParams();
 
   return (
@@ -32,11 +34,11 @@ export function SidebarTechnologyList({ onNavigate }: SidebarTechnologyListProps
           className="group block"
         >
           <h3 className="text-gray-900 font-bold text-xl mb-3 group-hover:text-brand-orange transition-colors">
-            {mod.name}
+            {t(mod.titleKey)}
           </h3>
           <img
             src={mod.image}
-            alt={mod.name}
+            alt={t(mod.titleKey)}
             className="h-auto object-contain -mx-6"
             style={{
               width: "calc(100% + 3rem)",

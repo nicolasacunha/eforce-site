@@ -10,7 +10,6 @@ export default function HomePage() {
   const { t } = useTranslation();
   const { lang } = useParams();
   const navigate = useNavigate();
-  const isEN = (lang ?? 'en') === 'en';
 
   return (
     <>
@@ -23,10 +22,10 @@ export default function HomePage() {
       <section style={{ background: "#0a0a0a", padding: "clamp(6rem, 15vh, 12rem) clamp(1.5rem, 6vw, 6rem)" }}>
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style={{ gap: "clamp(1rem, 3vw, 2rem)" }}>
           {[
-            { route: `/${lang}/technology`, title: t("nav.technology"), sub: isEN ? "explore our modules" : "explore nossos módulos" },
-            { route: `/${lang}/dealers`,    title: t("nav.dealers"),    sub: isEN ? "find our partners" : "encontre nossos parceiros" },
-            { route: `/${lang}/story`,      title: t("nav.story"),      sub: isEN ? "discover our story" : "descubra nossa história" },
-            { route: `/${lang}/support`,    title: t("nav.support"),    sub: isEN ? "manuals and catalogs" : "manuais e catálogos" },
+            { route: `/${lang}/technology`, title: t("nav.technology"), sub: t("home.exploreModules") },
+            { route: `/${lang}/dealers`,    title: t("nav.dealers"),    sub: t("home.findPartners") },
+            { route: `/${lang}/story`,      title: t("nav.story"),      sub: t("home.discoverStory") },
+            { route: `/${lang}/support`,    title: t("nav.support"),    sub: t("home.manualsAndCatalogs") },
           ].map(({ route, title, sub }) => (
             <div key={route} className="cursor-pointer h-full" onClick={() => navigate(route)}>
               <GlowCard

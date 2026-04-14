@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { HoverVideoCard } from "@/components/ui/HoverVideoCard";
 import type { Product } from "@/data/products";
 
@@ -8,6 +9,19 @@ interface ModelCardProps {
 
 export function ModelCard({ product }: ModelCardProps) {
   const { lang } = useParams();
+  const { t } = useTranslation();
+
+  const translateSpecLabel = (label: string) => {
+    const map: Record<string, string> = {
+      'sons': t('home.stats.sounds'),
+      'kits\ncustomizáveis': t('home.stats.kits'),
+      'kits customizáveis': t('home.stats.kits'),
+      'tipos de reverb': t('home.stats.reverbs'),
+      'tipos de\nreverb': t('home.stats.reverbs'),
+      'módulo': t('home.stats.module'),
+    };
+    return map[label.toLowerCase()] ?? label;
+  };
 
   return (
     <Link
@@ -27,7 +41,7 @@ export function ModelCard({ product }: ModelCardProps) {
         <div className="flex items-center gap-3 mt-1 text-xs text-[rgba(255,255,255,0.5)]">
           <span>{product.module}</span>
           <span>&middot;</span>
-          <span>{product.specsHighlight?.[0]?.value} {product.specsHighlight?.[0]?.label}</span>
+          <span>{product.specsHighlight?.[0]?.value} {product.specsHighlight?.[0]?.label ? translateSpecLabel(product.specsHighlight[0].label) : ''}</span>
         </div>
       </div>
       <span className="text-brand-orange opacity-0 group-hover:opacity-100 transition-opacity text-lg">

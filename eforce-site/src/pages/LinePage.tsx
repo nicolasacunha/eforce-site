@@ -41,15 +41,15 @@ export default function LinePage() {
     const premium = filtered.filter((p) => getFamily(p) === "premium");
 
     const result: ProductGroup[] = [];
-    if (entry.length) result.push({ label: t("line.entryLine") || "Linha Entrada", items: entry });
-    if (mid.length) result.push({ label: t("line.midLine") || "Linha Intermediária", items: mid });
-    if (premium.length) result.push({ label: t("line.premiumLine") || "Linha Premium", items: premium });
+    if (entry.length) result.push({ label: t("line.entryLine"), items: entry });
+    if (mid.length) result.push({ label: t("line.midLine"), items: mid });
+    if (premium.length) result.push({ label: t("line.premiumLine"), items: premium });
     return result;
   }, [filtered, t]);
 
   return (
     <>
-      <SEO title={t("seo.lineTitle") || "Modelos"} description={t("seo.lineDescription") || ""} lang={currentLang} path="/line" />
+      <SEO title={t("seo.lineTitle")} description={t("seo.lineDescription")} lang={currentLang} path="/line" />
       <div className="min-h-screen bg-[#0a0a0a] pt-24 pb-16 px-6">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
           <ModelFilterSidebar
@@ -80,7 +80,7 @@ export default function LinePage() {
             ))}
             {groups.length === 0 && (
               <p className="text-[rgba(255,255,255,0.5)] text-center py-16">
-                {t("line.noResults") || "Nenhum modelo encontrado com esses filtros."}
+                {t("line.noResults")}
               </p>
             )}
           </main>

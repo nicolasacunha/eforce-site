@@ -1,10 +1,12 @@
 import { useState, useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { ModelsCTA } from "@/components/product/ModelsCTA";
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import SEO from "@/components/layout/SEO";
 import { getProductBySlug } from "@/data/products";
 import type { Product } from "@/data/products";
+import { useTranslatedProduct } from "@/hooks/useTranslatedProduct";
 import { StickyContextBar } from "@/components/product/StickyContextBar";
 import { ModelSwitcher } from "@/components/product/ModelSwitcher";
 import { ParticleHeroBackground } from "@/components/product/ParticleHeroBackground";
@@ -860,10 +862,12 @@ function HighlightsCarousel({ product, isMobile }: { product: Product; isMobile:
    ═══════════════════════════════════════════════════════ */
 export default function ProductDetailPage() {
   const { model, lang } = useParams();
+  const { t } = useTranslation();
   const [switcherOpen, setSwitcherOpen] = useState(false);
   const isMobile = useIsMobile();
 
-  const product = getProductBySlug(model || "");
+  const rawProduct = getProductBySlug(model || "");
+  const product = useTranslatedProduct(rawProduct);
 
   if (!product) {
     return <Navigate to={`/${lang}/line`} replace />;
@@ -875,7 +879,7 @@ export default function ProductDetailPage() {
       <>
         <SEO title={`${product.name} | E-Force`} description={product.description} lang={lang ?? "en"} path={`/kits/${product.slug}`} />
         <section style={{ background: "#0a0a0a", minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "2rem" }}>
-          <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.3em", color: "#ff4a1c" }}>Em breve</span>
+          <span style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.3em", color: "#ff4a1c" }}>{t('coming_soon')}</span>
           <h1 style={{ fontSize: "clamp(3rem, 8vw, 7rem)", fontWeight: 800, color: "#fff", lineHeight: 0.92, letterSpacing: "-0.04em", marginTop: "1rem", marginBottom: "1.5rem" }}>
             {product.name}
           </h1>
@@ -986,7 +990,7 @@ export default function ProductDetailPage() {
                           {finish.image ? (
                             <img src={finish.image} alt={finish.label} style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
                           ) : (
-                            <span style={{ fontSize: "clamp(0.75rem, 1vw, 0.9rem)", color: "rgba(0,0,0,0.25)", letterSpacing: "0.05em" }}>Em breve</span>
+                            <span style={{ fontSize: "clamp(0.75rem, 1vw, 0.9rem)", color: "rgba(0,0,0,0.25)", letterSpacing: "0.05em" }}>{t('coming_soon')}</span>
                           )}
                         </div>
                         {finish.label && <p style={{ margin: 0, fontSize: "clamp(0.8rem, 1vw, 0.95rem)", fontWeight: 600, color: "#111", letterSpacing: "-0.01em" }}>{finish.label}</p>}

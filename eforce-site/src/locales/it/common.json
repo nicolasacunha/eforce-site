@@ -9,7 +9,7 @@
     "news": "Novità"
   },
   "hero": {
-    "label": "The ultimate drummer's pulse.",
+    "label": "Il battito definitivo del batterista.",
     "headline": "Anima acustica. Potenza elettronica.",
     "sub": "Design in legno. Finiture esclusive. Nata da Odery Drums Brazil.",
     "cta1": "Esplora",
@@ -56,7 +56,7 @@
     "cta": "Tutte le specifiche"
   },
   "video": {
-    "caption": "The ultimate drummer's pulse."
+    "caption": "Il battito definitivo del batterista."
   },
   "social": {
     "headline": ""
@@ -70,6 +70,10 @@
     "email": "tua@email.com",
     "subscribe": "Iscriviti"
   },
+  "showcase": {
+    "label": "Modelli in Evidenza",
+    "viewAll": "Vedi tutti i modelli"
+  },
   "line": {
     "headline": "La Linea.",
     "sub": "Sette strumenti. Una filosofia.",
@@ -78,7 +82,17 @@
     "filter5to10k": "R$ 5 mila – 10 mila",
     "filterOver10k": "R$ 10 mila+",
     "from": "Da",
-    "viewKit": "Vedi"
+    "viewKit": "Vedi",
+    "title": "Panoramica dei Modelli",
+    "compare": "Confronta modelli",
+    "resetFilters": "Reimposta filtri",
+    "all": "Tutti",
+    "module": "Modulo",
+    "priceRange": "Fascia di Prezzo",
+    "entryLine": "Linea Entry",
+    "midLine": "Linea Intermedia",
+    "premiumLine": "Linea Premium",
+    "noResults": "Nessun modello trovato con questi filtri."
   },
   "product": {
     "findDealer": "Trova un Rivenditore",
@@ -91,19 +105,33 @@
     "whatsInTheBox": "Nella scatola",
     "compare": "Confronta",
     "relatedModels": "Potrebbe piacerti anche",
-    "finishLabel": "La tua finitura."
+    "finishLabel": "La tua finitura.",
+    "switchModel": "Cambia modello",
+    "allSpecs": "Tutti i dettagli tecnici",
+    "holdToListen": "Tieni premuto per ascoltare",
+    "listening": "In ascolto...",
+    "highlights": "Punti di forza",
+    "whichKit": "Quale kit è giusto per te?",
+    "compareDetail": "Confronta in dettaglio",
+    "current": "Attuale",
+    "previous": "Precedente",
+    "next": "Prossimo"
   },
   "footer": {
-    "tagline": "The ultimate drummer's pulse.",
+    "tagline": "Il battito definitivo del batterista.",
     "copyright": "© 2025 E-Force / Odery Drums Brazil.",
     "privacy": "Privacy",
-    "terms": "Termini"
+    "terms": "Termini",
+    "rights": "Tutti i diritti riservati."
   },
   "home": {
     "stats": {
       "models": "Modelli",
       "sounds": "Suoni",
-      "finishesCount": "Finiture"
+      "finishesCount": "Finiture",
+      "kits": "Kit\nUtente",
+      "reverbs": "Tipi di\nReverb",
+      "module": "Modulo"
     },
     "discover": "Scopri",
     "seeFullLine": "Tutti i modelli",
@@ -119,7 +147,11 @@
     "stayInformed": "Resta informato",
     "subscribe": "Iscriviti",
     "noFinish": "",
-    "onboardSounds": "suoni"
+    "onboardSounds": "suoni",
+    "exploreModules": "esplora i nostri moduli",
+    "findPartners": "trova i nostri partner",
+    "discoverStory": "scopri la nostra storia",
+    "manualsAndCatalogs": "manuali e cataloghi"
   },
   "pillars": {
     "shells": {
@@ -135,5 +167,129 @@
       "desc": "20 anni di maestria Odery."
     }
   },
-  "coming_soon": "Prossimamente"
+  "coming_soon": "Prossimamente",
+  "yes": "Sì",
+  "tech_page": {
+    "subtitle": "Due moduli potenti. Una filosofia: dare al batterista il controllo totale sul proprio suono.",
+    "availableIn": "Disponibile in —",
+    "flagship": "FLAGSHIP",
+    "essential": "ESSENZIALE",
+    "f50": {
+      "title": "Modulo F50",
+      "usedIn": "Utilizzato in EF5 V2 e EF7",
+      "connectivityTitle": "Connettività e ampliamento.",
+      "specs": {
+        "display": "Display", "sounds": "Suoni", "factoryKits": "Kit di fabbrica",
+        "userKits": "Kit utente", "playAlongs": "Play-along tracks",
+        "savedRec": "Registrazioni salvate", "padInputs": "Ingressi pad",
+        "reverbs": "Reverb", "memCard": "Scheda di memoria", "output": "Uscita",
+        "bluetooth": "Bluetooth", "usbMidi": "USB MIDI", "equalizer": "Equalizzatore", "otg": "OTG"
+      },
+      "specValues": {
+        "reverbs": "23 tipi", "memCard": "Sì — samples", "output": "Stereo",
+        "bluetooth": "MIDI + Audio", "usbMidi": "Sì", "equalizer": "Sì",
+        "otg": "Registrazione diretta su cellulare"
+      },
+      "conn": {
+        "wireless": { "title": "Bluetooth MIDI + Audio", "desc": "Trasmetti tracce direttamente al modulo. Collega cuffie wireless per la pratica silenziosa. Invia MIDI al tuo DAW senza cavi." },
+        "recording": { "title": "OTG — Registrazione diretta", "desc": "Collega il telefono via USB OTG e registra subito. Compatibile con qualsiasi app di registrazione su iOS o Android." },
+        "power": { "title": "Alimentazione USB-C", "desc": "Funziona con qualsiasi power bank, laptop o caricatore USB-C. Perfetto per concerti all'aperto e pratica ovunque." },
+        "expansion": { "title": "10 ingressi + Slot SD", "desc": "10 ingressi indipendenti per pad e piatti. Slot per scheda SD per l'importazione di campioni personalizzati." }
+      }
+    },
+    "f10": {
+      "title": "Modulo F10",
+      "connectivityTitle": "Connettività essenziale.",
+      "specs": {
+        "display": "Display", "sounds": "Suoni", "factoryKits": "Kit di fabbrica",
+        "userKits": "Kit utente", "playAlongs": "Play-along tracks",
+        "metronome": "Metronomo", "recording": "Registrazione", "reverbs": "Reverb",
+        "bluetooth": "Bluetooth", "usbMidi": "USB MIDI", "otg": "OTG", "expansion": "Espansione"
+      },
+      "specValues": {
+        "reverbs": "5 tipi", "metronome": "Sì", "recording": "Sì",
+        "bluetooth": "MIDI + Audio", "usbMidi": "Sì", "otg": "Registrazione diretta",
+        "expansion": "Un pad o crash extra"
+      },
+      "conn": {
+        "wireless": { "title": "Bluetooth MIDI + Audio", "desc": "Trasmetti tracce direttamente al modulo. Collega cuffie wireless per la pratica silenziosa. Invia MIDI al DAW senza cavi." },
+        "recording": { "title": "OTG — Registrazione diretta", "desc": "Collega il telefono via USB OTG e registra subito. Il modulo appare come interfaccia audio USB." },
+        "power": { "title": "Alimentazione USB-C", "desc": "Funziona con qualsiasi power bank, laptop o caricatore USB-C. Ideale per la pratica ovunque." },
+        "expansion": { "title": "Porta di espansione", "desc": "Porta extra per aggiungere un altro pad o piatto." }
+      }
+    },
+    "craftsmanship": {
+      "label": "CRAFTSMANSHIP",
+      "title": "Costruito per durare.",
+      "p1": "Ogni kit E-Force è costruito con la stessa attenzione al dettaglio che definisce gli strumenti acustici Odery. Rack rinforzati, componentistica di livello professionale e pelli mesh sviluppate per resistere a migliaia di ore di utilizzo.",
+      "p2": "Non solo tecnologia. Non solo estetica. È la comprensione genuina di ciò che fa sentire un batterista davvero connesso al proprio strumento.",
+      "stat1": "Anni di produzione di batterie.",
+      "stat2": "Modelli disponibili.",
+      "stat3": "Paesi coinvolti nello sviluppo.",
+      "stat3detail": "Brasile, Cina, Canada e Stati Uniti"
+    }
+  },
+  "story": {
+    "seoTitle": "Storia & Brand | E-Force",
+    "seoDescription": "Scopri l'anatomia del brand E-Force — un'identità visiva costruita su innovazione, potenza e modernità.",
+    "brandAnatomyLabel": "ANATOMIA DEL BRAND",
+    "brandAnatomyP1": "Il logotipo E-Force è stato creato per comunicare visivamente l'identità del brand come produttore di batterie elettroniche costruito su innovazione, potenza e modernità. L'elemento centrale presenta un triangolo invertito con tre linee orizzontali — una rappresentazione astratta della lettera \"e\", riferimento diretto al concetto di \"elettronico\". Questa forma geometrica simboleggia energia e direzione, evocando la natura dinamica della musica elettronica.",
+    "brandAnatomyP2": "La lettera \"F\" rappresenta la Forza — l'expertise acustica, l'artigianalità e la determinazione che Odery ha costruito in 35 anni, ora canalizzati in ogni kit elettronico che creiamo. Segue il simbolo Play: l'icona più universale della musica, presente nella vita quotidiana di ogni batterista sul pianeta — e ora, al cuore di E-Force.",
+    "brandAnatomyP3": "A completare il tutto, un cerchio perfetto collega tutti gli elementi, simboleggiando unità, infinità e l'integrazione armoniosa della tecnologia. Un promemoria che con E-Force, le possibilità nella creazione sonora sono infinite.",
+    "philosophyLabel": "FILOSOFIA",
+    "philosophyHeadline": "Dove l'anima acustica incontra la precisione elettronica.",
+    "philosophyP1": "Ogni strumento E-Force inizia con una domanda: cosa succederebbe se decenni di expertise in batterie acustiche venissero incanalati nel design elettronico?",
+    "philosophyP2": "La risposta è in ogni dettaglio. I gusci sono in legno — perché un brand che capisce il legno non costruisce in altro modo. I trigger sono ad alta sensibilità, le pelli offrono la risposta reale di una batteria acustica, e il design porta lo stesso linguaggio visivo che ha reso Odery riconoscibile sui palchi di tutto il mondo.",
+    "philosophyP3": "Questo è ciò che distingue E-Force. Non solo tecnologia. Non solo estetica. È una comprensione genuina di ciò che fa sentire un batterista davvero connesso al proprio strumento.",
+    "timeline": [
+      { "year": "1991", "text": "A Campinas, Brasile, Mr. Odery inizia a costruire batterie nel cortile di casa propria — tagliando il legno a mano, pezzo per pezzo. Era l'inizio di quello che sarebbe diventato uno dei brand di batterie più rispettati al mondo." },
+      { "year": "2002", "text": "Odery attraversa l'Atlantico e si presenta per la prima volta a una fiera internazionale — Musikmesse Frankfurt, Germania. Il risultato: un articolo su Modern Drummer, una delle più influenti pubblicazioni di batteria al mondo." },
+      { "year": "2007", "text": "Odery espande le sue operazioni e inizia a produrre la sua linea di serie in Cina e Taiwan, consolidando la sua struttura produttiva globale senza rinunciare agli standard che l'hanno resa un riferimento." },
+      { "year": "2011", "text": "Lancio della serie Eyedentity — una pietra miliare. Il modello conquista il mercato mondiale ed eleva Odery a un nuovo livello di qualità, design e posizionamento internazionale." },
+      { "year": "2018", "text": "Odery lancia il suo catalogo più iconico: batterie Custom Hand Made in Brazil. La linea avanza con forza nei mercati americano e cinese, riaffermando il DNA artigianale che distingue il brand." },
+      { "year": "2021", "text": "La fabbrica partner di Odery in Cina inizia a sviluppare batterie elettroniche, puntando alla crescita accelerata di questo mercato in tutto il mondo." },
+      { "year": "2025", "text": "La fabbrica invita Odery in una joint venture. L'obiettivo: sviluppare batterie elettroniche con lo stesso livello di performance e standard di design che 35 anni di Odery Drums rappresentano. La partnership viene accettata." },
+      { "year": "2026", "text": "E-Force viene lanciata. Un prodotto distintivo con un'identità inconfondibile — questo è solo l'inizio di una nuova storia." }
+    ]
+  },
+  "support": {
+    "seoDescription": "Scarica il manuale del tuo kit E-Force, accedi alla garanzia e contatta il nostro supporto.",
+    "manualsLabel": "MANUALI",
+    "manualsHeadline": "Scarica il manuale del tuo kit.",
+    "userManualLabel": "Manuale Utente — PDF",
+    "warrantyLabel": "GARANZIA",
+    "warrantyHeadline": "Politica di garanzia E-Force.",
+    "warrantyTitle": "Garanzia E-Force",
+    "warrantyPdfLabel": "Politica di Garanzia — PDF",
+    "contactLabel": "CONTATTO",
+    "contactHeadline": "Contattaci.",
+    "download": "Scarica"
+  },
+  "dealers": {
+    "seoTitle": "Rivenditori | E-Force",
+    "seoDescription": "Trova un rivenditore E-Force nel tuo paese.",
+    "headline": "Trova un rivenditore.",
+    "subtitle": "Seleziona il tuo paese per trovare dove acquistare E-Force.",
+    "countryBrazil": "Brasile",
+    "continentSouthAmerica": "America del Sud"
+  },
+  "news": {
+    "seoDescription": "Ultime notizie, lanci di prodotti e aggiornamenti da E-Force Electronic Drums.",
+    "comingSoonHeadline": "Prossimamente.",
+    "comingSoonSubtitle": "Novità in arrivo a breve."
+  },
+  "modelsCta": {
+    "headline": "Senti la differenza.",
+    "subtitle": "Esplora la linea completa E-Force e trova il kit che ti rappresenta."
+  },
+  "seo": {
+    "homeTitle": "E-Force — Il Battito Definitivo del Batterista",
+    "homeDescription": "Batterie elettroniche con anima acustica. Design in legno, finiture esclusive e tecnologia all'avanguardia — nate da Odery Drums Brazil.",
+    "lineTitle": "Kit | E-Force",
+    "lineDescription": "Esplora la linea completa E-Force — dall'entry-level EF2 alla top di gamma EF7."
+  },
+  "cookie": {
+    "message": "Utilizziamo cookie per offrire una migliore esperienza, migliorare le prestazioni, analizzare come interagisci con il nostro sito e personalizzare i contenuti. Utilizzando questo sito, accetti l'uso dei cookie.",
+    "accept": "Accetta"
+  }
 }

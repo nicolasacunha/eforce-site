@@ -4,14 +4,27 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { products } from "@/data/products";
 import { usePageTransition } from "@/context/TransitionContext";
+import { getTranslatedProduct } from "@/hooks/useTranslatedProduct";
 
 const COMING_SOON_IDS = ["ef7v1", "ef7eye"];
 
 export default function ProductShowcase() {
   const { lang } = useParams();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { navigateWithCurtain } = usePageTransition();
   const [isMobile, setIsMobile] = useState(false);
+
+  const translateSpecLabel = (label: string) => {
+    const map: Record<string, string> = {
+      'sons': t('home.stats.sounds'),
+      'kits\ncustomizáveis': t('home.stats.kits'),
+      'kits customizáveis': t('home.stats.kits'),
+      'tipos de reverb': t('home.stats.reverbs'),
+      'tipos de\nreverb': t('home.stats.reverbs'),
+      'módulo': t('home.stats.module'),
+    };
+    return map[label.toLowerCase()] ?? label;
+  };
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
     check();
@@ -21,7 +34,8 @@ export default function ProductShowcase() {
 
   return (
     <section>
-      {products.map((product, i) => {
+      {products.map((rawProduct, i) => {
+        const product = getTranslatedProduct(rawProduct, i18n.language);
         const isEven = i % 2 === 0;
         const bg = isEven ? "#ffffff" : "#f5f3ef";
         const isComingSoon = COMING_SOON_IDS.includes(product.id);
@@ -163,7 +177,7 @@ export default function ProductShowcase() {
                                   {spec.value}
                                 </div>
                                 <div style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.2em", color: "rgba(0,0,0,0.35)", marginTop: "0.5rem", whiteSpace: "pre-line" }}>
-                                  {spec.label}
+                                  {translateSpecLabel(spec.label)}
                                 </div>
                               </div>
                             ))}
@@ -207,7 +221,7 @@ export default function ProductShowcase() {
                                   {spec.value}
                                 </div>
                                 <div style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.2em", color: "rgba(0,0,0,0.35)", marginTop: "0.5rem", whiteSpace: "pre-line" }}>
-                                  {spec.label}
+                                  {translateSpecLabel(spec.label)}
                                 </div>
                               </div>
                             ))}

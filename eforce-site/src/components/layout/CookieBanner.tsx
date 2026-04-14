@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const STORAGE_KEY = 'eforce_cookie_consent';
 
 export default function CookieBanner() {
+  const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -54,7 +56,7 @@ export default function CookieBanner() {
             lineHeight: 1.6,
             margin: 0,
           }}>
-            Utilizamos cookies para oferecer melhor experiência, melhorar o desempenho, analisar como você interage em nosso site e personalizar conteúdo. Ao utilizar este site, você concorda com o uso de cookies.
+            {t('cookie.message')}
           </p>
           <button
             onClick={accept}
@@ -74,7 +76,7 @@ export default function CookieBanner() {
             onMouseEnter={e => (e.currentTarget.style.opacity = '0.85')}
             onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
           >
-            Aceitar
+            {t('cookie.accept')}
           </button>
         </motion.div>
       )}

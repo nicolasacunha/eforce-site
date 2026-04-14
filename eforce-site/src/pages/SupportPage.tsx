@@ -6,13 +6,12 @@ export default function SupportPage() {
   const { t } = useTranslation();
   const { lang } = useParams<{ lang: string }>();
   const currentLang = lang ?? 'en';
-  const isEN = currentLang === 'en';
 
   return (
     <>
       <SEO
         title={`${t('nav.support')} | E-Force`}
-        description={isEN ? "Download your E-Force kit manual, access the warranty, and contact our support team." : "Baixe o manual do seu kit E-Force, acesse a garantia e entre em contato com nosso suporte."}
+        description={t('support.seoDescription')}
         lang={currentLang}
         path="support"
       />
@@ -24,10 +23,10 @@ export default function SupportPage() {
       <section style={{ background: "#0a0a0a", padding: "0 clamp(1.5rem, 6vw, 5rem) clamp(4rem, 8vh, 7rem)" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#E8500A", marginBottom: "0.5rem" }}>
-            {isEN ? "MANUALS" : "MANUAIS"}
+            {t('support.manualsLabel')}
           </p>
           <h2 style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.03em", marginBottom: "clamp(2rem, 4vh, 3rem)" }}>
-            {isEN ? "Download your kit manual." : "Baixe o manual do seu kit."}
+            {t('support.manualsHeadline')}
           </h2>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "1px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
@@ -61,10 +60,10 @@ export default function SupportPage() {
                     {item.name}
                   </p>
                   <p style={{ margin: "0.25rem 0 0", fontSize: "12px", color: "rgba(255,255,255,0.35)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                    {isEN ? "User Manual — PDF" : "Manual do Usuário — PDF"}
+                    {t('support.userManualLabel')}
                   </p>
                 </div>
-                <DownloadButton href={item.href} />
+                <DownloadButton href={item.href} label={t('support.download')} />
               </div>
             ))}
           </div>
@@ -78,10 +77,10 @@ export default function SupportPage() {
       <section style={{ background: "#0a0a0a", padding: "clamp(4rem, 8vh, 7rem) clamp(1.5rem, 6vw, 5rem)" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#E8500A", marginBottom: "0.5rem" }}>
-            {isEN ? "WARRANTY" : "GARANTIA"}
+            {t('support.warrantyLabel')}
           </p>
           <h2 style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.03em", marginBottom: "clamp(2rem, 4vh, 3rem)" }}>
-            {isEN ? "E-Force warranty policy." : "Política de garantia E-Force."}
+            {t('support.warrantyHeadline')}
           </h2>
 
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
@@ -101,13 +100,13 @@ export default function SupportPage() {
               </div>
               <div style={{ flex: 1 }}>
                 <p style={{ margin: 0, fontSize: "clamp(1rem, 1.5vw, 1.25rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em" }}>
-                  Garantia E-Force
+                  {t('support.warrantyTitle')}
                 </p>
                 <p style={{ margin: "0.25rem 0 0", fontSize: "12px", color: "rgba(255,255,255,0.35)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                  {isEN ? "Warranty Policy — PDF" : "Política de Garantia — PDF"}
+                  {t('support.warrantyPdfLabel')}
                 </p>
               </div>
-              <DownloadButton href="/assets/manuais/garantia_eforce.pdf" />
+              <DownloadButton href="/assets/manuais/garantia_eforce.pdf" label={t('support.download')} />
             </div>
           </div>
         </div>
@@ -116,14 +115,14 @@ export default function SupportPage() {
       {/* Divider */}
       <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
 
-      {/* Contate-nos */}
+      {/* Contato */}
       <section style={{ background: "#0a0a0a", padding: "clamp(4rem, 8vh, 7rem) clamp(1.5rem, 6vw, 5rem)" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#E8500A", marginBottom: "0.5rem" }}>
-            {isEN ? "CONTACT" : "CONTATO"}
+            {t('support.contactLabel')}
           </p>
           <h2 style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.03em", marginBottom: "clamp(2rem, 4vh, 3rem)" }}>
-            {isEN ? "Contact us." : "Contate-nos."}
+            {t('support.contactHeadline')}
           </h2>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem", maxWidth: "480px" }}>
@@ -155,7 +154,7 @@ export default function SupportPage() {
   );
 }
 
-function DownloadButton({ href }: { href: string }) {
+function DownloadButton({ href, label }: { href: string; label: string }) {
   return (
     <a
       href={href}
@@ -188,7 +187,7 @@ function DownloadButton({ href }: { href: string }) {
       <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
       </svg>
-      Download
+      {label}
     </a>
   );
 }

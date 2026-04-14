@@ -4,7 +4,7 @@ import SEO from '@/components/layout/SEO';
 import { ModelsCTA } from '@/components/product/ModelsCTA';
 
 interface Country {
-  name: string;
+  id: string;
   flag: string;
   continent: string;
   url: string;
@@ -12,25 +12,25 @@ interface Country {
 
 const countries: Country[] = [
   {
-    name: 'Brasil',
+    id: 'brazil',
     flag: '🇧🇷',
-    continent: 'América do Sul',
+    continent: 'southAmerica',
     url: 'https://odery.com.br/onde-comprar/',
   },
 ];
-
-const continents = [...new Set(countries.map((c) => c.continent))];
 
 export default function DealersPage() {
   const { t } = useTranslation();
   const { lang } = useParams<{ lang: string }>();
   const currentLang = lang ?? 'pt';
 
+  const uniqueContinents = [...new Set(countries.map((c) => c.continent))];
+
   return (
     <>
       <SEO
-        title="Distribuidores | E-Force"
-        description="Encontre um distribuidor E-Force no seu país."
+        title={t('dealers.seoTitle')}
+        description={t('dealers.seoDescription')}
         lang={currentLang}
         path="dealers"
       />
@@ -42,10 +42,10 @@ export default function DealersPage() {
             {t('nav.dealers')}
           </p>
           <h1 style={{ fontSize: 'clamp(2.8rem, 7vw, 7rem)', fontWeight: 700, color: '#fff', lineHeight: 0.92, letterSpacing: '-0.04em', margin: 0 }}>
-            Encontre um distribuidor.
+            {t('dealers.headline')}
           </h1>
           <p style={{ marginTop: 'clamp(1.5rem, 3vh, 2rem)', fontSize: 'clamp(0.9rem, 1.2vw, 1.05rem)', lineHeight: 1.75, color: 'rgba(255,255,255,0.5)', maxWidth: '540px' }}>
-            Selecione seu país para encontrar onde adquirir a E-Force.
+            {t('dealers.subtitle')}
           </p>
         </div>
       </section>
@@ -55,17 +55,17 @@ export default function DealersPage() {
       {/* Countries by continent */}
       <section style={{ background: '#0a0a0a', padding: 'clamp(4rem, 8vh, 7rem) clamp(1.5rem, 6vw, 5rem)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 'clamp(3rem, 6vh, 5rem)' }}>
-          {continents.map((continent) => (
-            <div key={continent}>
+          {uniqueContinents.map((continentId) => (
+            <div key={continentId}>
               <p style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.3)', marginBottom: '1.5rem' }}>
-                {continent}
+                {t(`dealers.continent${continentId.charAt(0).toUpperCase() + continentId.slice(1)}`)}
               </p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '1rem' }}>
                 {countries
-                  .filter((c) => c.continent === continent)
+                  .filter((c) => c.continent === continentId)
                   .map((country) => (
                     <a
-                      key={country.name}
+                      key={country.id}
                       href={country.url}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -91,7 +91,7 @@ export default function DealersPage() {
                     >
                       <span style={{ fontSize: '2rem', lineHeight: 1 }}>{country.flag}</span>
                       <span style={{ fontSize: '1rem', fontWeight: 600, color: '#fff', letterSpacing: '-0.01em' }}>
-                        {country.name}
+                        {t(`dealers.country${country.id.charAt(0).toUpperCase() + country.id.slice(1)}`)}
                       </span>
                       <span style={{ marginLeft: 'auto', color: 'rgba(255,255,255,0.3)', fontSize: '0.85rem' }}>↗</span>
                     </a>

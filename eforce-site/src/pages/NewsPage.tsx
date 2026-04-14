@@ -11,7 +11,7 @@ export default function NewsPage() {
     <>
       <SEO
         title={`${t('nav.news')} | E-Force`}
-        description="Latest news, product launches, and updates from E-Force Electronic Drums."
+        description={t('news.seoDescription')}
         lang={currentLang}
         path="news"
       />
@@ -22,10 +22,10 @@ export default function NewsPage() {
             {t('nav.news').toUpperCase()}
           </span>
           <h1 className="mt-4 font-display font-bold text-white" style={{ fontSize: "clamp(2.8rem, 7vw, 7rem)", lineHeight: 0.92, letterSpacing: "-0.04em" }}>
-            Em breve.
+            {t('news.comingSoonHeadline')}
           </h1>
           <p className="mt-6 font-body" style={{ fontSize: "clamp(0.9rem, 1.2vw, 1.05rem)", color: "rgba(255,255,255,0.35)", letterSpacing: "0.05em" }}>
-            Novidades chegando em breve.
+            {t('news.comingSoonSubtitle')}
           </p>
         </div>
       </section>

@@ -9,7 +9,7 @@
     "news": "新闻"
   },
   "hero": {
-    "label": "The ultimate drummer's pulse.",
+    "label": "鼓手的终极节拍。",
     "headline": "原声灵魂，电子力量。",
     "sub": "木壳设计。专属配色。源自Odery Drums Brazil。",
     "cta1": "探索",
@@ -56,7 +56,7 @@
     "cta": "所有规格"
   },
   "video": {
-    "caption": "The ultimate drummer's pulse."
+    "caption": "鼓手的终极节拍。"
   },
   "social": {
     "headline": ""
@@ -70,6 +70,10 @@
     "email": "your@email.com",
     "subscribe": "订阅"
   },
+  "showcase": {
+    "label": "精选型号",
+    "viewAll": "查看所有型号"
+  },
   "line": {
     "headline": "产品线。",
     "sub": "七款乐器。一种理念。",
@@ -78,7 +82,17 @@
     "filter5to10k": "R$ 5千 – 1万",
     "filterOver10k": "R$ 1万+",
     "from": "起售价",
-    "viewKit": "查看"
+    "viewKit": "查看",
+    "title": "型号概览",
+    "compare": "比较型号",
+    "resetFilters": "重置筛选",
+    "all": "全部",
+    "module": "模块",
+    "priceRange": "价格范围",
+    "entryLine": "入门系列",
+    "midLine": "中级系列",
+    "premiumLine": "旗舰系列",
+    "noResults": "未找到符合条件的型号。"
   },
   "product": {
     "findDealer": "查找经销商",
@@ -91,19 +105,33 @@
     "whatsInTheBox": "包装内容",
     "compare": "对比",
     "relatedModels": "你可能还喜欢",
-    "finishLabel": "你的配色。"
+    "finishLabel": "你的配色。",
+    "switchModel": "切换型号",
+    "allSpecs": "所有技术参数",
+    "holdToListen": "长按试听",
+    "listening": "播放中...",
+    "highlights": "亮点",
+    "whichKit": "哪款套件适合你？",
+    "compareDetail": "详细比较",
+    "current": "当前",
+    "previous": "上一个",
+    "next": "下一个"
   },
   "footer": {
-    "tagline": "The ultimate drummer's pulse.",
+    "tagline": "鼓手的终极节拍。",
     "copyright": "© 2025 E-Force / Odery Drums Brazil.",
     "privacy": "隐私",
-    "terms": "条款"
+    "terms": "条款",
+    "rights": "保留所有权利。"
   },
   "home": {
     "stats": {
       "models": "型号",
       "sounds": "音色",
-      "finishesCount": "配色"
+      "finishesCount": "配色",
+      "kits": "用户\n套件",
+      "reverbs": "混响\n类型",
+      "module": "模块"
     },
     "discover": "探索",
     "seeFullLine": "所有型号",
@@ -119,7 +147,11 @@
     "stayInformed": "订阅资讯",
     "subscribe": "订阅",
     "noFinish": "",
-    "onboardSounds": "音色"
+    "onboardSounds": "音色",
+    "exploreModules": "探索我们的模块",
+    "findPartners": "查找经销商",
+    "discoverStory": "了解我们的故事",
+    "manualsAndCatalogs": "说明书与资料"
   },
   "pillars": {
     "shells": {
@@ -135,5 +167,129 @@
       "desc": "20年Odery匠心工艺。"
     }
   },
-  "coming_soon": "即将推出"
+  "coming_soon": "即将推出",
+  "yes": "是",
+  "tech_page": {
+    "subtitle": "两款强大模块。一种理念：让鼓手完全掌控自己的音色。",
+    "availableIn": "适用于 —",
+    "flagship": "旗舰",
+    "essential": "标准",
+    "f50": {
+      "title": "F50 模块",
+      "usedIn": "适用于 EF5 V2 和 EF7",
+      "connectivityTitle": "连接性与扩展。",
+      "specs": {
+        "display": "显示屏", "sounds": "音色", "factoryKits": "出厂套件",
+        "userKits": "用户套件", "playAlongs": "伴奏曲目",
+        "savedRec": "保存的录音", "padInputs": "打击垫输入",
+        "reverbs": "混响", "memCard": "存储卡", "output": "输出",
+        "bluetooth": "蓝牙", "usbMidi": "USB MIDI", "equalizer": "均衡器", "otg": "OTG"
+      },
+      "specValues": {
+        "reverbs": "23种类型", "memCard": "是 — 采样", "output": "立体声",
+        "bluetooth": "MIDI + 音频", "usbMidi": "是", "equalizer": "是",
+        "otg": "直接录制到手机"
+      },
+      "conn": {
+        "wireless": { "title": "蓝牙 MIDI + 音频", "desc": "直接向模块传输音轨。连接无线耳机进行静音练习。无线向DAW发送MIDI。" },
+        "recording": { "title": "OTG — 直接录制", "desc": "通过USB OTG连接手机即时录制。兼容iOS和Android上的任何录音应用。" },
+        "power": { "title": "USB-C 供电", "desc": "兼容任何充电宝、笔记本或USB-C充电器。完美适用于户外演出和随处练习。" },
+        "expansion": { "title": "10路输入 + SD卡槽", "desc": "10路独立打击垫和镲片输入。SD卡槽支持导入自定义采样。" }
+      }
+    },
+    "f10": {
+      "title": "F10 模块",
+      "connectivityTitle": "基础连接性。",
+      "specs": {
+        "display": "显示屏", "sounds": "音色", "factoryKits": "出厂套件",
+        "userKits": "用户套件", "playAlongs": "伴奏曲目",
+        "metronome": "节拍器", "recording": "录音", "reverbs": "混响",
+        "bluetooth": "蓝牙", "usbMidi": "USB MIDI", "otg": "OTG", "expansion": "扩展"
+      },
+      "specValues": {
+        "reverbs": "5种类型", "metronome": "是", "recording": "是",
+        "bluetooth": "MIDI + 音频", "usbMidi": "是", "otg": "直接录制",
+        "expansion": "额外一个打击垫或镲片"
+      },
+      "conn": {
+        "wireless": { "title": "蓝牙 MIDI + 音频", "desc": "直接向模块传输音轨。连接无线耳机进行静音练习。无线向DAW发送MIDI。" },
+        "recording": { "title": "OTG — 直接录制", "desc": "通过USB OTG连接手机即时录制。模块显示为USB音频接口。" },
+        "power": { "title": "USB-C 供电", "desc": "兼容任何充电宝、笔记本或USB-C充电器。随处练习的理想选择。" },
+        "expansion": { "title": "扩展接口", "desc": "额外接口，可再添加一个镲片或鼓垫。" }
+      }
+    },
+    "craftsmanship": {
+      "label": "CRAFTSMANSHIP",
+      "title": "为经久耐用而生。",
+      "p1": "每套E-Force鼓组都以与Odery原声乐器同样的匠心打造。加固架子、专业级配件，以及为数千小时演奏而研发的网状鼓皮。",
+      "p2": "不仅仅是技术，不仅仅是美学。这是对让鼓手真正感受到与乐器连接的本质的深刻理解。",
+      "stat1": "年制鼓经验。",
+      "stat2": "可选型号。",
+      "stat3": "参与开发的国家。",
+      "stat3detail": "巴西、中国、加拿大与美国"
+    }
+  },
+  "story": {
+    "seoTitle": "品牌故事 | E-Force",
+    "seoDescription": "探索E-Force品牌的解析——建立在创新、力量与现代感之上的视觉识别系统。",
+    "brandAnatomyLabel": "品牌解析",
+    "brandAnatomyP1": "E-Force字标的设计旨在通过视觉传达品牌作为电子鼓制造商的身份——以创新、力量和现代感为核心。中心元素是一个带有三条横线的倒三角形——是字母「e」的抽象表现，直接指向「电子」这一概念。这个几何形状象征着能量与方向，唤起电子音乐的动态本质。",
+    "brandAnatomyP2": "字母「F」代表力量（Force）——Odery在35年间积累的原声专业知识、工艺技术和坚定决心，如今融入我们创造的每一套电子鼓组。随后是Play播放符号：音乐中最具普世意义的图标，出现在全球每位鼓手的日常生活中——如今也位于E-Force的核心。",
+    "brandAnatomyP3": "最后，一个完美的圆圈将所有元素连接起来，象征着统一、无限与技术的和谐融合。它提醒我们：有了E-Force，声音创作的可能性是无限的。",
+    "philosophyLabel": "理念",
+    "philosophyHeadline": "原声灵魂与电子精准的相遇。",
+    "philosophyP1": "每一件E-Force乐器都始于一个问题：如果将数十年的原声鼓专业知识注入电子设计，会发生什么？",
+    "philosophyP2": "答案体现在每一个细节之中。鼓壳采用木材——因为真正懂木材的品牌不会用其他方式构建。触发器具备高灵敏度，鼓皮传递真实原声鼓的触感反馈，设计语言延续了让Odery在全球舞台上广为认知的视觉风格。",
+    "philosophyP3": "这就是E-Force与众不同之处。不仅仅是技术，不仅仅是美学。这是对什么能让鼓手真正感受到与乐器连接的深刻理解。",
+    "timeline": [
+      { "year": "1991", "text": "在巴西坎皮纳斯，Odery先生在自家后院开始手工制造鼓——一件一件地锯木材。这就是后来成为世界上最受尊敬的鼓品牌之一的起点。" },
+      { "year": "2002", "text": "Odery跨越大西洋，首次亮相国际展会——德国法兰克福乐器展。结果：登上了全球最具影响力的鼓杂志之一《Modern Drummer》。" },
+      { "year": "2007", "text": "Odery扩大运营，开始在中国和台湾生产系列产品线，在保持品质标准的同时，进一步巩固了全球生产体系。" },
+      { "year": "2011", "text": "Eyedentity系列正式发布——一个里程碑。该产品征服全球市场，将Odery在品质、设计和国际定位上提升到新的高度。" },
+      { "year": "2018", "text": "Odery推出其最具代表性的产品线：巴西手工定制鼓。该系列在美国和中国市场取得强劲进展，进一步彰显了品牌独特的手工制作基因。" },
+      { "year": "2021", "text": "Odery在中国的合作工厂开始研发电子鼓，瞄准该市场在全球范围内的快速增长。" },
+      { "year": "2025", "text": "工厂邀请Odery加入合资企业。目标：以35年Odery Drums所代表的性能与设计标准开发电子鼓。合作协议正式签署。" },
+      { "year": "2026", "text": "E-Force正式发布。一款个性鲜明、身份独特的产品——这只是一个新故事的开始。" }
+    ]
+  },
+  "support": {
+    "seoDescription": "下载您的E-Force鼓组说明书，查看保修政策并联系我们的支持团队。",
+    "manualsLabel": "说明书",
+    "manualsHeadline": "下载您的鼓组说明书。",
+    "userManualLabel": "用户手册 — PDF",
+    "warrantyLabel": "保修",
+    "warrantyHeadline": "E-Force保修政策。",
+    "warrantyTitle": "E-Force保修",
+    "warrantyPdfLabel": "保修政策 — PDF",
+    "contactLabel": "联系",
+    "contactHeadline": "联系我们。",
+    "download": "下载"
+  },
+  "dealers": {
+    "seoTitle": "经销商 | E-Force",
+    "seoDescription": "在您所在国家查找E-Force经销商。",
+    "headline": "查找经销商。",
+    "subtitle": "选择您所在的国家，了解在哪里购买E-Force。",
+    "countryBrazil": "巴西",
+    "continentSouthAmerica": "南美洲"
+  },
+  "news": {
+    "seoDescription": "E-Force Electronic Drums的最新资讯、产品发布与更新。",
+    "comingSoonHeadline": "即将推出。",
+    "comingSoonSubtitle": "最新动态即将到来。"
+  },
+  "modelsCta": {
+    "headline": "感受不同。",
+    "subtitle": "探索E-Force完整产品线，找到属于你的那套鼓组。"
+  },
+  "seo": {
+    "homeTitle": "E-Force — 鼓手的终极节拍",
+    "homeDescription": "原声灵魂的电子鼓组。木壳设计、专属配色与尖端技术——源自Odery Drums Brazil。",
+    "lineTitle": "套件 | E-Force",
+    "lineDescription": "探索E-Force完整产品线——从入门级EF2到旗舰EF7。"
+  },
+  "cookie": {
+    "message": "我们使用Cookie来提供更好的体验、提升性能、分析您与网站的互动方式并个性化内容。继续使用本网站，即表示您同意使用Cookie。",
+    "accept": "接受"
+  }
 }

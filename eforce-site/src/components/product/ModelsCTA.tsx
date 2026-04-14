@@ -1,10 +1,12 @@
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { usePageTransition } from '@/context/TransitionContext';
 import { products } from '@/data/products';
 
 const COMING_SOON = ["ef7eye"];
 
 export function ModelsCTA() {
+  const { t } = useTranslation();
   const { lang } = useParams<{ lang: string }>();
   const currentLang = lang ?? 'pt';
   const { navigateWithCurtain } = usePageTransition();
@@ -24,7 +26,7 @@ export function ModelsCTA() {
           margin: "0 0 0.75rem 0",
           lineHeight: 1.1,
         }}>
-          Sinta a diferença.
+          {t('modelsCta.headline')}
         </h2>
         <p style={{
           fontSize: "clamp(0.9rem, 1.1vw, 1rem)",
@@ -35,7 +37,7 @@ export function ModelsCTA() {
           marginLeft: "auto",
           marginRight: "auto",
         }}>
-          Explore a linha completa E-Force e encontre o kit que fala com você.
+          {t('modelsCta.subtitle')}
         </p>
 
         <div style={{

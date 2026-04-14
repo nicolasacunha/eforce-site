@@ -1,0 +1,295 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "line": "Modelle",
+    "story": "Geschichte",
+    "technology": "Technologie",
+    "dealers": "Händler",
+    "support": "Support",
+    "news": "News"
+  },
+  "hero": {
+    "label": "Der ultimative Puls des Schlagzeugers.",
+    "headline": "Akustische Seele. Elektronische Power.",
+    "sub": "Holzgehäuse-Design. Exklusive Oberflächen. Aus Odery Drums Brazil.",
+    "cta1": "Entdecken",
+    "cta2": "Ansehen",
+    "scrollToExplore": "Scrollen zum Erkunden",
+    "cta": "Produktlinie entdecken"
+  },
+  "manifesto": {
+    "text": "Ein elektronisches Schlagzeug kann inspirieren. Es kann die Seele eines akustischen Instruments tragen. E-Force wurde gebaut, um das zu beweisen."
+  },
+  "finishes": {
+    "headline": "Wähle deine Identität.",
+    "sub": "Drei Oberflächen. Eine Bühne. Deine.",
+    "note": "* Oberflächen variieren je nach Modell.",
+    "cta": "Alle Oberflächen",
+    "selected": "Ausgewählt"
+  },
+  "odery": {
+    "label": "ERBE",
+    "headline": "Jahrzehnte akustischer Meisterschaft.",
+    "p1": "In direkter Partnerschaft mit Odery Drums Brazil — 20 Jahre Erfahrung im Bau der weltbesten Akustik-Sets.",
+    "p2": "",
+    "cta": "Unsere Geschichte"
+  },
+  "tech": {
+    "label": "ENGINEERING",
+    "headline": "Entwickelt für Ausdruck.",
+    "f10f50": {
+      "title": "Module F10 und F50",
+      "desc": "Bis zu 937 Sounds. Vollständiges Touch-Display."
+    },
+    "bluetooth": {
+      "title": "Bluetooth MIDI & Audio",
+      "desc": "Kabellos zu DAW, Apps, Kopfhörern."
+    },
+    "otg": {
+      "title": "Direktaufnahme",
+      "desc": "Ein Kabel. Smartphone ans Modul. Aufnehmen."
+    },
+    "usbc": {
+      "title": "USB-C Stromversorgung",
+      "desc": "Powerbank. Laptop. Überall."
+    },
+    "cta": "Alle Spezifikationen"
+  },
+  "video": {
+    "caption": "Der ultimative Puls des Schlagzeugers."
+  },
+  "social": {
+    "headline": ""
+  },
+  "cta": {
+    "headline": "Erlebe E-Force",
+    "sub": "",
+    "dealer": "Händler finden",
+    "contact": "Kontakt",
+    "notify": "Informiert bleiben",
+    "email": "deine@email.de",
+    "subscribe": "Abonnieren"
+  },
+  "showcase": {
+    "label": "Ausgewählte Modelle",
+    "viewAll": "Alle Modelle ansehen"
+  },
+  "line": {
+    "headline": "Die Produktlinie.",
+    "sub": "Sieben Instrumente. Eine Philosophie.",
+    "filterAll": "Alle",
+    "filterUnder5k": "Unter R$ 5 Tsd.",
+    "filter5to10k": "R$ 5 – 10 Tsd.",
+    "filterOver10k": "R$ 10 Tsd.+",
+    "from": "Ab",
+    "viewKit": "Ansehen",
+    "title": "Modellübersicht",
+    "compare": "Modelle vergleichen",
+    "resetFilters": "Filter zurücksetzen",
+    "all": "Alle",
+    "module": "Modul",
+    "priceRange": "Preisbereich",
+    "entryLine": "Einsteigerlinie",
+    "midLine": "Mittlere Linie",
+    "premiumLine": "Premium-Linie",
+    "noResults": "Keine Modelle mit diesen Filtern gefunden."
+  },
+  "product": {
+    "findDealer": "Händler finden",
+    "downloadSpecs": "Spezifikationen",
+    "keyFeatures": "Merkmale",
+    "gallery": "Galerie",
+    "soundDemo": "Anhören.",
+    "moduleSpecs": "Modul",
+    "fullSpecs": "Spezifikationen",
+    "whatsInTheBox": "Im Lieferumfang",
+    "compare": "Vergleichen",
+    "relatedModels": "Das könnte dir auch gefallen",
+    "finishLabel": "Deine Oberfläche.",
+    "switchModel": "Modell wechseln",
+    "allSpecs": "Alle technischen Details",
+    "holdToListen": "Halten zum Anhören",
+    "listening": "Wiedergabe...",
+    "highlights": "Highlights",
+    "whichKit": "Welches Set ist das richtige für dich?",
+    "compareDetail": "Im Detail vergleichen",
+    "current": "Aktuell",
+    "previous": "Zurück",
+    "next": "Weiter"
+  },
+  "footer": {
+    "tagline": "Der ultimative Puls des Schlagzeugers.",
+    "copyright": "© 2025 E-Force / Odery Drums Brazil.",
+    "privacy": "Datenschutz",
+    "terms": "AGB",
+    "rights": "Alle Rechte vorbehalten."
+  },
+  "home": {
+    "stats": {
+      "models": "Modelle",
+      "sounds": "Sounds",
+      "finishesCount": "Oberflächen",
+      "kits": "Nutzer\nKits",
+      "reverbs": "Reverb\nTypen",
+      "module": "Modul"
+    },
+    "discover": "Entdecken",
+    "seeFullLine": "Alle Modelle",
+    "bestSeller": "BESTSELLER",
+    "professional": "PROFESSIONAL",
+    "flagship": "FLAGSHIP",
+    "identity": "IDENTITÄT",
+    "discoverHeritage": "Unsere Geschichte",
+    "watchFilm": "Ansehen",
+    "theLine": "DIE PRODUKTLINIE",
+    "experience": "Erleben",
+    "findDealerNearYou": "",
+    "stayInformed": "Informiert bleiben",
+    "subscribe": "Abonnieren",
+    "noFinish": "",
+    "onboardSounds": "Sounds",
+    "exploreModules": "entdecke unsere module",
+    "findPartners": "finde unsere händler",
+    "discoverStory": "entdecke unsere geschichte",
+    "manualsAndCatalogs": "handbücher und kataloge"
+  },
+  "pillars": {
+    "shells": {
+      "title": "Holzgehäuse",
+      "desc": "Echtes Holz. Echte Präsenz."
+    },
+    "finishes": {
+      "title": "Exklusive Oberflächen",
+      "desc": "Drei Optionen pro Modell. Eine Premiere."
+    },
+    "heritage": {
+      "title": "Akustisches Erbe",
+      "desc": "20 Jahre Odery-Handwerkskunst."
+    }
+  },
+  "coming_soon": "Demnächst",
+  "yes": "Ja",
+  "tech_page": {
+    "subtitle": "Zwei leistungsstarke Module. Eine Philosophie: dem Schlagzeuger die volle Kontrolle über seinen Sound zu geben.",
+    "availableIn": "Erhältlich in —",
+    "flagship": "FLAGSHIP",
+    "essential": "ESSENTIELL",
+    "f50": {
+      "title": "F50-Modul",
+      "usedIn": "Verwendet in EF5 V2 und EF7",
+      "connectivityTitle": "Konnektivität & Erweiterung.",
+      "specs": {
+        "display": "Display", "sounds": "Sounds", "factoryKits": "Werks-Kits",
+        "userKits": "Nutzer-Kits", "playAlongs": "Play-along Tracks",
+        "savedRec": "Gespeicherte Aufnahmen", "padInputs": "Pad-Eingänge",
+        "reverbs": "Reverbs", "memCard": "Speicherkarte", "output": "Ausgang",
+        "bluetooth": "Bluetooth", "usbMidi": "USB MIDI", "equalizer": "Equalizer", "otg": "OTG"
+      },
+      "specValues": {
+        "reverbs": "23 Typen", "memCard": "Ja — Samples", "output": "Stereo",
+        "bluetooth": "MIDI + Audio", "usbMidi": "Ja", "equalizer": "Ja",
+        "otg": "Direktaufnahme auf Smartphone"
+      },
+      "conn": {
+        "wireless": { "title": "Bluetooth MIDI + Audio", "desc": "Streame Tracks direkt ans Modul. Verbinde kabellose Kopfhörer für stilles Üben. Sende MIDI kabellos an deine DAW." },
+        "recording": { "title": "OTG — Direktaufnahme", "desc": "Verbinde dein Smartphone via USB OTG und nimm sofort auf. Kompatibel mit jeder Aufnahme-App auf iOS oder Android." },
+        "power": { "title": "USB-C Stromversorgung", "desc": "Funktioniert mit jeder Powerbank, jedem Laptop oder USB-C-Ladegerät. Ideal für Outdoor-Shows und Üben überall." },
+        "expansion": { "title": "10 Eingänge + SD-Slot", "desc": "10 unabhängige Eingänge für Pads und Becken. SD-Kartensteckplatz für den Import eigener Samples." }
+      }
+    },
+    "f10": {
+      "title": "F10-Modul",
+      "connectivityTitle": "Wesentliche Konnektivität.",
+      "specs": {
+        "display": "Display", "sounds": "Sounds", "factoryKits": "Werks-Kits",
+        "userKits": "Nutzer-Kits", "playAlongs": "Play-along Tracks",
+        "metronome": "Metronom", "recording": "Aufnahme", "reverbs": "Reverbs",
+        "bluetooth": "Bluetooth", "usbMidi": "USB MIDI", "otg": "OTG", "expansion": "Erweiterung"
+      },
+      "specValues": {
+        "reverbs": "5 Typen", "metronome": "Ja", "recording": "Ja",
+        "bluetooth": "MIDI + Audio", "usbMidi": "Ja", "otg": "Direktaufnahme",
+        "expansion": "Ein zusätzliches Pad oder Becken"
+      },
+      "conn": {
+        "wireless": { "title": "Bluetooth MIDI + Audio", "desc": "Streame Tracks direkt ans Modul. Verbinde kabellose Kopfhörer für stilles Üben. Sende MIDI kabellos an deine DAW." },
+        "recording": { "title": "OTG — Direktaufnahme", "desc": "Verbinde dein Smartphone via USB OTG und nimm sofort auf. Das Modul erscheint als USB-Audiointerface." },
+        "power": { "title": "USB-C Stromversorgung", "desc": "Funktioniert mit jeder Powerbank, jedem Laptop oder USB-C-Ladegerät. Ideal zum Üben überall." },
+        "expansion": { "title": "Erweiterungsanschluss", "desc": "Zusätzlicher Anschluss für ein weiteres Cymbal- oder Tom-Pad." }
+      }
+    },
+    "craftsmanship": {
+      "label": "CRAFTSMANSHIP",
+      "title": "Gebaut, um zu bleiben.",
+      "p1": "Jedes E-Force-Set wird mit derselben Liebe zum Detail gefertigt, die Odery-Akustikinstrumente auszeichnet. Verstärkte Racks, Hardware in Profiqualität und Mesh-Felle, die für Tausende von Spielstunden entwickelt wurden.",
+      "p2": "Nicht nur Technologie. Nicht nur Ästhetik. Es ist das echte Verständnis dafür, was einen Schlagzeuger sein Instrument spüren lässt.",
+      "stat1": "Jahre Schlagzeugbau.",
+      "stat2": "Verfügbare Modelle.",
+      "stat3": "Länder in der Entwicklung.",
+      "stat3detail": "Brasilien, China, Kanada und USA"
+    }
+  },
+  "story": {
+    "seoTitle": "Geschichte & Brand | E-Force",
+    "seoDescription": "Entdecke die Anatomie der E-Force Marke — eine visuelle Identität aufgebaut auf Innovation, Kraft und Modernität.",
+    "brandAnatomyLabel": "MARKEN-ANATOMIE",
+    "brandAnatomyP1": "Das E-Force Logotyp wurde geschaffen, um die Identität der Marke als Hersteller von elektronischen Schlagzeugen visuell zu kommunizieren — aufgebaut auf Innovation, Kraft und Modernität. Das zentrale Element zeigt ein umgekehrtes Dreieck mit drei horizontalen Linien — eine abstrakte Darstellung des Buchstabens \"e\", ein direkter Verweis auf das Konzept \"elektronisch\". Diese geometrische Form symbolisiert Energie und Richtung und evoziert die dynamische Natur elektronischer Musik.",
+    "brandAnatomyP2": "Der Buchstabe \"F\" steht für Force (Kraft) — das akustische Fachwissen, das Handwerk und die Entschlossenheit, die Odery in 35 Jahren aufgebaut hat, jetzt in jeden elektronischen Drumset geflossen. Dann kommt das Play-Symbol: das universellste Icon der Musik, täglich im Leben jedes Schlagzeugers auf dem Planeten präsent — und jetzt im Herzen von E-Force.",
+    "brandAnatomyP3": "Als Abschluss verbindet ein perfekter Kreis alle Elemente und symbolisiert Einheit, Unendlichkeit und die harmonische Integration der Technologie. Eine Erinnerung daran, dass mit E-Force die Möglichkeiten in der Klangerzeugung grenzenlos sind.",
+    "philosophyLabel": "PHILOSOPHIE",
+    "philosophyHeadline": "Wo akustische Seele auf elektronische Präzision trifft.",
+    "philosophyP1": "Jedes E-Force Instrument beginnt mit einer Frage: Was würde passieren, wenn Jahrzehnte akustischer Schlagzeug-Expertise in das elektronische Design einfließen würden?",
+    "philosophyP2": "Die Antwort steckt in jedem Detail. Die Shells sind aus Holz — denn eine Marke, die Holz versteht, baut nicht anders. Die Trigger sind hochempfindlich, die Felle liefern die echte Ansprache eines akustischen Schlagzeugs, und das Design trägt die gleiche visuelle Sprache, die Odery auf Bühnen weltweit erkennbar gemacht hat.",
+    "philosophyP3": "Das ist, was E-Force auszeichnet. Nicht nur Technologie. Nicht nur Ästhetik. Es ist ein echtes Verständnis dafür, was einen Schlagzeuger wirklich mit seinem Instrument verbunden fühlen lässt.",
+    "timeline": [
+      { "year": "1991", "text": "In Campinas, Brasilien, beginnt Mr. Odery im Hinterhof seines eigenen Hauses mit dem Schlagzeugbau — Holz von Hand sägen, Stück für Stück. Das war der Beginn von dem, was zu einer der meistrespektierten Schlagzeugmarken der Welt werden sollte." },
+      { "year": "2002", "text": "Odery überquert den Atlantik und tritt zum ersten Mal auf einer internationalen Messe auf — der Musikmesse Frankfurt. Das Ergebnis: ein Feature in Modern Drummer, einer der einflussreichsten Schlagzeugpublikationen der Welt." },
+      { "year": "2007", "text": "Odery erweitert seinen Betrieb und beginnt mit der Fertigung seiner Serienlinie in China und Taiwan und festigt so seine globale Produktionsstruktur, ohne die Standards zu kompromittieren, die es zur Referenz gemacht haben." },
+      { "year": "2011", "text": "Start der Eyedentity-Serie — ein Meilenstein. Das Modell erobert den Weltmarkt und hebt Odery auf ein neues Niveau in Qualität, Design und internationaler Positionierung." },
+      { "year": "2018", "text": "Odery bringt seinen ikonischsten Katalog auf den Markt: Custom Hand Made in Brazil Schlagzeuge. Die Linie dringt mit Kraft in die amerikanischen und chinesischen Märkte vor und bekräftigt die handwerkliche DNA, die die Marke auszeichnet." },
+      { "year": "2021", "text": "Oderys Partnerwerk in China beginnt mit der Entwicklung von E-Schlagzeugen und visiert das beschleunigte Wachstum dieses Marktes weltweit an." },
+      { "year": "2025", "text": "Das Werk lädt Odery zu einem Joint Venture ein. Ziel: E-Schlagzeuge mit demselben Niveau an Performance und Designstandards entwickeln, die 35 Jahre Odery Drums repräsentieren. Die Partnerschaft wird angenommen." },
+      { "year": "2026", "text": "E-Force wird gelauncht. Ein unverwechselbares Produkt mit einer unverkennbaren Identität — das ist erst der Anfang einer neuen Geschichte." }
+    ]
+  },
+  "support": {
+    "seoDescription": "Lade dein E-Force Kit-Handbuch herunter, greife auf die Garantie zu und kontaktiere unser Support-Team.",
+    "manualsLabel": "HANDBÜCHER",
+    "manualsHeadline": "Lade dein Kit-Handbuch herunter.",
+    "userManualLabel": "Benutzerhandbuch — PDF",
+    "warrantyLabel": "GARANTIE",
+    "warrantyHeadline": "E-Force Garantierichtlinie.",
+    "warrantyTitle": "E-Force Garantie",
+    "warrantyPdfLabel": "Garantierichtlinie — PDF",
+    "contactLabel": "KONTAKT",
+    "contactHeadline": "Kontaktiere uns.",
+    "download": "Herunterladen"
+  },
+  "dealers": {
+    "seoTitle": "Händler | E-Force",
+    "seoDescription": "Finde einen E-Force Händler in deinem Land.",
+    "headline": "Händler finden.",
+    "subtitle": "Wähle dein Land, um herauszufinden, wo du E-Force kaufen kannst.",
+    "countryBrazil": "Brasilien",
+    "continentSouthAmerica": "Südamerika"
+  },
+  "news": {
+    "seoDescription": "Neueste Nachrichten, Produkteinführungen und Updates von E-Force Electronic Drums.",
+    "comingSoonHeadline": "Demnächst.",
+    "comingSoonSubtitle": "Neuigkeiten kommen bald."
+  },
+  "modelsCta": {
+    "headline": "Spür den Unterschied.",
+    "subtitle": "Entdecke die vollständige E-Force Produktlinie und finde das Set, das zu dir spricht."
+  },
+  "seo": {
+    "homeTitle": "E-Force — Der Ultimative Puls des Schlagzeugers",
+    "homeDescription": "Elektronische Schlagzeuge mit akustischer Seele. Holzgehäuse-Design, exklusive Oberflächen und modernste Technologie — aus Odery Drums Brazil.",
+    "lineTitle": "Sets | E-Force",
+    "lineDescription": "Entdecke die vollständige E-Force Produktlinie — vom Einsteigermodell EF2 bis zum Flaggschiff EF7."
+  },
+  "cookie": {
+    "message": "Wir verwenden Cookies, um eine bessere Erfahrung zu bieten, die Leistung zu verbessern, zu analysieren, wie Sie mit unserer Website interagieren, und Inhalte zu personalisieren. Durch die Nutzung dieser Website stimmen Sie der Verwendung von Cookies zu.",
+    "accept": "Akzeptieren"
+  }
+}
