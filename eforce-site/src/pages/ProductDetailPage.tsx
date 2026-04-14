@@ -239,7 +239,7 @@ function KeySpecsSection({ product, isMobile }: { product: Product; isMobile: bo
           }}
         >
           {/* Left: specs */}
-          <div style={{ display: "flex", flexDirection: "column", flexDirection: isMobile ? "row" : "column", gap: isMobile ? "clamp(1.5rem, 5vw, 3rem)" : "clamp(2rem, 4vh, 3.5rem)", marginLeft: isMobile ? "0" : "auto", paddingRight: isMobile ? "0" : "clamp(1rem, 2vw, 2rem)", position: "relative", zIndex: 5 }}>
+          <div style={{ display: "flex", flexDirection: isMobile ? "row" : "column", gap: isMobile ? "clamp(1.5rem, 5vw, 3rem)" : "clamp(2rem, 4vh, 3.5rem)", marginLeft: isMobile ? "0" : "auto", paddingRight: isMobile ? "0" : "clamp(1rem, 2vw, 2rem)", position: "relative", zIndex: 5 }}>
             {specs.map((s) => (
               <div key={s.label}>
                 <div
