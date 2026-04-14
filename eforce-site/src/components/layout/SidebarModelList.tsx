@@ -29,18 +29,16 @@ export function SidebarModelList({ onNavigate }: SidebarModelListProps) {
             {product.name}
           </h3>
           {COMING_SOON_IDS.includes(product.id) ? (
-            <div className="relative -mx-6" style={{ width: "calc(100% + 3rem)" }}>
+            <div>
+              <p className="text-xs font-bold tracking-widest uppercase text-brand-orange mb-3">
+                {t("coming_soon")}
+              </p>
               <img
                 src={product.menuImage ?? product.heroImage}
                 alt={product.name}
-                className="h-auto object-contain w-full"
+                className="h-auto object-contain w-3/4 mx-auto block"
                 style={{ opacity: 0.85 }}
               />
-              <div style={{ position: "absolute", top: "0.75rem", left: "50%", transform: "translateX(-50%)" }}>
-                <span className="font-bold tracking-widest uppercase" style={{ fontSize: "0.95rem", background: "rgba(255,255,255,0.92)", color: "rgba(0,0,0,0.6)", padding: "0.45rem 1.2rem", borderRadius: "999px", whiteSpace: "nowrap" }}>
-                  {t("coming_soon")}
-                </span>
-              </div>
             </div>
           ) : (
             <img

@@ -458,7 +458,7 @@ export const products: Product[] = [
   {
     id: "ef7eye",
     slug: "ef7-eye-hybrid",
-    name: "Odery Eyedentity Hybrid",
+    name: "EF6 V2 Odery Eyedentity Hybrid",
     price: "R$ 23,527",
     priceValue: 23527,
     tagline: "O topo. A declaração.",

@@ -6,12 +6,13 @@ export default function SupportPage() {
   const { t } = useTranslation();
   const { lang } = useParams<{ lang: string }>();
   const currentLang = lang ?? 'en';
+  const isEN = currentLang === 'en';
 
   return (
     <>
       <SEO
         title={`${t('nav.support')} | E-Force`}
-        description="Baixe o manual do seu kit E-Force, acesse a garantia e entre em contato com nosso suporte."
+        description={isEN ? "Download your E-Force kit manual, access the warranty, and contact our support team." : "Baixe o manual do seu kit E-Force, acesse a garantia e entre em contato com nosso suporte."}
         lang={currentLang}
         path="support"
       />
@@ -23,10 +24,10 @@ export default function SupportPage() {
       <section style={{ background: "#0a0a0a", padding: "0 clamp(1.5rem, 6vw, 5rem) clamp(4rem, 8vh, 7rem)" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#E8500A", marginBottom: "0.5rem" }}>
-            MANUAIS
+            {isEN ? "MANUALS" : "MANUAIS"}
           </p>
           <h2 style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.03em", marginBottom: "clamp(2rem, 4vh, 3rem)" }}>
-            Baixe o manual do seu kit.
+            {isEN ? "Download your kit manual." : "Baixe o manual do seu kit."}
           </h2>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "1px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
@@ -60,7 +61,7 @@ export default function SupportPage() {
                     {item.name}
                   </p>
                   <p style={{ margin: "0.25rem 0 0", fontSize: "12px", color: "rgba(255,255,255,0.35)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                    Manual do Usuário — PDF
+                    {isEN ? "User Manual — PDF" : "Manual do Usuário — PDF"}
                   </p>
                 </div>
                 <DownloadButton href={item.href} />
@@ -77,10 +78,10 @@ export default function SupportPage() {
       <section style={{ background: "#0a0a0a", padding: "clamp(4rem, 8vh, 7rem) clamp(1.5rem, 6vw, 5rem)" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#E8500A", marginBottom: "0.5rem" }}>
-            GARANTIA
+            {isEN ? "WARRANTY" : "GARANTIA"}
           </p>
           <h2 style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.03em", marginBottom: "clamp(2rem, 4vh, 3rem)" }}>
-            Política de garantia E-Force.
+            {isEN ? "E-Force warranty policy." : "Política de garantia E-Force."}
           </h2>
 
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
@@ -103,7 +104,7 @@ export default function SupportPage() {
                   Garantia E-Force
                 </p>
                 <p style={{ margin: "0.25rem 0 0", fontSize: "12px", color: "rgba(255,255,255,0.35)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                  Política de Garantia — PDF
+                  {isEN ? "Warranty Policy — PDF" : "Política de Garantia — PDF"}
                 </p>
               </div>
               <DownloadButton href="/assets/manuais/garantia_eforce.pdf" />
@@ -119,10 +120,10 @@ export default function SupportPage() {
       <section style={{ background: "#0a0a0a", padding: "clamp(4rem, 8vh, 7rem) clamp(1.5rem, 6vw, 5rem)" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#E8500A", marginBottom: "0.5rem" }}>
-            CONTATO
+            {isEN ? "CONTACT" : "CONTATO"}
           </p>
           <h2 style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.03em", marginBottom: "clamp(2rem, 4vh, 3rem)" }}>
-            Contate-nos.
+            {isEN ? "Contact us." : "Contate-nos."}
           </h2>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem", maxWidth: "480px" }}>

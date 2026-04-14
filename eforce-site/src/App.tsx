@@ -7,6 +7,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { TransitionProvider } from '@/context/TransitionContext';
 import CurtainOverlay from '@/components/layout/CurtainOverlay';
+import CookieBanner from '@/components/layout/CookieBanner';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const ProductDetailPage = lazy(() => import('@/pages/ProductDetailPage'));
@@ -61,12 +62,13 @@ function Layout() {
         </AnimatePresence>
       </main>
       <Footer />
+      <CookieBanner />
     </TransitionProvider>
   );
 }
 
 function RootRedirect() {
-  return <Navigate to="/en" replace />;
+  return <Navigate to="/pt" replace />;
 }
 
 export default function App() {

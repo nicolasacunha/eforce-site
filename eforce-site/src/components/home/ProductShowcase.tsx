@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
@@ -10,6 +11,13 @@ export default function ProductShowcase() {
   const { lang } = useParams();
   const { t } = useTranslation();
   const { navigateWithCurtain } = usePageTransition();
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   return (
     <section>
@@ -49,9 +57,9 @@ export default function ProductShowcase() {
                   } items-center`}
                   style={{ gap: "clamp(2rem, 5vw, 5rem)" }}
                 >
-                  {/* Product Image — 55% */}
+                  {/* Product Image — 55% (45% for coming soon) */}
                   <motion.div
-                    className="w-full md:w-[55%] relative"
+                    className={`w-full ${isComingSoon ? "md:w-[45%]" : "md:w-[55%]"} relative`}
                     initial={{ opacity: 0, x: isEven ? -40 : 40 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -66,48 +74,29 @@ export default function ProductShowcase() {
                       }}
                     />
                     {isComingSoon ? (
-                      <div className="relative w-full">
-                        <img
-                          src={product.showcaseImage ?? product.heroImage}
-                          alt={product.name}
-                          className="w-full object-contain"
-                          style={{
-                            maxHeight: "clamp(450px, 75vh, 900px)",
-                            filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.15))",
-                            opacity: 0.7,
-                          }}
-                          loading={i < 2 ? "eager" : "lazy"}
-                        />
-                        <div style={{ position: "absolute", top: "1rem", left: "50%", transform: "translateX(-50%)" }}>
-                          <span style={{
-                            fontSize: "clamp(0.7rem, 1vw, 0.85rem)",
-                            fontWeight: 700,
-                            letterSpacing: "0.2em",
-                            textTransform: "uppercase",
-                            color: "rgba(0,0,0,0.5)",
-                            background: "rgba(255,255,255,0.8)",
-                            padding: "0.35rem 1rem",
-                            borderRadius: "999px",
-                            backdropFilter: "blur(8px)",
-                            whiteSpace: "nowrap",
-                          }}>
-                            {t("coming_soon")}
-                          </span>
-                        </div>
-                      </div>
+                      <img
+                        src={product.showcaseImage ?? product.heroImage}
+                        alt={product.name}
+                        className="w-full object-contain"
+                        style={{
+                          maxHeight: isMobile ? "clamp(260px, 70vw, 400px)" : "clamp(450px, 75vh, 900px)",
+                          filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.15))",
+                        }}
+                        loading={i < 2 ? "eager" : "lazy"}
+                      />
                     ) : (
                       <img
                         src={product.showcaseImage ?? product.heroImage}
                         alt={product.name}
                         className="w-full object-contain group-hover:scale-[1.03] group-hover:-translate-y-2"
                         style={{
-                          maxHeight: "clamp(450px, 75vh, 900px)",
+                          maxHeight: isMobile ? "clamp(260px, 70vw, 400px)" : "clamp(450px, 75vh, 900px)",
                           filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.15))",
                           transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
-                          ...(product.id === "ef2v1" && { transform: "scale(1.75)" }),
-                          ...(product.id === "ef2v2" && { transform: "scale(1.61)" }),
-                          ...(product.id === "ef2v3" && { transform: "scale(1.61)" }),
-                          ...(product.id === "ef5v2" && { transform: "scale(1.55)" }),
+                          ...(!isMobile && product.id === "ef2v1" && { transform: "scale(1.75)" }),
+                          ...(!isMobile && product.id === "ef2v2" && { transform: "scale(1.61)" }),
+                          ...(!isMobile && product.id === "ef2v3" && { transform: "scale(1.61)" }),
+                          ...(!isMobile && product.id === "ef5v2" && { transform: "scale(1.55)" }),
                         }}
                         loading={i < 2 ? "eager" : "lazy"}
                       />
@@ -116,7 +105,7 @@ export default function ProductShowcase() {
 
                   {/* Info — 45% */}
                   <motion.div
-                    className={`w-full md:w-[45%] ${
+                    className={`w-full ${isComingSoon ? "md:w-[55%]" : "md:w-[45%]"} ${
                       isEven ? "" : "md:text-right"
                     }`}
                     initial={{ opacity: 0, y: 40 }}
@@ -128,107 +117,109 @@ export default function ProductShowcase() {
                       ease: [0.16, 1, 0.3, 1],
                     }}
                   >
-                    {/* Model name */}
-                    <h2
-                      className="group-hover:text-[#ff4a1c]"
-                      style={{
-                        fontSize: ["ef6cafe", "ef7eye"].includes(product.id)
-                          ? "clamp(1.8rem, 3.5vw, 4rem)"
-                          : "clamp(2.8rem, 7vw, 7rem)",
-                        lineHeight: 0.92,
-                        letterSpacing: "-0.04em",
-                        fontWeight: 700,
-                        color: "#0a0a0a",
-                        transition:
-                          "color 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-                        marginTop: 0,
-                      }}
-                    >
-                      {product.name}
-                    </h2>
-
-                    {/* Tagline */}
-                    <p
-                      style={{
-                        fontSize: "clamp(1rem, 2vw, 1.3rem)",
-                        lineHeight: 1.6,
-                        fontWeight: 300,
-                        color: "rgba(0,0,0,0.5)",
-                        marginTop: "clamp(0.5rem, 1.5vh, 1.5rem)",
-                        letterSpacing: "-0.01em",
-                      }}
-                    >
-                      {product.tagline}
-                    </p>
-
-                    {/* Spec numbers */}
-                    {product.specsHighlight &&
-                      product.specsHighlight.length > 0 && (
-                        <div
-                          className={`flex ${
-                            isEven ? "" : "md:justify-end"
-                          }`}
+                    {isComingSoon ? (
+                      /* Coming soon layout: EM BREVE → números → nome → tagline */
+                      <>
+                        <h2
                           style={{
-                            gap: "clamp(1.5rem, 4vw, 3rem)",
-                            marginTop: "clamp(1.5rem, 3vh, 3rem)",
+                            fontSize: "clamp(2rem, 5vw, 5.5rem)",
+                            lineHeight: 0.95,
+                            letterSpacing: "-0.04em",
+                            fontWeight: 700,
+                            color: "#0a0a0a",
+                            marginTop: 0,
+                            marginBottom: "clamp(1rem, 2vh, 2rem)",
+                            whiteSpace: isMobile ? "normal" : "nowrap",
                           }}
                         >
-                          {product.specsHighlight
-                            .slice(0, 3)
-                            .map((spec) => (
+                          {(() => {
+                            const words = product.name.split(" ");
+                            const mid = Math.ceil(words.length / 2);
+                            return <>{words.slice(0, mid).join(" ")}<br />{words.slice(mid).join(" ")}</>;
+                          })()}
+                        </h2>
+
+                        <div style={{ marginBottom: "clamp(1.5rem, 3vh, 3rem)" }}>
+                          <span style={{
+                            fontSize: "clamp(1.1rem, 2vw, 1.6rem)",
+                            fontWeight: 800,
+                            letterSpacing: "0.15em",
+                            textTransform: "uppercase",
+                            color: "#ff4a1c",
+                          }}>
+                            {t("coming_soon")}
+                          </span>
+                        </div>
+
+                        {product.specsHighlight && product.specsHighlight.length > 0 && (
+                          <div
+                            className={`flex ${isEven ? "" : "md:justify-end"}`}
+                            style={{ gap: "clamp(1.5rem, 4vw, 3rem)", marginTop: 0 }}
+                          >
+                            {product.specsHighlight.slice(0, 3).map((spec) => (
                               <div key={spec.label}>
-                                <div
-                                  style={{
-                                    fontSize:
-                                      "clamp(2rem, 5vw, 4rem)",
-                                    fontWeight: 800,
-                                    letterSpacing: "-0.04em",
-                                    lineHeight: 0.85,
-                                    color: "#0a0a0a",
-                                  }}
-                                >
+                                <div style={{ fontSize: "clamp(2rem, 5vw, 4rem)", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 0.85, color: "#0a0a0a" }}>
                                   {spec.value}
                                 </div>
-                                <div
-                                  style={{
-                                    fontSize: "11px",
-                                    fontWeight: 600,
-                                    textTransform: "uppercase",
-                                    letterSpacing: "0.2em",
-                                    color: "rgba(0,0,0,0.35)",
-                                    marginTop: "0.5rem",
-                                    whiteSpace: "pre-line",
-                                  }}
-                                >
+                                <div style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.2em", color: "rgba(0,0,0,0.35)", marginTop: "0.5rem", whiteSpace: "pre-line" }}>
                                   {spec.label}
                                 </div>
                               </div>
                             ))}
-                        </div>
-                      )}
+                          </div>
+                        )}
 
-                    {/* Module badge */}
-                    <div
-                      style={{
-                        marginTop: "clamp(1.5rem, 3vh, 3rem)",
-                      }}
-                    >
-                      <span
-                        style={{
-                          display: "inline-block",
-                          background: "#f0f0f0",
-                          color: "#ff4a1c",
-                          fontSize: "11px",
-                          fontWeight: 600,
-                          padding: "6px 14px",
-                          borderRadius: "999px",
-                          textTransform: "uppercase",
-                          letterSpacing: "0.15em",
-                        }}
-                      >
-                        {product.module}
-                      </span>
-                    </div>
+                        <p style={{ fontSize: "clamp(1rem, 2vw, 1.3rem)", lineHeight: 1.6, fontWeight: 300, color: "rgba(0,0,0,0.5)", marginTop: "clamp(1.5rem, 3vh, 3rem)", letterSpacing: "-0.01em" }}>
+                          {product.tagline}
+                        </p>
+                      </>
+                    ) : (
+                      /* Normal layout: nome → tagline → números → badge */
+                      <>
+                        <h2
+                          className="group-hover:text-[#ff4a1c]"
+                          style={{
+                            fontSize: "clamp(2.8rem, 7vw, 7rem)",
+                            lineHeight: 0.92,
+                            letterSpacing: "-0.04em",
+                            fontWeight: 700,
+                            color: "#0a0a0a",
+                            transition: "color 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                            marginTop: 0,
+                          }}
+                        >
+                          {product.name}
+                        </h2>
+
+                        <p style={{ fontSize: "clamp(1rem, 2vw, 1.3rem)", lineHeight: 1.6, fontWeight: 300, color: "rgba(0,0,0,0.5)", marginTop: "clamp(0.5rem, 1.5vh, 1.5rem)", letterSpacing: "-0.01em" }}>
+                          {product.tagline}
+                        </p>
+
+                        {product.specsHighlight && product.specsHighlight.length > 0 && (
+                          <div
+                            className={`flex ${isEven ? "" : "md:justify-end"}`}
+                            style={{ gap: "clamp(1.5rem, 4vw, 3rem)", marginTop: "clamp(1.5rem, 3vh, 3rem)" }}
+                          >
+                            {product.specsHighlight.slice(0, 3).map((spec) => (
+                              <div key={spec.label}>
+                                <div style={{ fontSize: "clamp(2rem, 5vw, 4rem)", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 0.85, color: "#0a0a0a" }}>
+                                  {spec.value}
+                                </div>
+                                <div style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.2em", color: "rgba(0,0,0,0.35)", marginTop: "0.5rem", whiteSpace: "pre-line" }}>
+                                  {spec.label}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        <div style={{ marginTop: "clamp(1.5rem, 3vh, 3rem)" }}>
+                          <span style={{ display: "inline-block", background: "#f0f0f0", color: "#ff4a1c", fontSize: "11px", fontWeight: 600, padding: "6px 14px", borderRadius: "999px", textTransform: "uppercase", letterSpacing: "0.15em" }}>
+                            {product.module}
+                          </span>
+                        </div>
+                      </>
+                    )}
 
                   </motion.div>
                 </div>

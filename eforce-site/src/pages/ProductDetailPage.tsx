@@ -47,7 +47,7 @@ function AnimatedSection({ children, className, style }: { children: React.React
 /* ── animated counter ──────────────────────────────── */
 function CountUp({ value, duration = 1.5, delay = 0.6 }: { value: number; duration?: number; delay?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const inView = useInView(ref, { once: true, amount: 0 });
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
@@ -86,7 +86,7 @@ function HeroSection({ product, isMobile }: { product: Product; isMobile: boolea
       style={{
         background: "#ffffff",
         position: "relative",
-        overflow: "visible",
+        overflow: isMobile ? "hidden" : "visible",
         padding: "clamp(5rem, 10vh, 8rem) clamp(1.5rem, 6vw, 6rem) 0",
         display: "flex",
         flexDirection: "column",
@@ -100,7 +100,7 @@ function HeroSection({ product, isMobile }: { product: Product; isMobile: boolea
           top: 0,
           left: 0,
           right: 0,
-          height: "58vh",
+          height: isMobile ? "42vh" : "58vh",
           background: "#0a0a0a",
           overflow: "hidden",
           pointerEvents: "none",
@@ -130,18 +130,18 @@ function HeroSection({ product, isMobile }: { product: Product; isMobile: boolea
         transition={{ duration: 1.2, ease }}
         style={{
           position: "absolute",
-          top: "clamp(5.5rem, 11vh, 9rem)",
+          top: isMobile ? "clamp(8rem, 15vh, 11rem)" : "clamp(5.5rem, 11vh, 9rem)",
           left: 0,
           right: 0,
           zIndex: 1,
           textAlign: "center",
-          fontSize: "clamp(4rem, 10vw, 9rem)",
+          fontSize: isMobile ? "clamp(2.8rem, 14vw, 5rem)" : "clamp(4rem, 10vw, 9rem)",
           fontWeight: 800,
           fontStyle: "italic",
           color: "rgba(255,255,255,0.9)",
           lineHeight: 1,
           userSelect: "none",
-          whiteSpace: "nowrap",
+          whiteSpace: isMobile ? "normal" : "nowrap",
           letterSpacing: "-0.04em",
           pointerEvents: "none",
         }}
@@ -155,7 +155,7 @@ function HeroSection({ product, isMobile }: { product: Product; isMobile: boolea
             letterSpacing: "0.12em",
             textTransform: "uppercase",
             color: "rgba(255,255,255,0.55)",
-            marginTop: "0.4em",
+            marginTop: isMobile ? "3.5em" : "0.4em",
           }}>
             {product.subtitle}
           </div>
@@ -171,7 +171,7 @@ function HeroSection({ product, isMobile }: { product: Product; isMobile: boolea
         transition={{ duration: 3, ease: "easeOut", delay: 0.3 }}
         style={{
           position: "absolute",
-          top: "40%",
+          top: isMobile ? "55%" : "40%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           width: "clamp(322px, 63vw, 828px)",
@@ -193,9 +193,9 @@ function HeroSection({ product, isMobile }: { product: Product; isMobile: boolea
           style={{
             position: "relative",
             zIndex: 2,
-            maxWidth: product.slug === "ef2-v4" ? "min(65vw, 910px)" : product.slug === "ef2-v2" ? "min(80vw, 1127px)" : product.slug === "ef5-v2" ? "min(73vw, 1024px)" : product.slug === "ef2-v3" ? "min(90vw, 1260px)" : product.slug === "ef2-v1" ? "min(100vw, 1400px)" : "min(80vw, 1100px)",
-            width: product.slug === "ef2-v4" ? "65%" : product.slug === "ef2-v2" ? "80%" : product.slug === "ef5-v2" ? "73%" : product.slug === "ef2-v3" ? "90%" : product.slug === "ef2-v1" ? "100%" : "75%",
-            marginTop: product.slug === "ef2-v4" ? "clamp(7rem, 11vh, 10rem)" : product.slug === "ef2-v2" ? "clamp(8rem, 14vh, 12rem)" : product.slug === "ef5-v2" ? "clamp(6rem, 10vh, 9rem)" : product.slug === "ef2-v1" ? "clamp(5rem, 9vh, 8rem)" : product.slug === "ef2-v3" ? "clamp(0rem, 2vh, 1.5rem)" : "clamp(2rem, 5vh, 4rem)",
+            maxWidth: product.slug === "ef2-v4" ? (isMobile ? "min(160vw, 910px)" : "min(65vw, 910px)") : product.slug === "ef2-v2" ? (isMobile ? "min(160vw, 1127px)" : "min(80vw, 1127px)") : product.slug === "ef5-v2" ? (isMobile ? "min(130vw, 1024px)" : "min(73vw, 1024px)") : product.slug === "ef2-v3" ? (isMobile ? "min(160vw, 1260px)" : "min(90vw, 1260px)") : product.slug === "ef2-v1" ? (isMobile ? "min(160vw, 1400px)" : "min(100vw, 1400px)") : "min(80vw, 1100px)",
+            width: product.slug === "ef2-v4" ? (isMobile ? "110%" : "65%") : product.slug === "ef2-v2" ? (isMobile ? "160%" : "80%") : product.slug === "ef5-v2" ? (isMobile ? "90%" : "73%") : product.slug === "ef2-v3" ? (isMobile ? "160%" : "90%") : product.slug === "ef2-v1" ? (isMobile ? "160%" : "100%") : "75%",
+            marginTop: product.slug === "ef2-v4" ? (isMobile ? "clamp(8rem, 15vh, 11rem)" : "clamp(7rem, 11vh, 10rem)") : product.slug === "ef2-v2" ? (isMobile ? "clamp(8rem, 15vh, 11rem)" : "clamp(8rem, 14vh, 12rem)") : product.slug === "ef5-v2" ? (isMobile ? "clamp(10rem, 16vh, 13rem)" : "clamp(6rem, 10vh, 9rem)") : product.slug === "ef2-v1" ? (isMobile ? "clamp(8rem, 15vh, 11rem)" : "clamp(5rem, 9vh, 8rem)") : product.slug === "ef2-v3" ? (isMobile ? "clamp(5rem, 9vh, 8rem)" : "clamp(0rem, 2vh, 1.5rem)") : "clamp(2rem, 5vh, 4rem)",
             objectFit: "contain",
             filter: isMobile ? "none" : "drop-shadow(0 30px 60px rgba(0,0,0,0.15))",
           }}
@@ -233,18 +233,18 @@ function KeySpecsSection({ product, isMobile }: { product: Product; isMobile: bo
             maxWidth: "1300px",
             margin: "0 auto",
             display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "1fr 2fr",
-            gap: "clamp(1rem, 3vw, 2rem)",
+            gridTemplateColumns: "1fr",
+            gap: isMobile ? "0.5rem" : "clamp(1rem, 3vw, 2rem)",
             alignItems: "center",
           }}
         >
           {/* Left: specs */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "clamp(2rem, 4vh, 3.5rem)", marginLeft: isMobile ? "0" : "auto", paddingRight: isMobile ? "0" : "clamp(1rem, 2vw, 2rem)", position: "relative", zIndex: 5 }}>
+          <div style={{ display: "flex", flexDirection: "column", flexDirection: isMobile ? "row" : "column", gap: isMobile ? "clamp(1.5rem, 5vw, 3rem)" : "clamp(2rem, 4vh, 3.5rem)", marginLeft: isMobile ? "0" : "auto", paddingRight: isMobile ? "0" : "clamp(1rem, 2vw, 2rem)", position: "relative", zIndex: 5 }}>
             {specs.map((s) => (
               <div key={s.label}>
                 <div
                   style={{
-                    fontSize: "clamp(3rem, 8vw, 6rem)",
+                    fontSize: isMobile ? "clamp(1.8rem, 9vw, 3rem)" : "clamp(3rem, 8vw, 6rem)",
                     fontWeight: 300,
                     color: "#0a0a0a",
                     lineHeight: 1,
@@ -270,21 +270,23 @@ function KeySpecsSection({ product, isMobile }: { product: Product; isMobile: bo
           </div>
 
           {/* Right: product image — LARGE */}
-          <div style={{ overflow: "visible", marginTop: "-2rem", marginBottom: "-2rem" }}>
+          <div style={{ overflow: "visible", marginTop: isMobile ? 0 : "-2rem", marginBottom: isMobile ? 0 : "-2rem" }}>
             <img
               src={product.specsImage ?? aerialImage}
               alt={`${product.name} view`}
-              style={product.slug === "ef2-v4"
-                ? { width: "97%", maxWidth: "none", objectFit: "contain", marginLeft: "1.5%", filter: isMobile ? "none" : "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+              style={isMobile
+                ? { width: "100%", objectFit: "contain", transform: product.slug === "ef2-v2" ? "scale(1.8) translateY(15%)" : "none" }
+                : product.slug === "ef2-v4"
+                ? { width: "97%", maxWidth: "none", objectFit: "contain", marginLeft: "1.5%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
                 : product.slug === "ef2-v2"
-                  ? { width: "170%", maxWidth: "none", objectFit: "contain", marginLeft: "-34%", filter: isMobile ? "none" : "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                  ? { width: isMobile ? "160%" : "170%", maxWidth: "none", objectFit: "contain", marginLeft: isMobile ? "-30%" : "-34%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
                   : product.slug === "ef2-v1"
-                  ? { width: "85%", maxWidth: "none", objectFit: "contain", marginLeft: "7.5%", filter: isMobile ? "none" : "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                  ? { width: "85%", maxWidth: "none", objectFit: "contain", marginLeft: "7.5%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
                   : product.slug === "ef2-v3"
-                  ? { width: "105%", maxWidth: "none", objectFit: "contain", marginLeft: "-2%", filter: isMobile ? "none" : "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                  ? { width: "105%", maxWidth: "none", objectFit: "contain", marginLeft: "-2%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
                   : product.slug === "ef5-v2"
-                  ? { width: "112%", maxWidth: "none", objectFit: "contain", marginLeft: "-16%", filter: isMobile ? "none" : "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
-                  : { width: "200%", maxWidth: "none", objectFit: "contain", marginLeft: "-50%", filter: isMobile ? "none" : "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                  ? { width: "112%", maxWidth: "none", objectFit: "contain", marginLeft: "-16%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
+                  : { width: "200%", maxWidth: "none", objectFit: "contain", marginLeft: "-50%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }
               }
               loading="lazy"
             />
@@ -562,7 +564,7 @@ function EditorialSection({ product, isMobile }: { product: Product; isMobile: b
       </div>
 
       {/* Bottom row: text left + smaller photo right — black bg */}
-      <div style={{ background: "#0a0a0a" }}>
+      <div style={{ background: "#0a0a0a", paddingBottom: isMobile ? "clamp(2rem, 4vh, 3rem)" : 0 }}>
         <div
           style={{
             maxWidth: "1200px",
@@ -616,7 +618,7 @@ function EditorialSection({ product, isMobile }: { product: Product; isMobile: b
         </div>
 
         {/* Second large photo — half black, half white bg */}
-        <div style={{ background: "linear-gradient(to bottom, #0a0a0a 50%, #ffffff 50%)", overflow: "hidden" }}>
+        {!isMobile && <div style={{ background: "linear-gradient(to bottom, #0a0a0a 50%, #ffffff 50%)", overflow: "hidden" }}>
           <motion.div ref={bottomImgRef} style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 clamp(1.5rem, 6vw, 6rem) clamp(3rem, 6vh, 4rem)", x: bottomX }}>
             <img
               src={bottomImage}
@@ -636,7 +638,7 @@ function EditorialSection({ product, isMobile }: { product: Product; isMobile: b
               }}
             />
           </motion.div>
-        </div>
+        </div>}
       </div>
     </section>
   );
