@@ -672,6 +672,7 @@ const CARD_WIDTHS = [
 ];
 
 function HighlightCard({ card, cardHeight, index = 0, isMobile }: { card: { image: string; title: string; description: string; objectFit?: "cover" | "contain"; objectPosition?: string; cardWidth?: string; scale?: number; link?: { label: string; href: string } }, cardHeight: string, index?: number, isMobile?: boolean }) {
+  const { t } = useTranslation();
   const width = isMobile ? "min(85vw, 420px)" : (card.cardWidth ?? CARD_WIDTHS[index % CARD_WIDTHS.length]);
   return (
     <div
@@ -723,7 +724,7 @@ function HighlightCard({ card, cardHeight, index = 0, isMobile }: { card: { imag
                 style={{ display: "inline-block", marginTop: "0.5rem", color: "#ff4a1c", fontWeight: 600, fontSize: "clamp(0.75rem, 0.9vw, 0.85rem)", textDecoration: "none" }}
                 onClick={e => e.stopPropagation()}
               >
-                {card.link.label} →
+                {t('product.learnMore')} →
               </a>
             )}
           </p>
