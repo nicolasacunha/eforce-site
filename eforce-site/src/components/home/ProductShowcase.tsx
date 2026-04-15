@@ -107,10 +107,10 @@ export default function ProductShowcase() {
                           maxHeight: isMobile ? (product.id === "ef2v1" ? "clamp(320px, 90vw, 500px)" : "clamp(260px, 70vw, 400px)") : "clamp(450px, 75vh, 900px)",
                           filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.15))",
                           transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
-                          ...(!isMobile && product.id === "ef2v1" && { transform: "scale(2.19)" }),
-                          ...(!isMobile && product.id === "ef2v2" && { transform: "scale(1.93)" }),
-                          ...(!isMobile && product.id === "ef2v3" && { transform: "scale(1.93)" }),
-                          ...(!isMobile && product.id === "ef5v2" && { transform: "scale(1.71)" }),
+                          ...(product.id === "ef2v1" && { transform: isMobile ? "scale(1.25)" : "scale(2.19)" }),
+                          ...(product.id === "ef2v2" && { transform: isMobile ? "scale(1.20)" : "scale(1.93)" }),
+                          ...(product.id === "ef2v3" && { transform: isMobile ? "scale(1.20)" : "scale(1.93)" }),
+                          ...(product.id === "ef5v2" && { transform: isMobile ? "scale(1.10)" : "scale(1.71)" }),
                         }}
                         loading={i < 2 ? "eager" : "lazy"}
                       />
