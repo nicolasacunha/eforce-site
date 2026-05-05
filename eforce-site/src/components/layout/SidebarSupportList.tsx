@@ -5,13 +5,18 @@ interface SidebarSupportListProps {
   onNavigate: () => void;
 }
 
-const manuais = [
-  { name: "EF2 V1", img: "/assets/images/kits/ef2v1-manual.webp", href: "/assets/manuais/manual-ef2v1.pdf" },
-  { name: "EF2 V2", img: "/assets/images/kits/ef2v2-manual.webp", href: "/assets/manuais/manual-ef2v2.pdf" },
-  { name: "EF2 V3", img: "/assets/images/kits/ef2v3-manual.webp", href: "/assets/manuais/manual-ef2v3.pdf" },
-  { name: "EF2 V4", img: "/assets/images/kits/ef2v4-manual.webp", href: "/assets/manuais/manual-ef2v4.pdf" },
-  { name: "EF5 V2", img: "/assets/images/kits/ef5v2-manual.webp", href: "/assets/manuais/manual-ef5v2.pdf" },
+const manuaisData = [
+  { name: "EF2 V1", img: "/assets/images/kits/ef2v1-manual.webp", slug: "ef2v1" },
+  { name: "EF2 V2", img: "/assets/images/kits/ef2v2-manual.webp", slug: "ef2v2" },
+  { name: "EF2 V3", img: "/assets/images/kits/ef2v3-manual.webp", slug: "ef2v3" },
+  { name: "EF2 V4", img: "/assets/images/kits/ef2v4-manual.webp", slug: "ef2v4" },
+  { name: "EF5 V2", img: "/assets/images/kits/ef5v2-manual.webp", slug: "ef5v2" },
 ];
+
+function getManualHref(slug: string, lang: string | undefined) {
+  const suffix = lang === "pt-BR" ? "" : "-en";
+  return `/assets/manuais/manual-${slug}${suffix}.pdf`;
+}
 
 export function SidebarSupportList({ onNavigate }: SidebarSupportListProps) {
   const { t } = useTranslation();
@@ -32,10 +37,10 @@ export function SidebarSupportList({ onNavigate }: SidebarSupportListProps) {
           </h3>
         </Link>
         <div className="flex flex-col gap-3">
-          {manuais.map((item) => (
+          {manuaisData.map((item) => (
             <a
               key={item.name}
-              href={item.href}
+              href={getManualHref(item.slug, lang)}
               download
               className="flex items-center gap-3 group"
             >
