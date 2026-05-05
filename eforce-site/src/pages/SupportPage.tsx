@@ -31,12 +31,15 @@ export default function SupportPage() {
 
           <div style={{ display: "flex", flexDirection: "column", gap: "1px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
             {[
-              { name: "EF2 V1", img: "/assets/images/kits/ef2v1-manual.webp", href: "/assets/manuais/manual-ef2v1.pdf" },
-              { name: "EF2 V2", img: "/assets/images/kits/ef2v2-manual.webp", href: "/assets/manuais/manual-ef2v2.pdf" },
-              { name: "EF2 V3", img: "/assets/images/kits/ef2v3-manual.webp", href: "/assets/manuais/manual-ef2v3.pdf" },
-              { name: "EF2 V4", img: "/assets/images/kits/ef2v4-manual.webp", href: "/assets/manuais/manual-ef2v4.pdf" },
-              { name: "EF5 V2", img: "/assets/images/kits/ef5v2-manual.webp", href: "/assets/manuais/manual-ef5v2.pdf" },
-            ].map((item) => (
+              { name: "EF2 V1", img: "/assets/images/kits/ef2v1-manual.webp", slug: "ef2v1" },
+              { name: "EF2 V2", img: "/assets/images/kits/ef2v2-manual.webp", slug: "ef2v2" },
+              { name: "EF2 V3", img: "/assets/images/kits/ef2v3-manual.webp", slug: "ef2v3" },
+              { name: "EF2 V4", img: "/assets/images/kits/ef2v4-manual.webp", slug: "ef2v4" },
+              { name: "EF5 V2", img: "/assets/images/kits/ef5v2-manual.webp", slug: "ef5v2" },
+            ].map((item) => {
+              const suffix = currentLang === "pt-BR" ? "" : "-en";
+              const href = `/assets/manuais/manual-${item.slug}${suffix}.pdf`;
+              return (
               <div
                 key={item.name}
                 style={{
@@ -63,9 +66,10 @@ export default function SupportPage() {
                     {t('support.userManualLabel')}
                   </p>
                 </div>
-                <DownloadButton href={item.href} label={t('support.download')} />
+                <DownloadButton href={href} label={t('support.download')} />
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
