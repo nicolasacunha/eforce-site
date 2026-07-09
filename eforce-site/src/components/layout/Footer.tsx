@@ -55,7 +55,7 @@ export default function Footer() {
           <h4 className="font-display font-bold text-sm tracking-wider mb-4 text-[rgba(255,255,255,0.95)]">{t("nav.story")}</h4>
           <ul className="space-y-2 text-sm text-[rgba(255,255,255,0.5)]">
             <li><Link to={`/${lang}/story`} className="hover:text-[rgba(255,255,255,0.95)] transition-colors">{t("nav.story")}</Link></li>
-            <li><Link to={`/${lang}/news`} className="hover:text-[rgba(255,255,255,0.95)] transition-colors">{t("nav.news") || "News"}</Link></li>
+            <li><a href={`/${lang}/news/`} className="hover:text-[rgba(255,255,255,0.95)] transition-colors">{t("nav.news") || "News"}</a></li>
           </ul>
         </div>
         <div>
