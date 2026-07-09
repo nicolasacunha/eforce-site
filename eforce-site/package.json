@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "postbuild": "node scripts/gera-blog.mjs",
+    "blog": "node scripts/gera-blog.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
