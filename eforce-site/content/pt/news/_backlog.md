@@ -9,7 +9,7 @@ item `[ ]` do topo pra baixo e marca `[x]` quando o post (PT+EN) publica.
 
 - [x] mesh vs borracha (resposta do pad) — mesh-vs-borracha-resposta
 - [x] como afinar e ajustar a sensibilidade do trigger sem cross-talk — ajustar-sensibilidade-trigger
-- [ ] o que é latência num módulo de bateria eletrônica e por que o F10 importa — latencia-modulo-bateria-eletronica
+- [x] o que é latência num módulo de bateria eletrônica e por que o F10 importa — latencia-modulo-bateria-eletronica
 - [ ] gravar bateria eletrônica direto do módulo via USB — sem microfone — gravar-usb-modulo-bateria-eletronica
 - [ ] MIDI vs áudio: como tirar o melhor do módulo F10 numa DAW — midi-audio-modulo-f10-daw
 - [ ] como escolher pedal de bumbo eletrônico (single vs duplo) — escolher-pedal-bumbo-eletronico
