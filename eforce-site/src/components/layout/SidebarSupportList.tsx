@@ -14,7 +14,7 @@ const manuaisData = [
 ];
 
 function getManualHref(slug: string, lang: string | undefined) {
-  const suffix = lang === "pt-BR" ? "" : "-en";
+  const suffix = lang === "pt" ? "" : "-en";
   return `/assets/manuais/manual-${slug}${suffix}.pdf`;
 }
 

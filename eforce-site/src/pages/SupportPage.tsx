@@ -37,7 +37,7 @@ export default function SupportPage() {
               { name: "EF2 V4", img: "/assets/images/kits/ef2v4-manual.webp", slug: "ef2v4" },
               { name: "EF5 V2", img: "/assets/images/kits/ef5v2-manual.webp", slug: "ef5v2" },
             ].map((item) => {
-              const suffix = currentLang === "pt-BR" ? "" : "-en";
+              const suffix = currentLang === "pt" ? "" : "-en";
               const href = `/assets/manuais/manual-${item.slug}${suffix}.pdf`;
               return (
               <div
