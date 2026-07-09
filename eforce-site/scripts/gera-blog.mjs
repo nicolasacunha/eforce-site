@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { marked } from "marked";
 import { LANGS, listPostFiles, readPost } from "./lib-posts.mjs";
-import { renderIndex, renderPost } from "./blog-template.mjs";
+import { renderIndex, renderPost, esc } from "./blog-template.mjs";
 
 const OUT = path.resolve(process.argv[2] ?? "dist");
 const isProd = process.env.NODE_ENV === "production";
@@ -32,7 +32,7 @@ for (const lang of LANGS) {
   sitemap.push(`https://eforcedrums.com/${lang}/news/`);
 
   const items = posts.map((p) =>
-    `<item><title>${p.data.title.replace(/[<&]/g, "")}</title><link>https://eforcedrums.com/${lang}/news/${p.slug}/</link><pubDate>${new Date(p.data.publishedAt).toUTCString()}</pubDate></item>`).join("");
+    `<item><title>${esc(p.data.title)}</title><link>https://eforcedrums.com/${lang}/news/${p.slug}/</link><pubDate>${new Date(p.data.publishedAt).toUTCString()}</pubDate></item>`).join("");
   write(`${lang}/news/feed.xml`,
     `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>E-Force — ${lang === "pt" ? "Novidades" : "News"}</title><link>https://eforcedrums.com/${lang}/news/</link><description>Bateria eletrônica.</description>${items}</channel></rss>`);
 }

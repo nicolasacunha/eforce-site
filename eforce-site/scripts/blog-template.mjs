@@ -3,7 +3,7 @@ import { marked } from "marked";
 const BASE = "https://eforcedrums.com";
 const OG = "/assets/images/brand/eforce-og-image.webp";
 
-function esc(s = "") {
+export function esc(s = "") {
   return String(s).replace(/[<>&"']/g, (c) =>
     ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&#39;" })[c]);
 }
@@ -43,7 +43,7 @@ function head({ lang, slug, data, isIndex }) {
 <meta property="og:type" content="article"><meta property="og:title" content="${esc(data.title)}">
 <meta property="og:description" content="${esc(data.description)}"><meta property="og:url" content="${url}">
 <meta property="og:image" content="${BASE}${OG}">
-${jsonld.map((j) => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join("")}
+${jsonld.map((j) => `<script type="application/ld+json">${JSON.stringify(j).replace(/</g, "\\u003c")}</script>`).join("")}
 <style>
 :root{--bg:#0a0a0a;--fg:#ececec;--muted:rgba(255,255,255,.55);--orange:#ff4a1c;--line:rgba(255,255,255,.12)}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.7}
