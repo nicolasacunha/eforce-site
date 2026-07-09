@@ -81,9 +81,9 @@ export function readPost(lang, file) {
 ```bash
 mkdir -p content/pt/news content/en/news content/dados
 for L in pt en; do
-cat > "content/$L/news/_smoke.md" <<EOF
+cat > "content/$L/news/smoke.md" <<EOF
 ---
-slug: _smoke
+slug: smoke
 lang: $L
 type: post
 title: "Smoke"
@@ -99,12 +99,12 @@ done
 - [ ] **Step 4: Verificar leitura**
 
 Run: `node -e "import('./scripts/lib-posts.mjs').then(m=>console.log(m.LANGS.map(l=>m.listPostFiles(l))))"`
-Expected: imprime `[ [ '_smoke.md' ], [ '_smoke.md' ] ]`.
+Expected: imprime `[ [ 'smoke.md' ], [ 'smoke.md' ] ]`.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add package.json package-lock.json scripts/lib-posts.mjs content/pt/news/_smoke.md content/en/news/_smoke.md
+git add package.json package-lock.json scripts/lib-posts.mjs content/pt/news/smoke.md content/en/news/smoke.md
 git commit -m "feat(blog): deps (gray-matter, marked) e leitor de posts"
 ```
 
@@ -280,8 +280,8 @@ console.log(`gera-blog: ${total} post(s) em ${LANGS.length} idioma(s) → ${OUT}
 - [ ] **Step 3: Testar o gerador num dir temporário (com o post de fumaça, NODE_ENV != production → inclui draft)**
 
 Run: `node scripts/gera-blog.mjs /tmp/blogtest && find /tmp/blogtest -name '*.html' | sort`
-Expected: gera `pt/news/index.html`, `pt/news/_smoke/index.html`, `en/news/index.html`, `en/news/_smoke/index.html`. Conferir que um post tem `BlogPosting` e `hreflang`:
-`grep -l BlogPosting /tmp/blogtest/pt/news/_smoke/index.html && grep -c 'hreflang' /tmp/blogtest/pt/news/_smoke/index.html`
+Expected: gera `pt/news/index.html`, `pt/news/smoke/index.html`, `en/news/index.html`, `en/news/smoke/index.html`. Conferir que um post tem `BlogPosting` e `hreflang`:
+`grep -l BlogPosting /tmp/blogtest/pt/news/smoke/index.html && grep -c 'hreflang' /tmp/blogtest/pt/news/smoke/index.html`
 
 - [ ] **Step 4: Commit**
 
@@ -297,7 +297,7 @@ git commit -m "feat(blog): gerador estático (template E-Force + JSON-LD + hrefl
 **Files:**
 - Modify: `package.json` (script `blog` + `postbuild`)
 - Create: `content/pt/news/mesh-vs-borracha-resposta.md`, `content/en/news/mesh-vs-borracha-resposta.md`
-- Delete: `content/pt/news/_smoke.md`, `content/en/news/_smoke.md`
+- Delete: `content/pt/news/smoke.md`, `content/en/news/smoke.md`
 
 - [ ] **Step 1: package.json**
 
@@ -310,7 +310,7 @@ Adicionar em `scripts`: `"blog": "node scripts/gera-blog.mjs"` e `"postbuild": "
 - [ ] **Step 3: Remover o post de fumaça**
 
 ```bash
-rm content/pt/news/_smoke.md content/en/news/_smoke.md
+rm content/pt/news/smoke.md content/en/news/smoke.md
 ```
 
 - [ ] **Step 4: Build completo + verificação**
