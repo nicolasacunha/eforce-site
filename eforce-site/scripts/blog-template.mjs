@@ -1,6 +1,6 @@
 import { marked } from "marked";
 
-const BASE = "https://eforcedrums.com";
+const BASE = "https://www.eforcedrums.com";
 
 // Conjunto de imagens OG (1200×630) que rotacionam entre os posts. A escolha é
 // determinística pelo slug: cada post mantém sempre a mesma imagem (estável em
