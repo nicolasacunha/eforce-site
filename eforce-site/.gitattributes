@@ -1,0 +1,19 @@
+# Trata binários como binários — sem diff textual linha-a-linha.
+# Evita diffs/PRs gigantes (ex.: PDFs de manuais mostrando centenas de milhares
+# de "linhas") e mantém o histórico limpo.
+*.pdf   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.webp  binary
+*.gif   binary
+*.ico   binary
+*.svg   -text
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.mp4   binary
+*.webm  binary
+*.mov   binary
+*.docx  binary
