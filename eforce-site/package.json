@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/valida-todos-posts.mjs",
     "build": "tsc -b && vite build",
     "postbuild": "node scripts/gera-blog.mjs",
     "blog": "node scripts/gera-blog.mjs",
+    "validate:posts": "node scripts/valida-todos-posts.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
