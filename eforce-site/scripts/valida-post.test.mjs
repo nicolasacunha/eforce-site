@@ -6,4 +6,6 @@ assert.equal(validatePost(bom, { banned }).length, 0, "post bom passa");
 assert.ok(validatePost(bom.replace("palavra", "Roland"), { banned }).some((e) => /Roland/.test(e)), "pega marca");
 assert.ok(validatePost(bom + " R$ 2.000", { banned }).some((e) => /preço/.test(e)), "pega preço");
 assert.ok(validatePost(bom.replace(("palavra ".repeat(620)), "curto"), { banned }).some((e) => /palavras/.test(e)), "pega corpo curto");
+assert.ok(validatePost(bom + " <script>alert(1)</script>", { banned }).some((e) => /HTML cru/.test(e)), "pega HTML cru no corpo");
+assert.ok(validatePost(bom + " latência < 10ms garantida pelo módulo", { banned }).every((e) => !/HTML cru/.test(e)), "não pega '< 10ms' como HTML");
 console.log("todos os casos ok");

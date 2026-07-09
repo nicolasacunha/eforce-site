@@ -7,6 +7,9 @@ const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_DADOS = path.resolve(SCRIPT_DIR, "../content/dados");
 const DIRTY = /&#\d+;|&[a-z]+;|Continue reading|" \/>/i;
 const PRICE = /R\$\s*\d|\b\d+\s*dias\b|garantia de|\bgrátis\b|\bdesconto\b|\bpromoção\b/i;
+// Casa tags HTML cruas (<script>, </script>, <img ...>, <b>, etc.), mas não um
+// "<" solto seguido de espaço (ex.: "latência < 10ms") nem links markdown.
+const RAW_HTML = /<\/?[a-z][^>]*>/i;
 
 export function loadBanned(dir = DEFAULT_DADOS) {
   return fs.readFileSync(path.join(dir, "marcas-banidas.txt"), "utf8")
@@ -35,6 +38,7 @@ export function validatePost(raw, { banned }) {
   }
   if (PRICE.test(text)) errs.push("preço/promessa/garantia (proibido)");
   if (DIRTY.test(text)) errs.push("resíduo de importação");
+  if (RAW_HTML.test(body)) errs.push("HTML cru no corpo (proibido)");
   return errs;
 }
 

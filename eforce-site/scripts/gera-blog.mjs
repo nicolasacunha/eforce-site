@@ -5,6 +5,10 @@ import { LANGS, listPostFiles, readPost } from "./lib-posts.mjs";
 import { renderIndex, renderPost, esc } from "./blog-template.mjs";
 
 const OUT = path.resolve(process.argv[2] ?? "dist");
+// A Vercel define NODE_ENV=production automaticamente no build de produção.
+// Por isso drafts são excluídos no deploy real, mas continuam aparecendo em
+// builds locais (NODE_ENV != "production") — isso é esperado, não um bug.
+// Não trocar essa checagem por algo que rode sempre, ou drafts vazam em produção.
 const isProd = process.env.NODE_ENV === "production";
 
 function write(rel, content) {

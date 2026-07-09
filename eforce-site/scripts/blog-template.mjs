@@ -1,7 +1,7 @@
 import { marked } from "marked";
 
 const BASE = "https://eforcedrums.com";
-const OG = "/assets/images/brand/eforce-og-image.webp";
+const OG = "/assets/images/brand/eforce-logo-white.webp";
 
 export function esc(s = "") {
   return String(s).replace(/[<>&"']/g, (c) =>
