@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
+import { useIsMobile } from '@/hooks/useDevicePerf';
 
 interface ScrollExpandMediaProps {
   mediaSrc: string;
   videoSrc?: string;
+  posterSrc?: string;
   videoId?: string;
   title?: string;
   scrollToExpand?: string;
@@ -14,6 +16,7 @@ interface ScrollExpandMediaProps {
 export default function ScrollExpandMedia({
   mediaSrc,
   videoSrc,
+  posterSrc,
   videoId,
   title,
   scrollToExpand,
@@ -23,7 +26,7 @@ export default function ScrollExpandMedia({
   const [showContent, setShowContent] = useState(false);
   const [mediaFullyExpanded, setMediaFullyExpanded] = useState(false);
   const [touchStartY, setTouchStartY] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useIsMobile();
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
@@ -114,13 +117,6 @@ export default function ScrollExpandMedia({
     };
   }, [handleWheelEvent, handleScrollEvent, handleTouchStartEvent, handleTouchMoveEvent, handleTouchEndEvent]);
 
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
-
   // Product image: starts invisible, grows with scroll to fill viewport
   const mediaOpacity = Math.min(scrollProgress * 2.5, 1);
   const mediaScale = 0.3 + scrollProgress * 0.7; // 30% → 100% of viewport
@@ -151,12 +147,21 @@ export default function ScrollExpandMedia({
           className="absolute inset-0 z-0 overflow-hidden"
           style={{ opacity: videoBgOpacity, transition: 'none' }}
         >
-          {videoSrc ? (
+          {/* Mobile: poster estático — o vídeo não é baixado nem reproduzido */}
+          {videoSrc && isMobile ? (
+            <img
+              src={posterSrc ?? mediaSrc}
+              alt=""
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+            />
+          ) : videoSrc ? (
             <video
               autoPlay
               muted
               loop
               playsInline
+              poster={posterSrc}
               className="pointer-events-none absolute inset-0 h-full w-full object-cover"
             >
               <source src={videoSrc} type="video/mp4" />

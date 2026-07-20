@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
+import { isLowPowerDevice, isTouchDevice } from '@/hooks/useDevicePerf';
 
 interface GlowCardProps {
   children?: ReactNode;
@@ -87,20 +88,35 @@ const GlowCard: React.FC<GlowCardProps> = ({
   customSize = false,
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
+  // Touch não tem hover (o spotlight nunca aparece) e máquina fraca não dá
+  // conta de backdrop-blur + background-attachment: fixed — cai no card estático.
+  const [interactive] = useState(() => !isTouchDevice() && !isLowPowerDevice());
 
   useEffect(() => {
-    const syncPointer = (e: PointerEvent) => {
-      const { clientX: x, clientY: y } = e;
+    if (!interactive) return;
+    let rafId = 0;
+    let lastX = 0;
+    let lastY = 0;
+    const apply = () => {
+      rafId = 0;
       if (cardRef.current) {
-        cardRef.current.style.setProperty('--x', x.toFixed(2));
-        cardRef.current.style.setProperty('--xp', (x / window.innerWidth).toFixed(2));
-        cardRef.current.style.setProperty('--y', y.toFixed(2));
-        cardRef.current.style.setProperty('--yp', (y / window.innerHeight).toFixed(2));
+        cardRef.current.style.setProperty('--x', lastX.toFixed(2));
+        cardRef.current.style.setProperty('--xp', (lastX / window.innerWidth).toFixed(2));
+        cardRef.current.style.setProperty('--y', lastY.toFixed(2));
+        cardRef.current.style.setProperty('--yp', (lastY / window.innerHeight).toFixed(2));
       }
     };
-    document.addEventListener('pointermove', syncPointer);
-    return () => document.removeEventListener('pointermove', syncPointer);
-  }, []);
+    const syncPointer = (e: PointerEvent) => {
+      lastX = e.clientX;
+      lastY = e.clientY;
+      if (!rafId) rafId = requestAnimationFrame(apply);
+    };
+    document.addEventListener('pointermove', syncPointer, { passive: true });
+    return () => {
+      document.removeEventListener('pointermove', syncPointer);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [interactive]);
 
   const { base, spread } = glowColorMap[glowColor];
 
@@ -134,6 +150,30 @@ const GlowCard: React.FC<GlowCardProps> = ({
   if (height !== undefined) inlineStyles.height = typeof height === 'number' ? `${height}px` : height;
   if (style) Object.assign(inlineStyles, style);
 
+  const layoutClasses = `
+    ${customSize ? '' : sizeMap[size]}
+    ${!customSize ? 'aspect-[3/4]' : ''}
+    rounded-2xl relative grid grid-rows-[1fr_auto] shadow-[0_1rem_2rem_-1rem_black] p-4 gap-4
+    ${className}
+  `;
+
+  if (!interactive) {
+    const staticStyles: React.CSSProperties = {
+      backgroundColor: 'hsl(0 0% 60% / 0.12)',
+      border: '1px solid hsl(0 0% 100% / 0.12)',
+      position: 'relative',
+    };
+    if (width !== undefined) staticStyles.width = typeof width === 'number' ? `${width}px` : width;
+    if (height !== undefined) staticStyles.height = typeof height === 'number' ? `${height}px` : height;
+    if (style) Object.assign(staticStyles, style);
+
+    return (
+      <div style={staticStyles} className={layoutClasses}>
+        {children}
+      </div>
+    );
+  }
+
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: GLOW_STYLES }} />
@@ -141,12 +181,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
         ref={cardRef}
         data-glow
         style={inlineStyles as React.CSSProperties}
-        className={`
-          ${customSize ? '' : sizeMap[size]}
-          ${!customSize ? 'aspect-[3/4]' : ''}
-          rounded-2xl relative grid grid-rows-[1fr_auto] shadow-[0_1rem_2rem_-1rem_black] p-4 gap-4 backdrop-blur-[5px]
-          ${className}
-        `}
+        className={`${layoutClasses} backdrop-blur-[5px]`}
       >
         <div data-glow />
         {children}
